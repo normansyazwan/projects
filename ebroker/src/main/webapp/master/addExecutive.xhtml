@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition
+		template="/WEB-INF/common/templates/home-template.xhtml">
+		<ui:define name="content">
+			<h:form>
+
+				<h:panelGrid columns="3" cellpadding="5"
+					title="Add New Executive Form">
+
+					<f:facet name="header">
+						Add Executive Form
+					</f:facet>
+
+					<p:outputLabel value="Name" for="name" />
+					<p:inputText id="name" size="37" value="#{executiveBean.executive.executiveName}">
+						<f:validateLength minimum="2" maximum="200" />
+					</p:inputText>
+					<p:message for="name" display="text" />
+
+					<p:outputLabel value="Phone" for="phone"/>
+					<p:inputText id="phone" size="37" value="#{executiveBean.executive.phoneNo}">
+						<f:validateLength minimum="0" maximum="20" />
+					</p:inputText>
+					<p:message for="phone" display="text" />
+
+					<p:outputLabel value="Mobile Number" for="mobile" />
+					<p:inputText id="mobile" size="37" maxlength="10" value="#{executiveBean.executive.mobileNo}">
+						<f:validateLength minimum="0" maximum="10" />
+					</p:inputText>
+					<p:message for="mobile" display="text" />
+
+					<p:outputLabel value="Email" for="email" />
+					<p:inputText id="email" size="37" value="#{executiveBean.executive.email}">
+						<f:validateLength minimum="0" maximum="200" />
+					</p:inputText>
+					<p:message for="email" display="text" />
+
+					<p:outputLabel value="Address" for="address" />
+					<p:inputTextarea id="address" rows="8" cols="35" autoResize="false" maxlength="240" value="#{executiveBean.executive.address}">
+						<f:validateLength minimum="0" maximum="240" />
+					</p:inputTextarea>
+					<p:message for="address" display="text" />
+
+
+					<f:facet name="footer">
+						<p:button value="Reset" />
+						<p:spacer width="10" />
+						<p:commandButton value="Save" actionListener="#{executiveBean.saveExecutive()}"/>
+					</f:facet>
+
+				</h:panelGrid>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

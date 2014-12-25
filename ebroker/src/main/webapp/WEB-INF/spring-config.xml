@@ -31,11 +31,16 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 		<property name="annotatedClasses">
 			<list>
 				<value>com.bharatonjava.ebroker.domain.Agent</value>
+				<value>com.bharatonjava.ebroker.domain.Executive</value>
 			</list>
 		</property>
 
 		<property name="hibernateProperties">
-			<value>hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</value>
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+				hibernate.hbm2ddl.auto=update
+				show_sql=true
+			</value>
 		</property>
 	</bean>
 

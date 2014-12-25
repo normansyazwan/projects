@@ -16,4 +16,12 @@ default-autowire="default">
 	
 	<import resource="spring-config.xml"/>
 	
+	<bean id="executiveService" class="com.bharatonjava.ebroker.services.ExecutiveService" >
+		<property name="executiveDao" ref="executiveDao" />
+	</bean>
+	
+	<bean id="executiveDao" class="com.bharatonjava.ebroker.dao.ExecutiveDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 </beans>

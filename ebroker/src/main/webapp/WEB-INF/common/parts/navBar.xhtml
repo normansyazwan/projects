@@ -8,6 +8,32 @@
 <h:head>
 </h:head>
 <h:body>
-	
+	<h:form>
+
+		<p:panelMenu style="width:300px">
+			<p:submenu label="Quick Entry">
+				<p:menuitem value="Buyer" actionListener="#" icon="fa-male" />
+				<p:menuitem value="Licensee" actionListener="#"
+					icon="ui-icon-arrowrefresh-1-w" />
+				<p:menuitem value="Seller" actionListener="#" />
+				<p:menuitem value="Licensor" actionListener="#" />
+			</p:submenu>
+			<p:separator />
+			<p:submenu label="Buyer">
+				<p:menuitem value="Buyer" actionListener="#" />
+				<p:menuitem value="Licensee" actionListener="#" />
+			</p:submenu>
+			<p:submenu label="Seller">
+				<p:menuitem value="Seller" actionListener="#" />
+				<p:menuitem value="Licensor" actionListener="#" />
+			</p:submenu>
+			<p:submenu label="Master">
+				<p:menuitem value="Executive" url="/master/addExecutive.xhtml" />
+				<p:menuitem value="Executive List"
+					actionListener="#{executiveBean.getListOfExecutives}" ajax="false"
+					url="/master/executives.xhtml" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
 </h:body>
 </html>

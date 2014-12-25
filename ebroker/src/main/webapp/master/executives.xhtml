@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition
+		template="/WEB-INF/common/templates/home-template.xhtml">
+		<ui:define name="content">
+			<h:form>
+
+
+				<p:contextMenu for="execs">
+					<p:menuitem value="View" />
+					<p:menuitem value="Delete" />
+				</p:contextMenu>
+
+
+				<h:panelGrid columns="3" cellpadding="5" title="Executives">
+
+					<f:facet name="header">
+						List of Executives 
+					</f:facet>
+					<p:dataTable var="e" value="#{executiveBean.executives}" id="execs"
+						selectionMode="single"
+						selection="#{executiveBean.selectedExecutive}"
+						rowKey="#{e.executiveId}">
+						<p:column headerText="Id" width="20">
+							<h:outputText value="#{e.executiveId}" />
+						</p:column>
+						<p:column headerText="Executive Name">
+							<h:outputText value="#{e.executiveName}" />
+						</p:column>
+						<p:column headerText="Phone No" width="90">
+							<h:outputText value="#{e.phoneNo}" />
+						</p:column>
+						<p:column headerText="Mobile No." width="80">
+							<h:outputText value="#{e.mobileNo}" />
+						</p:column>
+						<p:column headerText="Email">
+							<h:outputText value="#{e.email}" />
+						</p:column>
+						<p:column headerText="Address">
+							<h:outputText value="#{e.address}" />
+						</p:column>
+					</p:dataTable>
+
+
+					<f:facet name="footer">
+						<p:button value="Add Executive" outcome="addExecutive.xhtml" />
+					</f:facet>
+
+				</h:panelGrid>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

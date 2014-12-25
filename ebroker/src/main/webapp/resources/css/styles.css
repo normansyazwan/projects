@@ -74,3 +74,8 @@ h1 {
 .remove-border{
 	border-style: 1px solid green;
 }
+
+.site-name {
+	font-size: 24px;
+	
+}

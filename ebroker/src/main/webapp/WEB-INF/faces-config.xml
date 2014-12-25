@@ -12,12 +12,21 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 		</resource-bundle>
 	</application>
 	<managed-bean>
-		<managed-bean-name>doctorBean</managed-bean-name>
-		<managed-bean-class>com.medico.web.DoctorBean</managed-bean-class>
+		<managed-bean-name>executiveBean</managed-bean-name>
+		<managed-bean-class>com.bharatonjava.ebroker.web.ExecutiveBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-			<property-name>doctorService</property-name>
-			<value>#{doctorService}</value>
+			<property-name>executiveService</property-name>
+			<value>#{executiveService}</value>
 		</managed-property>
 	</managed-bean>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>executives</from-outcome>
+			<to-view-id>/master/executives.xhtml</to-view-id>			
+		</navigation-case>
+	</navigation-rule>
+	
+	
 </faces-config>
