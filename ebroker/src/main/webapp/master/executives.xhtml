@@ -16,19 +16,21 @@
 
 				<p:contextMenu for="execs">
 					<p:menuitem value="View" />
-					<p:menuitem value="Delete" />
+					<p:menuitem value="Delete" update="execs" actionListener="#{executiveBean.deleteExecutive}"/>
 				</p:contextMenu>
 
 
-				<h:panelGrid columns="3" cellpadding="5" title="Executives">
+				<h:panelGrid columns="3" cellpadding="5" title="Executives" >
 
 					<f:facet name="header">
 						List of Executives 
 					</f:facet>
+					
 					<p:dataTable var="e" value="#{executiveBean.executives}" id="execs"
 						selectionMode="single"
 						selection="#{executiveBean.selectedExecutive}"
-						rowKey="#{e.executiveId}">
+						rowKey="#{e.executiveId}"
+						scrollable="true" scrollHeight="350">
 						<p:column headerText="Id" width="20">
 							<h:outputText value="#{e.executiveId}" />
 						</p:column>

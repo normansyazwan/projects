@@ -29,6 +29,12 @@ public class ExecutiveDao implements IExecutiveDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public void deleteExecutive(Executive executive){
+		Session session = this.sessionFactory.getCurrentSession();
+		session.delete(executive);
+	}
 
 	@Override
 	public List<Executive> getAllExecutives() {

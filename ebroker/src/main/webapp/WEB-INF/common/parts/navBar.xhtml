@@ -30,8 +30,7 @@
 			<p:submenu label="Master">
 				<p:menuitem value="Executive" url="/master/addExecutive.xhtml" />
 				<p:menuitem value="Executive List"
-					actionListener="#{executiveBean.getListOfExecutives}" ajax="false"
-					url="/master/executives.xhtml" />
+					action="#{executiveBean.getListOfExecutives}" ajax="false" />
 			</p:submenu>
 		</p:panelMenu>
 	</h:form>

@@ -10,6 +10,8 @@ public interface IExecutiveDao {
 	
 	public int updateExecutive(Executive executive);
 	
+	public void deleteExecutive(Executive executive);
+	
 	public List<Executive> getAllExecutives();
 	
 	public Executive getExecutiveById(Long executiveId);

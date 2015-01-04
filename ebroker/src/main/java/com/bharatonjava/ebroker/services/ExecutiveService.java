@@ -28,4 +28,9 @@ public class ExecutiveService {
 	public List<Executive> getAllExecutives() {
 		return executiveDao.getAllExecutives();
 	}
+	
+	@Transactional
+	public void deleteExecutive(Executive executive){
+		executiveDao.deleteExecutive(executive);
+	}
 }

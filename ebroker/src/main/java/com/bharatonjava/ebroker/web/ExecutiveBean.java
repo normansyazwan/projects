@@ -57,4 +57,11 @@ public class ExecutiveBean {
 		return "executives";
 	}
 
+	public void deleteExecutive(){
+		System.out.println(selectedExecutive);
+		executiveService.deleteExecutive(selectedExecutive);
+		executives = executiveService.getAllExecutives();
+		selectedExecutive = null;
+	}
+	
 }

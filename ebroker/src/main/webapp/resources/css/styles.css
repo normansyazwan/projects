@@ -71,11 +71,13 @@ h1 {
 }
 
 /*search on home page*/
-.remove-border{
+.remove-border {
 	border-style: 1px solid green;
 }
 
 .site-name {
-	font-size: 24px;
-	
+	color: slategrey;
+    font-family: Papyrus,fantasy;
+    font-size: 42px;
+    font-weight: bold;
 }
