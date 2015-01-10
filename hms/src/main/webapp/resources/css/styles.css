@@ -1,0 +1,111 @@
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90% !important;
+}
+
+.default-template {
+	width: 960px;
+	border: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.profile-grid {
+	width: 100%;
+}
+
+.profile-grid tr, .profile-grid td {
+	border-style: none !important;
+}
+
+.avatar-table {
+	width: 100%;
+}
+
+.avatar-table tr, .avatar-table td {
+	border-style: none !important;
+}
+
+.avatar-pic {
+	width: 120px;
+}
+
+.name-qualification {
+	
+}
+
+.logo {
+	width: 100%;
+}
+
+.logo td, .logo tr {
+	border-style: none !important;
+}
+
+.medico-name {
+	font-size: 26px;
+	line-height: 1.5;
+	color: #000;
+	font-weight: normal;
+}
+
+.doctor-qualifications {
+	color: #818181;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.3
+}
+
+h1 {
+	font-size: 26px;
+	line-height: 1.5;
+	color: #000;
+	font-weight: normal;
+}
+
+.headerSecondCol {
+	width: 500px;
+}
+
+.headerLoginGrid {
+	text-align: right;
+}
+
+/*search on home page*/
+.remove-border {
+	border-style: 1px solid green;
+}
+
+.site-name {
+	color: slategrey;
+    font-family: Papyrus,fantasy;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+/* Removing layout border */
+
+.ui-layout-pane-north.ui-widget-content{
+ border: 0;
+}
+ 
+ .ui-layout-pane-south.ui-widget-content{
+ border: 0;
+}
+ 
+ .ui-layout-pane-east.ui-widget-content{
+ border: 0;
+}
+ 
+ .ui-layout-pane-west.ui-widget-content{
+ border: 0;
+}
+ 
+ .ui-layout-pane-center.ui-widget-content{
+ border: 0;
+}
+
+/* table styling */
+
+table th{
+	text-align: left;
+}

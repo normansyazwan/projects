@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ft="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet name="styles.css" library="css" />
+</h:head>
+
+
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="60">
+			<ui:insert name="header">
+				<ui:include src="/WEB-INF/common/parts/header.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="south" size="30">
+			<ui:insert name="footer">
+				<ui:include src="/WEB-INF/common/parts/footer.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="west" size="200">
+			<ui:insert name="navBar">
+				<ui:include src="/WEB-INF/common/parts/navBar.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="east" size="200">
+			<h:outputText value="Right Content" />
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<ui:insert name="content">
+				<ui:include src="/WEB-INF/common/parts/noContent.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+	</p:layout>
+	<ui:debug />
+</h:body>
+</html>

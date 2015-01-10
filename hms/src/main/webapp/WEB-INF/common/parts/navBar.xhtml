@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+
+		<p:panelMenu style="width:300px">
+			<p:submenu label="Reception">
+				<p:menuitem value="Register Patient" url="/general/registration.xhtml"
+					icon="fa-male" />
+				<p:menuitem value="Appointment" actionListener="#" />
+				<p:menuitem value="Seller" actionListener="#" />
+				<p:menuitem value="Licensor" actionListener="#" />
+			</p:submenu>
+			<p:separator />
+			<p:submenu label="OPD">
+				<p:menuitem value="Buyer" actionListener="#" />
+				<p:menuitem value="Licensee" actionListener="#" />
+			</p:submenu>
+			<p:submenu label="IPD">
+				<p:menuitem value="Seller" actionListener="#" />
+				<p:menuitem value="Licensor" actionListener="#" />
+			</p:submenu>
+			<p:submenu label="Master">
+				<p:menuitem value="Executive" url="/master/addExecutive.xhtml" />
+				<p:menuitem value="Executive List"
+					action="#{executiveBean.getListOfExecutives}" ajax="false" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+</h:body>
+</html>
