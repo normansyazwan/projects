@@ -13,6 +13,8 @@ public class PatientBean {
 	private Patient patient;
 	private List<Patient> patients;
 	
+	private List<Patient> filteredPatients;
+	
 	
 	public PatientBean() {
 		patient = new Patient();
@@ -43,10 +45,28 @@ public class PatientBean {
 		this.patients = patients;
 	}
 	
+	public List<Patient> getFilteredPatients() {
+		return filteredPatients;
+	}
+	
+	public void setFilteredPatients(List<Patient> filteredPatients) {
+		this.filteredPatients = filteredPatients;
+	}
+	
+	//
+	
+	
 	public void savePatient(){
 		System.out.println("patient saved: "+ patient);
 		int count = patientService.savePatient(patient);
 		System.out.println(count);
+		
+		
+		if(count == 1){
+		    patient = null;
+		    getAllPatients();
+		}
+		
 	}
 
 	public void getAllPatients(){

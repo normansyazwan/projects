@@ -8,10 +8,10 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:body>
-	<p:dialog header="Patient Registration Form" widgetVar="dlg2" modal="false"
-		height="500" width="700" closable="true">
+	<p:dialog header="Patient Registration Form" widgetVar="patientRegDialog" modal="true"
+		height="500" width="700" closable="true" appendTo="@(body)">
 
-		<h:form>
+		<h:form id="patientRegFrm">
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
@@ -58,7 +58,10 @@
 				<p:outputLabel  id="state" value="State" />
 
 				<p:spacer width="10" height="10" />
-				<p:commandButton value="Save" actionListener="#{patientBean.savePatient}"/>
+				<p:commandButton value="Save" 
+				actionListener="#{patientBean.savePatient}" 
+				oncomplete="PF('patientRegDialog').hide();"
+				/>
 			</h:panelGrid>
 
 		</h:form>
