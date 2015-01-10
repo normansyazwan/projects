@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<p:dialog header="Patient Registration Form" widgetVar="dlg2" modal="false"
+		height="500" width="700" closable="true">
+
+		<h:form>
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+				<f:facet name="header">
+					<p:outputLabel value="New Patient Registration" />
+				</f:facet>
+
+				<p:outputLabel value="Name" for="name" />
+				<h:panelGrid columns="2" id="name">
+					<p:inputText id="firstName" value="#{patientBean.patient.firstName}">
+						<p:watermark value="First Name" for="firstName" />
+					</p:inputText>
+					<p:inputText id="lastName" value="#{patientBean.patient.lastName}">
+						<p:watermark value="Last Name" for="lastName" />
+					</p:inputText>
+				</h:panelGrid>
+
+				<p:outputLabel value="Date of Birth" for="dob" />
+				<p:calendar id="dob" pattern="dd-MM-yyyy" navigator="true"
+					yearRange="c-100:c+0" maxdate="c" value="#{patientBean.patient.dob}"/>
+
+				<p:outputLabel value="Phone Number" for="phone" />
+				<p:inputText id="phone" maxlength="15" value="#{patientBean.patient.phone}"/>
+
+				<p:outputLabel value="Mobile Number" for="mobile" />
+				<p:inputText id="mobile" maxlength="10" value="#{patientBean.patient.mobile}"/>
+
+				<p:outputLabel value="Email" for="email" />
+				<p:inputText id="email" size="50" maxlength="200" value="#{patientBean.patient.email}"/>
+				
+				<hr/>
+				<p:outputLabel value="Address"/>
+				
+				<p:outputLabel value="Address Line One" for="line1" />
+				<p:inputText id="line1" size="50" maxlength="200" />
+				
+				<p:outputLabel value="Address Line Two" for="line2" />
+				<p:inputText id="line2" size="50" maxlength="200" />
+				
+				<p:outputLabel value="City" for="city" />
+				<p:inputText id="city" size="50" maxlength="200" />
+				
+				<p:outputLabel value="State" for="state" />
+				<p:outputLabel  id="state" value="State" />
+
+				<p:spacer width="10" height="10" />
+				<p:commandButton value="Save" actionListener="#{patientBean.savePatient}"/>
+			</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

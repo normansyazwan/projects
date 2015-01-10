@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 	version="2.1">
-	
+
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 		<resource-bundle>
@@ -12,7 +12,16 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 			<var>msg</var>
 		</resource-bundle>
 	</application>
-	
-	
-	
+
+	<managed-bean>
+		<managed-bean-name>patientBean</managed-bean-name>
+		<managed-bean-class>com.bharatonjava.hms.web.patient.PatientBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>patientService</property-name>
+			<property-class>com.bharatonjava.hms.services.patient.PatientService</property-class>
+			<value>#{patientService}</value>
+		</managed-property>
+	</managed-bean>
+
 </faces-config>

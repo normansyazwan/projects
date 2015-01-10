@@ -16,6 +16,14 @@ default-autowire="default">
 	
 	<import resource="spring-config.xml"/>
 	
-
+	<bean class="com.bharatonjava.hms.utils.SpringAppContext"/>
+	
+	<bean id="patientService" class="com.bharatonjava.hms.services.patient.PatientService">
+		<property name="patientDao" ref="patientDao" />
+	</bean>
+	
+	<bean id="patientDao" class="com.bharatonjava.hms.dao.patient.PatientDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	
 </beans>

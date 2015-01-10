@@ -9,9 +9,13 @@
 <h:body>
 	<ui:composition template="/WEB-INF/common/templates/home-template.xhtml">
 		<ui:define name="content">
+		
+			<ui:include src="/WEB-INF/common/dialogs/patientRegistrationDialog.xhtml" />
 			<h:form>
 	
-				home page			
+				home page
+				
+				<p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();" />
 			</h:form>
 		</ui:define>
 	</ui:composition>
