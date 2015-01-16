@@ -28,24 +28,11 @@
 					<p:commandButton value="Add New Patient" type="button"
 						icon="ui-icon-extlink" onclick="PF('patientRegDialog').show();">
 					</p:commandButton>
-					
-					<p:commandButton value="View">
-					
-					</p:commandButton>
-					
-					<p:commandButton value="Delete" onclick="PF('deleteDlg').show();">
-					
-					</p:commandButton>
-										
 
 				</h:panelGrid>
 
 				<p:dataTable var="p" value="#{patientBean.patients}"
-					scrollable="true" scrollHeight="400" id="patientsTable" 
-					filteredValue="#{patientBean.filteredPatients}"
-					selectionMode="single" 
-					selection="#{patientBean.selectedPatient}" rowKey="#{p.patientId}">
-					
+					scrollable="true" scrollHeight="400" id="patientsTable" filteredValue="#{patientBean.filteredPatients}">
 					<f:facet name="header">
 						<p:outputLabel value="Patients" />
 					</f:facet>
@@ -80,23 +67,6 @@
 					</p:column>
 
 				</p:dataTable>
-				
-				<!--  Delete Confirmation Dialog -->
-				<p:dialog header="Delete Selected Record" modal="true" widgetVar="deleteDlg"
-				height="100" width="300" closable="true" appendTo="@(body)" 
-				resizable="false" draggable="false" >
-
-					<h:panelGrid columns="1">
-	                <p:outputLabel value="You are about to permanently delete record." />
-	                <p:outputLabel value="Are you sure you want to continue?" />
-	                </h:panelGrid>
-	                
-	                <h:panelGrid columns="3" >
-		                <p:commandButton value="Cancel" />
-		                <p:spacer width="100" height="10"/>
-		                <p:commandButton value="Delete"  />
-	                </h:panelGrid>
-            	</p:dialog>
 			</h:form>
 		</ui:define>
 	</ui:composition>

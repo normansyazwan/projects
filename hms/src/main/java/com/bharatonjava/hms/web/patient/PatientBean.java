@@ -12,7 +12,7 @@ public class PatientBean {
 	
 	private Patient patient;
 	private List<Patient> patients;
-	
+	private Patient selectedPatient;
 	private List<Patient> filteredPatients;
 	
 	
@@ -51,6 +51,14 @@ public class PatientBean {
 	
 	public void setFilteredPatients(List<Patient> filteredPatients) {
 		this.filteredPatients = filteredPatients;
+	}
+	
+	public Patient getSelectedPatient() {
+		return selectedPatient;
+	}
+	
+	public void setSelectedPatient(Patient selectedPatient) {
+		this.selectedPatient = selectedPatient;
 	}
 	
 	//
