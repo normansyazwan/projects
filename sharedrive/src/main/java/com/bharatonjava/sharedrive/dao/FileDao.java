@@ -48,6 +48,7 @@ public class FileDao implements IFileDao {
 				BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
 				FileDetail fd = new FileDetail();
 				fd.setFileName(path.getFileName().toString());
+				fd.setPathOnServer(path.toAbsolutePath().toString());
 				fd.setAccessTime(attrs.lastAccessTime());
 				fd.setCreationTime(attrs.creationTime());
 				fd.setIsDirectory(attrs.isDirectory());
@@ -62,4 +63,11 @@ public class FileDao implements IFileDao {
 		return fileDetails;
 	}
 
+	@Override
+	public void deleteSelectedFile(FileDetail fileDetail) throws IOException{
+		Path item = Paths.get(fileDetail.getPathOnServer());
+		Files.delete(item);
+		log.info("Item deleted: "+ fileDetail.getPathOnServer());
+	}
+	
 }

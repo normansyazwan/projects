@@ -4,18 +4,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:body>
 	<ui:composition template="WEB-INF/common/templates/home-template.xhtml">
 		<ui:define name="content">
-			<h:form>
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" />
 
-				<p:commandLink value="Call method"
-					actionListener="#{sharedrive.getFileList()}" update="filesDataTable"/>
-
-				<p:dataTable id="filesDataTable" var="d" value="#{sharedrive.fileDetails}" >
+				<!-- Context menu -->
+				<p:contextMenu for=":form:filesDataTable">
+        			<p:menuitem value="Download" update=":form:filesDataTable" icon="ui-icon-search" oncomplete="PF('carDialog').show()"/>
+        			<p:menuitem value="Delete" update=":form:filesDataTable" icon="ui-icon-close" actionListener="#{sharedrive.deleteSelectedItem()}">
+        				<f:param value="d" />
+        			</p:menuitem>
+    			</p:contextMenu>
 				
+				<p:dataTable id="filesDataTable" var="d" value="#{sharedrive.fileDetails}" 
+					selectionMode="single" selection="#{sharedrive.selectedFileDetail}" rowKey="#{d.fileName}"
+					scrollable="true" scrollHeight="300" scrollRows="1"
+					rowIndexVar="srNo">
+				
+					<p:ajax event="rowSelect" listener="#{sharedrive.onRowSelect}" update=":form:msgs,:filePropsGrid" />
+	        		<p:ajax event="rowUnselect" listener="#{sharedrive.onRowUnselect}" update=":form:msgs,:filePropsGrid" />
+				
+					<p:column headerText="Sr. No." width="25">
+						<p:outputLabel value="#{srNo + 1}"/>
+					</p:column>
+
 					<p:column headerText="File Name">
 						<p:graphicImage library="images" name="folder.png" rendered="#{d.isDirectory}"/>
 						<p:graphicImage library="images" name="text-doc.png" rendered="#{d.isFile}"/>
@@ -23,20 +40,20 @@
 						<h:outputText value="#{d.fileName}" />
 					</p:column>
 
-					<p:column headerText="Size">
-						<h:outputText value="#{d.size}" />
+					<p:column headerText="Size" width="100">
+						<h:outputText value="#{d.size} Kb" />
 					</p:column>
 
-					<p:column headerText="is Directory">
-						<h:outputText value="#{d.isDirectory}" />
-					</p:column>
-
-					<p:column headerText="Creation Time">
-						<h:outputText value="#{d.creationTime}" />
+					<p:column headerText="Created On" width="200">
+						<h:outputText id="createdTime" value="#{d.creationTime}">
+						</h:outputText>
 					</p:column>
 
 				</p:dataTable>
-
+				
+				<p:commandLink value="Call method"
+					actionListener="#{sharedrive.getFileList()}" update=":form:filesDataTable"/>
+				
 			</h:form>
 		</ui:define>
 	</ui:composition>

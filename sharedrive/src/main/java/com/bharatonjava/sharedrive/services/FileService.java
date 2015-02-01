@@ -18,4 +18,8 @@ public class FileService {
 	public List<FileDetail> getAllFiles(String directoryName) throws IOException {
 		return fileDao.getAllFiles(directoryName);
 	}
+	
+	public void deleteSelectedFile(FileDetail fileDetail) throws IOException{
+		fileDao.deleteSelectedFile(fileDetail);
+	}
 }

@@ -8,6 +8,7 @@ public class FileDetail {
 	private long size;
 	private boolean isFile;
 	private boolean isDirectory;
+	private String pathOnServer;
 	private FileTime creationTime;
 	private FileTime accessTime;
 	private FileTime modifiedTime;
@@ -28,7 +29,12 @@ public class FileDetail {
 	}
 
 	public void setSize(long size) {
-		this.size = size;
+		if(size != 0){
+			this.size = size / 1024;
+		}else{
+			this.size = size;
+		}
+			
 	}
 
 	public boolean getIsFile() {
@@ -47,6 +53,14 @@ public class FileDetail {
 		this.isDirectory = isDirectory;
 	}
 
+	public String getPathOnServer() {
+		return pathOnServer;
+	}
+	
+	public void setPathOnServer(String pathOnServer) {
+		this.pathOnServer = pathOnServer;
+	}
+	
 	public FileTime getCreationTime() {
 		return creationTime;
 	}
@@ -73,7 +87,7 @@ public class FileDetail {
 
 	@Override
 	public String toString() {
-		return "FileDetail [size=" + size + ", isFile=" + isFile
+		return "FileDetail [fileName="+ fileName +", size=" + size + ", isFile=" + isFile
 				+ ", isDirectory=" + isDirectory + ", creationTime="
 				+ creationTime + ", accessTime=" + accessTime
 				+ ", modifiedTime=" + modifiedTime + "]";

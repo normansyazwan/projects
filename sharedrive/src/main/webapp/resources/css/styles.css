@@ -81,3 +81,21 @@ pre {
  .ui-layout-pane-center.ui-widget-content{
  border: 0;
 }
+
+
+/* file props grid columns */
+.filePropsCol1{
+	width: 80px;
+	font-weight: bold;
+	color:#0084C7;
+}
+
+.filePropsCol2{
+	width: auto;
+}
+
+tr.filePropsRow  td{
+	 padding-bottom: 5px;
+	 text-align: left;
+	 vertical-align: top;
+}

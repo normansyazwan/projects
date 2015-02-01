@@ -8,4 +8,6 @@ import com.bharatonjava.sharedrive.domain.FileDetail;
 public interface IFileDao {
 
 	public List<FileDetail> getAllFiles(String directoryName) throws IOException;
+	
+	public void deleteSelectedFile(FileDetail fileDetail) throws IOException;
 }
