@@ -40,8 +40,7 @@ public class SharedriveView {
 
 	public void setSelectedFileDetail(FileDetail selectedFileDetail) {
 		this.selectedFileDetail = selectedFileDetail;
-		System.out
-				.println("setSelectedFileDetail : " + this.selectedFileDetail);
+		log.info("setSelectedFileDetail : " + this.selectedFileDetail);
 	}
 
 	public SharedriveView() {
@@ -50,7 +49,6 @@ public class SharedriveView {
 	@PostConstruct
 	public void initialize() {
 		try {
-
 			fileService.getAllFiles("FooDirectory");
 		} catch (Exception e) {
 			System.out.println(e);
@@ -66,6 +64,7 @@ public class SharedriveView {
 
 	public void onRowUnselect(UnselectEvent event) {
 		log.info("onRowUnselect called");
+		
 		FacesMessage msg = new FacesMessage("File Unselected - ",
 				((FileDetail) event.getObject()).getFileName());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -92,6 +91,7 @@ public class SharedriveView {
 		try{
 		log.info("deleteSelectedItem called : " + selectedFileDetail);
 		fileService.deleteSelectedFile(selectedFileDetail);
+		selectedFileDetail = null;
 		fileDetails = fileService.getAllFiles("FooDirectory");
 		}catch(IOException e){
 			FacesMessage msg = new FacesMessage("Error Occured while deleting file: ",

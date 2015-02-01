@@ -16,7 +16,8 @@
 				<!-- Context menu -->
 				<p:contextMenu for=":form:filesDataTable">
         			<p:menuitem value="Download" update=":form:filesDataTable" icon="ui-icon-search" oncomplete="PF('carDialog').show()"/>
-        			<p:menuitem value="Delete" update=":form:filesDataTable" icon="ui-icon-close" actionListener="#{sharedrive.deleteSelectedItem()}">
+        			<p:menuitem value="Rename" update=":form:filesDataTable,:filePropsGrid" icon="ui-icon-search"/>
+        			<p:menuitem value="Delete" update=":form:filesDataTable,:filePropsGrid" icon="ui-icon-close" actionListener="#{sharedrive.deleteSelectedItem()}">
         				<f:param value="d" />
         			</p:menuitem>
     			</p:contextMenu>
