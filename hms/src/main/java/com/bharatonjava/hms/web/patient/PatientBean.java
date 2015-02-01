@@ -18,6 +18,7 @@ public class PatientBean {
 	
 	public PatientBean() {
 		patient = new Patient();
+		selectedPatient = new Patient();
 		patients = new ArrayList<Patient>();
 	}
 	
@@ -58,7 +59,9 @@ public class PatientBean {
 	}
 	
 	public void setSelectedPatient(Patient selectedPatient) {
+		System.out.println("setSelectedPatient called");
 		this.selectedPatient = selectedPatient;
+		System.out.println("setSelectedPatient called : " + selectedPatient);
 	}
 	
 	//
@@ -75,9 +78,16 @@ public class PatientBean {
 		    getAllPatients();
 		}
 		
+		// FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage("Patient saved successfully."));
+		
 	}
 
 	public void getAllPatients(){
 		patients = patientService.getAllPatients();
+	}
+	
+	public void initializePatientRegForm(){
+		System.out.println("initializePatientRegForm called.");
+		patient = new Patient();
 	}
 }

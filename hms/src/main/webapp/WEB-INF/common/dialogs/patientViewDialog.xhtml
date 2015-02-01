@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<p:dialog header="Patient Details" widgetVar="patientViewDialog" modal="true"
+		height="500" width="700" closable="true" appendTo="@(body)" closeOnEscape="true">
+
+		<h:form id="patientViewForm">
+
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+				<f:facet name="header">
+					<p:outputLabel value="Patient Details" />
+				</f:facet>
+
+				<p:outputLabel value="Name" for="name" />
+				<h:panelGrid columns="3" id="name">
+					<p:outputLabel value="#{patientBean.selectedPatient.firstName}"/>
+					<p:spacer width="5" height="10"/>
+					<p:outputLabel value="#{patientBean.selectedPatient.lastName}"/>
+				</h:panelGrid>
+
+				<p:outputLabel value="Date of Birth" for="dob" />
+				<p:outputLabel id="dob" value="#{patientBean.selectedPatient.dob}"/>
+				
+				<p:outputLabel value="Phone Number" for="phone" />
+				<p:outputLabel id="phone" value="#{patientBean.selectedPatient.phone}"/>
+
+				<p:outputLabel value="Mobile Number" for="mobile" />
+				<p:outputLabel id="mobile" value="#{patientBean.selectedPatient.mobile}"/>
+
+				<p:outputLabel value="Email" for="email" />
+				<p:outputLabel id="email" value="#{patientBean.selectedPatient.email}"/>
+				
+				<hr/>
+				
+				<p:outputLabel value="Address" for="address"/>
+				<p:outputLabel id="address" value="Address to appear here.."/>
+				
+				
+				<f:facet name="footer">
+					<p:commandButton value="Close" 
+					oncomplete="PF('patientViewDialog').hide();" />
+				</f:facet>
+				
+			</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

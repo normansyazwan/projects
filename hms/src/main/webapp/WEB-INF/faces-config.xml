@@ -24,4 +24,10 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 		</managed-property>
 	</managed-bean>
 
+	<managed-bean>
+		<managed-bean-name>appointmentBean</managed-bean-name>
+		<managed-bean-class>com.bharatonjava.hms.web.patient.AppointmentBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
 </faces-config>

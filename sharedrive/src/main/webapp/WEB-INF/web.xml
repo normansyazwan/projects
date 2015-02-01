@@ -43,4 +43,7 @@
 	<welcome-file-list>
 		<welcome-file>home.xhtml</welcome-file>
 	</welcome-file-list>
+	<web:session-config>
+		<web:session-timeout>20</web:session-timeout>
+	</web:session-config>
 </web-app>

@@ -9,8 +9,10 @@
 
 <h:body>
 	<p:dialog header="Patient Registration Form" widgetVar="patientRegDialog" modal="true"
-		height="500" width="700" closable="true" appendTo="@(body)">
-
+		height="500" width="700" closable="true" appendTo="@(body)"
+		onShow="#{patientBean.initializePatientRegForm()}"
+		closeOnEscape="true">
+			
 		<h:form id="patientRegFrm">
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
@@ -60,8 +62,7 @@
 				<p:spacer width="10" height="10" />
 				<p:commandButton value="Save" 
 				actionListener="#{patientBean.savePatient}" 
-				oncomplete="PF('patientRegDialog').hide();"
-				/>
+				oncomplete="PF('patientRegDialog').hide();" />
 			</h:panelGrid>
 
 		</h:form>

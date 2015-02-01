@@ -12,5 +12,14 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 		</resource-bundle>
 	</application>
 
-	
+	<managed-bean>
+		<managed-bean-name>sharedrive</managed-bean-name>
+		<managed-bean-class>com.bharatonjava.sharedrive.web.SharedriveView</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>fileService</property-name>
+			<value>#{fileService}</value>
+		</managed-property>
+	</managed-bean>
+
 </faces-config>

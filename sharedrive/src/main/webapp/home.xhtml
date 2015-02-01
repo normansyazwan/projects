@@ -10,8 +10,33 @@
 	<ui:composition template="WEB-INF/common/templates/home-template.xhtml">
 		<ui:define name="content">
 			<h:form>
-	
-				home page			
+
+				<p:commandLink value="Call method"
+					actionListener="#{sharedrive.getFileList()}" update="filesDataTable"/>
+
+				<p:dataTable id="filesDataTable" var="d" value="#{sharedrive.fileDetails}" >
+				
+					<p:column headerText="File Name">
+						<p:graphicImage library="images" name="folder.png" rendered="#{d.isDirectory}"/>
+						<p:graphicImage library="images" name="text-doc.png" rendered="#{d.isFile}"/>
+						<p:spacer width="10" height="10"></p:spacer>
+						<h:outputText value="#{d.fileName}" />
+					</p:column>
+
+					<p:column headerText="Size">
+						<h:outputText value="#{d.size}" />
+					</p:column>
+
+					<p:column headerText="is Directory">
+						<h:outputText value="#{d.isDirectory}" />
+					</p:column>
+
+					<p:column headerText="Creation Time">
+						<h:outputText value="#{d.creationTime}" />
+					</p:column>
+
+				</p:dataTable>
+
 			</h:form>
 		</ui:define>
 	</ui:composition>
