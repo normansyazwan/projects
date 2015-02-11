@@ -14,6 +14,10 @@
  
     <p:toolbar>
         <f:facet name="left">
+        	<p:fileUpload fileUploadListener="#{sharedrive.handleFileUpload}" 
+        		mode="advanced" dragDropSupport="false" multiple="true" update="messages" 
+        		sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
             <p:commandButton type="button" value="New" icon="ui-icon-document" />
  
             <p:commandButton type="button" value="Open" icon="ui-icon-folder-open" />

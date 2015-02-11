@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.slf4j.Logger;
@@ -49,9 +50,9 @@ public class SharedriveView {
 	@PostConstruct
 	public void initialize() {
 		try {
-			fileService.getAllFiles("FooDirectory");
+			fileDetails = fileService.getAllFiles("FooDirectory");
 		} catch (Exception e) {
-			System.out.println(e);
+			log.error("Error during initialization.",e);
 		}
 	}
 
@@ -100,4 +101,15 @@ public class SharedriveView {
 		log.error("Error occured while deleting file.", e);
 		}
 	}
+	
+	/**
+	 * Handles file upload
+	 * @param event
+	 */
+	public void handleFileUpload(FileUploadEvent event) {
+		log.info("handleFileUpload called");
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+	
 }

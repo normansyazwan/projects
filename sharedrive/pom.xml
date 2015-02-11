@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.bharatonjava</groupId>
-  <artifactId>sharedrive</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>sharedrive Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  	<properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.bharatonjava</groupId>
+	<artifactId>sharedrive</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>sharedrive Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<spring.version>4.1.2.RELEASE</spring.version>
 		<primefaces.version>5.1</primefaces.version>
 		<jsf.version>2.2.8</jsf.version>
@@ -54,7 +54,7 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<!-- Spring jdbc extension -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -78,7 +78,7 @@
 			<artifactId>hibernate-proxool</artifactId>
 			<version>4.3.7.Final</version>
 		</dependency>
-		
+
 		<!-- Hibernate Dependencies end -->
 
 		<!-- primefaces -->
@@ -137,7 +137,7 @@
 			<artifactId>el-impl</artifactId>
 			<version>2.2</version>
 		</dependency>
-		
+
 		<!-- dbcp -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -156,7 +156,7 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- Logging jars -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -178,7 +178,7 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.5</version>
 		</dependency>
-		
+
 		<!-- Database driver -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -198,6 +198,15 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
+					<configuration>
+						<downloadJavadocs>true</downloadJavadocs>
+						<downloadSources>true</downloadSources>
+						<additionalProjectFacets>
+							<jst.jsf>2.2</jst.jsf>
+							<jst.web>2.5</jst.web>
+							<wst.jsdt.web>1.0</wst.jsdt.web>
+						</additionalProjectFacets>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -205,8 +214,8 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>

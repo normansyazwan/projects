@@ -8,33 +8,35 @@
 <h:head>
 </h:head>
 <h:body>
-	<h:panelGrid columns="2" id="filePropsGrid" columnClasses="filePropsCol1,filePropsCol2" 
-		width="290" rowClasses="filePropsRow" rendered="#{sharedrive.selectedFileDetail ne null}">
+	<h:form id="rightColForm">
+		<h:panelGrid columns="2" id="filePropsGrid" columnClasses="filePropsCol1,filePropsCol2" 
+			width="290" rowClasses="filePropsRow" rendered="#{sharedrive.selectedFileDetail ne null}">
+			
+			<p:outputLabel value="Name: " for="fileName"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.fileName}" id="fileName"/>
+			
+			<p:outputLabel value="Size: " for="fileSize"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.size}" id="fileSize"/>
+			
+			<p:outputLabel value="Type: " for="fileType"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.isDirectory}" id="fileType"/>
 	
-		<p:outputLabel value="Name: " for="fileName"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.fileName}" id="fileName"/>
-		
-		<p:outputLabel value="Size: " for="fileSize"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.size}" id="fileSize"/>
-		
-		<p:outputLabel value="Type: " for="fileType"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.isDirectory}" id="fileType"/>
-
-		<p:outputLabel value="Type: " for="fileIsFile"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.isFile}" id="fileIsFile"/>
-		
-		<p:outputLabel value="Last Accessed on: " for="fileAccessed"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.accessTime}" id="fileAccessed"/>
-		
-		<p:outputLabel value="Updated on: " for="fileUpdated"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.modifiedTime}" id="fileUpdated"/>
-		
-		<p:outputLabel value="Created on: " for="fileCreated"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.creationTime}" id="fileCreated"/>
-		
-		<p:outputLabel value="Location on Server: " for="filePath"/>
-		<p:outputLabel value="#{sharedrive.selectedFileDetail.pathOnServer}" id="filePath"/>
-		
-	</h:panelGrid>
+			<p:outputLabel value="Type: " for="fileIsFile"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.isFile}" id="fileIsFile"/>
+			
+			<p:outputLabel value="Last Accessed on: " for="fileAccessed"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.accessTime}" id="fileAccessed"/>
+			
+			<p:outputLabel value="Updated on: " for="fileUpdated"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.modifiedTime}" id="fileUpdated"/>
+			
+			<p:outputLabel value="Created on: " for="fileCreated"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.creationTime}" id="fileCreated"/>
+			
+			<p:outputLabel value="Location on Server: " for="filePath"/>
+			<p:outputLabel value="#{sharedrive.selectedFileDetail.pathOnServer}" id="filePath"/>
+			
+		</h:panelGrid>
+	</h:form>
 </h:body>
 </html>
