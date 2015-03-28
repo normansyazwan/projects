@@ -1,4 +1,4 @@
 <#import "layout/defaultLayout.ftl" as layout>
-<@layout.myLayout>
+<@layout.defaultLayout>
   <div><h1>Hello Dude</h1></div>
-</@layout.myLayout>
+</@layout.defaultLayout>

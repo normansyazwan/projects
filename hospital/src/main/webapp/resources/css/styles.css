@@ -1,0 +1,37 @@
+html {
+	font-family: Arial, "Trebuchet MS", Verdana, Tahoma;
+	text-decoration: none;
+	vertical-align: baseline;
+}
+
+.headerText {
+	font-size: 26px;
+	color: gray;
+	padding: 20 0 0 30;
+}
+
+.container {
+	width: 100%;
+	height: 100%
+}
+
+.header{
+	width:100%;
+	height: 80px;
+}
+
+.sideMenuColumn {
+	padding: 10 0 0 10;
+	vertical-align: top;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	display: block;
+	width: 160px;
+}
