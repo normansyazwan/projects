@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	
+	<web:display-name>hospital</web:display-name>
+
+	<web:context-param>
+		<web:param-name>contextConfigLocation</web:param-name>
+		<web:param-value>/WEB-INF/spring/hospital-servlet.xml</web:param-value>
+	</web:context-param>
+
+	<web:listener>
+		<web:listener-class>org.springframework.web.context.ContextLoaderListener</web:listener-class>
+	</web:listener>
+
+	<web:servlet>
+		<web:servlet-name>hospital</web:servlet-name>
+		<web:servlet-class>org.springframework.web.servlet.DispatcherServlet</web:servlet-class>
+		<web:load-on-startup>1</web:load-on-startup>
+	</web:servlet>
+	<web:servlet-mapping>
+		<web:servlet-name>hospital</web:servlet-name>
+		<web:url-pattern>/</web:url-pattern>
+	</web:servlet-mapping>
+
+	
+	
+</web-app>
