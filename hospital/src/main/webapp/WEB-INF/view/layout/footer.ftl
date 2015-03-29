@@ -1,1 +1,1 @@
-<div>this is the footer</div>
+<div>Contact Us</div>
