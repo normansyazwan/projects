@@ -4,21 +4,6 @@ html {
 	vertical-align: baseline;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-table, th, td {
-    border: 0px solid black;
-}
-
-th {
-    height: 50px;
-    background-color: green;
-    color: white;
-} 
-
 label{
 	font-weight: bold;
 	color: #003366;

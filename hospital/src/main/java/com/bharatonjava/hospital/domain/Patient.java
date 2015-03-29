@@ -5,10 +5,13 @@ public class Patient {
 	private Long patientId;
 	private String firstName;
 	private String lastName;
+	private String gender;
 	private int age;
 	private String email;
 	private String mobile;
 	private String phone;
+	
+	private Address address;
 	
 	public Patient() {
 	}
@@ -37,6 +40,14 @@ public class Patient {
 		this.lastName = lastName;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+	
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
 	public int getAge() {
 		return age;
 	}
@@ -69,11 +80,20 @@ public class Patient {
 		this.phone = phone;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", age=" + age + ", email="
-				+ email + ", mobile=" + mobile + ", phone=" + phone + "]";
+				+ ", lastName=" + lastName + ", gender=" + gender + ", age="
+				+ age + ", email=" + email + ", mobile=" + mobile + ", phone="
+				+ phone + ", address=" + address + "]";
 	}
 	
 }

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -17,6 +15,17 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util
      	http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+	<bean id="patientService" class="com.bharatonjava.hospital.services.PatientService">
+		<property name="patientDao" ref="patientDao" />
+	</bean>
+	
+	<bean id="patientDao" class="com.bharatonjava.hospital.dao.PatientDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 
 	<!-- settings -->
 	<context:component-scan base-package="com.bharatonjava.hospital" />
@@ -35,17 +44,17 @@
 				<value>/WEB-INF/view/patient</value>
 			</array>
 		</property>
-		<property name="freemarkerSettings" ref="freemarkerSettingsMap"/>
+		<property name="freemarkerSettings" ref="freemarkerSettingsMap" />
 	</bean>
-	
+
 	<util:map id="freemarkerSettingsMap">
-	    <entry key="auto_import" value="layout/defaultLayout.ftl as layout" />
+		<entry key="auto_import" value="layout/defaultLayout.ftl as layout" />
 	</util:map>
-	
+
 	<!-- View resolvers can also be configured with ResourceBundles or XML files. 
 		If you need different view resolving based on Locale, you have to use the 
 		resource bundle resolver. -->
-	
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="cache" value="false" />
@@ -53,6 +62,24 @@
 		<property name="suffix" value=".ftl" />
 	</bean>
 
-	
 
+	<!-- spring jdbc configurtion -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.databaseurl}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="5" />
+		<property name="minIdle" value="5" />
+		<property name="maxActive" value="20" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 </beans>

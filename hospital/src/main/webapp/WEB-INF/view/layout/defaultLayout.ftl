@@ -9,6 +9,8 @@
     <title>Web Site Name</title>
 	<link rel="stylesheet" type="text/css" href='<@spring.url relativeUrl="/resources/css/styles.css"/>'>
     <link rel="stylesheet" type="text/css" href='<@spring.url relativeUrl="/resources/css/style.css"/>'>
+    <link rel="stylesheet" type="text/css" href='<@spring.url relativeUrl="/resources/css/table-style.css"/>'>
+    <link rel="stylesheet" type="text/css" href='<@spring.url relativeUrl="/resources/css/validation-style.css"/>'>
 </head>
 <body>
     <div class="BackgroundGradient"> </div>
