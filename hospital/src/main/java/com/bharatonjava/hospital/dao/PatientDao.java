@@ -32,14 +32,18 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public Patient getPatientById(Long patientId) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Fetching record for patientId: {}", patientId);
+		String sql = "SELECT * FROM PATIENTS WHERE PATIENT_ID = ?";
+		Patient patient = (Patient) this.jdbcTemplate.queryForObject(sql,
+				new Object[] { patientId }, new PatientRowMapper());
+		return patient;
 	}
 
 	@Override
 	public List<Patient> getAllPatients() {
 		String sql = "SELECT * FROM PATIENTS";
-		List<Patient> patients = this.jdbcTemplate.query(sql,new PatientRowMapper());
+		List<Patient> patients = this.jdbcTemplate.query(sql,
+				new PatientRowMapper());
 		return patients;
 	}
 
@@ -48,13 +52,14 @@ public class PatientDao implements IPatientDao {
 		log.info("Saving Patient: {}", patient);
 		final String sql = "INSERT INTO PATIENTS(FIRST_NAME,LAST_NAME,GENDER,AGE,EMAIL,MOBILE,PHONE) VALUES(?,?,?,?,?,?,?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		
+
 		this.jdbcTemplate.update(new PreparedStatementCreator() {
-			
+
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con)
 					throws SQLException {
-				PreparedStatement ps = con.prepareStatement(sql, new String[] {"PATIENT_ID"});
+				PreparedStatement ps = con.prepareStatement(sql,
+						new String[] { "PATIENT_ID" });
 				ps.setString(1, patient.getFirstName());
 				ps.setString(2, patient.getLastName());
 				ps.setString(3, patient.getGender());
@@ -62,13 +67,14 @@ public class PatientDao implements IPatientDao {
 				ps.setString(5, patient.getEmail());
 				ps.setString(6, patient.getMobile());
 				ps.setString(7, patient.getPhone());
-				
+
 				return ps;
 			}
 		}, keyHolder);
-		
+
 		if (keyHolder.getKey() != null) {
-			log.info("Patient saved successfully. PatientId: {}", keyHolder.getKey().longValue());
+			log.info("Patient saved successfully. PatientId: {}", keyHolder
+					.getKey().longValue());
 			return keyHolder.getKey().longValue();
 		} else {
 			return 0L;
@@ -77,8 +83,16 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public int updatePatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		log.info("Updating patient: {}", patient);
+		String sql = "UPDATE PATIENTS SET FIRST_NAME=?,LAST_NAME=?,GENDER=?,AGE=?,MOBILE=?,PHONE=?,EMAIL=? where PATIENT_ID=?";
+		int count = this.jdbcTemplate.update(sql, new Object[] { patient.getFirstName(),
+				patient.getLastName(), patient.getGender(), patient.getAge(),
+				patient.getMobile(), patient.getPhone(), patient.getEmail(),
+				patient.getPatientId() });
+		
+		log.info("Record updated: {}", count);
+		return count;
+		
 	}
 
 	@Override

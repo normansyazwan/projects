@@ -26,7 +26,17 @@ public class PatientService {
 	}
 	
 	@Transactional
+	public int updatePatient(Patient patient) {
+		return patientDao.updatePatient(patient);
+	}
+	
+	@Transactional
 	public List<Patient> getAllPatients(){
 		return patientDao.getAllPatients();
+	}
+	
+	@Transactional
+	public Patient getPatientById(Long patientId){
+		return patientDao.getPatientById(patientId);
 	}
 }

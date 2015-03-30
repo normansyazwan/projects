@@ -8,44 +8,52 @@
 	    <div class="success">
 	    	Registration Successful! Patient Id: ${savedPatientId!}
 	    </div>
+	 <#elseif updateCount??>   
+	    <div class="success">
+	    	 ${updateCount!} record updated successfully.
+	    </div>
     </#if>
 
-  	<form name="patientReg" action="register" method="POST">
+  	<form name="patientReg" action="<@spring.url relativeUrl="/patient/add"/>" method="POST">
+  	
+  		<@spring.bind "patient" />
+
+		<input type="hidden" name="patientId" value="${patient.patientId?default("")}"/>
 	  	<table style="width:100%">
 	  		<tr>
 	  			<td><label for="firstName">Name:</label></td>
-	  			<td><input name="firstName" type="text">&nbsp;<input name="lastName" type="text"></td>
+	  			<td><input name="firstName" type="text" value="${patient.firstName?default("")}">&nbsp;<input name="lastName" type="text" value="${patient.lastName?default("")}"></td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="age">Gender:</label></td>
 	  			<td>
-	  				<input type="radio" name="gender" value="Male" checked>Male
+	  				<input type="radio" name="gender" value="Male" <#if patient.gender! == "Male">checked</#if> />Male
 					<br>
-					<input type="radio" name="gender" value="Female">Female
+					<input type="radio" name="gender" value="Female" <#if patient.gender! == "Female">checked</#if>/>Female
 				</td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="age">Age:</label></td>
-	  			<td><input name="age" type="text"/></td>
+	  			<td><input name="age" type="text"  value="${patient.age?default("")}"/></td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="email">Email:</label></td>
-	  			<td><input name="email" type="text"/></td>
+	  			<td><input name="email" type="text"  value="${patient.email?default("")}"/></td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="mobile">Mobile:</label></td>
-	  			<td><input name="mobile" type="text"/></td>
+	  			<td><input name="mobile" type="text"  value="${patient.mobile?default("")}"/></td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="phone">Landline:</label></td>
-	  			<td><input name="phone" type="text"/></td>
+	  			<td><input name="phone" type="text"  value="${patient.phone?default("")}"/></td>
 	  		</tr>
 			<tr>
 	  			<td colspan="2"><hr/></td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="address.apartment">House No:</label></td>
-	  			<td><input name="address.apartment" type="text"></td>
+	  			<td><input name="address.apartment" type="text"  ></td>
 	  		</tr>
 	  		<tr>
 	  			<td><label for="address.street">Street:</label></td>

@@ -16,7 +16,7 @@
   <tr <#if patient_index / 2 ==0 > class="evenRow"<#else>class="oddRow"</#if>>
   	<td>${patient_index + 1}</td>
   	<td>${patient.patientId}</td>
-    <td>${patient.firstName!}&nbsp;${patient.lastName!}</td>
+    <td><a href='<@spring.url relativeUrl="/patient/${patient.patientId}"/>'>${patient.firstName!}&nbsp;${patient.lastName!}</a></td>
 	<td>${patient.gender!}</td>
 	<td>${patient.age!}</td>
 	<td>
