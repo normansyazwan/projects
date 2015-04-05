@@ -14,7 +14,7 @@
  
 	<servlet-mapping>
 		<servlet-name>rest</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
  
 	<context-param>
@@ -25,4 +25,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<welcome-file-list>
+		<welcome-file>/home.html</welcome-file>
+	</welcome-file-list>
+	
 </web-app>
