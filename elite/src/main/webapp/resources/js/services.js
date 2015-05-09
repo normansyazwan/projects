@@ -3,21 +3,20 @@
 var hospitalApp = angular.module('hospitalApp');
 
 hospitalApp.service("patientService", [
-		'$scope',
 		'$http',
 		'$q',
-		function($scope, $http, $q) {
+		function($http, $q) {
 
-			this.saveNewPatient = function() {
+			this.saveNewPatient = function(newPatientData) {
 
 				console.log('inside saveNewPatient method');
 
-				$http.post("/rest/patient/add", $scope.newPatient).success(
+				$http.post("rest/patient/add", newPatientData).success(
 						function(data, status, headers, config) {
-							$scope.message = 'Patient saved successfully. '
-									+ data;
+							console.log('Patient saved successfully. '
+									+ data);
 						}).error(function(data, status, headers, config) {
-					$scope.message = 'Patient Save Failed. ' + data;
+					console.log('Patient Save Failed. ' + data);
 				})
 
 			}

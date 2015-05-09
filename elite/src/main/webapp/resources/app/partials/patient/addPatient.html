@@ -5,33 +5,50 @@
 	<div class="form-group">
 		<label for="firstName" class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-4">
-			<input class="form-control" id="firstName" placeholder="First Name" data-ng-model="newPatient.firstName">
+			<input class="form-control" id="firstName" placeholder="First Name"
+				data-ng-model="newPatient.firstName">
 		</div>
 		<div class="col-sm-4">
-			<input class="form-control" id="lastName" placeholder="Last Name" data-ng-model="newPatient.lastName">
+			<input class="form-control" id="lastName" placeholder="Last Name"
+				data-ng-model="newPatient.lastName">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="dob" class="col-sm-2 control-label">Date of Birth</label>
 		<div class="col-sm-4">
-			<input class="form-control" id="dob" placeholder="Date of Birth" data-ng-model="newPatient.dob">
+			<input class="form-control" id="dob" placeholder="Date of Birth"
+				data-ng-model="newPatient.dob">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="Gender" class="col-sm-2 control-label">Gender</label>
+		<div class="radio">
+			<label> <input type="radio" name="gender1"
+				id="gender" value="Male" data-ng-model="newPatient.gender" checked > Male
+			</label>
+			<label> <input type="radio" name="gender1"
+				id="gender" value="Female" data-ng-model="newPatient.gender"> Female
+			</label>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="Gender" class="col-sm-2 control-label">Gender</label>
 		<div class="col-sm-4">
-			<input class="form-control" id="gender" placeholder="Gender" data-ng-model="newPatient.gender">
+			<input class="form-control" id="gender" placeholder="Gender"
+				data-ng-model="newPatient.gender">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 		<div class="col-sm-4">
-			<input class="form-control" id="inputEmail3" placeholder="Email" data-ng-model="newPatient.email">
+			<input class="form-control" id="inputEmail3" placeholder="Email"
+				data-ng-model="newPatient.email">
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-success" data-ng-click='saveNewPatientRecord()'>Save Record</button>
+			<button type="submit" class="btn btn-success"
+				data-ng-click='saveNewPatientRecord()'>Save Record</button>
 		</div>
 	</div>
 	<span>{{newPatient}}</span>

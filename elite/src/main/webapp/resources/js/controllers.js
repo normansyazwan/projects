@@ -24,7 +24,7 @@ hospitalApp.controller('newPatientController', [ '$scope','patientService', func
 		
 		// alert($scope.newPatient);
 		
-		patientService.saveNewPatient();
+		patientService.saveNewPatient($scope.newPatient);
 		
 	}
 
