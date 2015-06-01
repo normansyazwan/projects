@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/context/spring-context.xsd               
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx
@@ -21,7 +21,7 @@
 	<bean id="patientService" class="com.bharatonjava.hospital.services.PatientService">
 		<property name="patientDao" ref="patientDao" />
 	</bean>
-	
+
 	<bean id="patientDao" class="com.bharatonjava.hospital.dao.PatientDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -34,38 +34,23 @@
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<!-- freemarker config -->
-	<bean id="freemarkerConfig"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<!-- <property name="templateLoaderPath" value="/WEB-INF/view/" /> -->
-		<property name="templateLoaderPaths">
-			<array>
-				<value>/WEB-INF/view/</value>
-				<value>/WEB-INF/view/patient</value>
-			</array>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles.xml</value>
+			</list>
 		</property>
-		<property name="freemarkerSettings" ref="freemarkerSettingsMap" />
 	</bean>
-
-	<util:map id="freemarkerSettingsMap">
-		<entry key="auto_import" value="layout/defaultLayout.ftl as layout" />
-	</util:map>
-
-
-	<!-- View resolvers can also be configured with ResourceBundles or XML files. 
-		If you need different view resolving based on Locale, you have to use the 
-		resource bundle resolver. -->
 
 	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="cache" value="false" />
-		<property name="prefix" value="" />
-		<property name="suffix" value=".ftl" />
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</bean>
 
-
 	<!-- spring jdbc configurtion -->
-	
+
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
