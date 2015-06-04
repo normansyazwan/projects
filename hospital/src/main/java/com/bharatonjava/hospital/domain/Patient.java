@@ -1,12 +1,17 @@
 package com.bharatonjava.hospital.domain;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Patient {
 	
 	private Long patientId;
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private int age;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date dateOfBirth;
 	private String email;
 	private String mobile;
 	private String phone;
@@ -48,12 +53,12 @@ public class Patient {
 		this.gender = gender;
 	}
 	
-	public int getAge() {
-		return age;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
-
-	public void setAge(int age) {
-		this.age = age;
+	
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getEmail() {
@@ -91,9 +96,10 @@ public class Patient {
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", gender=" + gender + ", age="
-				+ age + ", email=" + email + ", mobile=" + mobile + ", phone="
-				+ phone + ", address=" + address + "]";
+				+ ", lastName=" + lastName + ", gender=" + gender
+				+ ", dateOfBirth=" + dateOfBirth + ", email=" + email
+				+ ", mobile=" + mobile + ", phone=" + phone + ", address="
+				+ address + "]";
 	}
 	
 }

@@ -22,15 +22,24 @@
         </definition>
         
         <definition name="aboutPage" extends="layout.basic">
+        	<put-attribute name="title" value="About Us" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/home/about.jsp" />
         </definition>
 
         <definition name="contactPage" extends="layout.basic">
+        	<put-attribute name="title" value="Contact Us" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/home/contactUs.jsp" />
         </definition>
 		
 		<!-- views for enum master screen -->
         <definition name="patientRegistration" extends="layout.basic">
+        	<put-attribute name="title" value="Patient Add/Edit" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientForm.jsp" />
+        </definition>
+        
+        	<!-- views for enum master screen -->
+        <definition name="listPatients" extends="layout.basic">
+        	<put-attribute name="title" value="Patient List" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/patient/listPatients.jsp" />
         </definition>
     </tiles-definitions>

@@ -50,7 +50,7 @@ public class PatientDao implements IPatientDao {
 	@Override
 	public Long savePatient(final Patient patient) {
 		log.info("Saving Patient: {}", patient);
-		final String sql = "INSERT INTO PATIENTS(FIRST_NAME,LAST_NAME,GENDER,AGE,EMAIL,MOBILE,PHONE) VALUES(?,?,?,?,?,?,?)";
+		final String sql = "INSERT INTO PATIENTS(FIRST_NAME,LAST_NAME,GENDER,DOB,EMAIL,MOBILE,PHONE) VALUES(?,?,?,?,?,?,?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		this.jdbcTemplate.update(new PreparedStatementCreator() {
@@ -63,7 +63,12 @@ public class PatientDao implements IPatientDao {
 				ps.setString(1, patient.getFirstName());
 				ps.setString(2, patient.getLastName());
 				ps.setString(3, patient.getGender());
-				ps.setInt(4, patient.getAge());
+				if (patient.getDateOfBirth() != null) {
+					ps.setDate(4, new java.sql.Date(patient.getDateOfBirth()
+							.getTime()));
+				}else{
+					ps.setDate(4, null);
+				}
 				ps.setString(5, patient.getEmail());
 				ps.setString(6, patient.getMobile());
 				ps.setString(7, patient.getPhone());
@@ -84,15 +89,17 @@ public class PatientDao implements IPatientDao {
 	@Override
 	public int updatePatient(Patient patient) {
 		log.info("Updating patient: {}", patient);
-		String sql = "UPDATE PATIENTS SET FIRST_NAME=?,LAST_NAME=?,GENDER=?,AGE=?,MOBILE=?,PHONE=?,EMAIL=? where PATIENT_ID=?";
-		int count = this.jdbcTemplate.update(sql, new Object[] { patient.getFirstName(),
-				patient.getLastName(), patient.getGender(), patient.getAge(),
-				patient.getMobile(), patient.getPhone(), patient.getEmail(),
-				patient.getPatientId() });
-		
+		String sql = "UPDATE PATIENTS SET FIRST_NAME=?,LAST_NAME=?,GENDER=?,DOB=?,MOBILE=?,PHONE=?,EMAIL=? where PATIENT_ID=?";
+		int count = this.jdbcTemplate.update(
+				sql,
+				new Object[] { patient.getFirstName(), patient.getLastName(),
+						patient.getGender(), patient.getDateOfBirth(),
+						patient.getMobile(), patient.getPhone(),
+						patient.getEmail(), patient.getPatientId() });
+
 		log.info("Record updated: {}", count);
 		return count;
-		
+
 	}
 
 	@Override

@@ -30,7 +30,7 @@
 	<!-- settings -->
 	<context:component-scan base-package="com.bharatonjava.hospital" />
 	<context:property-placeholder location="classpath:placeholder.properties" />
-	<context:annotation-config />
+	<!-- <context:annotation-config /> -->
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
@@ -47,6 +47,13 @@
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- this property to be removed in prod -->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="basename" value="WEB-INF/messages_en_US.properties" />
 	</bean>
 
 	<!-- spring jdbc configurtion -->
