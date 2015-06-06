@@ -1,5 +1,7 @@
 package com.bharatonjava.hospital.web;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bharatonjava.hospital.domain.HospitalEnum;
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.services.EnumService;
 import com.bharatonjava.hospital.services.PatientService;
 import com.bharatonjava.hospital.utils.Constants;
 import com.bharatonjava.hospital.web.validators.PatientValidator;
 
 @Controller
-@RequestMapping(value="/patient")
+//@RequestMapping(value="/patient")
 public class PatientController {
 
 	private static final Logger log = LoggerFactory.getLogger(PatientController.class);
@@ -29,6 +33,9 @@ public class PatientController {
 	@Autowired
 	private PatientValidator patientValidator;
 	
+	@Autowired
+	private EnumService enumService;
+		
 	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
 	}
@@ -37,10 +44,16 @@ public class PatientController {
 		this.patientValidator = patientValidator;
 	}
 	
-	@RequestMapping(value="/add", method = RequestMethod.GET)
+	public void setEnumService(EnumService enumService) {
+		this.enumService = enumService;
+	}
+	
+	@RequestMapping(value="/patient/add", method = RequestMethod.GET)
 	public String patientShowForm(Model model){
 		Patient patient = new Patient();
 		model.addAttribute("patient", patient);
+		List<HospitalEnum> hospEnums = this.enumService.getEnumsByGroup("CITY");
+		model.addAttribute("hospEnums", hospEnums);
 		return "patientRegistration";
 	}
 	
@@ -51,7 +64,7 @@ public class PatientController {
 	 * @param errors
 	 * @return
 	 */
-	@RequestMapping(value="/add", method = RequestMethod.POST)
+	@RequestMapping(value="/patient/add", method = RequestMethod.POST)
 	public String patientSubmit(@ModelAttribute("patient") Patient patient, BindingResult result, ModelMap model){
 		log.info("Patient: "+patient);
 		Long savedPatientId = 0L;
@@ -62,6 +75,8 @@ public class PatientController {
 		if(result.hasErrors())
 		{
 			log.info("Errors:  {} ",result.getAllErrors());
+			List<HospitalEnum> hospEnums = this.enumService.getEnumsByGroup("CITY");
+			model.addAttribute("hospEnums", hospEnums);
 			return "patientRegistration";
 		}
 		
@@ -79,7 +94,7 @@ public class PatientController {
 		return "redirect:/patient/add";
 	}
 	
-	@RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/patient/edit/{id}", method = RequestMethod.GET)
 	public String preparePatientEditForm(@PathVariable Long id, Model model){
 		
 		Patient patient = patientService.getPatientById(id);
@@ -88,7 +103,7 @@ public class PatientController {
 		return Constants.PATIENT_REGISTRATION_PAGE;
 	}
 	
-	@RequestMapping(value="/all", method = RequestMethod.GET)
+	@RequestMapping(value="/patients", method = RequestMethod.GET)
 	public String allPatients(Model model){
 
 		model.addAttribute("patients", patientService.getAllPatients());
@@ -96,10 +111,12 @@ public class PatientController {
 		return "listPatients";
 	}
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/patients/{id}", method = RequestMethod.GET)
 	public String getPatientById(@PathVariable Long id, Model model){
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
-		return Constants.PATIENT_PROFILE_PAGE;
+		return "patientProfile";
 	}
+	
+	
 }

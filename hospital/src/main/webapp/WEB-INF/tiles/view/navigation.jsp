@@ -74,7 +74,7 @@
 				<ul>
 					<li><a href='<c:url value="/patient/add" />'>Add New
 							Patient</a></li>
-					<li><a href='<c:url value="/patient/all" />'>List Patients</a></li>
+					<li><a href='<c:url value="/patients" />'>List Patients</a></li>
 					<li><a href="#">Test Link 3</a></li>
 					<li><a href="#">Test Link 4</a></li>
 					<li><a href="#">Test Link 5</a></li>

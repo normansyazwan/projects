@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.bharatonjava.hospital.domain.Address;
 import com.bharatonjava.hospital.domain.Patient;
 
 public class PatientRowMapper implements RowMapper<Patient>{
@@ -19,7 +20,10 @@ public class PatientRowMapper implements RowMapper<Patient>{
 		p.setDateOfBirth(rs.getDate("DOB"));
 		p.setEmail(rs.getString("EMAIL"));
 		p.setMobile(rs.getString("MOBILE"));
-		p.setPhone(rs.getString("phone"));
+		p.setPhone(rs.getString("PHONE"));
+		Address a = new Address();
+		a.setAddressId(rs.getLong("address_id"));
+		p.setAddress(a);
 		return p;
 	}
 

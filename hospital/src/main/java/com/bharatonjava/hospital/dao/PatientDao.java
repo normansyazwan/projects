@@ -50,7 +50,8 @@ public class PatientDao implements IPatientDao {
 	@Override
 	public Long savePatient(final Patient patient) {
 		log.info("Saving Patient: {}", patient);
-		final String sql = "INSERT INTO PATIENTS(FIRST_NAME,LAST_NAME,GENDER,DOB,EMAIL,MOBILE,PHONE) VALUES(?,?,?,?,?,?,?)";
+		final String sql = "INSERT INTO PATIENTS(FIRST_NAME,LAST_NAME,GENDER,DOB,EMAIL,MOBILE,PHONE, ADDRESS_ID) "
+				+ "VALUES(?,?,?,?,?,?,?,?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		this.jdbcTemplate.update(new PreparedStatementCreator() {
@@ -72,7 +73,7 @@ public class PatientDao implements IPatientDao {
 				ps.setString(5, patient.getEmail());
 				ps.setString(6, patient.getMobile());
 				ps.setString(7, patient.getPhone());
-
+				ps.setLong(8, patient.getAddress().getAddressId());
 				return ps;
 			}
 		}, keyHolder);
@@ -104,13 +105,13 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public int deletePatient(Patient patient) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public int deletePatient(Long patientId) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 

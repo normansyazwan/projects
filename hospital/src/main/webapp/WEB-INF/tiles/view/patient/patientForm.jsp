@@ -74,25 +74,30 @@
 			<tr>
 				<td><form:label path="address.apartment">Apartment:</form:label></td>
 				<td><form:input path="address.apartment"
-						value="${address.apartment}" maxlength="10" /></td>
+						value="${address.apartment}" maxlength="200" /></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td><form:label path="address.street">Street:</form:label></td>
 				<td><form:input path="address.street" value="${address.street}"
-						maxlength="10" /></td>
+						maxlength="200" /></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td><form:label path="address.area">Area:</form:label></td>
 				<td><form:input path="address.area" value="${address.area}"
-						maxlength="10" /></td>
+						maxlength="200" /></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td><form:label path="address.city">City:</form:label></td>
-				<td><form:input path="address.city" value="${address.city}"
-						maxlength="10" /></td>
+				<td>
+				
+					<form:select path="address.city.enumId">
+						<form:option value="-" label="--Please Select--"/>
+						<form:options items="${hospEnums}" itemValue="enumId" itemLabel="enumValue"/>
+					</form:select>
+				</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
@@ -107,7 +112,7 @@
 
 	<table>
 		<tr>
-			<td><a href='<c:url value="/patient/all" />'>List Patients</a></td>
+			<td><a href='<c:url value="/patients" />'>List Patients</a></td>
 		</tr>
 	</table>
 	

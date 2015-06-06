@@ -27,10 +27,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ patients}" var="p">
+			<c:forEach items="${patients}" var="p">
 				<tr>
 					<td>${p.patientId}</td>
-					<td>${p.firstName}&nbsp;&nbsp;${p.lastName}</td>
+					<td><a href='<c:url value="/patients/${p.patientId}" />'>
+							${p.firstName}&nbsp;&nbsp;${p.lastName} </a></td>
 					<td><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
 							pattern="dd/MMM/yyyy" /> ${dateString}</td>
 					<td>${p.gender}</td>

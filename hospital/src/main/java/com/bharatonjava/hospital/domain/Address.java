@@ -2,12 +2,12 @@ package com.bharatonjava.hospital.domain;
 
 public class Address {
 
-	public Long addressId;
-	public Long patientId;
-	public String apartment;
-	public String street;
-	public String area;
-	public String city;
+	private Long addressId;
+	private Long patientId;
+	private String apartment;
+	private String street;
+	private String area;
+	private HospitalEnum city;
 
 	public Long getAddressId() {
 		return addressId;
@@ -49,11 +49,11 @@ public class Address {
 		this.area = area;
 	}
 
-	public String getCity() {
+	public HospitalEnum getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(HospitalEnum city) {
 		this.city = city;
 	}
 

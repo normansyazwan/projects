@@ -1,1 +1,0 @@
-http://docs.spring.io/spring/docs/2.5.x/reference/view.html#view-velocity-forms

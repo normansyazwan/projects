@@ -37,9 +37,15 @@
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientForm.jsp" />
         </definition>
         
-        	<!-- views for enum master screen -->
+        	
         <definition name="listPatients" extends="layout.basic">
         	<put-attribute name="title" value="Patient List" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/listPatients.jsp" />
+        </definition>
+        
+        <!-- Patient Detailed profile -->
+        <definition name="patientProfile" extends="layout.basic">
+        	<put-attribute name="title" value="Patient Profile" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientProfile.jsp" />
         </definition>
     </tiles-definitions>
