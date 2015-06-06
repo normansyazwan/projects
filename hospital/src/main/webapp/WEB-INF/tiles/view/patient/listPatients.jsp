@@ -21,9 +21,9 @@
 				<th>Name</th>
 				<th>Date Of Birth</th>
 				<th>Gender</th>
-				<th>Mobile</th>
-				<th>Phone</th>
+				<th>Mobile/Phone</th>
 				<th>Email</th>
+				<th>Address</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,9 +35,15 @@
 					<td><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
 							pattern="dd/MMM/yyyy" /> ${dateString}</td>
 					<td>${p.gender}</td>
-					<td>${p.mobile}</td>
-					<td>${p.phone}</td>
+					<td>${p.mobile}<c:if test="${p.phone ne null}">
+							<hr />
+							${p.phone}
+					</c:if>
+					</td>
 					<td>${p.email}</td>
+					<td>${p.address.apartment}<br />
+						${p.address.street}<br /> ${p.address.area}<br />
+						${p.address.city.enumValue}<br /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

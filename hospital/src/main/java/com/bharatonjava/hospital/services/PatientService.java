@@ -52,7 +52,20 @@ public class PatientService {
 	
 	@Transactional
 	public List<Patient> getAllPatients(){
-		return patientDao.getAllPatients();
+		List<Patient> patients = patientDao.getAllPatients();
+		
+		for(Patient patient : patients){
+			if(patient.getAddress().getAddressId() != null){
+				Address address = addressDao.getAddressById(patient.getAddress().getAddressId());
+				if(address.getCity().getEnumId() != null){
+					HospitalEnum city = hospitalEnumDao.getEnumById(address.getCity().getEnumId());
+					address.setCity(city);
+				}
+				patient.setAddress(address);
+			}
+		}
+		
+		return patients;
 	}
 	
 	@Transactional

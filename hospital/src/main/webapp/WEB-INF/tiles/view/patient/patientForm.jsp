@@ -60,12 +60,17 @@
 			</tr>
 			<tr>
 				<td><form:label path="email">Email:</form:label></td>
-				<td><form:input path="email" value="${email}" /></td>
+				<td><form:input path="email" value="${email}" maxlength="200"/></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td><form:label path="mobile">Mobile:</form:label></td>
 				<td><form:input path="mobile" value="${mobile}" maxlength="10" /></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><form:label path="phone">Landline Phone:</form:label></td>
+				<td><form:input path="phone" value="${phone}" maxlength="15" /></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>

@@ -41,3 +41,5 @@ CREATE TABLE PATIENTS(
 );
 
 select * from patients;
+
+select * from addresses;
