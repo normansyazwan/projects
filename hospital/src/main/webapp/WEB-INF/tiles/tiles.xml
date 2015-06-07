@@ -15,6 +15,13 @@
             <put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
         </definition>
 
+		<!-- Default Error page -->
+		<definition name="error" extends="layout.basic">
+        	<put-attribute name="title" value="Error" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/common/error.jsp" />
+        </definition>
+		
+
         <!-- Pages -->  
 
         <definition name="homepage" extends="layout.basic">
@@ -47,5 +54,11 @@
         <definition name="patientProfile" extends="layout.basic">
         	<put-attribute name="title" value="Patient Profile" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientProfile.jsp" />
+        </definition>
+	
+		<!-- Patient Billing screen -->
+		<definition name="patientBilling" extends="layout.basic">
+        	<put-attribute name="title" value="Patient Billing" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientBilling.jsp" />
         </definition>
     </tiles-definitions>

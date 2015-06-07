@@ -24,6 +24,7 @@
 				<th>Mobile/Phone</th>
 				<th>Email</th>
 				<th>Address</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,7 +44,11 @@
 					<td>${p.email}</td>
 					<td>${p.address.apartment}<br />
 						${p.address.street}<br /> ${p.address.area}<br />
-						${p.address.city.enumValue}<br /></td>
+						${p.address.city.enumValue}
+					</td>
+					<td>
+						<a href='<c:url value="/patient/billing/${p.patientId}" />'>Billing</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

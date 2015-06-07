@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,29 +81,43 @@ public class PatientController {
 			return "patientRegistration";
 		}
 		
+		Long patientId = null;
 		if(patient.getPatientId() != null)
 		{
 			log.info("Updating patient");
 			patientService.updatePatient(patient);
 		}else{
 			log.info("Inserting patient");
-			patientService.savePatient(patient);
+			patientId = patientService.savePatient(patient);
 		}
 		
-		model.addAttribute("status", "Record Saved Successfully.");
+		model.addAttribute("status", "success");
+		model.addAttribute("patientId", patientId);
 			
 		return "redirect:/patient/add";
 	}
 	
+	/**
+	 * Patient profile edit
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/patient/edit/{id}", method = RequestMethod.GET)
 	public String preparePatientEditForm(@PathVariable Long id, Model model){
 		
 		Patient patient = patientService.getPatientById(id);
-		
+		List<HospitalEnum> hospEnums = this.enumService.getEnumsByGroup("CITY");
+		model.addAttribute("hospEnums", hospEnums);
 		model.addAttribute("patient", patient);
 		return Constants.PATIENT_REGISTRATION_PAGE;
 	}
 	
+	/**
+	 * Patient List
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/patients", method = RequestMethod.GET)
 	public String allPatients(Model model){
 
@@ -110,7 +125,13 @@ public class PatientController {
 		
 		return "listPatients";
 	}
-	
+
+	/**
+	 * Patient Profile 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/patients/{id}", method = RequestMethod.GET)
 	public String getPatientById(@PathVariable Long id, Model model){
 		Patient patient = patientService.getPatientById(id);
@@ -118,5 +139,25 @@ public class PatientController {
 		return "patientProfile";
 	}
 	
+	/**
+	 * handles patient billing
+	 */
+	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.GET)
+	public String patientBilling(@PathVariable Long id, Model model){
+
+		Patient patient = patientService.getPatientById(id);
+		model.addAttribute("patient", patient);
+		
+		return "patientBilling";
+	}
+	
+	/**
+	 * Default exception handler 
+	 */
+	@ExceptionHandler(Exception.class)
+	public String defaultExceptionHandler(Exception ex){
+		log.error("Exception occured in PatientController. ", ex);
+		return "error";
+	}
 	
 }

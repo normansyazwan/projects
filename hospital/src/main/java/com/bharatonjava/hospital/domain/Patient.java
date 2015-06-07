@@ -1,23 +1,25 @@
 package com.bharatonjava.hospital.domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Patient {
-	
+
 	private Long patientId;
 	private String firstName;
 	private String lastName;
 	private String gender;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateOfBirth;
+	private String bloodGroup;
 	private String email;
 	private String mobile;
 	private String phone;
-	
+
 	private Address address;
-	
+
 	public Patient() {
 	}
 
@@ -48,19 +50,27 @@ public class Patient {
 	public String getGender() {
 		return gender;
 	}
-	
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
-	
+
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+	
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -88,18 +98,42 @@ public class Patient {
 	public Address getAddress() {
 		return address;
 	}
-	
+
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public int getAge() {
+
+		Date d = this.getDateOfBirth();
+		int age = 0;
+
+		if (d != null) {
+
+			Calendar dob = Calendar.getInstance();
+			dob.setTime(d);
+			Calendar today = Calendar.getInstance();
+
+			age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+			if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+				age--;
+			} else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
+					&& today.get(Calendar.DAY_OF_MONTH) < dob
+							.get(Calendar.DAY_OF_MONTH)) {
+				age--;
+			}
+		}
+
+		return age;
 	}
 
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender
-				+ ", dateOfBirth=" + dateOfBirth + ", email=" + email
-				+ ", mobile=" + mobile + ", phone=" + phone + ", address="
-				+ address + "]";
+				+ ", dateOfBirth=" + dateOfBirth + ", bloodGroup=" + bloodGroup
+				+ ", email=" + email + ", mobile=" + mobile + ", phone="
+				+ phone + ", address=" + address + "]";
 	}
 	
 }

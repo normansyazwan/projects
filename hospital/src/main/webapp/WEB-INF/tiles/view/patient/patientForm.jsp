@@ -13,9 +13,11 @@
 </head>
 <body>
 	<h3>Patient Registration Form</h3>
-
-	<h3 style="color: green">${status}</h3>
-
+	
+	<c:if test="${param.status ne null}">
+		<h3 style="color: green">${param.status}: Record saved successfully. Patient Id is &nbsp; ${param.patientId}</h3>
+	</c:if>
+	
 	<form:form action="add" method="POST" commandName="patient">
 		<table>
 			<tr>
@@ -99,7 +101,7 @@
 				<td>
 				
 					<form:select path="address.city.enumId">
-						<form:option value="-" label="--Please Select--"/>
+						<form:option value="0" label="--Please Select--"/>
 						<form:options items="${hospEnums}" itemValue="enumId" itemLabel="enumValue"/>
 					</form:select>
 				</td>

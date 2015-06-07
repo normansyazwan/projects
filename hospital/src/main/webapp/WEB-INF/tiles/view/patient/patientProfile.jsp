@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+
 </head>
 <body>
 <h3>${patient.firstName}'s Profile</h3>
@@ -35,6 +35,10 @@
 		</td>
 	</tr>
 	<tr>
+		<td><label>Age:</label></td>
+		<td>${patient.age}</td>
+	</tr>
+	<tr>
 		<td><label>Email:</label></td>
 		<td>${patient.email}</td>
 	</tr>
@@ -56,6 +60,12 @@
 		</td>
 	</tr>
 </table>
+	<table>
+		<tr>
+			<td><a href='<c:url value="/patient/edit/${patient.patientId}" />'>Edit</a></td>
+		</tr>
+	</table>
+
 
 </body>
 </html>
