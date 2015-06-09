@@ -26,25 +26,44 @@
 		</tr>
 	</table>
 	<hr />
-	<table border="1" style="width: 100%;">
+	<table border="0" style="width: 100%;">
 		<thead>
 			<tr>
 				<th>Sr.No</th>
 				<th>Item</th>
-				<th>Sr.No</th>
-				<th>Sr.No</th>
-				<th>Sr.No</th>
-				<th>Sr.No</th>
+				<th>Quantity</th>
+				<th>Cost</th>
 			</tr>
 		</thead>
 
+
+		<c:forEach items="${billingForm.billingRecords}" var="br" varStatus="status">
+		<tr>
+			<td>
+			
+			${status.count}
+			
+			</td>
+			<td>
+				<form:select path="billingForm.billingRecords[${status.index}].billableItem"  items="${billableItems}" itemLabel="description">
+					
+				</form:select> 
+			</td>
+			<td><form:input path="billingForm.billingRecords[${status.index}].quantity" value="${br.quantity}" cssStyle="text-align:right" /></td>
+			<td><form:input path="billingForm.billingRecords[${status.index}].billableItem.cost"  value="${br.billableItem.cost}" cssStyle="text-align:right" /></td>
+		</tr>
+		</c:forEach>
 		<tr>
 			<td></td>
 			<td></td>
 			<td></td>
+			<td>Total to appear here: </td>
+		</tr>
+		<tr>
 			<td></td>
 			<td></td>
 			<td></td>
+			<td><input type="submit" value="Save Record"/> </td>
 		</tr>
 	</table>
 </body>

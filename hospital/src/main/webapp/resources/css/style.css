@@ -178,8 +178,8 @@ ul {
 
 .Header {
 	position: relative;
-	background-image: url('/hospital/resources/images/Header.png');
-	background-repeat: no-repeat;
+	/* background-image: url('/hospital/resources/images/Header.png'); 
+	background-repeat: no-repeat; */
 	padding: 0;
 	height: 150px;
 	color: #000;
@@ -222,8 +222,8 @@ ul {
 }
 
 .Menu {
-	background: transparent url('/hospital/resources/images/MenuBar.png')
-		no-repeat;
+	background: transparent url('/hospital/resources/images/MenuBar.png');
+	background-repeat: repeat-x;
 	padding: 5px 5px 0 5px;
 	margin: 0;
 	text-align: Default;

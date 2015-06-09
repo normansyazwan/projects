@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bharatonjava.hospital.domain.BillableItem;
+import com.bharatonjava.hospital.domain.BillingRecord;
 import com.bharatonjava.hospital.domain.HospitalEnum;
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.services.BillableItemService;
 import com.bharatonjava.hospital.services.EnumService;
 import com.bharatonjava.hospital.services.PatientService;
 import com.bharatonjava.hospital.utils.Constants;
@@ -36,7 +39,10 @@ public class PatientController {
 	
 	@Autowired
 	private EnumService enumService;
-		
+	
+	@Autowired
+	private BillableItemService billableItemService;
+	
 	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
 	}
@@ -47,6 +53,10 @@ public class PatientController {
 	
 	public void setEnumService(EnumService enumService) {
 		this.enumService = enumService;
+	}
+	
+	public void setBillableItemService(BillableItemService billableItemService) {
+		this.billableItemService = billableItemService;
 	}
 	
 	@RequestMapping(value="/patient/add", method = RequestMethod.GET)
@@ -147,6 +157,26 @@ public class PatientController {
 
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
+	
+		List<BillableItem> billableItems = billableItemService.getBillableItems();
+		model.addAttribute("billableItems", billableItems);
+		
+		BillingForm billingForm = new BillingForm();
+		
+		BillingRecord br = new BillingRecord();
+		BillingRecord br2 = new BillingRecord();
+		billingForm.getBillingRecords().add(br);
+		billingForm.getBillingRecords().add(br2);
+		
+		model.addAttribute("billingForm", billingForm);
+		
+		return "patientBilling";
+	}
+	
+	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.POST)
+	public String processPatientBilling(@ModelAttribute("billingForm") BillingForm billingForm, Long id, BindingResult result, Model model){
+		
+		log.info("billingForm : "+ billingForm);
 		
 		return "patientBilling";
 	}

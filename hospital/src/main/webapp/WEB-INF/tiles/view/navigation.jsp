@@ -35,7 +35,9 @@
 			<span class="BlockHeader"><span>Search This Site</span></span>
 			<div class="BlockContentBorder">
 
-				<input type="text" style="width: 120px" /> <span
+				<input type="text" style="width: 100%" />
+				<br/>
+				 <span
 					class="ButtonInput"><span><input type="button"
 						value="Search" /></span></span>
 
