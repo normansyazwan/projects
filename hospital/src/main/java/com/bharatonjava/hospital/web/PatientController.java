@@ -190,4 +190,13 @@ public class PatientController {
 		return "error";
 	}
 	
+	/**
+	 * handles ajax request to add a new row in patient billing form
+	 */
+	@RequestMapping(value = "/ajax/patientBillingFormRow", method = RequestMethod.GET)
+	public String getPatientBillingFormRow(){
+		
+		return "patientBillRowAjaxRequest";
+	}
+
 }

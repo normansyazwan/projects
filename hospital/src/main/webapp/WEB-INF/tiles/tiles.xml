@@ -15,6 +15,10 @@
             <put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
         </definition>
 
+		<definition name="layout.blank" template="/WEB-INF/tiles/layout/blankLayout.jsp">
+            <put-attribute name="body" value="" />
+        </definition>
+
 		<!-- Default Error page -->
 		<definition name="error" extends="layout.basic">
         	<put-attribute name="title" value="Error" />
@@ -61,4 +65,10 @@
         	<put-attribute name="title" value="Patient Billing" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientBilling.jsp" />
         </definition>
+        
+        <!-- for ajax request on patient bill page -->
+		<definition name="patientBillRowAjaxRequest" extends="layout.blank">
+			<put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientBillRow.jsp" />
+		</definition>
+		
     </tiles-definitions>

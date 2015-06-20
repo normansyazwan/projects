@@ -8,10 +8,12 @@
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
-<link rel="stylesheet" href='<c:url value="/resources/css/style.css" />'>
 
-<link rel="stylesheet"
-	href='<c:url value="/resources/css/styles.css" />'>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.4.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/hospital.js" />"></script>
+
+<link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
+<link rel="stylesheet" href='<c:url value="/resources/css/styles.css" />' />
 
 </head>
 <body>

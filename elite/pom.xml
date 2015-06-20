@@ -11,6 +11,7 @@
 	<properties>
 		<spring.version>4.1.2.RELEASE</spring.version>
 		<jackson.version>2.5.2</jackson.version>
+		<hibernate.version>4.3.10.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -80,6 +81,7 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+
 		<!-- Logging jars -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -126,6 +128,13 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- Hibernate dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 	</dependencies>
