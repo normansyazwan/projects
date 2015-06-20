@@ -23,7 +23,7 @@ hospitalApp
 					.when(
 							"/listPatients",
 							{
-								controller : 'homeController',
+								controller : 'listPatientsController',
 								templateUrl : 'resources/app/partials/patient/listPatients.html'
 							})
 					.otherwise({ redirectTo : '/'});

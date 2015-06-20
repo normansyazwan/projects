@@ -29,10 +29,10 @@ public class PatientDao implements IPatientDao{
 	}
 
 	@Override
-	public void savePatient(Patient patient) {
+	public Long savePatient(Patient patient) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(patient);
-		
+		Long patientId = (Long) session.save(patient);
+		return patientId;
 	}
 
 	@Override
@@ -42,8 +42,9 @@ public class PatientDao implements IPatientDao{
 	}
 
 	@Override
-	public void deletePatient(Long patientId) {
+	public Long deletePatient(Long patientId) {
 		// TODO Auto-generated method stub
+		return 0l;
 		
 	}
 

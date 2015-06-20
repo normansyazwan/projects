@@ -29,3 +29,12 @@ hospitalApp.controller('newPatientController', [ '$scope','patientService', func
 	}
 
 } ]);
+
+hospitalApp.controller("listPatientsController", ['$scope', 'patientService', function($scope, patientService) {
+	
+	var promise = patientService.listPatients();
+	
+	promise.then(function(data){
+		$scope.patients = data;
+	})
+} ]);

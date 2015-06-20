@@ -20,5 +20,20 @@ hospitalApp.service("patientService", [
 				})
 
 			}
+			
+			this.listPatients = function(){
+				
+				console.log("inside list patients to fetch list of patients");
+				
+				var deferred = $q.defer();
+				$http.get("rest/patients").then(function(data){
+					deferred.resolve(data);
+				});
+				
+				return deferred.promise;
+			}
 
 		} ]);
+
+
+

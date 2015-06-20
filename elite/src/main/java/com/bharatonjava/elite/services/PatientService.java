@@ -25,8 +25,9 @@ public class PatientService {
 	}
 	
 	@Transactional
-	public void savePatient(Patient patient){
-		
+	public Long savePatient(Patient patient){
+		Long patientId = this.patientDao.savePatient(patient);
+		return patientId;
 	}
 	
 	@Transactional

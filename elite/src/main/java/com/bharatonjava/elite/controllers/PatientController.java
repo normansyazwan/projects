@@ -51,6 +51,15 @@ public class PatientController {
 	public @ResponseBody Patient processPatientRegistrationForm(@RequestBody Patient patient) {
 	
 		log.info("Post invoked! Patient: "+ patient);
+		Long patientId = 0L;
+		if(patient != null){
+			// this is a new patient so save it
+			patientId = patientService.savePatient(patient);
+		}else if(patient.getPatientId() > 0L){
+			// update patient
+		}
+		log.info("Patient saved successfully with id : {} ", patientId);
+			
 		return patient;
 	}
 }
