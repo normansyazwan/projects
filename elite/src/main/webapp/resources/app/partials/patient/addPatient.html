@@ -1,6 +1,6 @@
-<h3>Add/Update Patient form</h3>
-
-<span>{{message}}</span>
+<div class="page-header">
+	<h4>Add Patient</h4>
+</div>
 
 <form class="form-horizontal" role="form">
 
@@ -10,7 +10,7 @@
 			<label for="firstName" class="control-label">Name</label>
 		</div>
 		<div class="col-md-3">
-			<input class="form-control" id="firstName" placeholder="First Name" data-ng-model="newPatient.firstName">
+			<input class="form-control" id="firstName" placeholder="First Name" data-ng-model="newPatient.firstName" data-ng-required="true">
 		</div>
 		<div class="col-md-3">
 			<input class="form-control" id="lastName" placeholder="Last Name" data-ng-model="newPatient.lastName">
@@ -76,6 +76,35 @@
 		</div>
 		<div class="col-md-6"></div>
 	</div>
+	
+	<div class="row form-group">
+		<div class="col-md-2">
+			<label for="inputApartment" class="control-label">Aparment</label>
+		</div>
+		<div class="col-md-4">
+			<input class="form-control" id="inputEmail3" placeholder="Apartment" data-ng-model="newPatient.address.apartment">
+		</div>
+		<div class="col-md-6"></div>
+	</div>
+	<div class="row form-group">
+		<div class="col-md-2">
+			<label for="inputEmail3" class="control-label">Street</label>
+		</div>
+		<div class="col-md-4">
+			<input class="form-control" id="inputStreet" placeholder="Street" data-ng-model="newPatient.address.street">
+		</div>
+		<div class="col-md-6"></div>
+	</div>
+	<div class="row form-group">
+		<div class="col-md-2">
+			<label for="inputEmail3" class="control-label">Area</label>
+		</div>
+		<div class="col-md-4">
+			<input class="form-control" id="inputArea" placeholder="Area" data-ng-model="newPatient.address.area">
+		</div>
+		<div class="col-md-6"></div>
+	</div>
+	
 	<div class="row form-group">
 		<div class="col-md-2"></div>
 		<div class="col-md-2">

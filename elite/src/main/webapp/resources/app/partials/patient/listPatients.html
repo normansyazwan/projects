@@ -1,23 +1,34 @@
-<div class="panel panel-default">
 
-	<div class="panel-heading">Patients</div>
+<div class="page-header">
+	<h4>Patients</h4>
+</div>
+
+<div class="panel panel-default">
+	
+	<div class="panel-heading">
+		<label for="patientFilterText" class="control-label">Search</label> 
+		<input type="text" data-ng-model="patientFilterText">
+	</div>
 
 	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
-				<th style="min-width: 80px;">First name</th>
-				<th style="min-width: 80px;">Last name</th>
-				<th style="min-width: 20px;">Gender</th>
-				<th style="min-width: 20px;">Age</th>
-				<th style="min-width: 30px;">Date of Birth</th>
-				<th style="min-width: 20px;">Blood Group</th>
-				<th style="min-width: 100px;">Email</th>
-				<th style="min-width: 40px;">Mobile</th>
-				<th style="min-width: 40px;">Phone</th>
+				<th>Patient Id</th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Gender</th>
+				<th>Age</th>
+				<th>Date of Birth</th>
+				<th>Blood Group</th>
+				<th>Email</th>
+				<th>Mobile</th>
+				<th>Phone</th>
+				<th>Address</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-repeat="p in patients.data">
+			<tr data-ng-repeat="p in patients.data | filter: patientFilterText">
+				<td>{{ p.patientId}}</td>
 				<td>{{ p.firstName }}</td>
 				<td>{{ p.lastName }}</td>
 				<td>{{ p.gender }}</td>
@@ -27,6 +38,8 @@
 				<td>{{ p.email }}</td>
 				<td>{{ p.mobile }}</td>
 				<td>{{ p.phone }}</td>
+				<td>{{ p.address.apartment + " " + p.address.street + " "+
+					p.address.area | limitTo: 50 }} ...</td>
 			</tr>
 		</tbody>
 	</table>
