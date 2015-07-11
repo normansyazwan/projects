@@ -10,6 +10,7 @@ hospitalApp.controller('hospitalController', [ '$scope', function($scope) {
 	
 } ]);
 
+
 hospitalApp.controller('newPatientController', [ '$scope','patientService', function($scope, patientService) {
 
 	$scope.newPatient = {};
@@ -30,6 +31,7 @@ hospitalApp.controller('newPatientController', [ '$scope','patientService', func
 
 } ]);
 
+
 hospitalApp.controller("listPatientsController", ['$scope', 'patientService', function($scope, patientService) {
 	
 	var promise = patientService.listPatients();
@@ -38,3 +40,16 @@ hospitalApp.controller("listPatientsController", ['$scope', 'patientService', fu
 		$scope.patients = data;
 	})
 } ]);
+
+
+hospitalApp.controller("patientProfileController", ['$scope','patientService', function($scope, patientService){
+
+	
+		var promise = patientService.getPatientById();
+		
+		promise.then(function(data){
+			$scope.patientProfile = data;
+		})
+	
+	
+}]);

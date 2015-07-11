@@ -29,16 +29,16 @@
 		<tbody>
 			<tr data-ng-repeat="p in patients.data | filter: patientFilterText">
 				<td>{{ p.patientId}}</td>
-				<td>{{ p.firstName }}</td>
+				<td><a href="#/patient/profile" data-ng-click="">{{ p.firstName }}</a></td>
 				<td>{{ p.lastName }}</td>
 				<td>{{ p.gender }}</td>
 				<td>{{ p.age }}</td>
-				<td>{{ p.dateOfBirth }}</td>
+				<td>{{ p.dateOfBirth | date:'dd-MMM-yyyy'}}</td>
 				<td>{{ p.bloodGroup }}</td>
 				<td>{{ p.email }}</td>
 				<td>{{ p.mobile }}</td>
 				<td>{{ p.phone }}</td>
-				<td>{{ p.address.apartment + " " + p.address.street + " "+
+				<td>{{ p.address.apartment + ", " + p.address.street + ", "+
 					p.address.area | limitTo: 50 }} ...</td>
 			</tr>
 		</tbody>

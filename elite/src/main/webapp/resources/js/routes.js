@@ -26,6 +26,12 @@ hospitalApp
 								controller : 'listPatientsController',
 								templateUrl : 'resources/app/partials/patient/listPatients.html'
 							})
+					.when(
+							"/patient/profile",
+							{
+								controller : 'patientProfileController',
+								templateUrl : 'resources/app/partials/patient/patientProfile.html'
+							})
 					.otherwise({ redirectTo : '/'});
 
 		} ]);

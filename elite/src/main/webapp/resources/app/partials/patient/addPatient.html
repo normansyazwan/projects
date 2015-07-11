@@ -23,7 +23,14 @@
 		</div>
 		<div class="col-md-3">
 			<p class="input-group">
-				<input id="dob" type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="newPatient.dob" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+				<input id="dob" type="text" class="form-control" 
+					datepicker-popup="{{format}}" data-ng-model="newPatient.dateOfBirth" 
+					is-open="opened" min-date="minDate" 
+					max-date="'2015-06-22'" 
+					datepicker-options="dateOptions" 
+					date-disabled="disabled(date, mode)" 
+					ng-required="true" close-text="Close" 
+					placeholder="yyyy-MM-dd"/>
         	    <span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               	</span>

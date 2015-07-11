@@ -19,7 +19,7 @@ hospitalApp.service("patientService", [
 					console.log('Patient Save Failed. ' + data);
 				})
 
-			}
+			};
 			
 			this.listPatients = function(){
 				
@@ -31,8 +31,13 @@ hospitalApp.service("patientService", [
 				});
 				
 				return deferred.promise;
-			}
+			};
 
+			
+			this.getPatientById = function(){
+				
+			};
+			
 		} ]);
 
 
