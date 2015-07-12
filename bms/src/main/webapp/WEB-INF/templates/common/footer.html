@@ -1,7 +1,19 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>	
+	
 <body>
-	<div th:fragment="copy">&copy; 2015 XYZ consultancy services....</div>
+	<div th:fragment="footer" class="container footer">
+		<div align="left">This is going to be a great tool</div>
+		<div align="right">Support Email: ibharatsharma@gmail.com</div>
+	</div>
 </body>
 </html>

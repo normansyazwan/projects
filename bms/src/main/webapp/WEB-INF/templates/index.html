@@ -1,14 +1,27 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Contacts</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title th:text="#{company.name}"></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
 <body>
- <div th:include="common/header :: header"></div>
-Hello World! 
+	<div th:include="common/navbar :: navbar"></div>
+	<div class="container">
 
-<div th:include="common/footer :: copy"></div>
+		<div th:include="common/header :: header"></div>
+		Hello World!
+
+		<div th:include="common/footer :: footer"></div>
+
+	</div>
 </body>
 </html>
