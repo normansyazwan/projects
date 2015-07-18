@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bharatonjava.hospital.domain.HospitalEnum;
@@ -18,6 +19,7 @@ public class HospitalEnumDao implements IHospitalEnumDao {
 	private static final Logger log = LoggerFactory.getLogger(AddressDao.class);
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

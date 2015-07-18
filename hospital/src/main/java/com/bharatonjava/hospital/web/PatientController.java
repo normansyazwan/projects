@@ -92,7 +92,7 @@ public class PatientController {
 		}
 		
 		Long patientId = null;
-		if(patient.getPatientId() != null)
+		if(patient.getPersonId() != null)
 		{
 			log.info("Updating patient");
 			patientService.updatePatient(patient);

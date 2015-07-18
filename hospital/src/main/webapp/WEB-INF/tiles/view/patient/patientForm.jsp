@@ -15,7 +15,7 @@
 	<h3>Patient Registration Form</h3>
 	
 	<c:if test="${param.status ne null}">
-		<h3 style="color: green">${param.status}: Record saved successfully. Patient Id is &nbsp; ${param.patientId}</h3>
+		<p class="bg-success">${param.status}: Record saved successfully. Patient Id is &nbsp; ${param.patientId}</p>
 	</c:if>
 	
 	<form:form action="add" method="POST" commandName="patient">
@@ -25,9 +25,9 @@
 				<td colspan="2"><form:errors path="*" cssClass="formError" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="patientId">Patient Id:</form:label></td>
-				<td><form:input path="patientId" readonly="true"
-						value="${patientId}" /></td>
+				<td><form:label path="personId">Patient Id:</form:label></td>
+				<td><form:input path="personId" readonly="true"
+						value="${personId}" /></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
@@ -97,20 +97,9 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><form:label path="address.city">City:</form:label></td>
-				<td>
-				
-					<form:select path="address.city.enumId">
-						<form:option value="0" label="--Please Select--"/>
-						<form:options items="${hospEnums}" itemValue="enumId" itemLabel="enumValue"/>
-					</form:select>
-				</td>
 				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button value="Reset">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="submit" value="Save" /></td>
+				<td><button value="Reset" class="btn btn-default">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="submit" value="Save" class="btn btn-primary"/></td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>

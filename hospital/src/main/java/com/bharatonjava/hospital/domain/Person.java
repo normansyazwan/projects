@@ -3,7 +3,9 @@ package com.bharatonjava.hospital.domain;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +22,7 @@ import javax.persistence.Transient;
 @Table(name = "PERSON")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
+	
 	private Long personId;
 	private String firstName;
 	private String lastName;
@@ -106,7 +109,7 @@ public class Person {
 		this.phone = phone;
 	}
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Address getAddress() {
 		return address;
 	}
