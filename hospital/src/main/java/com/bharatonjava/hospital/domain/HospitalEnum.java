@@ -1,5 +1,14 @@
 package com.bharatonjava.hospital.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "HOSPITAL_ENUMS")
 public class HospitalEnum {
 	
 	private Long enumId;
@@ -9,6 +18,10 @@ public class HospitalEnum {
 	public HospitalEnum() {
 	}
 
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ENUM_ID")
 	public Long getEnumId() {
 		return enumId;
 	}
@@ -17,6 +30,7 @@ public class HospitalEnum {
 		this.enumId = enumId;
 	}
 
+	@Column(name = "ENUM_GROUP")
 	public String getEnumGroup() {
 		return enumGroup;
 	}
@@ -25,6 +39,7 @@ public class HospitalEnum {
 		this.enumGroup = enumGroup;
 	}
 
+	@Column(name = "ENUM_VALUE")
 	public String getEnumValue() {
 		return enumValue;
 	}

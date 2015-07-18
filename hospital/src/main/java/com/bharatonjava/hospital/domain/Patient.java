@@ -1,28 +1,25 @@
 package com.bharatonjava.hospital.domain;
 
-import java.util.Calendar;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-public class Patient {
+@Entity
+@Table(name="PATIENT")
+public class Patient extends Person{
 
 	private Long patientId;
-	private String firstName;
-	private String lastName;
-	private String gender;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dateOfBirth;
 	private String bloodGroup;
-	private String email;
-	private String mobile;
-	private String phone;
-
-	private Address address;
-
+	
 	public Patient() {
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "PATIENT_ID")
 	public Long getPatientId() {
 		return patientId;
 	}
@@ -31,109 +28,13 @@ public class Patient {
 		this.patientId = patientId;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
+	@Column(name = "BLOOD_GROUP")
 	public String getBloodGroup() {
 		return bloodGroup;
 	}
 	
 	public void setBloodGroup(String bloodGroup) {
 		this.bloodGroup = bloodGroup;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public int getAge() {
-
-		Date d = this.getDateOfBirth();
-		int age = 0;
-
-		if (d != null) {
-
-			Calendar dob = Calendar.getInstance();
-			dob.setTime(d);
-			Calendar today = Calendar.getInstance();
-
-			age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-			if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
-				age--;
-			} else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
-					&& today.get(Calendar.DAY_OF_MONTH) < dob
-							.get(Calendar.DAY_OF_MONTH)) {
-				age--;
-			}
-		}
-
-		return age;
-	}
-
-	@Override
-	public String toString() {
-		return "Patient [patientId=" + patientId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", gender=" + gender
-				+ ", dateOfBirth=" + dateOfBirth + ", bloodGroup=" + bloodGroup
-				+ ", email=" + email + ", mobile=" + mobile + ", phone="
-				+ phone + ", address=" + address + "]";
 	}
 	
 }

@@ -39,8 +39,6 @@ public class PatientService {
 	
 	@Transactional
 	public Long savePatient(Patient patient) {
-		Long addressId = this.addressDao.saveAddress(patient.getAddress());
-		patient.getAddress().setAddressId(addressId);
 		return patientDao.savePatient(patient);
 		
 	}
@@ -53,33 +51,12 @@ public class PatientService {
 	@Transactional
 	public List<Patient> getAllPatients(){
 		List<Patient> patients = patientDao.getAllPatients();
-		
-		for(Patient patient : patients){
-			if(patient.getAddress().getAddressId() != null){
-				Address address = addressDao.getAddressById(patient.getAddress().getAddressId());
-				if(address.getCity().getEnumId() != null){
-					HospitalEnum city = hospitalEnumDao.getEnumById(address.getCity().getEnumId());
-					address.setCity(city);
-				}
-				patient.setAddress(address);
-			}
-		}
-		
 		return patients;
 	}
 	
 	@Transactional
 	public Patient getPatientById(Long patientId){
 		Patient patient = patientDao.getPatientById(patientId);
-		if(patient.getAddress().getAddressId() != null){
-			Address address = addressDao.getAddressById(patient.getAddress().getAddressId());
-			if(address.getCity().getEnumId() != null){
-				HospitalEnum city = hospitalEnumDao.getEnumById(address.getCity().getEnumId());
-				address.setCity(city);
-			}
-			patient.setAddress(address);
-		}
-		
 		return patient;
 	}
 }

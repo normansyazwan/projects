@@ -14,11 +14,11 @@
 
 
 	<bean id="patientService" class="com.bharatonjava.hospital.services.PatientService">
-		<property name="patientDao" ref="patientDao" />
+		<property name="patientDao" ref="patientDao"></property>
 	</bean>
 
 	<bean id="patientDao" class="com.bharatonjava.hospital.dao.PatientDao">
-		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 
