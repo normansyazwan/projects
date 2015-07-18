@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
- 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,60 +12,80 @@
 
 </head>
 <body>
-<h3>${patient.firstName}'s Profile</h3>
+	<h3>${patient.firstName}'sProfile</h3>
 
-<table>
-	<tr>
-		<td><label>Patient Id:</label></td>
-		<td>${patient.patientId}</td>
-	</tr>
-	<tr>
-		<td><label>Name:</label></td>
-		<td>${patient.firstName} &nbsp; ${patient.lastName}</td>
-	</tr>
-	<tr>
-		<td><label>Gender</label></td>
-		<td>${patient.gender}</td>
-	</tr>
-	<tr>
-		<td><label>Date of Birth:</label></td>
-		<td>
-			<fmt:formatDate value="${patient.dateOfBirth}" var="dateString" pattern="dd-MMM-yyyy" /> 
-			${dateString}
-		</td>
-	</tr>
-	<tr>
-		<td><label>Age:</label></td>
-		<td>${patient.age}</td>
-	</tr>
-	<tr>
-		<td><label>Email:</label></td>
-		<td>${patient.email}</td>
-	</tr>
-	<tr>
-		<td><label>Mobile:</label></td>
-		<td>${patient.mobile}</td>
-	</tr>
-	<tr>
-		<td><label>Landline Phone:</label></td>
-		<td>${patient.phone}</td>
-	</tr>
-	<tr>
-		<td><label>Address: </label></td>
-		<td>
-			${patient.address.apartment}<br/>
-			${patient.address.street}<br/>
-			${patient.address.area}<br/>
-			${patient.address.city.enumValue}<br/>
-		</td>
-	</tr>
-</table>
-	<table>
-		<tr>
-			<td><a href='<c:url value="/patient/edit/${patient.patientId}" />'>Edit</a></td>
-		</tr>
-	</table>
-
+	<div class="container-fulid">
+		<div class="row">
+			<div class="col-md-2">
+				<label>Patient Id:</label>
+			</div>
+			<div class="col-md-5">${patient.personId}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Name:</label>
+			</div>
+			<div class="col-md-5">${patient.firstName}&nbsp;
+				${patient.lastName}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Gender:</label>
+			</div>
+			<div class="col-md-5">${patient.gender}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Date of Birth</label>
+			</div>
+			<div class="col-md-5">
+				<fmt:formatDate value="${patient.dateOfBirth}" var="dateString"
+					pattern="dd-MMM-yyyy" />
+				${dateString}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Age</label>
+			</div>
+			<div class="col-md-5">${patient.age}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Email:</label>
+			</div>
+			<div class="col-md-5">${patient.email}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Mobile:</label>
+			</div>
+			<div class="col-md-5">${patient.mobile}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Landline Phone:</label>
+			</div>
+			<div class="col-md-5">${patient.phone}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Address:</label>
+			</div>
+			<div class="col-md-5">${patient.address.apartment}<br />
+				${patient.address.street}<br /> ${patient.address.area}<br />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+				<a href='<c:url value="/patient/edit/${patient.personId}" />'
+					class="btn btn-default btn-sm">Edit</a>
+			</div>
+			<div class="col-md-1"><a href='<c:url value="/patient/edit/${patient.personId}" />'
+					class="btn btn-default btn-sm">Billing</a></div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
 
 </body>
 </html>

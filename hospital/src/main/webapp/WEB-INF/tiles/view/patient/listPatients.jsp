@@ -14,7 +14,7 @@
 <body>
 	<h3>Patients</h3>
 
-	<table width="100%" class="zui-table zui-table-highlight-all">
+	<table width="100%" class="table table-condensed table-hover table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -30,24 +30,25 @@
 		<tbody>
 			<c:forEach items="${patients}" var="p">
 				<tr>
-					<td>${p.patientId}</td>
-					<td><a href='<c:url value="/patients/${p.patientId}" />'>
+					<td>${p.personId}</td>
+					<td><a href='<c:url value="/patients/${p.personId}" />'>
 							${p.firstName}&nbsp;&nbsp;${p.lastName} </a></td>
 					<td><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
 							pattern="dd/MMM/yyyy" /> ${dateString}</td>
 					<td>${p.gender}</td>
-					<td>${p.mobile}<c:if test="${p.phone ne null}">
-							<hr />
+					<td>${p.mobile}
+					<br/>
+					<c:if test="${p.phone ne null}">
 							${p.phone}
 					</c:if>
 					</td>
 					<td>${p.email}</td>
 					<td>${p.address.apartment}<br />
 						${p.address.street}<br /> ${p.address.area}<br />
-						${p.address.city.enumValue}
+						
 					</td>
 					<td>
-						<a href='<c:url value="/patient/billing/${p.patientId}" />'>Billing</a>
+						<a href='<c:url value="/patient/billing/${p.personId}" />' class="btn btn-default btn-sm">Billing</a>
 					</td>
 				</tr>
 			</c:forEach>
