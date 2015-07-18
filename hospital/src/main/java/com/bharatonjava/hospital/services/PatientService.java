@@ -46,8 +46,8 @@ public class PatientService {
 	}
 	
 	@Transactional
-	public int updatePatient(Patient patient) {
-		return patientDao.updatePatient(patient);
+	public void updatePatient(Patient patient) {
+		patientDao.updatePatient(patient);
 	}
 	
 	@Transactional

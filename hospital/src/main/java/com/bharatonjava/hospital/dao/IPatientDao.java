@@ -12,9 +12,9 @@ public interface IPatientDao {
 	
 	public Long savePatient(Patient patient);
 	
-	public int updatePatient(Patient patient);
+	public void updatePatient(Patient patient);
 	
-	public int deletePatient(Patient patient);
+	public void deletePatient(Patient patient);
 	
-	public int deletePatient(Long patientId);
+	public void deletePatient(Long patientId);
 }

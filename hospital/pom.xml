@@ -9,6 +9,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.1.2.RELEASE</spring.version>
+		<hibernate.version>4.3.10.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -63,6 +64,20 @@
 			<artifactId>spring-data-jdbc-core</artifactId>
 			<version>1.1.0.RELEASE</version>
 		</dependency>
+
+		<!-- Hibernate dependency -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<!-- pooling -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.hibernate</groupId> -->
+	<!-- <artifactId>hibernate-c3p0</artifactId> -->
+	<!-- <version>${hibernate.version}</version> -->
+	<!-- </dependency> -->
 
 		<!-- Servlet api -->
 		<dependency>
