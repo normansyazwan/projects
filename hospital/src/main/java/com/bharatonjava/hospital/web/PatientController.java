@@ -1,5 +1,6 @@
 package com.bharatonjava.hospital.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -164,16 +165,18 @@ public class PatientController {
 	 */
 	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.GET)
 	public String patientBilling(@PathVariable Long id, Model model){
-
+		// to track patient 
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
 	
+		// to display dropdowns
 		List<BillableItem> billableItems = billableItemService.getBillableItems();
 		model.addAttribute("billableItems", billableItems);
 		
 		BillingForm billingForm = new BillingForm();
+		billingForm.setPatientId(patient.getPersonId());
 		
-		for(long i = 0L; i < 10; i ++)
+		for(long i = 0L; i < 5; i ++)
 		{
 			BillingRecord br = new BillingRecord();
 			br.setRecordId(i);
@@ -187,8 +190,24 @@ public class PatientController {
 	
 	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.POST)
 	public String processPatientBilling(@ModelAttribute("billingForm") BillingForm billingForm, Long id, BindingResult result, Model model){
+		log.info("PatientId : {}",billingForm.getPatientId());
+		Patient patient = patientService.getPatientById(billingForm.getPatientId());
+		model.addAttribute("patient", patient);
 		
 		log.info("billingForm : "+ billingForm);
+		
+		List<BillableItem> billableItems = new ArrayList<BillableItem>();
+		
+		if(billingForm != null)
+		{
+			for(BillingRecord br : billingForm.getBillingRecords())
+			{
+				log.info("---> "+br.getBillableItem());
+				billableItems.add(br.getBillableItem());
+			}
+		}
+		model.addAttribute("billableItems", billableItems);
+		model.addAttribute("billingForm", billingForm);
 		
 		return "patientBilling";
 	}

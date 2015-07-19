@@ -20,10 +20,10 @@
 	</tr>
 </table>
 <hr />
--- ${billingForm}
+
 
 <form:form method="post" modelAttribute="billingForm">
-
+<form:hidden path="patientId" />
 <table id="billingTable" class="table "
 	style="width: 100%; text-align: left;">
 	<thead>
@@ -36,15 +36,18 @@
 	</thead>
 	<c:forEach items="${billingForm.billingRecords}" var="br"
 		varStatus="status">
-		${br}
+		
 		<tr>
 			<td>${status.count}</td>
-			<tr><form:select
+			<td><form:select
 					path="billingRecords[${status.index}].billableItem"
 					items="${billableItems}" itemLabel="itemName" itemValue="itemId"
 					onchange="this.form.submit()">
-
-				</form:select></tr>
+				</form:select></td>
+			<td>
+				<form:input path="billingRecords[${status.index}].quantity"
+					value="${br.quantity}" cssStyle="text-align:right" />
+			</td>
 	</c:forEach>
 </table>
 </form:form>
