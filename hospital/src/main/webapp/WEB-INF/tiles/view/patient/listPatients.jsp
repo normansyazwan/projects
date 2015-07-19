@@ -14,45 +14,47 @@
 <body>
 	<h3>Patients</h3>
 
-	<table width="100%" class="table table-condensed table-hover table-bordered">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Date Of Birth</th>
-				<th>Gender</th>
-				<th>Mobile/Phone</th>
-				<th>Email</th>
-				<th>Address</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${patients}" var="p">
+	<div class="container-fluid">
+
+		<table width="100%"
+			class="table table-condensed table-striped table-hover table-bordered table-responsive">
+			<thead>
 				<tr>
-					<td>${p.personId}</td>
-					<td><a href='<c:url value="/patients/${p.personId}" />'>
-							${p.firstName}&nbsp;&nbsp;${p.lastName} </a></td>
-					<td><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
-							pattern="dd/MMM/yyyy" /> ${dateString}</td>
-					<td>${p.gender}</td>
-					<td>${p.mobile}
-					<br/>
-					<c:if test="${p.phone ne null}">
+					<th>Id</th>
+					<th>Name</th>
+					<th>Date Of Birth</th>
+					<th>Gender</th>
+					<th>Mobile/Phone</th>
+					<th>Email</th>
+					<th>Address</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${patients}" var="p">
+					<tr style="">
+						<td><small>${p.personId}</small></td>
+						<td><small><a href='<c:url value="/patients/${p.personId}" />'>
+								${p.firstName}&nbsp;&nbsp;${p.lastName} </a></small></td>
+						<td><small><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
+								pattern="dd/MMM/yyyy" /> ${dateString}</small></td>
+						<td><<small>${p.gender}</small></td>
+						<td><small>${p.mobile}<br /> <c:if
+									test="${p.phone ne null}">
 							${p.phone}
 					</c:if>
-					</td>
-					<td>${p.email}</td>
-					<td>${p.address.apartment}<br />
-						${p.address.street}<br /> ${p.address.area}<br />
-						
-					</td>
-					<td>
-						<a href='<c:url value="/patient/billing/${p.personId}" />' class="btn btn-default btn-sm">Billing</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+						</small></td>
+						<td><small>${p.email}</small></td>
+						<td><small>${p.address.apartment}<br />
+								${p.address.street}<br /> ${p.address.area}<br />
+						</small></td>
+						<td><a
+							href='<c:url value="/patient/billing/${p.personId}" />'
+							class="btn btn-default btn-sm">Billing</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

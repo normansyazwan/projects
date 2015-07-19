@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import com.bharatonjava.hospital.services.BillableItemService;
 import com.bharatonjava.hospital.services.EnumService;
 import com.bharatonjava.hospital.services.PatientService;
 import com.bharatonjava.hospital.utils.Constants;
+import com.bharatonjava.hospital.utils.SpringApplicationContext;
 import com.bharatonjava.hospital.web.validators.PatientValidator;
 
 @Controller
@@ -58,6 +61,13 @@ public class PatientController {
 	public void setBillableItemService(BillableItemService billableItemService) {
 		this.billableItemService = billableItemService;
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		BillableItemEditor billableItemEditor = (BillableItemEditor) SpringApplicationContext.getApplicationContext().getBean("billableItemEditor");
+	    binder.registerCustomEditor(BillableItem.class, billableItemEditor);
+	}
+	
 	
 	@RequestMapping(value="/patient/add", method = RequestMethod.GET)
 	public String patientShowForm(Model model){
@@ -163,10 +173,12 @@ public class PatientController {
 		
 		BillingForm billingForm = new BillingForm();
 		
-		BillingRecord br = new BillingRecord();
-		BillingRecord br2 = new BillingRecord();
-		billingForm.getBillingRecords().add(br);
-		billingForm.getBillingRecords().add(br2);
+		for(long i = 0L; i < 10; i ++)
+		{
+			BillingRecord br = new BillingRecord();
+			br.setRecordId(i);
+			billingForm.getBillingRecords().add(br);
+		}
 		
 		model.addAttribute("billingForm", billingForm);
 		

@@ -18,9 +18,14 @@
 	</bean>
 
 	<bean id="patientDao" class="com.bharatonjava.hospital.dao.PatientDao">
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="billableItemEditor" class="com.bharatonjava.hospital.web.BillableItemEditor" 
+		scope="prototype" lazy-init="false" />
+
+	<bean id="applicationContext"
+		class="com.bharatonjava.hospital.utils.SpringApplicationContext" />
 
 	<!-- settings -->
 	<context:component-scan base-package="com.bharatonjava.hospital" />
@@ -28,6 +33,9 @@
 	<!-- <context:annotation-config /> -->
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<!-- use cglib -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
 
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
