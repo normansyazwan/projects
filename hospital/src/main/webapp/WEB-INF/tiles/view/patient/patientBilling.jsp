@@ -48,6 +48,10 @@
 				<form:input path="billingRecords[${status.index}].quantity"
 					value="${br.quantity}" cssStyle="text-align:right" />
 			</td>
+			<td><form:input
+					path="billingRecords[${status.index}].billableItem.cost"
+					value="${br.billableItem.cost}" cssStyle="text-align:right" />
+			</td>
 	</c:forEach>
 </table>
 </form:form>

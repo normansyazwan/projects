@@ -38,7 +38,7 @@
 								${p.firstName}&nbsp;&nbsp;${p.lastName} </a></small></td>
 						<td><small><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
 								pattern="dd/MMM/yyyy" /> ${dateString}</small></td>
-						<td><<small>${p.gender}</small></td>
+						<td><small>${p.gender}</small></td>
 						<td><small>${p.mobile}<br /> <c:if
 									test="${p.phone ne null}">
 							${p.phone}
@@ -50,7 +50,17 @@
 						</small></td>
 						<td><a
 							href='<c:url value="/patient/billing/${p.personId}" />'
-							class="btn btn-default btn-sm">Billing</a></td>
+							class="btn btn-default btn-xm">Billing</a>
+														
+							<a
+							href='<c:url value="/patient/billing/${p.personId}" />'
+							class="btn btn-default btn-xm">Prescription</a>
+							
+							<a
+							href='<c:url value="/patient/billing/${p.personId}" />'
+							class="btn btn-default btn-xm">History</a>
+							
+							</td>
 					</tr>
 				</c:forEach>
 			</tbody>

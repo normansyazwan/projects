@@ -190,22 +190,16 @@ public class PatientController {
 	
 	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.POST)
 	public String processPatientBilling(@ModelAttribute("billingForm") BillingForm billingForm, Long id, BindingResult result, Model model){
+		
 		log.info("PatientId : {}",billingForm.getPatientId());
 		Patient patient = patientService.getPatientById(billingForm.getPatientId());
 		model.addAttribute("patient", patient);
 		
 		log.info("billingForm : "+ billingForm);
 		
-		List<BillableItem> billableItems = new ArrayList<BillableItem>();
 		
-		if(billingForm != null)
-		{
-			for(BillingRecord br : billingForm.getBillingRecords())
-			{
-				log.info("---> "+br.getBillableItem());
-				billableItems.add(br.getBillableItem());
-			}
-		}
+		// to display dropdowns
+		List<BillableItem> billableItems =  billableItemService.getBillableItems();
 		model.addAttribute("billableItems", billableItems);
 		model.addAttribute("billingForm", billingForm);
 		
