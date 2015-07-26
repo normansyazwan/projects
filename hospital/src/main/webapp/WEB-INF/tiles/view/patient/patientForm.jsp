@@ -12,96 +12,96 @@
 		<p class="bg-success">${param.status}: Record saved successfully. Patient Id is &nbsp; ${param.patientId}</p>
 	</c:if>
 	
-	<form:form action="add" method="POST" commandName="patient">
-		<table>
-			<tr>
-				<td>&nbsp;</td>
-				<td colspan="2"><form:errors path="*" cssClass="formError" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="personId">Patient Id:</form:label></td>
-				<td><form:input path="personId" readonly="true"
-						value="${personId}" /></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><form:label path="firstName">Patient Name:</form:label></td>
-				<td><form:input path="firstName" value="${firstName}" /> <form:input
-						path="lastName" value="${lastName}" /></td>
-				<td><form:errors path="firstName" cssClass="formError" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="gender">Gender:</form:label></td>
-				<td>
-					<table>
-						<tr>
-							<td>Male:</td>
-							<td><form:radiobutton path="gender" value="Male" /></td>
-						</tr>
-						<tr>
-							<td>Female:</td>
-							<td><form:radiobutton path="gender" value="Female" /></td>
-						</tr>
-					</table>
-
-				</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><form:label path="dateOfBirth">Date of Birth:</form:label></td>
-				<td><fmt:formatDate value="${dateOfBirth}" var="dateString"
+	<form:form action="add" method="POST" commandName="patient" cssClass="form-horizontal">
+		
+		<div class="form-group">
+			<form:label path="personId" cssClass="col-sm-2 control-label">Patient Id:</form:label>
+			<div class="col-sm-10">
+			<form:input path="personId" readonly="true"
+						value="${personId}" cssClass="form-control" placeholder="Patient Id" />
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="firstName" cssClass="col-sm-2 control-label">Patient Name:</form:label>
+			<div class="col-sm-5">
+				<form:input path="firstName" value="${firstName}" cssClass="form-control" placeholder="First Name"/>
+			</div>
+			<div class="col-sm-5">
+			<form:input path="lastName" value="${lastName}" cssClass="form-control" placeholder="Last Name"/>
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="gender" cssClass="col-sm-2 control-label">Gender</form:label>
+			<div class="col-sm-10">
+				<label class="radio-inline">
+  					<input type="radio" name="genderOptions" id="genderMale" value="Male"> Male
+				</label>
+				<label class="radio-inline">
+  					<input type="radio" name="genderOptions" id="genderFemale" value="Female"> Female
+				</label>
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="dateOfBirth" cssClass="col-sm-2 control-label">Date Of Birth</form:label>
+			<div class="col-sm-10">
+			<fmt:formatDate value="${dateOfBirth}" var="dateString"
 						pattern="dd/MM/yyyy" /> <form:input path="dateOfBirth"
-						value="${dateString}" /></td>
-				<td><form:errors path="dateOfBirth" cssClass="formError" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="email">Email:</form:label></td>
-				<td><form:input path="email" value="${email}" maxlength="200"/></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><form:label path="mobile">Mobile:</form:label></td>
-				<td><form:input path="mobile" value="${mobile}" maxlength="10" /></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><form:label path="phone">Landline Phone:</form:label></td>
-				<td><form:input path="phone" value="${phone}" maxlength="15" /></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="3"><hr /></td>
-			</tr>
-			<tr>
-				<td><form:label path="address.apartment">Apartment:</form:label></td>
-				<td><form:input path="address.apartment"
-						value="${address.apartment}" maxlength="200" /></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><form:label path="address.street">Street:</form:label></td>
-				<td><form:input path="address.street" value="${address.street}"
-						maxlength="200" /></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><form:label path="address.area">Area:</form:label></td>
-				<td><form:input path="address.area" value="${address.area}"
-						maxlength="200" /></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button value="Reset" class="btn btn-default">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="submit" value="Save" class="btn btn-primary"/></td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-
+						value="${dateString}"  cssClass="form-control"/>
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="email" cssClass="col-sm-2 control-label">Email</form:label>
+			<div class="col-sm-10">
+			<form:input path="email"
+						value="${email}" cssClass="form-control" placeholder="Email" />
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="mobile" cssClass="col-sm-2 control-label">Mobile Number</form:label>
+			<div class="col-sm-10">
+			<form:input path="mobile"
+						value="${mobile}" cssClass="form-control" placeholder="Mobile Number" maxlength="10"/>
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="phone" cssClass="col-sm-2 control-label">Landline Phone Number</form:label>
+			<div class="col-sm-10">
+			<form:input path="phone"
+						value="${phone}" cssClass="form-control" placeholder="Landline Phone No" />
+			</div>			
+		</div>
+		<hr/>
+		<div class="form-group">
+			<form:label path="address.apartment" cssClass="col-sm-2 control-label">Apartment</form:label>
+			<div class="col-sm-10">
+			<form:input path="address.apartment"
+						value="${address.apartment}" cssClass="form-control" placeholder="Apartment No and Building" />
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="address.street" cssClass="col-sm-2 control-label">Street</form:label>
+			<div class="col-sm-10">
+			<form:input path="address.street"
+						value="${address.street}" cssClass="form-control" placeholder="Street" />
+			</div>			
+		</div>
+		<div class="form-group">
+			<form:label path="address.area" cssClass="col-sm-2 control-label">Area</form:label>
+			<div class="col-sm-10">
+			<form:input path="address.area"
+						value="${address.area}" cssClass="form-control" placeholder="Area" />
+			</div>			
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
+			<button value="Reset" class="btn btn-default ">Reset</button>
+			</div>
+			<div class="col-sm-1">
+			<input type="submit" value="Save" class="btn btn-primary"/>
+			</div>
+			<div class="col-sm-8"></div>
+		</div>
 	</form:form>
 
-	<table>
-		<tr>
-			<td><a href='<c:url value="/patients" />'>List Patients</a></td>
-		</tr>
-	</table>
