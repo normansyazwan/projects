@@ -26,7 +26,7 @@
 		<div class="row">
 			
 			<div class="col-md-12"><tiles:insertAttribute name="menu" /></div>
-			<div class="col-md-2"><tiles:insertAttribute name="navigation" /></div>
+			<div class="col-md-2" style="margin-top:70px;"><tiles:insertAttribute name="navigation" /></div>
 			<div class="col-md-10"><tiles:insertAttribute name="body" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>

@@ -18,15 +18,23 @@
     	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
 	</div>
 	<div class="form-group">
-		<label for="exampleInputEmail1">Prescription</label>
-		<textarea class="form-control" rows="3"></textarea>
+		<label for="symptoms">Symptoms</label>
+		<textarea class="form-control" rows="3" name="symptoms" ></textarea>
 	</div>
 	<div class="form-group">
-		<label for="exampleInputEmail1">Medical Tests</label>
-		<textarea class="form-control" rows="3"></textarea>
+		<label for="prescription">Prescription</label>
+		<textarea class="form-control" rows="3" name="prescription"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="medicalTests">Medical Tests</label>
+		<textarea name="medicalTests" class="form-control" rows="3"></textarea>
 	</div>
 	<div class="form-group">
 		<label for="comments">Comments</label>
-		<textarea id="comments" class="form-control" rows="3"></textarea>
+		<textarea name="comments" class="form-control" rows="3"></textarea>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-default">Cancel</button>
+		<button class="btn btn-primary">Save</button>
 	</div>
 </form>
