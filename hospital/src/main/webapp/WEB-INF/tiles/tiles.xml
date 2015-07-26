@@ -66,9 +66,19 @@
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientBilling.jsp" />
         </definition>
         
+        <!-- Patient Billing screen -->
+		<definition name="patientPrescriptionForm" extends="layout.basic">
+        	<put-attribute name="title" value="Patient Prescription" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientPrescriptionForm.jsp" />
+        </definition>
+        
+        
+        
         <!-- for ajax request on patient bill page -->
 		<definition name="patientBillRowAjaxRequest" extends="layout.blank">
 			<put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientBillRow.jsp" />
 		</definition>
+		
+		
 		
     </tiles-definitions>

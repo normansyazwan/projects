@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bharatonjava.hospital.dao.IAddressDao;
 import com.bharatonjava.hospital.dao.IHospitalEnumDao;
 import com.bharatonjava.hospital.dao.IPatientDao;
-import com.bharatonjava.hospital.domain.Address;
-import com.bharatonjava.hospital.domain.HospitalEnum;
 import com.bharatonjava.hospital.domain.Patient;
 
 @Service
@@ -58,5 +56,11 @@ public class PatientService {
 	public Patient getPatientById(Long patientId){
 		Patient patient = patientDao.getPatientById(patientId);
 		return patient;
+	}
+	
+	@Transactional
+	public List<Patient> searchPatients(String query){
+		List<Patient> patients = patientDao.searchPatients(query);
+		return patients;
 	}
 }

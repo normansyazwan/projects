@@ -5,10 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<html>
-<head>
-</head>
-<body>
-Hospital Management App Team - <a href='<c:url value="/contactUs" />'>Contact Us</a>
-</body>
-</html>
+<div class="container-fluid text-center">
+	Hospital Management App Team - <a href='<c:url value="/contactUs" />'>Contact Us</a>
+</div>

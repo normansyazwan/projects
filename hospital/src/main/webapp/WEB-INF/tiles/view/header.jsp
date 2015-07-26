@@ -5,14 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<html>
-<head>
-</head>
-<body>
-<div class="HeaderTitle">
+
+<div>
 	<h1>
 		<a href='<c:url value="/" />'>HMS</a>
 	</h1>
-	<h2>We Care</h2>
+	<h4>We Care</h4>
 </div>
-</body>

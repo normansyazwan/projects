@@ -17,7 +17,7 @@
 	<div class="container-fluid">
 
 		<table width="100%"
-			class="table table-condensed table-striped table-hover table-bordered table-responsive">
+			class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -53,7 +53,7 @@
 							class="btn btn-default btn-xm">Billing</a>
 														
 							<a
-							href='<c:url value="/patient/billing/${p.personId}" />'
+							href='<c:url value="/patient/prescription/${p.personId}" />'
 							class="btn btn-default btn-xm">Prescription</a>
 							
 							<a

@@ -1,6 +1,5 @@
 package com.bharatonjava.hospital.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -224,4 +223,30 @@ public class PatientController {
 		return "patientBillRowAjaxRequest";
 	}
 
+	@RequestMapping(value="/patient/prescription/{id}", method = RequestMethod.GET)
+	public String addPrescription(@PathVariable Long id, Model model){
+	
+		
+		return "patientPrescriptionForm";
+	}
+	
+	@RequestMapping(value="/patients/search", method = RequestMethod.GET)
+	public void patientSearch(Model model){
+	
+		
+		model.addAttribute("query", "");
+		
+		//return "listPatients";
+	}
+	
+	@RequestMapping(value="patients/search", method = RequestMethod.POST)
+	public String patientSearchHandler(@ModelAttribute("query")String query, Model model){
+		
+		log.info("Search Query: {}", query);
+		
+		model.addAttribute("query", query);
+		model.addAttribute("patients", patientService.searchPatients(query));
+				
+		return "listPatients";
+	}
 }

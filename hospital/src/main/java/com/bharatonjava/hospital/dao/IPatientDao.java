@@ -17,4 +17,6 @@ public interface IPatientDao {
 	public void deletePatient(Patient patient);
 	
 	public void deletePatient(Long patientId);
+	
+	public List<Patient> searchPatients(String query);
 }

@@ -12,85 +12,23 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.4.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/hospital.js" />"></script>
 
-<link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
 <link rel="stylesheet" href='<c:url value="/resources/css/styles.css" />' />
 
+
+<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />"></script>
 <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap.css" />'>
+<link rel="stylesheet" href='<c:url value="/resources/css/bootstrap-theme.css" />'>
 
 </head>
 <body>
 
-	<div class="BackgroundGradient"></div>
-
-	<div class="BodyContent">
-		<div class="BorderBorder">
-			<div class="BorderBL">
-				<div></div>
-			</div>
-			<div class="BorderBR">
-				<div></div>
-			</div>
-			<div class="BorderTL"></div>
-			<div class="BorderTR">
-				<div></div>
-			</div>
-			<div class="BorderT"></div>
-			<div class="BorderR">
-				<div></div>
-			</div>
-			<div class="BorderB">
-				<div></div>
-			</div>
-			<div class="BorderL"></div>
-			<div class="BorderC"></div>
-			<div class="Border">
-
-				<div class="Header">
-					<tiles:insertAttribute name="header" />
-				</div>
-				<div class="Menu">
-					<tiles:insertAttribute name="menu" />
-				</div>
-				<div class="Columns">
-					<div class="Column1">
-						<tiles:insertAttribute name="navigation" />
-					</div>
-					<div class="MainColumn">
-
-
-						<div class="ArticleBorder">
-							<div class="ArticleBL">
-								<div></div>
-							</div>
-							<div class="ArticleBR">
-								<div></div>
-							</div>
-							<div class="ArticleTL"></div>
-							<div class="ArticleTR">
-								<div></div>
-							</div>
-							<div class="ArticleT"></div>
-							<div class="ArticleR">
-								<div></div>
-							</div>
-							<div class="ArticleB">
-								<div></div>
-							</div>
-							<div class="ArticleL"></div>
-							<div class="ArticleC"></div>
-							<div class="Article">
-
-								<tiles:insertAttribute name="body" />
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div class="Footer">
-					<tiles:insertAttribute name="footer" />
-				</div>
-
-			</div>
+	<div class="container-fluid">
+		<div class="row">
+			
+			<div class="col-md-12"><tiles:insertAttribute name="menu" /></div>
+			<div class="col-md-2"><tiles:insertAttribute name="navigation" /></div>
+			<div class="col-md-10"><tiles:insertAttribute name="body" /></div>
+			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>
 	</div>
 

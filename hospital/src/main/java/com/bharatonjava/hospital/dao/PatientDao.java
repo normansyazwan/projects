@@ -2,9 +2,11 @@ package com.bharatonjava.hospital.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +75,19 @@ public class PatientDao implements IPatientDao {
 		}else{
 			log.info("Patient with patientId {} does not exist", patientId);
 		}
+	}
+	
+	@Override
+	public List<Patient> searchPatients(String query){
+		
+		List<Patient> patients = null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Criteria crit = session.createCriteria(Patient.class);
+		
+		crit.add(Restrictions.or(Restrictions.ilike("firstName", "%"+query+"%"),Restrictions.ilike("lastName", "%"+query+"%")));
+		
+		patients = crit.list();
+		return patients;
 	}
 
 }
