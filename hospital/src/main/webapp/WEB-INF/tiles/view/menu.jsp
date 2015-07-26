@@ -15,7 +15,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <c:url value='/' var="homePageAction"/>
+      <a class="navbar-brand" href="${homePageAction}">Hospital Manager</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,7 +40,7 @@
       <c:url value='/patients/search' var="searchAction"/>
       <form class="navbar-form navbar-left" role="search" action="${searchAction}" method="POST">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" name="query" />
+          <input type="text" class="form-control" placeholder="Search" name="query" value="${query}"/>
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>

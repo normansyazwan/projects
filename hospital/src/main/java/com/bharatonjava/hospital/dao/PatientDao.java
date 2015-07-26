@@ -71,21 +71,24 @@ public class PatientDao implements IPatientDao {
 		if (patient != null) {
 			log.info("Deleting Patient with Id {}", patientId);
 			session.delete(patient);
-			
-		}else{
+
+		} else {
 			log.info("Patient with patientId {} does not exist", patientId);
 		}
 	}
-	
+
 	@Override
-	public List<Patient> searchPatients(String query){
-		
+	public List<Patient> searchPatients(String query) {
+
 		List<Patient> patients = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		Criteria crit = session.createCriteria(Patient.class);
-		
-		crit.add(Restrictions.or(Restrictions.ilike("firstName", "%"+query+"%"),Restrictions.ilike("lastName", "%"+query+"%")));
-		
+
+		crit.add(Restrictions.or(Restrictions.or(
+				Restrictions.ilike("firstName", "%" + query + "%"),
+				Restrictions.ilike("lastName", "%" + query + "%")),
+				Restrictions.ilike("mobile", "%"+query+"%")));
+
 		patients = crit.list();
 		return patients;
 	}
