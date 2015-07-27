@@ -3,6 +3,7 @@ package com.bharatonjava.hospital.dao;
 import java.util.List;
 
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.domain.Prescription;
 
 public interface IPatientDao {
 
@@ -19,4 +20,8 @@ public interface IPatientDao {
 	public void deletePatient(Long patientId);
 	
 	public List<Patient> searchPatients(String query);
+	
+	public void savePrescription(Prescription prescription, Long patientId);
+	
+	public Patient getAllPrescriptions(Long patientId);
 }

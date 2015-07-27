@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.domain.Prescription;
 
 @Repository
 public class PatientDao implements IPatientDao {
@@ -91,6 +93,27 @@ public class PatientDao implements IPatientDao {
 
 		patients = crit.list();
 		return patients;
+	}
+	
+	@Override
+	public void savePrescription(Prescription prescription, Long patientId){
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(prescription);
+		Patient patient = (Patient) session.get(Patient.class, patientId);
+		patient.getPrescriptions().add(prescription);
+		session.save(patient);
+		
+	}
+	
+	@Override
+	public Patient getAllPrescriptions(Long patientId){
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		Patient patient = (Patient) session.get(Patient.class, patientId);
+		patient.getPrescriptions().size();
+		
+		return patient;
 	}
 
 }

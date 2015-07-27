@@ -10,6 +10,7 @@ import com.bharatonjava.hospital.dao.IAddressDao;
 import com.bharatonjava.hospital.dao.IHospitalEnumDao;
 import com.bharatonjava.hospital.dao.IPatientDao;
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.domain.Prescription;
 
 @Service
 public class PatientService {
@@ -62,5 +63,16 @@ public class PatientService {
 	public List<Patient> searchPatients(String query){
 		List<Patient> patients = patientDao.searchPatients(query);
 		return patients;
+	}
+	
+	@Transactional
+	public void savePrescription(Prescription prescription, Long patientId){
+		patientDao.savePrescription(prescription, patientId);
+	}
+	
+	@Transactional
+	public Patient getAllPrescriptions(Long patientId){
+		Patient patient = patientDao.getAllPrescriptions(patientId);
+		return patient;
 	}
 }

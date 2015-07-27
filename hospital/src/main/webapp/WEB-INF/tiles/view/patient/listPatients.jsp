@@ -53,7 +53,7 @@
 							class="btn btn-default btn-xm">Billing</a>
 														
 							<a
-							href='<c:url value="/patient/prescription/${p.personId}" />'
+							href='<c:url value="/patients/${p.personId}/prescription" />'
 							class="btn btn-default btn-xm">Prescription</a>
 							
 							<a

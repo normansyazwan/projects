@@ -224,7 +224,7 @@ public class PatientController {
 		return "patientBillRowAjaxRequest";
 	}
 
-	@RequestMapping(value="/patient/prescription/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.GET)
 	public String showPrescriptionForm(@PathVariable Long id, Model model){
 	
 		Patient patient = patientService.getPatientById(id);
@@ -233,16 +233,23 @@ public class PatientController {
 		return "patientPrescriptionForm";
 	}
 	
-	@RequestMapping(value="/patient/prescription/{id}", method = RequestMethod.POST)
+	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.POST)
 	public String processPrescriptionForm(Prescription prescription,@PathVariable Long id, Model model){
 	
-		log.info("inside processPrescriptionForm: {}", prescription);
+		log.info("Saving Prescription for PatientId: {}, prescription {}",id, prescription);
+		patientService.savePrescription(prescription, id);
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
 		
 		return "patientPrescriptionForm";
 	}
 	
+	@RequestMapping(value="/patients/{id}/prescriptions", method = RequestMethod.GET)
+	public String showPrescriptionHistory(@PathVariable("id") Long patientId, Model model){
+		Patient patient = patientService.getAllPrescriptions(patientId);
+		model.addAttribute("patient", patient);
+		return "prescriptionHistory";
+	}
 	
 	@RequestMapping(value="/patients/search", method = RequestMethod.GET)
 	public void patientSearch(Model model){
