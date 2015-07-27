@@ -12,29 +12,76 @@
 		Patient Id is &nbsp; ${param.patientId}</p>
 </c:if>
 
-<form  class="form-horizontal">
-	<div class="form-group">
-		<label for="exampleInputEmail1">Email address</label>
-    	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+<div class="row">
+	<div class="col-md-6">
+		<form class="form-horizontal" method="post">
+			<div class="form-group">
+				<label for="symptoms">Symptoms</label>
+				<textarea name="symptoms"  class="form-control" rows="3" cols="50"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="prescription">Prescription</label>
+				<textarea name="prescription" class="form-control" rows="3" cols="50"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="medicalTests">Medical Tests</label>
+				<textarea name="medicalTests" class="form-control" rows="3" cols="50"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="comments">Comments</label>
+				<textarea name="comments" class="form-control" rows="3" cols="50"></textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-default">Cancel</button>
+				<button class="btn btn-primary">Save</button>
+			</div>
+		</form>
 	</div>
-	<div class="form-group">
-		<label for="symptoms">Symptoms</label>
-		<textarea class="form-control" rows="3" name="symptoms" ></textarea>
+	<div class="col-md-6">
+		<div class="row">
+			<div class="col-md-5 text-right"><label>Patient Id</label></div>
+			<div class="col-md-7">${patient.personId}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 text-right"><label>Patient Name</label></div>
+			<div class="col-md-7">${patient.firstName}&nbsp;
+				${patient.lastName}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 text-right"><label>Gender</label></div>
+			<div class="col-md-7">${patient.gender}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 text-right"><label>Age</label></div>
+			<div class="col-md-7">${patient.age}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 text-right"><label>Date of Birth</label></div>
+			<div class="col-md-7"><fmt:formatDate value="${patient.dateOfBirth}" var="dateString"
+					pattern="dd-MMM-yyyy" />
+				${dateString}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 text-right">
+				<label>Address:</label>
+			</div>
+			<div class="col-md-7">${patient.address.apartment}<br />
+				${patient.address.street}<br /> ${patient.address.area}<br />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 text-right"><label>Existing Ailments</label></div>
+			<div class="col-md-7"><p class="bg-danger">${patient.existingAilments}Blood Sugar, High BP</p></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"><a href='<c:url value="/patients/${patient.personId}" />'
+					class="btn btn-default btn-sm">View Profile</a></div>
+			<div class="col-md-3">
+			<a href='<c:url value="/patients/${patient.personId}/prescriptions" />'
+					class="btn btn-default btn-sm">Prescription History</a>
+			</div>
+			<div class="col-md-3"></div>
+			<div class="col-md-3"></div>
+		</div>
 	</div>
-	<div class="form-group">
-		<label for="prescription">Prescription</label>
-		<textarea class="form-control" rows="3" name="prescription"></textarea>
-	</div>
-	<div class="form-group">
-		<label for="medicalTests">Medical Tests</label>
-		<textarea name="medicalTests" class="form-control" rows="3"></textarea>
-	</div>
-	<div class="form-group">
-		<label for="comments">Comments</label>
-		<textarea name="comments" class="form-control" rows="3"></textarea>
-	</div>
-	<div class="form-group">
-		<button class="btn btn-default">Cancel</button>
-		<button class="btn btn-primary">Save</button>
-	</div>
-</form>
+</div>

@@ -1,3 +1,21 @@
-this is site;s home page
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<button>make ajax request</button>
+
+<h1>Home Page</h1>
+
+<div class="container">
+	<div class="col-sm-4">
+		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">
+	</div>
+	<div class="col-sm-4">
+		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">
+	</div>
+	<div class="col-sm-4">
+		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">
+	</div>
+</div>

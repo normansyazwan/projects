@@ -21,6 +21,7 @@ import com.bharatonjava.hospital.domain.BillableItem;
 import com.bharatonjava.hospital.domain.BillingRecord;
 import com.bharatonjava.hospital.domain.HospitalEnum;
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.domain.Prescription;
 import com.bharatonjava.hospital.services.BillableItemService;
 import com.bharatonjava.hospital.services.EnumService;
 import com.bharatonjava.hospital.services.PatientService;
@@ -224,19 +225,30 @@ public class PatientController {
 	}
 
 	@RequestMapping(value="/patient/prescription/{id}", method = RequestMethod.GET)
-	public String addPrescription(@PathVariable Long id, Model model){
+	public String showPrescriptionForm(@PathVariable Long id, Model model){
 	
+		Patient patient = patientService.getPatientById(id);
+		model.addAttribute("patient", patient);
 		
 		return "patientPrescriptionForm";
 	}
 	
+	@RequestMapping(value="/patient/prescription/{id}", method = RequestMethod.POST)
+	public String processPrescriptionForm(Prescription prescription,@PathVariable Long id, Model model){
+	
+		log.info("inside processPrescriptionForm: {}", prescription);
+		Patient patient = patientService.getPatientById(id);
+		model.addAttribute("patient", patient);
+		
+		return "patientPrescriptionForm";
+	}
+	
+	
 	@RequestMapping(value="/patients/search", method = RequestMethod.GET)
 	public void patientSearch(Model model){
-	
 		
 		model.addAttribute("query", "");
 		
-		//return "listPatients";
 	}
 	
 	@RequestMapping(value="patients/search", method = RequestMethod.POST)
