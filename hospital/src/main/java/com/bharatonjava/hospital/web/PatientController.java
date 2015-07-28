@@ -134,6 +134,18 @@ public class PatientController {
 		return Constants.PATIENT_REGISTRATION_PAGE;
 	}
 	
+	@RequestMapping(value="/patient/edit/{id}", method = RequestMethod.POST)
+	public String processPatientEditForm(@ModelAttribute("patient") Patient patient, @PathVariable Long id, BindingResult result, Model model){
+		
+		if(patient.getPersonId() != null)
+		{
+			log.info("Updating patient: {}", patient);
+			patientService.updatePatient(patient);
+		}
+		
+		return Constants.PATIENT_REGISTRATION_PAGE;
+	}
+	
 	/**
 	 * Patient List
 	 * @param model

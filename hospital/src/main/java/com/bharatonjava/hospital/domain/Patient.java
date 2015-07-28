@@ -18,6 +18,7 @@ public class Patient extends Person{
 
 	private String bloodGroup;
 	private String existingAilments;
+	private String allergies;
 	private List<Prescription> prescriptions;
 	
 	public Patient() {
@@ -40,6 +41,15 @@ public class Patient extends Person{
 	
 	public void setExistingAilments(String existingAilments) {
 		this.existingAilments = existingAilments;
+	}
+	
+	@Column(name = "ALLERGIES", length = 500)
+	public String getAllergies() {
+		return allergies;
+	}
+	
+	public void setAllergies(String allergies) {
+		this.allergies = allergies;
 	}
 	
 	@OneToMany

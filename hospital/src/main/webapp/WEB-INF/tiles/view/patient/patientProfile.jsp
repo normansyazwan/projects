@@ -36,11 +36,17 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2">
+				<label>Blood Group:</label>
+			</div>
+			<div class="col-md-5">${patient.bloodGroup}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
 				<label>Date of Birth</label>
 			</div>
 			<div class="col-md-5">
 				<fmt:formatDate value="${patient.dateOfBirth}" var="dateString"
-					pattern="dd-MMM-yyyy" />
+					pattern="dd/MMM/yyyy" />
 				${dateString}
 			</div>
 		</div>

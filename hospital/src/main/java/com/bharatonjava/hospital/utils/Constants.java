@@ -7,4 +7,6 @@ public interface Constants {
 	String PATIENT_REGISTRATION_PAGE = "patientRegistration";
 	
 	Long PAGE_SIZE = 20L;
+	
+	String DATE_FORMAT = "dd-MM-yyyy";
 }

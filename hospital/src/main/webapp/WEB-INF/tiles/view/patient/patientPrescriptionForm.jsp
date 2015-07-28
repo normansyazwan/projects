@@ -52,6 +52,10 @@
 			<div class="col-md-7">${patient.gender}</div>
 		</div>
 		<div class="row">
+			<div class="col-md-5 text-right"><label>Blood Group</label></div>
+			<div class="col-md-7">${patient.bloodGroup}</div>
+		</div>
+		<div class="row">
 			<div class="col-md-5 text-right"><label>Age</label></div>
 			<div class="col-md-7">${patient.age}</div>
 		</div>
