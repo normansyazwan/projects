@@ -71,17 +71,14 @@
 		</div>
 		<div class="row">
 			<div class="col-md-5 text-right"><label>Existing Ailments</label></div>
-			<div class="col-md-7"><p class="bg-danger">${patient.existingAilments}Blood Sugar, High BP</p></div>
+			<div class="col-md-7"><p class="bg-danger">${patient.existingAilments}</p></div>
 		</div>
 		<div class="row">
-			<div class="col-md-3"><a href='<c:url value="/patients/${patient.personId}" />'
-					class="btn btn-default btn-sm">View Profile</a></div>
-			<div class="col-md-3">
+			<div class="col-md-12"><a href='<c:url value="/patients/${patient.personId}" />'
+					class="btn btn-default btn-sm">View Profile</a>
 			<a href='<c:url value="/patients/${patient.personId}/prescriptions" />'
 					class="btn btn-default btn-sm">Prescription History</a>
 			</div>
-			<div class="col-md-3"></div>
-			<div class="col-md-3"></div>
 		</div>
 	</div>
 </div>
