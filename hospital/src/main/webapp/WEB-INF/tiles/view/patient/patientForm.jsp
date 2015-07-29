@@ -47,7 +47,7 @@
   					<form:radiobutton path="gender" value="Male"/> Male
 				</label>
 				<label class="radio-inline">
-  					<form:radiobutton path="gender" value="Female" /> Female -- ${gender} --
+  					<form:radiobutton path="gender" value="Female" /> Female
 				</label>
 			</div>
 			<div class="col-sm-4">

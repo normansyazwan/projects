@@ -23,7 +23,7 @@
 
 
 <form:form method="post" modelAttribute="billingForm">
-<form:hidden path="patientId" />
+<form:hidden path="patientId" ></form:hidden>
 <table id="billingTable" class="table "
 	style="width: 100%; text-align: left;">
 	<thead>
