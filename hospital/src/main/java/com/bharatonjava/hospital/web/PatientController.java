@@ -33,7 +33,6 @@ import com.bharatonjava.hospital.utils.SpringApplicationContext;
 import com.bharatonjava.hospital.web.validators.PatientValidator;
 
 @Controller
-//@RequestMapping(value="/patient")
 public class PatientController {
 
 	private static final Logger log = LoggerFactory.getLogger(PatientController.class);

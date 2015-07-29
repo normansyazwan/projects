@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -57,6 +58,7 @@ public class Patient extends Person{
 			inverseJoinColumns = @JoinColumn(name = "PRESCRIPTION_ID"),
 			name = "PATIENT_PRESCRIPTION"
 			)
+	@OrderBy(value = "prescriptionId DESC")
 	public List<Prescription> getPrescriptions() {
 		return prescriptions;
 	}

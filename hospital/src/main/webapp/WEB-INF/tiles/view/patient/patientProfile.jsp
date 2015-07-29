@@ -82,6 +82,32 @@
 				${patient.address.street}<br /> ${patient.address.area}<br />
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Existing Ailments:</label>
+			</div>
+			<c:choose>
+				<c:when test="${patient.existingAilments ne null}">
+					<div class="col-md-5 text-danger">${patient.existingAilments}</div>			
+				</c:when>
+				<c:otherwise>
+					<div class="col-md-5 text-success">None</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Allergies:</label>
+			</div>
+			<c:choose>
+				<c:when test="${patient.allergies ne null}">
+					<div class="col-md-5 text-danger">${patient.allergies}</div>			
+				</c:when>
+				<c:otherwise>
+					<div class="col-md-5 text-success">None</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
 		
 		<div class="row">
 			<div class="col-md-12">

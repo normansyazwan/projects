@@ -5,19 +5,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Prescription History</h1>
+<h3>Prescription History</h3>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-1">
-			<label>Patient Id</label>
-		</div>
-		<div class="col-md-2">${patient.personId}</div>
-	
 		<div class="col-md-2">
 			<label>Patient Name</label>
 		</div>
-		<div class="col-md-7">${patient.firstName}&nbsp;
+		<div class="col-md-8">${patient.firstName}&nbsp;
 			${patient.lastName}</div>
+		<div class="col-md-2">
+			<a href='<c:url value="/patients/${patient.personId}/prescription" />'
+			class="btn btn-default btn-sm">Prescription</a>
+		</div>	
 	</div>
 	<div class="row">		
 		<div class="col-md-2">
@@ -26,6 +25,19 @@
 		<c:choose>
 			<c:when test="${patient.existingAilments}">
 			<div class="col-md-10 text-left text-danger">${patient.existingAilments}</div>
+		</c:when>
+		<c:otherwise>
+			<div class="col-md-10 text-left text-success">None</div>
+		</c:otherwise>
+		</c:choose>
+	</div>
+	<div class="row">		
+		<div class="col-md-2">
+			<label>Allergies</label>
+		</div>
+		<c:choose>
+			<c:when test="${patient.allergies ne null}">
+			<div class="col-md-10 text-left text-danger">${patient.allergies}</div>
 		</c:when>
 		<c:otherwise>
 			<div class="col-md-10 text-left text-success">None</div>
