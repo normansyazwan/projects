@@ -78,6 +78,10 @@
 			<div class="col-md-7"><p class="bg-danger">${patient.existingAilments}</p></div>
 		</div>
 		<div class="row">
+			<div class="col-md-5 text-right"><label>Allergies</label></div>
+			<div class="col-md-7"><p class="bg-danger">${patient.allergies}</p></div>
+		</div>
+		<div class="row">
 			<div class="col-md-12"><a href='<c:url value="/patients/${patient.personId}" />'
 					class="btn btn-default btn-sm">View Profile</a>
 			<a href='<c:url value="/patients/${patient.personId}/prescriptions" />'
