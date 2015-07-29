@@ -14,7 +14,7 @@
 	
 	<form:form action="add" method="POST" commandName="patient" cssClass="form-horizontal">
 	
-		<form:errors path="*" cssClass="text-danger" ></form:errors>
+		
 		
 		<c:choose>
 			<c:when test="${patient.personId > 0}">
@@ -36,7 +36,9 @@
 			<div class="col-sm-3">
 				<form:input path="lastName" value="${lastName}" cssClass="form-control" placeholder="Last Name"/>
 			</div>
-			<div class="col-sm-4">.......</div>			
+			<div class="col-sm-4">
+				<form:errors path="firstName" cssClass="text-danger" />
+			</div>			
 		</div>
 		<div class="form-group">
 			<form:label path="gender" cssClass="col-sm-2 control-label">Gender</form:label>
@@ -48,15 +50,19 @@
   					<form:radiobutton path="gender" value="Female" /> Female -- ${gender} --
 				</label>
 			</div>
-			<div class="col-sm-4"></div>			
+			<div class="col-sm-4">
+				<form:errors path="gender" cssClass="text-danger" />
+			</div>			
 		</div>
 		<div class="form-group">
 			<form:label path="dateOfBirth" cssClass="col-sm-2 control-label">Date Of Birth</form:label>
 			<div class="col-sm-6">
-				<fmt:formatDate value="${dateOfBirth}" var="dateString"	pattern="dd/MM/yyyy" /> 
+				<fmt:formatDate value="${patient.dateOfBirth}" var="dateString"	pattern="dd/MM/yyyy" /> 
 				<form:input path="dateOfBirth"	value="${dateString}"  cssClass="form-control" placeholder="dd/MM/yyyy"/>
 			</div>
-			<div class="col-sm-4"></div>				
+			<div class="col-sm-4">
+				<form:errors path="dateOfBirth" cssClass="text-danger" />
+			</div>				
 		</div>
 		<div class="form-group">
 			<form:label path="bloodGroup" cssClass="col-sm-2 control-label">Blood Group</form:label>
@@ -96,7 +102,9 @@
 			<form:input path="mobile"
 						value="${mobile}" cssClass="form-control" placeholder="Mobile Number" maxlength="10"/>
 			</div>
-			<div class="col-sm-4"></div>			
+			<div class="col-sm-4">
+				<form:errors path="mobile" cssClass="text-danger" />
+			</div>			
 		</div>
 		<div class="form-group">
 			<form:label path="phone" cssClass="col-sm-2 control-label">Landline Phone Number</form:label>

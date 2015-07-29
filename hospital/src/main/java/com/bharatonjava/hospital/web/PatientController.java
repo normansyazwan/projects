@@ -1,10 +1,13 @@
 package com.bharatonjava.hospital.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -67,6 +70,13 @@ public class PatientController {
 	public void initBinder(WebDataBinder binder) {
 		BillableItemEditor billableItemEditor = (BillableItemEditor) SpringApplicationContext.getApplicationContext().getBean("billableItemEditor");
 	    binder.registerCustomEditor(BillableItem.class, billableItemEditor);
+	    
+	    // CONVERT empty date to null
+	    SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.DATE_FORMAT_SLASHED);
+	    dateFormat.setLenient(false);
+	    // true passed to CustomDateEditor constructor means convert empty String to null
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	    
 	}
 	
 	

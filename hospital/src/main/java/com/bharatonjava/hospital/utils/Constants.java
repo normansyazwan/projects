@@ -9,4 +9,5 @@ public interface Constants {
 	Long PAGE_SIZE = 20L;
 	
 	String DATE_FORMAT = "dd-MM-yyyy";
+	String DATE_FORMAT_SLASHED = "dd/MM/yyyy";
 }
