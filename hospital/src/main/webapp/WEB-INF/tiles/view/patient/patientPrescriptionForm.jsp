@@ -14,28 +14,32 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" method="post">
+	
+		<form:form class="form-horizontal" method="post" commandName="prescription">
+			<div class="form-group">
+				<form:errors path="symptoms" cssClass="text-danger" />
+			</div>
 			<div class="form-group">
 				<label for="symptoms">Symptoms</label>
-				<textarea name="symptoms"  class="form-control" rows="3" cols="50"></textarea>
+				<form:textarea path="symptoms"  class="form-control" rows="3" cols="50"></form:textarea>
 			</div>
 			<div class="form-group">
 				<label for="prescription">Prescription</label>
-				<textarea name="prescription" class="form-control" rows="3" cols="50"></textarea>
+				<form:textarea path="prescription" class="form-control" rows="3" cols="50"></form:textarea>
 			</div>
 			<div class="form-group">
 				<label for="medicalTests">Medical Tests</label>
-				<textarea name="medicalTests" class="form-control" rows="3" cols="50"></textarea>
+				<form:textarea path="medicalTests" class="form-control" rows="3" cols="50"></form:textarea>
 			</div>
 			<div class="form-group">
 				<label for="comments">Comments</label>
-				<textarea name="comments" class="form-control" rows="3" cols="50"></textarea>
+				<form:textarea path="comments" class="form-control" rows="3" cols="50"></form:textarea>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-default">Cancel</button>
-				<button class="btn btn-primary">Save</button>
+				<a href='<c:url value="/patients/${patient.personId}/prescription" />' class="btn btn-default btn-sm">Cancel</a>
+				<button class="btn btn-sm btn-primary">Save</button>
 			</div>
-		</form>
+		</form:form>
 	</div>
 	<div class="col-md-6">
 		<div class="row">

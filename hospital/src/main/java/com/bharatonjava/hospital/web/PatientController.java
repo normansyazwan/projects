@@ -31,6 +31,7 @@ import com.bharatonjava.hospital.services.PatientService;
 import com.bharatonjava.hospital.utils.Constants;
 import com.bharatonjava.hospital.utils.SpringApplicationContext;
 import com.bharatonjava.hospital.web.validators.PatientValidator;
+import com.bharatonjava.hospital.web.validators.PrescriptionValidator;
 
 @Controller
 public class PatientController {
@@ -44,6 +45,9 @@ public class PatientController {
 	private PatientValidator patientValidator;
 	
 	@Autowired
+	private PrescriptionValidator prescriptionValidator;
+	
+	@Autowired
 	private EnumService enumService;
 	
 	@Autowired
@@ -55,6 +59,11 @@ public class PatientController {
 	
 	public void setPatientValidator(PatientValidator patientValidator) {
 		this.patientValidator = patientValidator;
+	}
+	
+	public void setPrescriptionValidator(
+			PrescriptionValidator prescriptionValidator) {
+		this.prescriptionValidator = prescriptionValidator;
 	}
 	
 	public void setEnumService(EnumService enumService) {
@@ -252,17 +261,27 @@ public class PatientController {
 	
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
+		model.addAttribute("prescription", new Prescription());
 		
 		return "patientPrescriptionForm";
 	}
 	
 	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.POST)
-	public String processPrescriptionForm(Prescription prescription,@PathVariable Long id, Model model){
+	public String processPrescriptionForm(Prescription prescription, @PathVariable Long id, BindingResult result, Model model){
 	
 		log.info("Saving Prescription for PatientId: {}, prescription {}",id, prescription);
-		patientService.savePrescription(prescription, id);
+		
+		prescriptionValidator.validate(prescription, result);
+		
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
+		
+		if(result.hasErrors()){
+			log.info("Prescription Validation failed: {}", prescription);
+			return "patientPrescriptionForm";
+		}
+		
+		patientService.savePrescription(prescription, id);
 		
 		return "patientPrescriptionForm";
 	}
