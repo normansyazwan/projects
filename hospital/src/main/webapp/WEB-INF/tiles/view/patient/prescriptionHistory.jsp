@@ -14,6 +14,9 @@
 		<div class="col-md-8">${patient.firstName}&nbsp;
 			${patient.lastName}</div>
 		<div class="col-md-2">
+		
+			<a href='<c:url value="/patients/${patient.personId}" />' class="btn btn-default btn-sm">Profile</a>
+		
 			<a href='<c:url value="/patients/${patient.personId}/prescription" />'
 			class="btn btn-default btn-sm">Prescription</a>
 		</div>	
@@ -25,7 +28,7 @@
 		<c:choose>
 			<c:when test="${patient.existingAilments}">
 			<div class="col-md-10 text-left text-danger">${patient.existingAilments}</div>
-		</c:when>
+			</c:when>
 		<c:otherwise>
 			<div class="col-md-10 text-left text-success">None</div>
 		</c:otherwise>

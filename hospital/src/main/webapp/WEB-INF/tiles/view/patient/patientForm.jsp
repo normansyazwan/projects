@@ -12,15 +12,14 @@
 		<p class="bg-success">${param.status}: Record saved successfully. Patient Id is &nbsp; ${param.patientId}</p>
 	</c:if>
 	
-	<form:form action="add" method="POST" commandName="patient" cssClass="form-horizontal">
-	
-		
+	<form:form method="POST" commandName="patient" cssClass="form-horizontal">
 		
 		<c:choose>
 			<c:when test="${patient.personId > 0}">
 				<div class="form-group">
 					<form:label path="personId" cssClass="col-sm-2 control-label">Patient Id:</form:label>
 					<div class="col-sm-10">${patient.personId}</div>
+					<form:hidden path="personId" />
 				</div>
 			</c:when>
 			<c:otherwise>

@@ -113,8 +113,6 @@
 			<div class="col-md-12">
 				<a href='<c:url value="/patient/edit/${patient.personId}" />'
 					class="btn btn-default btn-sm">Edit</a>
-				<a href='<c:url value="/patient/edit/${patient.personId}" />'
-					class="btn btn-default btn-sm">Billing</a>	
 				<a href='<c:url value="/patients/${patient.personId}/prescriptions" />'
 					class="btn btn-default btn-sm">Prescription History</a>	
 			</div>

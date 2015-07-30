@@ -33,6 +33,7 @@ public class PatientDao implements IPatientDao {
 		Patient patient = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		patient = (Patient) session.get(Patient.class, patientId);
+		patient.getPrescriptions().size();
 		return patient;
 	}
 
@@ -56,6 +57,12 @@ public class PatientDao implements IPatientDao {
 	public void updatePatient(Patient patient) {
 		log.info("Updating patient: {}", patient);
 		Session session = this.sessionFactory.getCurrentSession();
+		// at this point patient came from jsp and does not have prescriptions
+		// we will fetch prescriptions and assign to patient
+		Patient p = (Patient) session.load(Patient.class, patient.getPersonId());
+		log.info("Fetched {} prescriptions", p.getPrescriptions().size());
+		session.evict(p);
+		patient.setPrescriptions(p.getPrescriptions());
 		session.update(patient);
 	}
 

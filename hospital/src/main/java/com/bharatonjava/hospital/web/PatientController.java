@@ -146,10 +146,12 @@ public class PatientController {
 	@RequestMapping(value="/patient/edit/{id}", method = RequestMethod.POST)
 	public String processPatientEditForm(@ModelAttribute("patient") Patient patient, @PathVariable Long id, BindingResult result, Model model){
 		
-		if(patient.getPersonId() != null)
+		if(patient.getPersonId() != null && patient.getPersonId() > 0L)
 		{
 			log.info("Updating patient: {}", patient);
 			patientService.updatePatient(patient);
+		}else{
+			log.info("Not updating patient: {}", patient);
 		}
 		
 		return Constants.PATIENT_REGISTRATION_PAGE;

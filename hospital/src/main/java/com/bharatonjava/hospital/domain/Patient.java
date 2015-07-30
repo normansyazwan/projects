@@ -3,6 +3,7 @@ package com.bharatonjava.hospital.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -53,7 +54,7 @@ public class Patient extends Person{
 		this.allergies = allergies;
 	}
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(joinColumns = @JoinColumn(name = "PERSON_ID"),
 			inverseJoinColumns = @JoinColumn(name = "PRESCRIPTION_ID"),
 			name = "PATIENT_PRESCRIPTION"
