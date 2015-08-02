@@ -10,4 +10,5 @@ public interface Constants {
 	
 	String DATE_FORMAT = "dd-MM-yyyy";
 	String DATE_FORMAT_SLASHED = "dd/MM/yyyy";
+	int MAX_SEARCH_RESULTS = 20;
 }

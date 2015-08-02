@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bharatonjava.hospital.domain.Patient;
 import com.bharatonjava.hospital.domain.Prescription;
+import com.bharatonjava.hospital.utils.Constants;
 
 @Repository
 public class PatientDao implements IPatientDao {
@@ -24,11 +25,13 @@ public class PatientDao implements IPatientDao {
 
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
+		
 		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
 	public Patient getPatientById(Long patientId) {
+		
 		log.info("Fetching record for patientId: {}", patientId);
 		Patient patient = null;
 		Session session = this.sessionFactory.getCurrentSession();
@@ -39,6 +42,7 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public List<Patient> getAllPatients() {
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Patient");
 		List<Patient> patients = query.list();
@@ -47,6 +51,7 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public Long savePatient(final Patient patient) {
+		
 		log.info("Saving Patient: {}", patient);
 		Session session = this.sessionFactory.getCurrentSession();
 		Long patientId = (Long) session.save(patient);
@@ -55,6 +60,7 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public void updatePatient(Patient patient) {
+		
 		log.info("Updating patient: {}", patient);
 		Session session = this.sessionFactory.getCurrentSession();
 		// at this point patient came from jsp and does not have prescriptions
@@ -68,12 +74,14 @@ public class PatientDao implements IPatientDao {
 
 	@Override
 	public void deletePatient(Patient patient) {
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		session.delete(patient);
 	}
 
 	@Override
 	public void deletePatient(Long patientId) {
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		Patient patient = (Patient) session.get(Patient.class, patientId);
 		if (patient != null) {
@@ -97,6 +105,7 @@ public class PatientDao implements IPatientDao {
 				Restrictions.ilike("lastName", "%" + query + "%")),
 				Restrictions.ilike("mobile", "%"+query+"%")));
 
+		crit.setMaxResults(Constants.MAX_SEARCH_RESULTS);
 		patients = crit.list();
 		return patients;
 	}
@@ -105,11 +114,9 @@ public class PatientDao implements IPatientDao {
 	public void savePrescription(Prescription prescription, Long patientId){
 		
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(prescription);
 		Patient patient = (Patient) session.get(Patient.class, patientId);
-		patient.getPrescriptions().add(prescription);
-		session.save(patient);
-		
+		prescription.setPatient(patient);
+		session.save(prescription);
 	}
 	
 	@Override

@@ -33,10 +33,10 @@
 					<td><small><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
 							pattern="dd/MMM/yyyy" /> ${dateString}</small></td>
 					<td><small>${p.gender}</small></td>
-					<td><small>${p.mobile}<br /> <c:if
-								test="${p.phone ne null}">
+					<td><small>${p.mobile}<br /> 
+					<c:if test="${p.phone ne null}">
 						${p.phone}
-				</c:if>
+					</c:if>
 					</small></td>
 					<td><small>${p.email}</small></td>
 					<td><small>${p.address.apartment}<br />
