@@ -10,7 +10,12 @@ import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.StackedBarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +58,7 @@ public class StatsService {
 	@Transactional
 	public byte[] getPatientVisitTrendChart() {
 		log.info("Generating stats chart..");
-		FileOutputStream fos = null;
+		
 		try {
 			List<VisitStats> stats = statsDao.getPatientVisitTrend();
 
@@ -69,7 +74,16 @@ public class StatsService {
 					dataset,PlotOrientation.VERTICAL,           
 			         true, false, false);
 			
-			fos = new FileOutputStream(new File("visit-stats.png"));
+			StackedBarRenderer renderer = new StackedBarRenderer(false);
+			renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+			renderer.setBaseItemLabelsVisible(true);
+			barChart.getCategoryPlot().setRenderer(renderer);
+			
+			// make x axis labels tilted
+	        CategoryPlot catPlot = barChart.getCategoryPlot();
+	        CategoryAxis domainAxis = catPlot.getDomainAxis();
+	        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+	        
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
 			ChartUtilities.writeChartAsPNG(baos, barChart, 600, 300);
 			return baos.toByteArray();
@@ -79,12 +93,7 @@ public class StatsService {
 		} catch (Exception e) {
 			log.error("Exception while generating patient visit stats chart", e);
 		} finally {
-			try {
-				fos.flush();
-				fos.close();
-			} catch (IOException e) {
-				log.error("Failed to close stream.", e);
-			}
+			//
 		}
 		return null;
 	}
