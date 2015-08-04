@@ -10,7 +10,7 @@
 		<h3>Patient Visit Trend</h3>
 		<small>For last 2 months</small>
 	</div>
-	<p>This report shows number of patients visiting daily over past 60 days.</p>
+	<p>This report shows daily Patient visit count over past 60 days.</p>
 	<table
 		class="table table-condensed table-striped table-hover table-responsive">
 		<thead>

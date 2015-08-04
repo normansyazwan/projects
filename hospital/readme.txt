@@ -1,3 +1,11 @@
+Disclaimer:
+-----------
+This product is available for free use with no terms and conditions :)
+Author reserves rights to change any feature at any time. 
+Author is not responsible for fixing bugs/issues.
+Author is not responsible if this product causes any financial loss to anyone.
+
+
 Here is how to setup:
 ---------------------
 

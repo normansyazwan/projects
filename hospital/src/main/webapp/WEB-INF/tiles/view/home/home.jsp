@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div class="page-header">
 	<h3>Dashboard</h3>
 </div>
 <div class="container">
-	<div class="col-sm-4">
-		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">
+	<div class="row">
+		<div class="col-sm-8">
+			<img src="<c:url value='/stats/visit-stats.png' />" alt="Patient Visit Stats not available!"
+				class="img-rounded">
+		</div>
+		<div class="col-sm-4">
+			<img src=" <c:url value='/resources/images/success.png' />" alt="..."
+				class="img-rounded">
+		</div>
 	</div>
-	<div class="col-sm-4">
-		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">
-	</div>
-	<div class="col-sm-4">
-		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">
+	<div class="well well-sm">
+		<p>Awesome Dashboard arriving soon ...</p>
 	</div>
 </div>

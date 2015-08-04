@@ -34,6 +34,7 @@
 				<li>Patient Search</li>
 				<li>Patient Prescription entry</li>
 				<li>Patient Prescription history view</li>
+				<li>Statistics - Number of patients per day in last 2 months.</li>
 			</ul>
 		</div>
 	</div>
@@ -46,8 +47,6 @@
 				<li>Appointment reminders over email</li>
 				<li>Patient Billing / Billing history</li>
 				<li>Bill Printing</li>
-				<li>Statistics - Number of patients per day in last 6 months.</li>
-				<li>Statistics - top 20 most visiting patients</li>
 				<li>You are welcome to suggest more...</li>
 			</ul>
 		</div>

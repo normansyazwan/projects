@@ -2,6 +2,7 @@ package com.bharatonjava.hospital.web;
 
 import java.util.List;
 
+import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bharatonjava.hospital.domain.VisitStats;
 import com.bharatonjava.hospital.services.StatsService;
@@ -42,4 +44,11 @@ public class StatsController {
 		return Constants.VIEW_PATIENT_DAILY_VISIT_STATS;
 	}
 	
+	@RequestMapping(value = "/visit-stats.png")
+	public @ResponseBody byte[] helloWorld()  {
+		Log.info("returning image bytes..");
+		byte[] bytes = statsService.getPatientVisitTrendChart();
+		return bytes;
+	}
+		
 }
