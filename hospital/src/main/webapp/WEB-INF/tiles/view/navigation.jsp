@@ -12,6 +12,5 @@
 </ul>
 <hr/>
 <ul class="nav nav-pills nav-stacked">
-  <li role="presentation"><a href='#'>Top 20 Patients</a></li>
-  <li role="presentation"><a href='#'>Daily Patient Visits</a></li>
+  <li role="presentation"><a href='<c:url value="/stats/visitTrend" />'>Patient Visit Trend</a></li>
 </ul>

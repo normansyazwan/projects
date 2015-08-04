@@ -5,7 +5,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h3>Prescription History</h3>
+
+<div class="page-header">
+	<h3>Prescription History</h3>
+</div>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2">
@@ -26,7 +30,7 @@
 			<label>Existing Ailments</label>
 		</div>
 		<c:choose>
-			<c:when test="${patient.existingAilments}">
+			<c:when test="${patient.existingAilments ne null}">
 			<div class="col-md-10 text-left text-danger">${patient.existingAilments}</div>
 			</c:when>
 		<c:otherwise>
@@ -63,6 +67,7 @@
 				<th>Medical Tests</th>
 				<th>Comments</th>
 				<th>Date of Visit</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -79,6 +84,8 @@
 					<fmt:formatDate value="${p.createdTimestamp}" var="createdTimestamp"
 					pattern="dd-MMM-yyyy h:m a" />
 					${createdTimestamp}</td>
+					<td><a href='<c:url value="/patients/${patient.personId}/prescription" />'
+			class="btn btn-default btn-sm">Edit</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

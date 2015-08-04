@@ -5,9 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
-<h1>Home Page</h1>
-
+<div class="page-header">
+	<h3>Dashboard</h3>
+</div>
 <div class="container">
 	<div class="col-sm-4">
 		<img src=" <c:url value='/resources/images/success.png' />" alt="..." class="img-rounded">

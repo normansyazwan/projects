@@ -5,8 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
+<div class="page-header">
 	<h3>Patient Registration Form</h3>
+</div>
 	
 	<c:if test="${param.status ne null}">
 		<p class="bg-success">${param.status}: Record saved successfully. Patient Id is &nbsp; ${param.patientId}</p>

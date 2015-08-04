@@ -30,7 +30,7 @@
           <input type="text" class="form-control" placeholder="Search Query" name="query" value="${query}"/>
         </div>
         <button type="submit" class="btn btn-md btn-default">Search</button>
-       <c:if test="${patients ne null and patients.size() > 5}">
+       <c:if test="${patients ne null and patients.size() > 15}">
        		<small class="text-danger">Too many results in search. Please provide some more info in search query</small>
        </c:if>
       </form>

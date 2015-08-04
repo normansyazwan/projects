@@ -72,10 +72,16 @@
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientPrescriptionForm.jsp" />
         </definition>
         
-        
         <definition name="prescriptionHistory" extends="layout.basic">
         	<put-attribute name="title" value="Prescription History" />
             <put-attribute name="body" value="/WEB-INF/tiles/view/patient/prescriptionHistory.jsp" />
+        </definition>
+        
+        <!-- Stats -->
+        
+        <definition name="dailyVisitStats" extends="layout.basic">
+        	<put-attribute name="title" value="Patient Visit Stats" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/stats/patientCountPerDay.jsp" />
         </definition>
         
         <!-- for ajax request on patient bill page -->

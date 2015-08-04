@@ -6,7 +6,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-<h3>Patients</h3>
+<div class="page-header">
+	<h3>Patients</h3>
+</div>
 
 <div class="container-fluid">
 
