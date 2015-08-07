@@ -23,12 +23,14 @@ public class PatientDao implements IPatientDao {
 
 	private SessionFactory sessionFactory;
 
+	
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		
 		this.sessionFactory = sessionFactory;
 	}
 
+	
 	@Override
 	public Patient getPatientById(Long patientId) {
 		
@@ -40,6 +42,7 @@ public class PatientDao implements IPatientDao {
 		return patient;
 	}
 
+	
 	@Override
 	public List<Patient> getAllPatients() {
 		
@@ -49,6 +52,7 @@ public class PatientDao implements IPatientDao {
 		return patients;
 	}
 
+	
 	@Override
 	public Long savePatient(final Patient patient) {
 		
@@ -58,6 +62,7 @@ public class PatientDao implements IPatientDao {
 		return patientId;
 	}
 
+	
 	@Override
 	public void updatePatient(Patient patient) {
 		
@@ -72,6 +77,7 @@ public class PatientDao implements IPatientDao {
 		session.update(patient);
 	}
 
+	
 	@Override
 	public void deletePatient(Patient patient) {
 		
@@ -79,6 +85,7 @@ public class PatientDao implements IPatientDao {
 		session.delete(patient);
 	}
 
+	
 	@Override
 	public void deletePatient(Long patientId) {
 		
@@ -93,6 +100,7 @@ public class PatientDao implements IPatientDao {
 		}
 	}
 
+	
 	@Override
 	public List<Patient> searchPatients(String query) {
 
@@ -110,14 +118,17 @@ public class PatientDao implements IPatientDao {
 		return patients;
 	}
 	
+	
 	@Override
-	public void savePrescription(Prescription prescription, Long patientId){
+	public Long savePrescription(Prescription prescription, Long patientId){
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		Patient patient = (Patient) session.get(Patient.class, patientId);
 		prescription.setPatient(patient);
-		session.save(prescription);
+		Long prescriptionId = (Long) session.save(prescription);
+		return prescriptionId;
 	}
+	
 	
 	@Override
 	public Patient getAllPrescriptions(Long patientId){

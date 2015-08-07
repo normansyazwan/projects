@@ -21,7 +21,7 @@ public interface IPatientDao {
 	
 	public List<Patient> searchPatients(String query);
 	
-	public void savePrescription(Prescription prescription, Long patientId);
+	public Long savePrescription(Prescription prescription, Long patientId);
 	
 	public Patient getAllPrescriptions(Long patientId);
 }

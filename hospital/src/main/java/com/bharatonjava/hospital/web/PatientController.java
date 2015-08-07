@@ -267,8 +267,10 @@ public class PatientController {
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
 		model.addAttribute("prescription", new Prescription());
-		
+				
 		return "patientPrescriptionForm";
+		
+		
 	}
 	
 	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.POST)
@@ -280,15 +282,18 @@ public class PatientController {
 		
 		Patient patient = patientService.getPatientById(id);
 		model.addAttribute("patient", patient);
-		
+		// if form has errors, return to same form and display errors
 		if(result.hasErrors()){
 			log.info("Prescription Validation failed: {}", prescription);
 			return "patientPrescriptionForm";
 		}
+		Long prescriptionId = 0L;
+		prescriptionId = patientService.savePrescription(prescription, id);
 		
-		patientService.savePrescription(prescription, id);
+		model.addAttribute("save", "success");
+		model.addAttribute("prescriptionId",prescriptionId);
 		
-		return "patientPrescriptionForm";
+		return "redirect:/patients/"+ patient.getPersonId() +"/prescriptions";
 	}
 	
 	@RequestMapping(value="/patients/{id}/prescriptions", method = RequestMethod.GET)

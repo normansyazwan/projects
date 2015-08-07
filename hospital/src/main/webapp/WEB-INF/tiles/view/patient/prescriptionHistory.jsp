@@ -2,13 +2,17 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 
 <div class="page-header">
 	<h3>Prescription History</h3>
 </div>
+
+<c:if test="${param.save ne null && param.save eq 'success'}">
+	<p class="bg-success well-sm">${param.save}: Prescription Saved successfully. Prescription Id: ${param.prescriptionId}</p>
+</c:if>
 
 <div class="container-fluid">
 	<div class="row">
@@ -73,13 +77,24 @@
 		<tbody>
 			<c:forEach items="${patient.prescriptions}" var="p"
 				varStatus="counter">
-				<tr style="">
+				<tr>
 					<td>${counter.count}</td>
 					<td>${p.prescriptionId}</td>
-					<td>${p.symptoms }</td>
-					<td>${p.prescription }</td>
-					<td>${p.medicalTests }</td>
-					<td>${p.comments }</td>
+					<td>
+						<c:set var="symptomsStr" value="${fn:substring(p.symptoms, 0, 70)}" />
+						${symptomsStr}
+					</td>
+					<td>
+						<c:set var="prescriptionStr" value="${fn:substring(p.prescription, 0, 70)}" />
+						${prescriptionStr}
+					</td>
+					<td>
+						<c:set var="medicalTestsStr" value="${fn:substring(p.medicalTests, 0, 70)}" />					
+						${medicalTestsStr}
+					</td>
+					<td>
+						<c:set var="commentsStr" value="${fn:substring(p.comments, 0, 70)}" />					
+						${commentsStr}</td>
 					<td>
 					<fmt:formatDate value="${p.createdTimestamp}" var="createdTimestamp"
 					pattern="dd-MMM-yyyy h:m a" />

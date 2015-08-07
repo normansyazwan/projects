@@ -66,8 +66,9 @@ public class PatientService {
 	}
 	
 	@Transactional
-	public void savePrescription(Prescription prescription, Long patientId){
-		patientDao.savePrescription(prescription, patientId);
+	public Long savePrescription(Prescription prescription, Long patientId){
+		Long prescriptionId = patientDao.savePrescription(prescription, patientId);
+		return prescriptionId;
 	}
 	
 	@Transactional
