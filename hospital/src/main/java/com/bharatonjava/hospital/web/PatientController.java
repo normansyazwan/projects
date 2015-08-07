@@ -106,7 +106,8 @@ public class PatientController {
 	 */
 	@RequestMapping(value="/patient/add", method = RequestMethod.POST)
 	public String patientSubmit(@ModelAttribute("patient") Patient patient, BindingResult result, ModelMap model){
-		log.info("Patient: "+patient);
+		
+		log.info("New Patient to be saved: "+patient);
 		Long savedPatientId = 0L;
 		int updateCount = 0;
 		
@@ -131,9 +132,10 @@ public class PatientController {
 		}
 		
 		model.addAttribute("status", "success");
-		model.addAttribute("patientId", patientId);
+		//model.addAttribute("patientId", patientId);
 			
-		return "redirect:/patient/add";
+		//return "redirect:/patient/add";
+		return "redirect:/patients/" + patientId;
 	}
 	
 	/**
@@ -152,6 +154,7 @@ public class PatientController {
 		return Constants.PATIENT_REGISTRATION_PAGE;
 	}
 	
+	
 	@RequestMapping(value="/patient/edit/{id}", method = RequestMethod.POST)
 	public String processPatientEditForm(@ModelAttribute("patient") Patient patient, @PathVariable Long id, BindingResult result, Model model){
 		
@@ -163,7 +166,9 @@ public class PatientController {
 			log.info("Not updating patient: {}", patient);
 		}
 		
-		return Constants.PATIENT_REGISTRATION_PAGE;
+		//return Constants.PATIENT_REGISTRATION_PAGE;
+		model.addAttribute("update", "success");
+		return "redirect:/patients/" + id;
 	}
 	
 	/**
