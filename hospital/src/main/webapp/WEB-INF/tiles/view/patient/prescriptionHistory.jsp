@@ -99,8 +99,13 @@
 					<fmt:formatDate value="${p.createdTimestamp}" var="createdTimestamp"
 					pattern="dd-MMM-yyyy h:m a" />
 					${createdTimestamp}</td>
-					<td><a href='<c:url value="/patients/${patient.personId}/prescription" />'
-			class="btn btn-default btn-sm">Edit</a></td>
+					<td>
+						<a href='<c:url value="/patients/${patient.personId}/prescription" />'
+							class="btn btn-default btn-sm">View</a>
+						<a href='<c:url value="/patients/${patient.personId}/prescription" />'
+							class="btn btn-warning btn-sm">Edit</a>
+						<a href="#" class="btn btn-danger btn-sm">Delete</a>	
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
