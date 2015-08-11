@@ -37,7 +37,7 @@
 				<form:input path="lastName" value="${lastName}" cssClass="form-control" placeholder="Last Name"/>
 			</div>
 			<div class="col-sm-4">
-				<form:errors path="firstName" cssClass="text-danger" />
+				<form:errors path="firstName" cssClass="text-danger" class="control-label"/>
 			</div>			
 		</div>
 		<div class="form-group">
@@ -92,9 +92,11 @@
 			<form:label path="email" cssClass="col-sm-2 control-label">Email</form:label>
 			<div class="col-sm-6">
 			<form:input path="email"
-						value="${email}" cssClass="form-control" placeholder="Email" />
+						value="${email}" cssClass="form-control" placeholder="e.g. email@gmail.com" />
 			</div>
-			<div class="col-sm-4"></div>				
+			<div class="col-sm-4">
+				<form:errors path="email" cssClass="text-danger" class="control-label"/>
+			</div>				
 		</div>
 		<div class="form-group">
 			<form:label path="mobile" cssClass="col-sm-2 control-label">Mobile Number</form:label>
