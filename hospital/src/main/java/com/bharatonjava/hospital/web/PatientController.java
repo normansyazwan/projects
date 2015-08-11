@@ -296,20 +296,24 @@ public class PatientController {
 		return "redirect:/patients/"+ patient.getPersonId() +"/prescriptions";
 	}
 	
+
 	@RequestMapping(value="/patients/{id}/prescriptions", method = RequestMethod.GET)
 	public String showPrescriptionHistory(@PathVariable("id") Long patientId, Model model){
+		
 		Patient patient = patientService.getAllPrescriptions(patientId);
 		model.addAttribute("patient", patient);
 		return "prescriptionHistory";
 	}
 	
-	//patients/1/prescription/200
+
 	@RequestMapping(value="/patients/{id}/prescriptions/{prescriptionId}", method = RequestMethod.GET)
 	public String showPrescriptionDetails(@PathVariable("id") Long patientId,@PathVariable("prescriptionId") Long prescriptionId, Model model){
-		Patient patient = patientService.getAllPrescriptions(patientId);
-		model.addAttribute("patient", patient);
-		return "prescriptionDetailsView";
+		
+		Prescription prescription = patientService.getPrescription(patientId, prescriptionId);
+		model.addAttribute("prescription", prescription);
+		return Constants.VIEW_PRESCRIPTION_DETAILS;
 	}
+	
 	
 	@RequestMapping(value="/patients/search", method = RequestMethod.GET)
 	public void patientSearch(Model model){

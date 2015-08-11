@@ -7,115 +7,162 @@
 
 
 <div class="page-header">
-	<h3>${patient.firstName}'s Prescription</h3>
+	<h3>${prescription.patient.firstName}'s Prescription</h3>
 </div>
 
-
 <div class="container-fulid">
+
 	<div class="row">
-		<div class="col-md-2">
-			<label>Patient Id:</label>
+		<div class="col-md-7">
+
+			<div class="row">
+				<div class="col-md-3">
+					<label>Symptoms:</label>
+				</div>
+				<div class="col-md-9">${prescription.symptoms}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<hr />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					<label>Prescription:</label>
+				</div>
+				<div class="col-md-9">${prescription.prescription}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<hr />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					<label>Medical Tests:</label>
+				</div>
+				<div class="col-md-9">${prescription.medicalTests}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<hr />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3">
+					<label>Comments:</label>
+				</div>
+				<div class="col-md-9">${prescription.comments}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<hr />
+				</div>
+			</div>
+
 		</div>
-		<div class="col-md-5">${patient.personId}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Name:</label>
-		</div>
-		<div class="col-md-5">${patient.firstName}&nbsp;
-			${patient.lastName}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Gender:</label>
-		</div>
-		<div class="col-md-5">${patient.gender}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Blood Group:</label>
-		</div>
-		<div class="col-md-5">${patient.bloodGroup}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Date of Birth</label>
-		</div>
+
 		<div class="col-md-5">
-			<fmt:formatDate value="${patient.dateOfBirth}" var="dateString"
-				pattern="dd/MMM/yyyy" />
-			${dateString}
+
+			<div class="row">
+				<div class="col-md-4">
+					<label>Patient Id:</label>
+				</div>
+				<div class="col-md-8">${prescription.patient.personId}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Name:</label>
+				</div>
+				<div class="col-md-8">${prescription.patient.firstName}&nbsp;
+					${patient.lastName}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Gender:</label>
+				</div>
+				<div class="col-md-8">${prescription.patient.gender}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Blood Group:</label>
+				</div>
+				<div class="col-md-8">${prescription.patient.bloodGroup}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Date of Birth</label>
+				</div>
+				<div class="col-md-8">
+					<fmt:formatDate value="${prescription.patient.dateOfBirth}"
+						var="dateString" pattern="dd/MMM/yyyy" />
+					${dateString}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Age</label>
+				</div>
+				<div class="col-md-8">${prescription.patient.age}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Existing Ailments:</label>
+				</div>
+
+				<c:choose>
+					<c:when
+						test="${prescription.patient.existingAilments ne null && prescription.patient.existingAilments.trim().length() gt 0}">
+						<div class="col-md-8 text-danger">${prescription.patient.existingAilments}</div>
+					</c:when>
+					<c:otherwise>
+						<div class="col-md-8 text-success">None</div>
+					</c:otherwise>
+				</c:choose>
+
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<label>Allergies:</label>
+				</div>
+
+				<c:choose>
+					<c:when
+						test="${prescription.patient.allergies ne null && prescription.patient.allergies.trim().length() gt 0}">
+						<div class="col-md-8 text-danger">${prescription.patient.allergies}</div>
+					</c:when>
+					<c:otherwise>
+						<div class="col-md-8 text-success">None</div>
+					</c:otherwise>
+				</c:choose>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<hr />
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<a
+					href='<c:url value="/patients/${prescription.patient.personId}" />'
+					class="btn btn-default btn-sm">View Profile</a> <a
+					href='<c:url value="/patients/${prescription.patient.personId}/prescription" />'
+					class="btn btn-default btn-sm">New Prescription</a> <a
+					href='<c:url value="/patients/${prescription.patient.personId}/prescriptions" />'
+					class="btn btn-default btn-sm">Back to Prescription History</a>
+			</div>
+
 		</div>
+
 	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Age</label>
-		</div>
-		<div class="col-md-5">${patient.age}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Email:</label>
-		</div>
-		<div class="col-md-5">${patient.email}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Mobile:</label>
-		</div>
-		<div class="col-md-5">${patient.mobile}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Landline Phone:</label>
-		</div>
-		<div class="col-md-5">${patient.phone}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Address:</label>
-		</div>
-		<div class="col-md-5">${patient.address.apartment}<br />
-			${patient.address.street}<br /> ${patient.address.area}<br />
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Existing Ailments:</label>
-		</div>
-		<c:choose>
-			<c:when test="${patient.existingAilments ne null && patient.existingAilments.trim().length() gt 0}">
-				<div class="col-md-5 text-danger">${patient.existingAilments}</div>			
-			</c:when>
-			<c:otherwise>
-				<div class="col-md-5 text-success">None</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<label>Allergies:</label>
-		</div>
-		<c:choose>
-			<c:when test="${patient.allergies ne null && patient.allergies.trim().length() gt 0}">
-				<div class="col-md-5 text-danger">${patient.allergies}</div>			
-			</c:when>
-			<c:otherwise>
-				<div class="col-md-5 text-success">None</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-12">
-			<a href='<c:url value="/patients/${patient.personId}" />'
-					class="btn btn-default btn-sm">View Profile</a>
-			
-			<a href='<c:url value="/patients/${patient.personId}/prescription" />'
-						class="btn btn-default btn-sm">New Prescription</a>	
-				
-			<a href='<c:url value="/patients/${patient.personId}/prescriptions" />'
-				class="btn btn-default btn-sm">Back to Prescription History</a>	
-		</div>
-	</div>
+
 </div>

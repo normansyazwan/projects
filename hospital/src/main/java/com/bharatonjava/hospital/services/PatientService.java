@@ -76,4 +76,10 @@ public class PatientService {
 		Patient patient = patientDao.getAllPrescriptions(patientId);
 		return patient;
 	}
+	
+	@Transactional
+	public Prescription getPrescription(Long patientId, Long prescriptionId){
+		Prescription prescription = patientDao.getPrescription(patientId, prescriptionId);
+		return prescription;
+	}
 }

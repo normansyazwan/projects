@@ -15,5 +15,6 @@ public interface Constants {
 	
 	
 	String VIEW_PATIENT_DAILY_VISIT_STATS = "dailyVisitStats";
+	String VIEW_PRESCRIPTION_DETAILS = "prescriptionDetailsView";
 	
 }

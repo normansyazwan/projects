@@ -139,5 +139,14 @@ public class PatientDao implements IPatientDao {
 		
 		return patient;
 	}
+	
+	@Override
+	public Prescription getPrescription(Long patientId, Long prescriptionId){
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		Prescription prescription = (Prescription) session.get(Prescription.class, prescriptionId);
+		return prescription;
+		
+	}
 
 }
