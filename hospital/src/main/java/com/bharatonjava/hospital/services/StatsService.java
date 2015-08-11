@@ -94,6 +94,7 @@ public class StatsService {
 			StackedBarRenderer renderer = new StackedBarRenderer(false);
 			renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 			renderer.setBaseItemLabelsVisible(true);
+		
 			barChart.getCategoryPlot().setRenderer(renderer);
 			
 			// make x axis labels tilted

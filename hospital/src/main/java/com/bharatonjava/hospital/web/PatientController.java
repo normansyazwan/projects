@@ -303,6 +303,14 @@ public class PatientController {
 		return "prescriptionHistory";
 	}
 	
+	//patients/1/prescription/200
+	@RequestMapping(value="/patients/{id}/prescriptions/{prescriptionId}", method = RequestMethod.GET)
+	public String showPrescriptionDetails(@PathVariable("id") Long patientId,@PathVariable("prescriptionId") Long prescriptionId, Model model){
+		Patient patient = patientService.getAllPrescriptions(patientId);
+		model.addAttribute("patient", patient);
+		return "prescriptionDetailsView";
+	}
+	
 	@RequestMapping(value="/patients/search", method = RequestMethod.GET)
 	public void patientSearch(Model model){
 		

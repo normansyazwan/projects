@@ -100,7 +100,7 @@
 					pattern="dd-MMM-yyyy h:m a" />
 					${createdTimestamp}</td>
 					<td>
-						<a href='<c:url value="/patients/${patient.personId}/prescription" />'
+						<a href='<c:url value="/patients/${patient.personId}/prescriptions/${p.prescriptionId}" />'
 							class="btn btn-default btn-sm">View</a>
 						<a href='<c:url value="/patients/${patient.personId}/prescription" />'
 							class="btn btn-warning btn-sm">Edit</a>
