@@ -25,5 +25,7 @@ public interface IPatientDao {
 	
 	public Patient getAllPrescriptions(Long patientId);
 	
-	public Prescription getPrescription(Long patientId, Long prescriptionId);
+	public Prescription getPrescription(Long prescriptionId);
+	
+	public void updatePrescription(Prescription prescription);
 }

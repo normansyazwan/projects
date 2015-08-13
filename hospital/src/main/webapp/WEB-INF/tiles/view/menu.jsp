@@ -16,7 +16,7 @@
         <span class="icon-bar"></span>
       </button>
       <c:url value='/' var="homePageAction"/>
-      <a class="navbar-brand" href="${homePageAction}">Hospital Manager</a>
+      <a class="navbar-brand" href="${homePageAction}">MediAider</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

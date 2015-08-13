@@ -12,10 +12,12 @@
 
 
 <c:if test="${param.status ne null}">
-	<p class="bg-success well-sm">${param.status}: Record Saved successfully.</p>
+	<p class="bg-success well-sm">${param.status}:Record Saved
+		successfully.</p>
 </c:if>
 <c:if test="${param.update ne null}">
-	<p class="bg-success well-sm">${param.update}: Record Updated successfully.</p>
+	<p class="bg-success well-sm">${param.update}:Record Updated
+		successfully.</p>
 </c:if>
 
 
@@ -93,8 +95,9 @@
 			<label>Existing Ailments:</label>
 		</div>
 		<c:choose>
-			<c:when test="${patient.existingAilments ne null && patient.existingAilments.trim().length() gt 0}">
-				<div class="col-md-5 text-danger">${patient.existingAilments}</div>			
+			<c:when
+				test="${patient.existingAilments ne null && patient.existingAilments.trim().length() gt 0}">
+				<div class="col-md-5 text-danger">${patient.existingAilments}</div>
 			</c:when>
 			<c:otherwise>
 				<div class="col-md-5 text-success">None</div>
@@ -106,25 +109,30 @@
 			<label>Allergies:</label>
 		</div>
 		<c:choose>
-			<c:when test="${patient.allergies ne null && patient.allergies.trim().length() gt 0}">
-				<div class="col-md-5 text-danger">${patient.allergies}</div>			
+			<c:when
+				test="${patient.allergies ne null && patient.allergies.trim().length() gt 0}">
+				<div class="col-md-5 text-danger">${patient.allergies}</div>
 			</c:when>
 			<c:otherwise>
 				<div class="col-md-5 text-success">None</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
-	
+
+	<div class="row">
+		<div class="col-md-12">
+			<hr />
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<a href='<c:url value="/patient/edit/${patient.personId}" />'
-				class="btn btn-default btn-sm">Edit Profile</a>
-			
-			<a href='<c:url value="/patients/${patient.personId}/prescription" />'
-						class="btn btn-default btn-sm">Prescription</a>	
-				
-			<a href='<c:url value="/patients/${patient.personId}/prescriptions" />'
-				class="btn btn-default btn-sm">Prescription History</a>	
+				class="btn btn-default btn-sm">Edit Profile</a> <a
+				href='<c:url value="/patients/${patient.personId}/prescription" />'
+				class="btn btn-default btn-sm">Prescription</a> <a
+				href='<c:url value="/patients/${patient.personId}/prescriptions" />'
+				class="btn btn-default btn-sm">Prescription History</a>
 		</div>
 	</div>
 </div>

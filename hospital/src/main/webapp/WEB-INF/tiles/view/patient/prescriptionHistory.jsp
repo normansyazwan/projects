@@ -11,7 +11,7 @@
 </div>
 
 <c:if test="${param.save ne null && param.save eq 'success'}">
-	<p class="bg-success well-sm">${param.save}: Prescription Saved successfully. Prescription Id: ${param.prescriptionId}</p>
+	<p class="bg-success well-sm">Prescription Saved successfully. Prescription Id: ${param.prescriptionId}</p>
 </c:if>
 
 <div class="container-fluid">
@@ -34,7 +34,7 @@
 			<label>Existing Ailments</label>
 		</div>
 		<c:choose>
-			<c:when test="${patient.existingAilments ne null}">
+			<c:when test="${patient.existingAilments ne null and patient.existingAilments.length() > 0}">
 			<div class="col-md-10 text-left text-danger">${patient.existingAilments}</div>
 			</c:when>
 		<c:otherwise>
@@ -47,7 +47,7 @@
 			<label>Allergies</label>
 		</div>
 		<c:choose>
-			<c:when test="${patient.allergies ne null}">
+			<c:when test="${patient.allergies ne null and patient.allergies.length() > 0}">
 			<div class="col-md-10 text-left text-danger">${patient.allergies}</div>
 		</c:when>
 		<c:otherwise>
@@ -71,40 +71,44 @@
 				<th>Medical Tests</th>
 				<th>Comments</th>
 				<th>Date of Visit</th>
-				<th>Action</th>
+				<th style="width: 100px;">Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${patient.prescriptions}" var="p"
 				varStatus="counter">
 				<tr>
-					<td>${counter.count}</td>
-					<td>${p.prescriptionId}</td>
+					<td class="small"><small>${counter.count}</small></td>
+					<td class="small">${p.prescriptionId}</td>
 					<td>
 						<c:set var="symptomsStr" value="${fn:substring(p.symptoms, 0, 70)}" />
-						${symptomsStr}
+						<span class="small">${symptomsStr}</span>
 					</td>
 					<td>
 						<c:set var="prescriptionStr" value="${fn:substring(p.prescription, 0, 70)}" />
-						${prescriptionStr}
+						<span class="small">${prescriptionStr}</span>
 					</td>
 					<td>
 						<c:set var="medicalTestsStr" value="${fn:substring(p.medicalTests, 0, 70)}" />					
-						${medicalTestsStr}
+						<span class="small">${medicalTestsStr}</span>
 					</td>
 					<td>
 						<c:set var="commentsStr" value="${fn:substring(p.comments, 0, 70)}" />					
-						${commentsStr}</td>
+						<span class="small">${commentsStr}</span>
+					</td>
 					<td>
 					<fmt:formatDate value="${p.createdTimestamp}" var="createdTimestamp"
 					pattern="dd-MMM-yyyy h:m a" />
-					${createdTimestamp}</td>
+					<span class="small">${createdTimestamp}</span>
+					</td>
 					<td>
+
 						<a href='<c:url value="/patients/${patient.personId}/prescriptions/${p.prescriptionId}" />'
 							class="btn btn-default btn-sm">View</a>
-						<a href='<c:url value="/patients/${patient.personId}/prescription" />'
+
+						<a href='<c:url value="/patients/${patient.personId}/prescription?prescriptionId=${p.prescriptionId}&action=edit" />'
 							class="btn btn-warning btn-sm">Edit</a>
-						<a href="#" class="btn btn-danger btn-sm">Delete</a>	
+						
 					</td>
 				</tr>
 			</c:forEach>

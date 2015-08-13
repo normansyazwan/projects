@@ -6,7 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div class="container-fluid well well-sm">
+<div class="container-fluid well well-sm" style="margin-top:50px;">
 	<div class="row">
 		<div class="col-sm-8">License Expires on: Free Version</div>
 		<div class="col-sm-4">

@@ -7,7 +7,12 @@
 
 
 <div class="page-header">
-	<h3>${prescription.patient.firstName}'s Prescription</h3>
+	<h3>${prescription.patient.firstName}'s Prescription 
+	<small>Dated: <fmt:formatDate value="${prescription.createdTimestamp}" var="createdTimestamp"
+					pattern="dd-MMM-yyyy h:m a" />
+					${createdTimestamp}</small>
+	
+	</h3>
 </div>
 
 <div class="container-fulid">

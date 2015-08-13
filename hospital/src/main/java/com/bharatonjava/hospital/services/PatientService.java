@@ -78,8 +78,13 @@ public class PatientService {
 	}
 	
 	@Transactional
-	public Prescription getPrescription(Long patientId, Long prescriptionId){
-		Prescription prescription = patientDao.getPrescription(patientId, prescriptionId);
+	public Prescription getPrescription(Long prescriptionId){
+		Prescription prescription = patientDao.getPrescription(prescriptionId);
 		return prescription;
+	}
+	
+	@Transactional
+	public void updatePrescription(Prescription prescription){
+		patientDao.updatePrescription(prescription);
 	}
 }

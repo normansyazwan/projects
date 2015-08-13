@@ -16,5 +16,17 @@ public interface Constants {
 	
 	String VIEW_PATIENT_DAILY_VISIT_STATS = "dailyVisitStats";
 	String VIEW_PRESCRIPTION_DETAILS = "prescriptionDetailsView";
+
+	String ACTION_NEW = "new";
+	String ACTION_VIEW = "view";
+	String ACTION_EDIT = "edit";
+	String ACTION_DELETE = "delete";
+	String ACTION_UPDATE = "update";
+	String ACTION_INSERT = "insert";
+	String ACTION_LIST = "list";
+	
+	String PHASE_STAGE = "stage";
+	String PHASE_CONFIRM = "confirm";
+	String PHASE_CANCEL = "cancel";
 	
 }

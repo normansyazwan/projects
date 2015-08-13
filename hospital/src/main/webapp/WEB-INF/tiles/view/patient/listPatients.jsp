@@ -46,11 +46,12 @@
 					</small></td>
 					<td>
 												
-						<a href='<c:url value="/patients/${p.personId}/prescription" />'
+						<a href='<c:url value="/patients/${p.personId}/prescription?action=new" />'
 						class="btn btn-default btn-sm">Prescription</a>
 						
 						<a href='<c:url value="/patients/${p.personId}/prescriptions" />'
 						class="btn btn-default btn-sm">Prescription History</a>
+						
 					</td>
 				</tr>
 			</c:forEach>

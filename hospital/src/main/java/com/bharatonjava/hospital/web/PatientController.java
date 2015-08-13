@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bharatonjava.hospital.domain.BillableItem;
 import com.bharatonjava.hospital.domain.BillingRecord;
@@ -88,6 +89,16 @@ public class PatientController {
 	}
 	
 	
+	/**
+	 * Default exception handler 
+	 */
+	@ExceptionHandler(Exception.class)
+	public String defaultExceptionHandler(Exception ex){
+		log.error("Exception occured in PatientController. ", ex);
+		return "error";
+	}
+	
+	
 	@RequestMapping(value="/patient/add", method = RequestMethod.GET)
 	public String patientShowForm(Model model){
 		Patient patient = new Patient();
@@ -96,6 +107,7 @@ public class PatientController {
 		model.addAttribute("hospEnums", hospEnums);
 		return "patientRegistration";
 	}
+	
 	
 	/**
 	 * This method will handle patient Add and Edit cases
@@ -184,6 +196,7 @@ public class PatientController {
 		return "listPatients";
 	}
 
+	
 	/**
 	 * Patient Profile 
 	 * @param id
@@ -198,102 +211,85 @@ public class PatientController {
 	}
 	
 	/**
-	 * handles patient billing
+	 * Displays new prescription form
+	 * @param id
+	 * @param model
+	 * @return
 	 */
-	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.GET)
-	public String patientBilling(@PathVariable Long id, Model model){
-		// to track patient 
-		Patient patient = patientService.getPatientById(id);
-		model.addAttribute("patient", patient);
+	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.GET)
+	public String showPrescriptionForm(@PathVariable("id") Long id, 
+			@RequestParam(value = "prescriptionId", defaultValue="0", required = false) Long prescriptionId,
+			@RequestParam(value = "action", defaultValue=Constants.ACTION_NEW, required = false) String action,
+			Model model){
 	
-		// to display dropdowns
-		List<BillableItem> billableItems = billableItemService.getBillableItems();
-		model.addAttribute("billableItems", billableItems);
+		log.info("showPrescriptionForm: action = {}", action);
 		
-		BillingForm billingForm = new BillingForm();
-		billingForm.setPatientId(patient.getPersonId());
+		if(action == null || action.equals(Constants.ACTION_NEW)){
+			
+			Patient patient = patientService.getPatientById(id);
+			model.addAttribute("patient", patient);
+			model.addAttribute("prescription", new Prescription());
 		
-		for(long i = 0L; i < 5; i ++)
-		{
-			BillingRecord br = new BillingRecord();
-			br.setRecordId(i);
-			billingForm.getBillingRecords().add(br);
+		}else if (action != null && action.equals(Constants.ACTION_EDIT)){
+			
+			Prescription prescription = patientService.getPrescription(prescriptionId);
+			model.addAttribute("prescription", prescription);
+			model.addAttribute("patient", prescription.getPatient());
+		
 		}
 		
-		model.addAttribute("billingForm", billingForm);
-		
-		return "patientBilling";
-	}
-	
-	@RequestMapping(value="/patient/billing/{id}", method = RequestMethod.POST)
-	public String processPatientBilling(@ModelAttribute("billingForm") BillingForm billingForm, Long id, BindingResult result, Model model){
-		
-		log.info("PatientId : {}",billingForm.getPatientId());
-		Patient patient = patientService.getPatientById(billingForm.getPatientId());
-		model.addAttribute("patient", patient);
-		
-		log.info("billingForm : "+ billingForm);
-		
-		
-		// to display dropdowns
-		List<BillableItem> billableItems =  billableItemService.getBillableItems();
-		model.addAttribute("billableItems", billableItems);
-		model.addAttribute("billingForm", billingForm);
-		
-		return "patientBilling";
-	}
-	
-	/**
-	 * Default exception handler 
-	 */
-	@ExceptionHandler(Exception.class)
-	public String defaultExceptionHandler(Exception ex){
-		log.error("Exception occured in PatientController. ", ex);
-		return "error";
-	}
-	
-	/**
-	 * handles ajax request to add a new row in patient billing form
-	 */
-	@RequestMapping(value = "/ajax/patientBillingFormRow", method = RequestMethod.GET)
-	public String getPatientBillingFormRow(){
-		
-		return "patientBillRowAjaxRequest";
-	}
-
-	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.GET)
-	public String showPrescriptionForm(@PathVariable Long id, Model model){
-	
-		Patient patient = patientService.getPatientById(id);
-		model.addAttribute("patient", patient);
-		model.addAttribute("prescription", new Prescription());
-				
 		return "patientPrescriptionForm";
-		
-		
 	}
 	
-	@RequestMapping(value="/patients/{id}/prescription", method = RequestMethod.POST)
-	public String processPrescriptionForm(Prescription prescription, @PathVariable Long id, BindingResult result, Model model){
+	/**
+	 * Processes patient prescription form
+	 * @param prescription
+	 * @param patientId
+	 * @param result
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/patients/{patientId}/prescription", method = RequestMethod.POST)
+	public String processPrescriptionForm(Prescription prescription, @PathVariable("patientId") Long patientId, 
+			@RequestParam(value = "action", defaultValue=Constants.ACTION_NEW, required = false) String action,
+			BindingResult result, Model model){
 	
-		log.info("Saving Prescription for PatientId: {}, prescription {}",id, prescription);
-		
+		log.info("Saving Prescription for PatientId: {}, prescription {}",patientId, prescription);
+		log.info("processPrescriptionForm: action = {}", action);
 		prescriptionValidator.validate(prescription, result);
 		
-		Patient patient = patientService.getPatientById(id);
+		Patient patient = patientService.getPatientById(patientId);
 		model.addAttribute("patient", patient);
+		
 		// if form has errors, return to same form and display errors
 		if(result.hasErrors()){
 			log.info("Prescription Validation failed: {}", prescription);
 			return "patientPrescriptionForm";
 		}
+		
 		Long prescriptionId = 0L;
-		prescriptionId = patientService.savePrescription(prescription, id);
 		
-		model.addAttribute("save", "success");
-		model.addAttribute("prescriptionId",prescriptionId);
-		
-		return "redirect:/patients/"+ patient.getPersonId() +"/prescriptions";
+		if(action != null && action.equals(Constants.ACTION_EDIT) && prescription.getPrescriptionId() > 0L){
+			log.info("Inside update prescription block");
+			// update prescription
+			prescription.setPatient(patient);
+			patientService.updatePrescription(prescription);
+			
+			return "redirect:/patients/"+ patient.getPersonId() +"/prescriptions";
+			
+		}else if (action != null && action.equals(Constants.ACTION_NEW)){
+			log.info("Inside save prescription block");
+			// save prescription
+			prescriptionId = patientService.savePrescription(prescription, patientId);
+			
+			model.addAttribute("save", "success");
+			model.addAttribute("prescriptionId",prescriptionId);
+			
+			return "redirect:/patients/"+ patient.getPersonId() +"/prescriptions";
+			
+		}
+				
+		return "";
 	}
 	
 
@@ -309,10 +305,13 @@ public class PatientController {
 	@RequestMapping(value="/patients/{id}/prescriptions/{prescriptionId}", method = RequestMethod.GET)
 	public String showPrescriptionDetails(@PathVariable("id") Long patientId,@PathVariable("prescriptionId") Long prescriptionId, Model model){
 		
-		Prescription prescription = patientService.getPrescription(patientId, prescriptionId);
+		Prescription prescription = patientService.getPrescription(prescriptionId);
 		model.addAttribute("prescription", prescription);
 		return Constants.VIEW_PRESCRIPTION_DETAILS;
 	}
+		
+
+	
 	
 	
 	@RequestMapping(value="/patients/search", method = RequestMethod.GET)

@@ -40,7 +40,7 @@ public class StatsDao implements IStatsDao {
 		query.setResultTransformer(Transformers.aliasToBean(VisitStats.class));
 		query.setMaxResults(60);
 		List<VisitStats> lst = query.list();
-		log.info("{}", lst);
+		log.debug("{}", lst);
 		return lst;
 	}
 
