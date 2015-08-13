@@ -33,7 +33,7 @@
 					<td><small><a href='<c:url value="/patients/${p.personId}" />'>
 							${p.firstName}&nbsp;&nbsp;${p.lastName} </a></small></td>
 					<td><small><fmt:formatDate value="${p.dateOfBirth}" var="dateString"
-							pattern="dd/MMM/yyyy" /> ${dateString}</small></td>
+							pattern="dd-MMM-yyyy" /> ${dateString}</small></td>
 					<td><small>${p.gender}</small></td>
 					<td><small>${p.mobile}<br /> 
 					<c:if test="${p.phone ne null}">
