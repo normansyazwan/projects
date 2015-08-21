@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
@@ -42,7 +43,15 @@
 			</form>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="javascript:formSubmit()">Logout</a></li>
+				
+				<security:authorize access="isAuthenticated()">
+   				<li><a href="#">Welcome! <security:authentication property="name" /></a></li>
+   				<li><a href="javascript:formSubmit()">Logout</a></li> 
+				</security:authorize>
+				<security:authorize access="! isAuthenticated()">
+    			<li><c:url value="/login" var="loginVar" /><a href="${loginVar}">Login</a> </li>
+				</security:authorize>
+				
 			</ul>
 
 		</div>
