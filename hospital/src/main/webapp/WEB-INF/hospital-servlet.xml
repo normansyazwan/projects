@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-
+	<import resource="security-config.xml"/>
 
 	<bean id="patientService" class="com.bharatonjava.hospital.services.PatientService">
 		<property name="patientDao" ref="patientDao"></property>

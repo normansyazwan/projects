@@ -6,7 +6,7 @@
 
 
 <ul class="nav nav-pills nav-stacked">
-  <li role="presentation" class="active"><a href='<c:url value="/patient/add" />'>Add New
+  <li role="presentation" ><a href='<c:url value="/patient/add" />'>Add New
 			Patient</a></li>
   <li role="presentation"><a href='<c:url value="/patients" />'>List Patients</a></li>
 </ul>

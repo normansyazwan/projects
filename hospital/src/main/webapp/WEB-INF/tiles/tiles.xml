@@ -15,8 +15,11 @@
             <put-attribute name="footer" value="/WEB-INF/tiles/view/footer.jsp" />
         </definition>
 
-		<definition name="layout.blank" template="/WEB-INF/tiles/layout/blankLayout.jsp">
-            <put-attribute name="body" value="" />
+		<definition name="layout.fullpage" template="/WEB-INF/tiles/layout/fullpageLayout.jsp">
+			<put-attribute name="title" value="Home" />
+            <put-attribute name="header" value="/WEB-INF/tiles/view/common/nonSecureHeader.jsp" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/common/blankPage.jsp" />
+            <put-attribute name="footer" value="/WEB-INF/tiles/view/common/blankFooter.jsp" />
         </definition>
 
 		<!-- Default Error page -->
@@ -89,11 +92,11 @@
             <put-attribute name="body" value="/WEB-INF/tiles/view/stats/patientCountPerDay.jsp" />
         </definition>
         
-        <!-- for ajax request on patient bill page -->
-		<definition name="patientBillRowAjaxRequest" extends="layout.blank">
-			<put-attribute name="body" value="/WEB-INF/tiles/view/patient/patientBillRow.jsp" />
-		</definition>
-		
-		
+        	
+		<!-- login page -->
+		<definition name="login" extends="layout.fullpage">
+        	<put-attribute name="title" value="Login" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/common/login.jsp" />
+        </definition>
 		
     </tiles-definitions>

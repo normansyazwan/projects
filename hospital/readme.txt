@@ -31,3 +31,12 @@ Awesome!!!
 http://dtr-trading.blogspot.in/2014/02/spring-mvc-4-thymeleaf-crud-part-3.html
 
 http://dtr-trading.blogspot.in/2014/02/spring-mvc-4-thymeleaf-crud-part-4.html
+
+ROLES:
+------
+SUPER_ADMIN
+ADMIN
+RECEPTIONIST
+ACCOUNTANT
+DOCTOR
+
