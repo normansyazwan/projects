@@ -16,7 +16,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
-	<security:debug />
+<!-- 	<security:debug /> -->
 
 	<security:http auto-config="true">
 	
@@ -29,7 +29,7 @@
 		
 		<security:logout logout-success-url="/login?logout"
 			logout-url="/j_spring_security_logout" />
-	
+		<security:csrf disabled="true"/>
 	</security:http>
 
 

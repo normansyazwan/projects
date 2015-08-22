@@ -115,5 +115,30 @@ public class StatsService {
 		}
 		return null;
 	}
+	
+	@Transactional
+	public Long getAveragePatientCount(int months){
+		
+		int daysInMonth = 30;
+		
+		List<Object[]> prescriptionCounts = patientDao.getAveragePrescriptionCount(months);
+		
+		Long total = 0l;
+		
+		for(Object[] p : prescriptionCounts){
+			total = total + ((Long)p[1]);
+		}
+		
+		
+		Long averageCount = 0L;
+		
+		if(total > 0L){
+			averageCount = total / daysInMonth;
+		}
+		
+		log.info("total: {}, Average: {}", total, averageCount);
+		
+		return averageCount;
+	}
 
 }

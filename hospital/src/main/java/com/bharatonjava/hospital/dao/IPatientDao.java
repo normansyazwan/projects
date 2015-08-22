@@ -28,4 +28,9 @@ public interface IPatientDao {
 	public Prescription getPrescription(Long prescriptionId);
 	
 	public void updatePrescription(Prescription prescription);
+	
+	public Long totalPatientCount();
+	
+	public List<Object[]> getAveragePrescriptionCount(int months);
+	
 }

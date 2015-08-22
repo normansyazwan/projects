@@ -2,6 +2,8 @@ package com.bharatonjava.hospital.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,8 @@ import com.bharatonjava.hospital.domain.Prescription;
 
 @Service
 public class PatientService {
+	
+	private static final Logger log = LoggerFactory.getLogger(PatientService.class);
 	
 	@Autowired
 	private IPatientDao patientDao;
@@ -86,5 +90,13 @@ public class PatientService {
 	@Transactional
 	public void updatePrescription(Prescription prescription){
 		patientDao.updatePrescription(prescription);
+	}
+	
+	@Transactional
+	public Long totalPatientCount() {
+		Long patientCount = patientDao.totalPatientCount();
+		log.info("Total Patient Count: {}", patientCount);
+		patientDao.getAveragePrescriptionCount(1);
+		return patientCount;
 	}
 }

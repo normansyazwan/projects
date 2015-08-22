@@ -35,6 +35,7 @@
 				<li>Patient Prescription entry</li>
 				<li>Patient Prescription history view</li>
 				<li>Statistics - Number of patients per day in last 2 months.</li>
+				<li>Statistics - Total Number of Registered Patients.</li>
 			</ul>
 		</div>
 	</div>
