@@ -16,7 +16,16 @@ public interface Constants {
 	
 	String VIEW_PATIENT_DAILY_VISIT_STATS = "dailyVisitStats";
 	String VIEW_PRESCRIPTION_DETAILS = "prescriptionDetailsView";
-
+	
+	String VIEW_NEW_EMPLOYEE_FORM = "newEmployeeForm";
+	String VIEW_LIST_EMPLOYEES = "employees";
+	String VIEW_EDIT_EMPLOYEE = "editEmployee";
+	String VIEW_DELETE_EMPLOYEE = "deleteEmployee";
+	String VIEW_EMPLOYEE_PROFILE = "viewEmployeeProfile";
+	
+	
+	
+	
 	String ACTION_NEW = "new";
 	String ACTION_VIEW = "view";
 	String ACTION_EDIT = "edit";
@@ -29,4 +38,6 @@ public interface Constants {
 	String PHASE_CONFIRM = "confirm";
 	String PHASE_CANCEL = "cancel";
 	
+	String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"  
+			   + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"; 
 }

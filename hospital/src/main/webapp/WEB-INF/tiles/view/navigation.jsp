@@ -14,3 +14,8 @@
 <ul class="nav nav-pills nav-stacked">
   <li role="presentation"><a href='<c:url value="/stats/visitTrend" />'>Patient Visit Trend</a></li>
 </ul>
+<hr/>
+<ul class="nav nav-pills nav-stacked">
+  <li role="presentation"><a href='<c:url value="/employee/new" />'>New Employee</a></li>
+  <li role="presentation"><a href='<c:url value="/employees" />'>List Employees</a></li>
+</ul>

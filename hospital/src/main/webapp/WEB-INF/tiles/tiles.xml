@@ -99,4 +99,16 @@
             <put-attribute name="body" value="/WEB-INF/tiles/view/common/login.jsp" />
         </definition>
 		
+		<!-- Employee views -->
+		<definition name="newEmployeeForm" extends="layout.basic">
+        	<put-attribute name="title" value="Employee Registration Form" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/employee/employeeRegistrationForm.jsp" />
+        </definition>
+        
+        <definition name="employees" extends="layout.basic">
+        	<put-attribute name="title" value="List Employees" />
+            <put-attribute name="body" value="/WEB-INF/tiles/view/employee/listEmployees.jsp" />
+        </definition>
+        
+        
     </tiles-definitions>

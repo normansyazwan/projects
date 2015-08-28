@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bharatonjava.hospital.domain.BillableItem;
-import com.bharatonjava.hospital.domain.BillingRecord;
 import com.bharatonjava.hospital.domain.HospitalEnum;
 import com.bharatonjava.hospital.domain.Patient;
 import com.bharatonjava.hospital.domain.Prescription;
