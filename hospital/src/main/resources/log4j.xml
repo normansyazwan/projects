@@ -7,7 +7,8 @@
 				/> -->
 			<!--  [%p] %c %M - %m%n -->
 			<!-- %d{yyyy-MM-dd}-%t-%x-%-5p-%-10c:%m%n -->	
-			<param name="ConversionPattern" value="%d{yyyy-MM-dd}-[%p] %c %M - %m%n" />
+<!-- 			<param name="ConversionPattern" value="%d{yyyy-MM-dd} %c - %l [%p] %c %M - %m%n" /> -->
+		<param name="ConversionPattern" value="%d{yyyy-MM-dd}- %l [%p] - %m%n" />
 		</layout>
 	</appender>
 	<appender name="FA" class="org.apache.log4j.FileAppender">

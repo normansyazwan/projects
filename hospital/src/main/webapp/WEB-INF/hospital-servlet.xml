@@ -80,11 +80,10 @@
 			<value>
 				hibernate.dialect=org.hibernate.dialect.MySQLDialect
 				hibernate.show_sql=true
-				hibernate.hbm2ddl.auto=update
 			</value>
 		</property>
 	</bean>
-
+<!-- hibernate.hbm2ddl.auto=update -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="transactionManager"

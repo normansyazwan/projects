@@ -2,7 +2,6 @@ package com.bharatonjava.hospital.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bharatonjava.hospital.domain.Employee;
-import com.bharatonjava.hospital.domain.HospitalEnum;
+import com.bharatonjava.hospital.services.EmployeeService;
 import com.bharatonjava.hospital.utils.Constants;
 import com.bharatonjava.hospital.web.validators.EmployeeValidator;
 
@@ -31,10 +30,16 @@ public class EmployeeController {
 	private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 	
 	private EmployeeValidator employeeValidator;
+	private EmployeeService employeeService;
 	
 	@Autowired
 	public void setEmployeeValidator(EmployeeValidator employeeValidator) {
 		this.employeeValidator = employeeValidator;
+	}
+	
+	@Autowired
+	public void setEmployeeService(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
 	
 	@InitBinder
@@ -95,8 +100,9 @@ public class EmployeeController {
 			log.info("Errors:  {} ",result.getAllErrors());
 			return Constants.VIEW_NEW_EMPLOYEE_FORM;
 		}
-		// save patient to database
-		
+		// save employee to database
+		Long employeeId = this.employeeService.saveEmployee(employee);
+		model.addAttribute("employeeId",employeeId);
 		return "redirect:/"+Constants.VIEW_LIST_EMPLOYEES;
 	}
 	

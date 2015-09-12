@@ -37,8 +37,9 @@ public class EmployeeValidator implements Validator {
 			e = (Employee) target;
 		}
 
+		// name validation
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName",
-				"fieldIsRequired", "First Name is required.");
+				"fieldIsRequired", "First Name is required");
 
 		if (e.getGender() == null
 				|| !(e.getGender().equals("Male") || e.getGender().equals(
@@ -52,13 +53,13 @@ public class EmployeeValidator implements Validator {
 					"Date of Birth is required.");
 		} else if (e.getDateOfBirth().after(new Date())) {
 			errors.rejectValue("dateOfBirth", "patient.dob.future",
-					"Date of Birth should be in the past.");
+					"Date of Birth should be in the past");
 		}
 
 		// date of joining should not be empty
 		if (e.getDateOfJoining() == null) {
 			errors.rejectValue("dateOfJoining", "patient.doj.null",
-					"Date of Joining is required.");
+					"Date of Joining is required");
 		}
 		
 		// mobile number if provided, should be 10 digits only
@@ -80,8 +81,12 @@ public class EmployeeValidator implements Validator {
 				log.info("Email is incorrect: "+ e.getEmail());
 			}
 		}else{
-			log.info("inside email validation else condition");
+			log.debug("inside email validation else condition");
 		}
+		
+		// designation should not be empty
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "designation",
+				"fieldIsRequired", "Designation is required");
 
 
 	}

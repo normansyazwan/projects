@@ -18,7 +18,7 @@
 			</security:authorize>
 		</div>
 		<div class="col-sm-5">
-			<h4>Patients In Database: ${totalPatientCount}</h4>
+			<h4>Total Patients: ${totalPatientCount}</h4>
 			<hr />
 			<h4>Average Daily prescriptions over last
 				${prescriptionAverageForMonths} months: ${averagePatientCount}</h4>

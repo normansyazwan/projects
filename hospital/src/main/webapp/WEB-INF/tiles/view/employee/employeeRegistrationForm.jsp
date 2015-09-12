@@ -75,6 +75,39 @@
 			</div>				
 		</div>
 		<div class="form-group">
+			<form:label path="designation" cssClass="col-sm-2 control-label">Designation</form:label>
+			<div class="col-sm-6">
+				<form:input path="designation" value="${employee.designation}"  cssClass="form-control" placeholder="e.g. Doctor"/>
+			</div>
+			<div class="col-sm-4">
+				<form:errors path="designation" cssClass="text-danger" />
+			</div>				
+		</div>
+		<div class="form-group">
+			<form:label path="comments" cssClass="col-sm-2 control-label">Comments</form:label>
+			<div class="col-sm-6">
+			<form:textarea path="comments"
+						value="${comments}" cssClass="form-control" placeholder="Comments..." 
+						rows="4" cols="50" />
+			</div>
+			<div class="col-sm-4">
+				<form:errors path="comments" cssClass="text-danger" class="control-label"/>
+			</div>				
+		</div>
+		<hr/>
+		<div class="form-group">
+			<form:label path="dateOfRelieving" cssClass="col-sm-2 control-label">Date Of Relieving</form:label>
+			<div class="col-sm-6">
+				<fmt:formatDate value="${employee.dateOfRelieving}" var="dateOfRelievingString"	pattern="dd/MM/yyyy" /> 
+				<form:input path="dateOfRelieving" value="${dateOfRelievingString}"  cssClass="form-control" placeholder="dd/MM/yyyy"/>
+			</div>
+			<div class="col-sm-4">
+				<form:errors path="dateOfRelieving" cssClass="text-danger" />
+			</div>				
+		</div>
+		
+		<hr/>
+		<div class="form-group">
 			<form:label path="email" cssClass="col-sm-2 control-label">Email</form:label>
 			<div class="col-sm-6">
 			<form:input path="email"
@@ -88,7 +121,7 @@
 			<form:label path="mobile" cssClass="col-sm-2 control-label">Mobile Number</form:label>
 			<div class="col-sm-6">
 			<form:input path="mobile"
-						value="${mobile}" cssClass="form-control" placeholder="Mobile Number" maxlength="10"/>
+						value="${mobile}" cssClass="form-control" placeholder="10 Digit Mobile Number" maxlength="10"/>
 			</div>
 			<div class="col-sm-4">
 				<form:errors path="mobile" cssClass="text-danger" />
