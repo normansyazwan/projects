@@ -2,6 +2,7 @@ package com.bharatonjava.hospital.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +68,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
 	public String listEmployees(Model model){
 		
+		List<Employee> employees = this.employeeService.getAllEmployees(); 
+		model.addAttribute("employees", employees);
 		return Constants.VIEW_LIST_EMPLOYEES;
 	}
 	
@@ -112,9 +115,10 @@ public class EmployeeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
 	public String viewEmployeeProfile(@PathVariable("id")Long employeeId, Model model){
-		
+		Employee employee = this.employeeService.getEmployeeById(employeeId);
+		model.addAttribute("employee", employee);
 		return Constants.VIEW_EMPLOYEE_PROFILE;
 	}
 	

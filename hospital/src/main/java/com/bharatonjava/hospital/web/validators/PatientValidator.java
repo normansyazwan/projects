@@ -12,6 +12,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.bharatonjava.hospital.domain.Patient;
+import com.bharatonjava.hospital.utils.Constants;
 
 @Component
 public class PatientValidator implements Validator {
@@ -21,8 +22,7 @@ public class PatientValidator implements Validator {
 
 	private Pattern pattern;
 	private Matcher matcher;
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"  
-			   + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"; 
+	
 	@Override
 	public boolean supports(Class<?> patient) {
 		return Patient.class.isAssignableFrom(patient);
@@ -64,7 +64,7 @@ public class PatientValidator implements Validator {
 		// email validation in spring
 		if (!(p.getEmail() != null && p.getEmail().isEmpty())) {
 			log.info("inside email validation if condition");
-			pattern = Pattern.compile(EMAIL_PATTERN);
+			pattern = Pattern.compile(Constants.EMAIL_PATTERN);
 			matcher = pattern.matcher(p.getEmail());
 			if (!matcher.matches()) {
 				errors.rejectValue("email", "email.incorrect",

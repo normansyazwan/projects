@@ -63,6 +63,7 @@ public class EmployeeValidator implements Validator {
 		}
 		
 		// mobile number if provided, should be 10 digits only
+		log.info("mobileNumber: {}", e.getMobile());
 		if (e.getMobile() != null && e.getMobile().trim().length() != 0) {
 			if (e.getMobile().matches("\\d+") || e.getMobile().length() != 10) {
 				errors.rejectValue("mobile", "patient.mobile",
