@@ -23,6 +23,7 @@ public interface Constants {
 	String VIEW_DELETE_EMPLOYEE = "deleteEmployee";
 	String VIEW_EMPLOYEE_PROFILE = "viewEmployeeProfile";
 	
+	String VIEW_SHOW_EMPLOYEE_ACCESS_PAGE = "employeeAccess";
 	
 	
 	

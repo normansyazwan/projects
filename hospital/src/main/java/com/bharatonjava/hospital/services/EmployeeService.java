@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bharatonjava.hospital.dao.IEmployeeDao;
 import com.bharatonjava.hospital.domain.Employee;
+import com.bharatonjava.hospital.domain.User;
 
 @Service
 public class EmployeeService {
@@ -31,6 +32,20 @@ public class EmployeeService {
 	
 	@Transactional
 	public Employee getEmployeeById(Long employeeId){
+		
 		return this.employeeDao.getEmployeeById(employeeId);
+	}
+	
+	@Transactional
+	public List<Object[]> getEmployeesForDropdown(){
+		
+		return this.employeeDao.getEmployeesForDropdown();
+	}
+	
+	
+	public User getUserByUsername(String username){
+		User user = this.employeeDao.getUserByUsername(username);
+		
+		return user;
 	}
 }

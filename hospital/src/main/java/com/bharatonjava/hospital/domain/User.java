@@ -3,15 +3,6 @@ package com.bharatonjava.hospital.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "USERS")
 public class User {
 
 	private String username;
@@ -22,8 +13,6 @@ public class User {
 	public User() {
 	}
 
-	@Id
-	@Column(name = "USERNAME", nullable = false, unique = true)
 	public String getUsername() {
 		return username;
 	}
@@ -32,7 +21,6 @@ public class User {
 		this.username = username;
 	}
 
-	@Column(name = "PASSWORD", nullable = false)
 	public String getPassword() {
 		return password;
 	}
@@ -41,7 +29,6 @@ public class User {
 		this.password = password;
 	}
 
-	@Column(name = "ENABLED", nullable = false)
 	public int getEnabled() {
 		return enabled;
 	}
@@ -50,7 +37,6 @@ public class User {
 		this.enabled = enabled;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	public List<Authority> getAuthorities() {
 		return authorities;
 	}
@@ -58,4 +44,12 @@ public class User {
 	public void setAuthorities(List<Authority> authorities) {
 		this.authorities = authorities;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password
+				+ ", enabled=" + enabled + ", authorities=" + authorities + "]";
+	}
+	
+	
 }
