@@ -2,6 +2,7 @@ package com.bharatonjava.hospital.dao;
 
 import java.util.List;
 
+import com.bharatonjava.hospital.domain.Authority;
 import com.bharatonjava.hospital.domain.Employee;
 import com.bharatonjava.hospital.domain.User;
 
@@ -15,5 +16,7 @@ public interface IEmployeeDao {
 	
 	public List<Object[]> getEmployeesForDropdown();
 	
-	public User getUserByUsername(String username);
+	public User getUserByUsername(String userName);
+	
+	public List<Authority> getAuthorities(String userName);
 }

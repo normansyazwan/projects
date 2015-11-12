@@ -1,13 +1,14 @@
 package com.bharatonjava.hospital.web;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bharatonjava.hospital.domain.Authority;
 import com.bharatonjava.hospital.domain.Employee;
 import com.bharatonjava.hospital.services.EmployeeService;
 import com.bharatonjava.hospital.utils.Constants;
@@ -34,7 +36,15 @@ public class EmployeeController {
 
 	private EmployeeValidator employeeValidator;
 	private EmployeeService employeeService;
+	
+	@Value(value = "")
+	private String availableEntiltements;
 
+	public void setAvailableEntiltements(String availableEntiltements) {
+		this.availableEntiltements = availableEntiltements;
+	}
+	
+	
 	@Autowired
 	public void setEmployeeValidator(EmployeeValidator employeeValidator) {
 		this.employeeValidator = employeeValidator;
@@ -167,6 +177,30 @@ public class EmployeeController {
 		model.addAttribute("employees", employees);
 		
 		// check if this is a valid employee
+		
+		return Constants.VIEW_SHOW_EMPLOYEE_ACCESS_PAGE;
+	}
+	
+	@RequestMapping(value = "/employee/access", method = RequestMethod.POST)
+	public String processEmployeeAccessForm(Model model, Long personId) {
+		log.info("inside processEmployeeAccessForm method");
+
+		Map<String, Object> map = model.asMap();
+		log.info("personId: "+ personId);
+		for(String key: map.keySet()){
+			log.info("{key} = {}", key, map.get(key));
+		}
+		
+		List<Object[]> employees = this.employeeService.getEmployeesForDropdown();
+		
+		model.addAttribute("employees", employees);
+		model.addAttribute("selected", personId);
+		
+		// check if this is a valid employee
+		Employee employee = this.employeeService.getEmployeeById(personId);
+		
+		List<Authority> authorities = this.employeeService.getAuthorities(employee.getEmail());
+		model.addAttribute("authorities", authorities);
 		
 		return Constants.VIEW_SHOW_EMPLOYEE_ACCESS_PAGE;
 	}

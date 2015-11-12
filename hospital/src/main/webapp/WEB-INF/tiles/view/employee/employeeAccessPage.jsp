@@ -12,20 +12,27 @@
 
 <strong>Select Employee whose access you want to set:</strong>
 
-<form class="form" method="get">
+<form:form class="form" method="post">
 
 <div class="form-group">
 
-	<select name="personId" class="btn btn-default btn-sm dropdown-toggle">
+	<select id="personId" name="personId" class="btn btn-default btn-sm dropdown-toggle">
 		<c:forEach var="p" items="${employees}" >
-			<option id="${p[0]}" label="${p[1]}">${p[1]} ${p[2]} - ${p[3]}</option>
+			<option id="${p[0]}" value="${p[0]}" <c:if test="${p[0] eq selected}"> selected='selected'</c:if> > ${p[1]} ${p[2]} - ${p[3]} </option>
 		</c:forEach>
 	</select>
 	
 	<button type="submit" class="btn btn-primary">Show Access</button>
+	<hr/>
+	
+	<c:forEach var="a" items="${authorities}" >
+		<input type="checkbox" value="${a.authority}">&nbsp;&nbsp;${a.authority}<br/>
+	</c:forEach>
+	
+	
 
 </div>	
 
-</form>
+</form:form>
 
 

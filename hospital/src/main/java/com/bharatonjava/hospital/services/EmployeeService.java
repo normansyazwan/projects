@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bharatonjava.hospital.dao.IEmployeeDao;
+import com.bharatonjava.hospital.domain.Authority;
 import com.bharatonjava.hospital.domain.Employee;
 import com.bharatonjava.hospital.domain.User;
 
@@ -47,5 +48,9 @@ public class EmployeeService {
 		User user = this.employeeDao.getUserByUsername(username);
 		
 		return user;
+	}
+	
+	public List<Authority> getAuthorities(String userName) {
+		return this.employeeDao.getAuthorities(userName);
 	}
 }

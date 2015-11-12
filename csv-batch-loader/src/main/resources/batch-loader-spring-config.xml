@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+
+	<bean id="transactionManager" lazy-init="true"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<batch:job-repository id="jobRepository"
+		data-source="dataSource" transaction-manager="transactionManager"
+		isolation-level-for-create="SERIALIZABLE" table-prefix="BATCH_" />
+
+
+	<batch:job id="employeeLoaderJob" job-repository="jobRepository"
+		restartable="true">
+		<batch:step id="employeeLoaderStep">
+			<batch:tasklet>
+				<batch:chunk commit-interval="1" reader="employeeFileReader"
+					processor="employeeItemProcessor" writer="employeeItemWriter" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+
+	<bean id="employeeItemWriter"
+		class="org.springframework.batch.item.database.JdbcBatchItemWriter">
+		<property name="dataSource" ref="dataSource" />
+		<property name="assertUpdates" value="true" />
+		<property name="itemSqlParameterSourceProvider">
+			<bean
+				class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider" />
+		</property>
+		<property name="sql"
+			value="INSERT INTO EMPLOYEES(ID,NAME,AGE,SALARY)VALUES(:id,:name,:age,:salary)" />
+	</bean>
+
+	<bean id="employeeItemProcessor" class="com.bharatonjava.batchLoader.EmployeeProcessor" />
+
+
+	<bean id="employeeFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="linesToSkip" value="1" />
+		<property name="lineMapper" ref="lineMapper" />
+		<property name="resource" value="employees.txt" />
+	</bean>
+
+	<bean id="lineMapper"
+		class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+		<property name="lineTokenizer" ref="lineTokenizer" />
+		<property name="fieldSetMapper" ref="fieldSetMapper" />
+	</bean>
+
+	<!-- line tokenizer -->
+	<bean id="lineTokenizer"
+		class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+		<property name="delimiter" value="," />
+		<property name="names" value="id,name,age,salary" />
+	</bean>
+
+	<!-- field set mapper -->
+	<bean id="fieldSetMapper" class="com.bharatonjava.batchLoader.EmployeeFieldSetMapper"></bean>
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.databaseurl}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="5" />
+		<property name="minIdle" value="5" />
+		<property name="maxActive" value="20" />
+	</bean>
+
+	<context:property-placeholder location="classpath:placeholder.properties" />
+
+</beans>

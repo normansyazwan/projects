@@ -11,8 +11,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bharatonjava.hospital.domain.Authority;
 import com.bharatonjava.hospital.domain.Employee;
-import com.bharatonjava.hospital.domain.Person;
 import com.bharatonjava.hospital.domain.User;
 
 @Repository
@@ -115,7 +113,7 @@ public class EmployeeDao implements IEmployeeDao {
 
 		} catch (SQLException e) {
 
-			log.error("exception occured while getting user ({}) information.",
+			log.error("exception occured while getting user's ({}) information.",
 					username, e);
 			/*
 			 * try {
@@ -126,5 +124,15 @@ public class EmployeeDao implements IEmployeeDao {
 
 		}
 		return user;
+	}
+	
+	/**
+	 * Fetches authorites for a given user
+	 */
+	@Override
+	public List<Authority> getAuthorities(String userName) {
+		String sql = "SELECT username,authority FROM hospital.authorities where username = ?";
+		List<Authority> authorities = this.jdbcTemplate.query(sql, new Object[]{userName}, new AuthorityRowMapper());
+		return authorities;
 	}
 }
