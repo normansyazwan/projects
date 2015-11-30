@@ -4,6 +4,20 @@ create schema HOSPITAL;
 
 use HOSPITAL;
 
+CREATE TABLE `hospital_enums` (
+  `ENUM_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ENUM_GROUP` varchar(255) DEFAULT NULL,
+  `ENUM_VALUE` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ENUM_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
+insert into hospital_enums values(1,'module','module_admin');
+insert into hospital_enums values(2,'module','module_employee');
+insert into hospital_enums values(3,'module','module_patient');
+
+
+
 
 CREATE TABLE USERS (
 USERNAME VARCHAR(10) NOT NULL,

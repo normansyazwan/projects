@@ -41,4 +41,11 @@ public interface Constants {
 	
 	String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"  
 			   + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"; 
+	
+	String MODULE_STATS = "module_stats";
+	String MODULE_PATIENT = "module_patient";
+	String MODULE_EMPLOYEE = "module_employee";
+	
+	String DEFAULT_PASSWORD = "secretpassword";
+	
 }

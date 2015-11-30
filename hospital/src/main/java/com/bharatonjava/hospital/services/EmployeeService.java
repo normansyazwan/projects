@@ -21,21 +21,25 @@ public class EmployeeService {
 		this.employeeDao = employeeDao;
 	}
 	
+	
 	@Transactional
 	public Long saveEmployee(Employee employee){
 		return this.employeeDao.saveEmployee(employee);
 	}
+	
 	
 	@Transactional
 	public List<Employee> getAllEmployees(){
 		return this.employeeDao.getAllEmployees();
 	}
 	
+	
 	@Transactional
 	public Employee getEmployeeById(Long employeeId){
 		
 		return this.employeeDao.getEmployeeById(employeeId);
 	}
+	
 	
 	@Transactional
 	public List<Object[]> getEmployeesForDropdown(){
@@ -44,13 +48,17 @@ public class EmployeeService {
 	}
 	
 	
+	@Transactional
 	public User getUserByUsername(String username){
 		User user = this.employeeDao.getUserByUsername(username);
 		
 		return user;
 	}
 	
+	
+	@Transactional
 	public List<Authority> getAuthorities(String userName) {
 		return this.employeeDao.getAuthorities(userName);
 	}
+	
 }

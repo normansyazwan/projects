@@ -1,10 +1,7 @@
 package com.bharatonjava.hospital.dao;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -12,10 +9,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.bharatonjava.hospital.domain.Authority;
@@ -29,7 +26,7 @@ public class EmployeeDao implements IEmployeeDao {
 			.getLogger(EmployeeDao.class);
 
 	private SessionFactory sessionFactory;
-	private JdbcTemplate jdbcTemplate;
+	//private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -37,6 +34,7 @@ public class EmployeeDao implements IEmployeeDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	/*
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 
@@ -49,6 +47,7 @@ public class EmployeeDao implements IEmployeeDao {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 	@Override
 	public Long saveEmployee(Employee employee) {
@@ -95,34 +94,14 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public User getUserByUsername(String username) {
+
 		User user = null;
-
-		try {
-
-			this.jdbcTemplate.getDataSource().getConnection()
-					.setAutoCommit(false);
-
-			String sql = "SELECT * FROM users u left join authorities a on u.username = a.username where u.username = ?";
-
-			user = (User) this.jdbcTemplate.query(sql,
-					new UserResultSetExtractor(), new Object[] { username });
-
-			log.info("Got user {}", user);
-
-			// this.jdbcTemplate.getDataSource().getConnection().commit();
-
-		} catch (SQLException e) {
-
-			log.error("exception occured while getting user's ({}) information.",
-					username, e);
-			/*
-			 * try {
-			 * this.jdbcTemplate.getDataSource().getConnection().rollback(); }
-			 * catch (SQLException e1) { log.error("Exception in rollback", e1);
-			 * }
-			 */
-
-		}
+		
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(User.class);
+		criteria.add(Restrictions.eq("username", username));
+		user = (User) criteria.uniqueResult();
+		
 		return user;
 	}
 	
@@ -131,8 +110,17 @@ public class EmployeeDao implements IEmployeeDao {
 	 */
 	@Override
 	public List<Authority> getAuthorities(String userName) {
-		String sql = "SELECT username,authority FROM hospital.authorities where username = ?";
-		List<Authority> authorities = this.jdbcTemplate.query(sql, new Object[]{userName}, new AuthorityRowMapper());
+		
+		log.info("fetching Authorities for username: {}", userName);
+		List<Authority> authorities = null;
+
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Authority.class);
+		criteria.add(Restrictions.eq("authorityId.username", userName));
+		authorities = criteria.list();
+		
+		log.info("Returning {} authorities", authorities != null? authorities.size() : 0);
+		
 		return authorities;
 	}
 }
