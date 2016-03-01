@@ -27,12 +27,12 @@
 				<li><a href='<c:url value="/aboutUs" />'><span>About
 							Us</span></a></li>
 			</ul>
-			<c:url value='/patients/search' var="searchAction" />
+			<c:url value='/search' var="searchAction" />
 			<form class="navbar-form navbar-left" role="search"
-				action="${searchAction}" method="POST">
+				action="${searchAction}" method="GET">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Search Query"
-						name="query" value="${query}" />
+						name="q" value="${q}" />
 				</div>
 				<button type="submit" class="btn btn-md btn-default">Search</button>
 				<c:if test="${patients ne null and patients.size() > 15}">

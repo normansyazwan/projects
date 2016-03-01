@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bharatonjava.fileserver.utils.Constants;
 
@@ -167,4 +168,14 @@ public class FileServerController {
 		os.close();
 		is.close();
 	}
+	
+	@RequestMapping(value = "/search")
+	public ModelAndView search(@RequestParam(value = "q", required = false) String query){
+		ModelAndView mav = new ModelAndView();
+		log.info("Search query: {}", query);
+		mav.setViewName("listFiles");
+		mav.addObject("q", query);
+		return mav;
+	}
+	
 }
