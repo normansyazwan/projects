@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+    <!DOCTYPE views-definitions PUBLIC
+           "-//Apache Software Foundation//DTD views Configuration 3.0//EN"
+           "http://views.apache.org/dtds/views-config_3_0.dtd">
+<views-definitions>
+
+	<!-- Templates -->
+
+	<definition name="layout.basic" template="/WEB-INF/layouts/basic.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/common/menu.jsp" />
+		<put-attribute name="navigation" value="/WEB-INF/views/navigation.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+
+	<definition name="layout.fullpage" template="/WEB-INF/layouts/fullpageLayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/common/nonSecureHeader.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/common/blankPage.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/common/blankFooter.jsp" />
+	</definition>
+
+	<!-- Default Error page -->
+	<definition name="error" extends="layout.basic">
+		<put-attribute name="title" value="Error" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/view/common/error.jsp" />
+	</definition>
+
+
+	<!-- Pages -->
+
+	<definition name="homepage" extends="layout.basic">
+		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
+	</definition>
+
+</views-definitions>
