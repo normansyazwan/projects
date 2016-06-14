@@ -13,7 +13,7 @@
 	<definition name="layout.basic" template="/WEB-INF/layouts/basic.jsp">
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/common/menu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/common/menuNew.jsp" />
 		<put-attribute name="navigation" value="/WEB-INF/views/common/navigation.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
