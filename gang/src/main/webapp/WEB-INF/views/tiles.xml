@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-    <!DOCTYPE views-definitions PUBLIC
-           "-//Apache Software Foundation//DTD views Configuration 3.0//EN"
-           "http://views.apache.org/dtds/views-config_3_0.dtd">
-<views-definitions>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>	
+
+
+
 
 	<!-- Templates -->
 
@@ -10,7 +14,7 @@
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/views/common/menu.jsp" />
-		<put-attribute name="navigation" value="/WEB-INF/views/navigation.jsp" />
+		<put-attribute name="navigation" value="/WEB-INF/views/common/navigation.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
@@ -29,7 +33,7 @@
 	<definition name="error" extends="layout.basic">
 		<put-attribute name="title" value="Error" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/view/common/error.jsp" />
+			value="/WEB-INF/views/common/error.jsp" />
 	</definition>
 
 
@@ -39,4 +43,4 @@
 		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
 	</definition>
 
-</views-definitions>
+</tiles-definitions>
