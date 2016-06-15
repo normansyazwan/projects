@@ -13,7 +13,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/")
+	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public String showHomePage(){
 		logger.info("Inside Home Controller");
 		return VIEW_HOMEPAGE;

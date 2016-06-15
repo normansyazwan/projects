@@ -18,6 +18,12 @@
 
 
 	<import resource="security-config.xml"/>
+	
+	<aop:aspectj-autoproxy />
+	<bean id="loggingAspect" class="com.bharatonjava.gang.aop.LoggingAspect" />
+
+
+
 
 	<!-- settings -->
 

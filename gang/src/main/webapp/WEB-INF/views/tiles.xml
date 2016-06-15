@@ -40,7 +40,13 @@
 	<!-- Pages -->
 
 	<definition name="homepage" extends="layout.basic">
+		<put-attribute name="title" value="Gangster's Home" />
 		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
+	</definition>
+	
+	<definition name="user.register.form" extends="layout.fullpage">
+	<put-attribute name="title" value="Be a Member" />
+		<put-attribute name="body" value="/WEB-INF/views/user/userRegistrationForm.jsp" />
 	</definition>
 
 </tiles-definitions>
