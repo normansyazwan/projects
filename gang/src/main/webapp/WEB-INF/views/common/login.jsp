@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4 text-center">
-		<img src=" <c:url value='/resources/images/padlock-small.png' />" alt="" class="img">
+		<img src=" <c:url value='/resources/images/gang-logo.png' />" alt="" class="img">
 		</div>
 		<div class="col-md-4"></div>
 	</div>

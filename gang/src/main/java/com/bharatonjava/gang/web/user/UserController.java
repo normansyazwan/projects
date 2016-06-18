@@ -79,4 +79,12 @@ public class UserController {
 		mav.setViewName(Constants.VIEW_USER_REGISTER_FORM);
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView userLogin(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(Constants.VIEW_LOGIN_FORM);
+		return mav;
+	}
 }

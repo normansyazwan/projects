@@ -25,6 +25,6 @@
 		</div>
 		<!-- /.col-sm-6 -->
 		<div class="col-sm-7">
-			Login / <a href="<c:url value="/user/register" />" >Sign-up</a>
+			<a href="<c:url value="/user/login" />" >Login</a> / <a href="<c:url value="/user/register" />" >Sign-up</a>
 		</div>
 	</div>

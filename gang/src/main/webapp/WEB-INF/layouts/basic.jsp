@@ -22,7 +22,7 @@
 </head>
 <body>
 
-	<div class="container-fluid" style="border: 1px solid green;">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12"><tiles:insertAttribute name="header" /></div>
 			<div class="col-md-2"><tiles:insertAttribute name="navigation" /></div>

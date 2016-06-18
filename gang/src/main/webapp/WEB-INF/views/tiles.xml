@@ -41,6 +41,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/user/userRegistrationForm.jsp" />
 	</definition>
 
+	<definition name="user.login.form" extends="layout.fullpage">
+		<put-attribute name="title" value="Login Please" />
+		<put-attribute name="body" value="/WEB-INF/views/common/login.jsp" />
+	</definition>
+
 	
 
 </tiles-definitions>
