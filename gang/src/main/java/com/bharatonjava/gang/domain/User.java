@@ -80,12 +80,14 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName
-				+ ", LastName=" + LastName + ", mobileNumber=" + mobileNumber
-				+ ", email=" + email + "]";
+				+ ", LastName=" + LastName + ", gender=" + gender
+				+ ", dateOfBirth=" + dateOfBirth + ", mobileNumber="
+				+ mobileNumber + ", email=" + email + ", address=" + address
+				+ "]";
 	}
 	
 }

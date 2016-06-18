@@ -7,8 +7,8 @@
  
 <div class="container container-fluid">
 	<div class="row">
-		<div class="col-sm-12" style="height: 150px;">
-			
+		<div class="col-sm-12" style="height: 150px; background-color: #49659F">
+			aaaaaaaaaaaaaaaa
 		</div>
 	</div>
 </div>

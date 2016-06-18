@@ -19,6 +19,14 @@
 
 	<import resource="security-config.xml"/>
 	
+	
+	<!-- Bean definitions -->
+	
+	<bean id="userRegisterationFormValidator" class="com.bharatonjava.gang.web.user.UserRegisterationFormValidator" />
+	
+	<!-- Bean definitions END -->
+	
+	
 	<aop:aspectj-autoproxy />
 	<bean id="loggingAspect" class="com.bharatonjava.gang.aop.LoggingAspect" />
 

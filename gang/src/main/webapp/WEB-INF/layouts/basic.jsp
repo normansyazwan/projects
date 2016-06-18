@@ -11,7 +11,6 @@
 <title><tiles:getAsString name="title" /></title>
 
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.4.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/hospital.js" />"></script>
 
 <link rel="stylesheet" href='<c:url value="/resources/css/styles.css" />' />
 
@@ -23,12 +22,11 @@
 </head>
 <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="border: 1px solid green;">
 		<div class="row">
-			
-			<div class="col-md-12"><tiles:insertAttribute name="menu" /></div>
-			<div class="col-md-2" style="margin-top:70px;"><tiles:insertAttribute name="navigation" /></div>
-			<div class="col-md-10" style="margin-top:70px;"><tiles:insertAttribute name="body" /></div>
+			<div class="col-md-12"><tiles:insertAttribute name="header" /></div>
+			<div class="col-md-2"><tiles:insertAttribute name="navigation" /></div>
+			<div class="col-md-10"><tiles:insertAttribute name="body" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>
 	</div>

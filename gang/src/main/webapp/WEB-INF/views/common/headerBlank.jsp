@@ -7,13 +7,12 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 
-<div class="container" style="padding-top:10px" >
-	<div class="row">
-		<div class="col-sm-4">
-		
+<div class="row  gang-header">
+	
+		<div class="col-sm-1">
+			icon here;
 		</div>
-		<!-- /.col-lg-6 -->
-		<div class="col-sm-6">
+		<div class="col-sm-4" style="vertical-align: middle;">
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="Search for...">
 				<span class="input-group-btn">
@@ -23,10 +22,8 @@
 			<!-- /input-group -->
 		</div>
 		<!-- /.col-sm-6 -->
-		<div class="col-sm-2">
+		<div class="col-sm-7">
 			Login / Sign-up
+			<a href="<c:url value="/resources/css/bootstrap-theme.css" />" >Sign-up</a>
 		</div>
 	</div>
-	<!-- /.row -->
-
-</div>
