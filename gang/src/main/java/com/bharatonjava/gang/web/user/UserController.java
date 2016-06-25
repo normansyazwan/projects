@@ -71,10 +71,10 @@ public class UserController {
 		userRegisterationFormValidator.validate(user, result);
 		if (result.hasErrors()) {
 			logger.info("Errors:  {} ", result.getAllErrors());
+			mav.addObject("user", user);
 			mav.setViewName(Constants.VIEW_USER_REGISTER_FORM);
 			return mav;
 		}
-		
 		
 		mav.setViewName(Constants.VIEW_USER_REGISTER_FORM);
 		return mav;

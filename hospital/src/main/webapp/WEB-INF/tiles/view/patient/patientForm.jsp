@@ -29,6 +29,7 @@
 		</c:choose>
 		
 		<div class="form-group">
+			<spring:bind path="firstName" ></spring:bind>
 			<form:label path="firstName" cssClass="col-sm-2 control-label">Patient Name:</form:label>
 			<div class="col-sm-3">
 				<form:input path="firstName" value="${firstName}" cssClass="form-control" placeholder="First Name"/>

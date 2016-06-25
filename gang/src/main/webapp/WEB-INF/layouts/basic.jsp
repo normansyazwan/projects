@@ -25,8 +25,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12"><tiles:insertAttribute name="header" /></div>
-			<div class="col-md-2"><tiles:insertAttribute name="navigation" /></div>
-			<div class="col-md-10"><tiles:insertAttribute name="body" /></div>
+			<div class="col-md-12"><tiles:insertAttribute name="navigation" /></div>
+			<div class="col-md-12"><tiles:insertAttribute name="body" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>
 	</div>

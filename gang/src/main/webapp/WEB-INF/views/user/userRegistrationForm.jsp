@@ -36,23 +36,25 @@
 
 					</c:otherwise>
 				</c:choose>
-
-				<div class="form-group">
-					<form:label path="firstName" cssClass="col-sm-2 control-label">Name:</form:label>
-					<div class="col-sm-3">
-						<form:input path="firstName" value="${firstName}"
-							cssClass="form-control" placeholder="First Name" />
+				<spring:bind path="firstName">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="firstName" cssClass="col-sm-2 control-label">Name:</form:label>
+						<div class="col-sm-3">
+							<form:input path="firstName" value="${firstName}"
+								cssClass="form-control" placeholder="First Name" />
+						</div>
+						<div class="col-sm-3">
+							<form:input path="lastName" value="${lastName}"
+								cssClass="form-control" placeholder="Last Name" />
+						</div>
+						<div class="col-sm-4">
+							<form:errors path="firstName" cssClass="text-danger"
+								class="control-label" />
+						</div>
 					</div>
-					<div class="col-sm-3">
-						<form:input path="lastName" value="${lastName}"
-							cssClass="form-control" placeholder="Last Name" />
-					</div>
-					<div class="col-sm-4">
-						<form:errors path="firstName" cssClass="text-danger"
-							class="control-label" />
-					</div>
-				</div>
-				<div class="form-group">
+				</spring:bind>
+				<spring:bind path="gender" >
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="gender" cssClass="col-sm-2 control-label">Gender</form:label>
 					<div class="col-sm-6">
 						<label class="radio-inline"> <form:radiobutton
@@ -65,7 +67,9 @@
 						<form:errors path="gender" cssClass="text-danger" />
 					</div>
 				</div>
-				<div class="form-group">
+				</spring:bind>
+				<spring:bind path="dateOfBirth" >
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="dateOfBirth" cssClass="col-sm-2 control-label">Date Of Birth</form:label>
 					<div class="col-sm-6">
 						<fmt:formatDate value="${employee.dateOfBirth}" var="dateString"
@@ -77,10 +81,10 @@
 						<form:errors path="dateOfBirth" cssClass="text-danger" />
 					</div>
 				</div>
-
+				</spring:bind>
 				<hr />
-
-				<div class="form-group">
+				<spring:bind path="email" >
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="email" cssClass="col-sm-2 control-label">Email</form:label>
 					<div class="col-sm-6">
 						<form:input path="email" value="${email}" cssClass="form-control"
@@ -91,19 +95,24 @@
 							class="control-label" />
 					</div>
 				</div>
+				</spring:bind>
 				
-				<div class="form-group">
+				<spring:bind path="passwd" >
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="passwd" cssClass="col-sm-2 control-label">Password</form:label>
 					<div class="col-sm-6">
-						<form:password path="passwd" value="${passwd}" cssClass="form-control" />
+						<form:password path="passwd" value="${passwd}"
+							cssClass="form-control" />
 					</div>
 					<div class="col-sm-4">
-						<form:errors path="passwd" cssClass="text-danger" class="control-label" />
+						<form:errors path="passwd" cssClass="text-danger"
+							class="control-label" />
 					</div>
 				</div>
-				
-				
-				<div class="form-group">
+				</spring:bind>
+
+				<spring:bind path="mobileNumber" >
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="mobileNumber" cssClass="col-sm-2 control-label">Mobile Number</form:label>
 					<div class="col-sm-6">
 						<form:input path="mobileNumber" value="${mobileNumber}"
@@ -114,7 +123,8 @@
 						<form:errors path="mobileNumber" cssClass="text-danger" />
 					</div>
 				</div>
-
+				</spring:bind>
+				
 				<hr />
 				<div class="form-group">
 					<form:label path="address.apartment"

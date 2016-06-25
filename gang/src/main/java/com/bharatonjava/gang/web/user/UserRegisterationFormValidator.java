@@ -1,7 +1,6 @@
 package com.bharatonjava.gang.web.user;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +50,9 @@ public class UserRegisterationFormValidator implements Validator {
 			if (u.getMobileNumber().length() != 10) {
 				err.rejectValue("mobileNumber", "user.mobile.invalid",
 						"Mobile number should be 10 digit");
+			}else if(!StringUtils.isNumeric(u.getMobileNumber())){
+				err.rejectValue("mobileNumber", "user.mobile.notnumeric",
+						"Mobile number should contain numbers only");
 			}
 		}
 
