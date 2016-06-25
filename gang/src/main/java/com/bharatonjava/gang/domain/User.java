@@ -1,6 +1,7 @@
 package com.bharatonjava.gang.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class User {
 
@@ -8,9 +9,10 @@ public class User {
 	private String firstName;
 	private String LastName;
 	private String gender;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String mobileNumber;
 	private String email;
+	private String passwd;
 	private Address address; 
 	
 	public User() {
@@ -49,11 +51,11 @@ public class User {
 		this.gender = gender;
 	}
 	
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 	
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
@@ -71,6 +73,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPasswd() {
+		return passwd;
+	}
+	
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public Address getAddress() {

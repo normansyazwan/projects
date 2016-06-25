@@ -91,6 +91,18 @@
 							class="control-label" />
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<form:label path="passwd" cssClass="col-sm-2 control-label">Password</form:label>
+					<div class="col-sm-6">
+						<form:password path="passwd" value="${passwd}" cssClass="form-control" />
+					</div>
+					<div class="col-sm-4">
+						<form:errors path="passwd" cssClass="text-danger" class="control-label" />
+					</div>
+				</div>
+				
+				
 				<div class="form-group">
 					<form:label path="mobileNumber" cssClass="col-sm-2 control-label">Mobile Number</form:label>
 					<div class="col-sm-6">
