@@ -22,9 +22,9 @@
 	
 	<!-- Bean definitions -->
 	
-	<bean id="userDao" class="com.bharatonjava.gang.dao.UserDao" />
 	
-	<bean id="userRegisterationFormValidator" class="com.bharatonjava.gang.web.user.UserRegisterationFormValidator" />
+	
+	<bean id="patientRegisterationFormValidator" class="com.bharatonjava.therapymanager.web.patient.PatientRegisterationFormValidator" />
 	
 	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg name="dataSource" ref="dataSource" />
@@ -34,9 +34,7 @@
 	
 	
 	<aop:aspectj-autoproxy />
-	<bean id="loggingAspect" class="com.bharatonjava.gang.aop.LoggingAspect" />
-
-
+	<bean id="loggingAspect" class="com.bharatonjava.therapymanager.aop.LoggingAspect" />
 
 
 	<!-- settings -->

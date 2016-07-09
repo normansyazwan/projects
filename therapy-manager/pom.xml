@@ -4,8 +4,8 @@
 	<groupId>com.bharatonjava</groupId>
 	<artifactId>therapy-manager</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>gang Maven Webapp</name>
+	<version>0.0.1</version>
+	<name>Therapy Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.3.0.RELEASE</spring.version>
