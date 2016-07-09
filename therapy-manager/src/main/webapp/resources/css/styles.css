@@ -1,0 +1,19 @@
+.gang-header{
+	background-color: #49659F;
+	padding-top:5px;
+	padding-bottom:5px;
+	color:white;
+	font-weight: bold;
+}
+
+.gang-header a {
+	color:white;
+}
+
+.gang-header a:hover {
+	color:white;
+}
+
+.gang-header a:visited {
+	color:white;
+}
