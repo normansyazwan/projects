@@ -1,6 +1,6 @@
 package com.bharatonjava.therapymanager.domain;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Patient {
 
@@ -8,7 +8,7 @@ public class Patient {
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private LocalDate dob;
+	private Date dob;
 	
 	private String bloodGroup;
 	private String existingAilments;
@@ -48,10 +48,10 @@ public class Patient {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public LocalDate getDob() {
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(LocalDate dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 	public String getBloodGroup() {

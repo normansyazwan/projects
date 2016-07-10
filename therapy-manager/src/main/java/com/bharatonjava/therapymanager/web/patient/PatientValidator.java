@@ -1,6 +1,6 @@
 package com.bharatonjava.therapymanager.web.patient;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,15 +11,14 @@ import org.springframework.validation.Validator;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.utils.Constants;
 
-public class PatientRegisterationFormValidator implements Validator {
+public class PatientValidator implements Validator {
 
 	private Pattern pattern;
 	private Matcher matcher;
 
 	@Override
-	public boolean supports(Class<?> arg0) {
-
-		return false;
+	public boolean supports(Class<?> clazz) {
+		return Patient.class.isAssignableFrom(clazz);
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class PatientRegisterationFormValidator implements Validator {
 			if (p.getDob() == null) {
 				err.rejectValue("dob", "patient.dob.null",
 						"Date of Birth is required");
-			} else if (p.getDob().isAfter(LocalDate.now())) {
+			} else if (p.getDob().after(new Date())) {
 				err.rejectValue("dob", "user.dob.future",
 						"Date of Birth should be in the past");
 			}
@@ -56,7 +55,7 @@ public class PatientRegisterationFormValidator implements Validator {
 				}
 			}
 
-			// email validation in spring
+			// if email is provided, then validate it
 			if (StringUtils.isNotBlank(p.getEmail())) {
 				pattern = Pattern.compile(Constants.EMAIL_PATTERN);
 				matcher = pattern.matcher(p.getEmail());
@@ -64,8 +63,6 @@ public class PatientRegisterationFormValidator implements Validator {
 					err.rejectValue("email", "email.incorrect",
 							"Incorrect email");
 				}
-			} else {
-				err.rejectValue("email", "email.required", "Email is required");
 			}
 
 		}
