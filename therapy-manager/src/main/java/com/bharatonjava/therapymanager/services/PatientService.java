@@ -26,7 +26,8 @@ public class PatientService {
 	
 	@Transactional
 	public void registerNewPatient(Patient patient){
+		int addressId = addressDao.createAddress(patient.getAddress());
+		patient.getAddress().setAddressId(addressId);
 		patientDao.createPatient(patient);
-		addressDao.createAddress(patient.getAddress());
 	}
 }
