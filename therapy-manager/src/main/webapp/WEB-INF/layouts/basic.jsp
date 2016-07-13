@@ -9,6 +9,8 @@
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.4.js" />"></script>
 
@@ -25,7 +27,6 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12"><tiles:insertAttribute name="header" /></div>
-			<div class="col-md-12"><tiles:insertAttribute name="navigation" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="body" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>

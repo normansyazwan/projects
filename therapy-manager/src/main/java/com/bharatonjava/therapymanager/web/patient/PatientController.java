@@ -23,7 +23,7 @@ import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.utils.Constants;
 
 @Controller
-@RequestMapping(value = "/patient")
+@RequestMapping(value = "/patients")
 public class PatientController {
 
 	private static final Logger logger = LoggerFactory
@@ -100,10 +100,12 @@ public class PatientController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView PatientLogin() {
+	
+	@RequestMapping(value = "/{patientId}/profile", method = RequestMethod.GET)
+	public ModelAndView patientProfile(Integer patientId) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(Constants.VIEW_LOGIN_FORM);
+		mav.setViewName(Constants.VIEW_PATIENT_PROFILE);
 		return mav;
 	}
+	
 }

@@ -21,7 +21,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/common/blankPage.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/blankFooter.jsp" />
 	</definition>
-
+	
 	<!-- Default Error page -->
 	<definition name="error" extends="layout.basic">
 		<put-attribute name="title" value="Error" />
@@ -31,8 +31,8 @@
 
 	<!-- Pages -->
 
-	<definition name="homepage" extends="layout.basic">
-		<put-attribute name="title" value="Gangster's Home" />
+	<definition name="homepage" extends="layout.fullpage">
+		<put-attribute name="title" value="Home" />
 		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
 	</definition>
 	
@@ -40,6 +40,12 @@
 		<put-attribute name="title" value="Patient Registration" />
 		<put-attribute name="body" value="/WEB-INF/views/patient/patientRegistrationForm.jsp" />
 	</definition>
+
+	<definition name="patient.profile" extends="layout.fullpage">
+		<put-attribute name="title" value="Patient Profile" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientProfile.jsp" />
+	</definition>
+
 
 	<definition name="user.login.form" extends="layout.fullpage">
 		<put-attribute name="title" value="Login Please" />
