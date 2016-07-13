@@ -9,11 +9,12 @@
 <html>
 <head>
 <title><tiles:getAsString name="title" /></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.4.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.12.4.js" />"></script>
 
 <link rel="stylesheet" href='<c:url value="/resources/css/styles.css" />' />
-
 
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />"></script>
 <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap.css" />'>

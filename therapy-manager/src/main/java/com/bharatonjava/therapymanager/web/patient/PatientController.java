@@ -37,10 +37,12 @@ public class PatientController {
 		this.patientValidator = patientValidator;
 	}
 
+	
 	@Autowired
 	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
 	}
+	
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -56,12 +58,14 @@ public class PatientController {
 
 	}
 
+	
 	@ExceptionHandler(Exception.class)
 	public String defaultExceptionHandler(Exception ex) {
 		logger.error("Exception occured in PatientController. ", ex);
 		return "error";
 	}
 
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView registerPatient() {
 
@@ -73,6 +77,7 @@ public class PatientController {
 		return mav;
 	}
 
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registerPatientHandler(
 			@ModelAttribute("patient") Patient patient, BindingResult result,

@@ -29,3 +29,5 @@ create table PATIENTS(
 
 
 select * from ADDRESSES;
+select * from PATIENTS;
+
