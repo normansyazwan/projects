@@ -17,32 +17,34 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 
-	<import resource="security-config.xml"/>
-	
-	
+	<import resource="security-config.xml" />
+
+
 	<!-- Bean definitions -->
-	
-	
-	
-	<bean id="patientValidator" class="com.bharatonjava.therapymanager.web.patient.PatientValidator" />
-	
+
+
+
+	<bean id="patientValidator"
+		class="com.bharatonjava.therapymanager.web.patient.PatientValidator" />
+
 	<bean class="com.bharatonjava.therapymanager.services.PatientService" />
-	
+
 	<bean id="patientDao" class="com.bharatonjava.therapymanager.dao.PatientDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-	
+
 	<bean id="addressDao" class="com.bharatonjava.therapymanager.dao.AddressDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-	
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" scope="prototype">
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		scope="prototype">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<!-- Bean definitions END -->
-	
-	
+
+
 	<aop:aspectj-autoproxy />
 	<bean id="loggingAspect" class="com.bharatonjava.therapymanager.aop.LoggingAspect" />
 
@@ -52,8 +54,21 @@
 	<context:component-scan base-package="com.bharatonjava" />
 	<context:property-placeholder location="classpath:placeholder.properties" />
 	<!-- <context:annotation-config /> -->
-	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="com.bharatonjava.therapymanager.utils.DateFormatter" />
+			</set>
+		</property>
+	</bean>
+
+	<bean id="dateFormatter" class="com.bharatonjava.therapymanager.utils.DateFormatter">
+		<property name="pattern" value="dd/MM/yyyy" />
+	</bean>
+
 
 	<!-- use cglib -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
