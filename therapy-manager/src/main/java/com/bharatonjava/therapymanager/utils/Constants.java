@@ -15,4 +15,6 @@ public interface Constants {
 
 	String DATE_FORMAT = "dd-MM-yyyy";
 	String DATE_FORMAT_SLASHED = "dd/MM/yyyy";
+	
+	String ENUM_GROUP_BLOOD_GROUP  = "BLOOD_GROUP";
 }

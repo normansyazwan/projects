@@ -2,6 +2,7 @@ package com.bharatonjava.therapymanager.web.patient;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.utils.Constants;
@@ -31,6 +33,7 @@ public class PatientController {
 
 	private PatientValidator patientValidator;
 	private PatientService patientService;
+	
 
 	@Autowired
 	public void setPatientValidator(PatientValidator patientValidator) {
@@ -42,6 +45,8 @@ public class PatientController {
 	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
 	}
+	
+	
 	
 
 	@InitBinder
@@ -71,7 +76,13 @@ public class PatientController {
 
 		ModelAndView mav = new ModelAndView();
 		Patient patient = new Patient();
+		
+		List<HospitalEnum> bloodGroups = this.patientService.getBloodGroups();
+		
+		logger.info("bloodGroups : {} ",bloodGroups);
 		mav.addObject("patient", patient);
+		mav.addObject("bloodGroups", bloodGroups);
+		
 		mav.setViewName(Constants.VIEW_PATIENT_REGISTER_FORM);
 
 		return mav;
@@ -83,13 +94,16 @@ public class PatientController {
 			@ModelAttribute("patient") Patient patient, BindingResult result,
 			ModelMap model) {
 
-		logger.info("Inside registerPatientHandler() method");
+		logger.info("Inside registerPatientHandler() : {}", patient);
 		ModelAndView mav = new ModelAndView();
 
 		patientValidator.validate(patient, result);
 
 		if (result.hasErrors()) {
 			logger.debug("Errors in paient form:  {} ", result.getAllErrors());
+			// for blood group drop down
+			List<HospitalEnum> bloodGroups = this.patientService.getBloodGroups();
+			mav.addObject("bloodGroups", bloodGroups);
 			mav.addObject("patient", patient);
 			mav.setViewName(Constants.VIEW_PATIENT_REGISTER_FORM);
 			return mav;
