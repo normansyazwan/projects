@@ -2,6 +2,7 @@ package com.bharatonjava.therapymanager.web.patient;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -58,9 +59,10 @@ public class PatientController {
 		dateFormat.setLenient(false);
 		// true passed to CustomDateEditor constructor means convert empty
 		// String to null
-		binder.registerCustomEditor(LocalDate.class, new CustomDateEditor(
-				dateFormat, true));
-
+/*		binder.registerCustomEditor(LocalDate.class, new CustomDateEditor(
+				dateFormat, true));*/
+		binder.registerCustomEditor(Date.class,     
+                new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), true, 10));
 	}
 
 	
@@ -109,8 +111,8 @@ public class PatientController {
 			return mav;
 		}
 
-		patientService.registerNewPatient(patient);
-		mav.setViewName(Constants.VIEW_PATIENT_REGISTER_FORM);
+		int patientId = patientService.registerNewPatient(patient);
+		mav.setViewName("redirect:/patients/"+patientId+"/profile");
 		return mav;
 	}
 

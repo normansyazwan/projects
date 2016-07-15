@@ -55,19 +55,7 @@
 	<context:property-placeholder location="classpath:placeholder.properties" />
 	<!-- <context:annotation-config /> -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:annotation-driven conversion-service="conversionService" />
-	<bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-		<property name="formatters">
-			<set>
-				<bean class="com.bharatonjava.therapymanager.utils.DateFormatter" />
-			</set>
-		</property>
-	</bean>
-
-	<bean id="dateFormatter" class="com.bharatonjava.therapymanager.utils.DateFormatter">
-		<property name="pattern" value="dd/MM/yyyy" />
-	</bean>
+	<mvc:annotation-driven />
 
 
 	<!-- use cglib -->
