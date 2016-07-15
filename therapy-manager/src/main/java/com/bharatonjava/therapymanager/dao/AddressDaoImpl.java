@@ -63,4 +63,14 @@ public class AddressDaoImpl implements AddressDao {
 		return returnValue;
 		
 	}
+
+	@Override
+	public Address getAddressById(Integer addressId) {
+		
+		String sql = "SELECT ADDRESS_ID,APARTMENT,STREET,AREA,CITY"
+				+ " FROM ADDRESSES WHERE ADDRESS_ID=?";
+		Address address = this.jdbcTemplate.queryForObject(sql, new Object[]{addressId}, new AddressRowMapper());
+		
+		return address;
+	}
 }

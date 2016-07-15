@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bharatonjava.therapymanager.dao.AddressDao;
 import com.bharatonjava.therapymanager.dao.EnumDao;
 import com.bharatonjava.therapymanager.dao.PatientDao;
+import com.bharatonjava.therapymanager.domain.Address;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.utils.Constants;
@@ -45,7 +46,19 @@ public class PatientService {
 	
 	@Transactional
 	public List<HospitalEnum> getBloodGroups(){
+		
 		List<HospitalEnum> bloodGroups = this.enumDao.getHospitalEnumByGroup(Constants.ENUM_GROUP_BLOOD_GROUP);
 		return bloodGroups;
+	}
+	
+	@Transactional
+	public Patient getPatientById(Integer patientId){
+		
+		Patient patient = this.patientDao.getPatient(patientId);
+		if(patient != null){
+			Address address = this.addressDao.getAddressById(patient.getAddress().getAddressId());
+			patient.setAddress(address);
+		}
+		return patient;
 	}
 }

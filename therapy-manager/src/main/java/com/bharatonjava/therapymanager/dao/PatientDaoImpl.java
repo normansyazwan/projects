@@ -94,8 +94,13 @@ public class PatientDaoImpl implements PatientDao{
 
 	@Override
 	public Patient getPatient(int patientId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String sql = "SELECT PATIENT_ID, FIRST_NAME,LAST_NAME,GENDER,DATE_OF_BIRTH,BLOOD_GROUP,"
+				+ "EXISTING_AILMENTS,ALLERGIES,MOBILE,EMAIL,OCCUPATION,ADDRESS_ID"
+				+ " FROM PATIENTS WHERE PATIENT_ID=?";
+		
+		Patient patient = this.jdbcTemplate.queryForObject(sql, new Object[]{patientId}, new PatientRowMapper());
+		return patient;
 	}
 
 	@Override
@@ -103,5 +108,6 @@ public class PatientDaoImpl implements PatientDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	
 }

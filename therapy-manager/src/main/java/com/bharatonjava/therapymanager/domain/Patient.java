@@ -1,5 +1,10 @@
 package com.bharatonjava.therapymanager.domain;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class Patient {
@@ -99,6 +104,26 @@ public class Patient {
 		this.address = address;
 	}
 
+	public String getAge(){
+		
+		String age = "";
+		
+		if(null != this.dob){
+			
+			Instant instant = this.dob.toInstant();
+			ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+			LocalDate birthday = zdt.toLocalDate();
+			
+			LocalDate today = LocalDate.now();
+			 
+			Period p = Period.between(birthday, today);
+			
+			age = p.getYears() +" years, "+ p.getMonths() +" months";
+		}
+		
+		return age;
+	}
+	
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", firstName=" + firstName
