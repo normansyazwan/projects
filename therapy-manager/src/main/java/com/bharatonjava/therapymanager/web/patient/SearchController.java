@@ -1,5 +1,8 @@
 package com.bharatonjava.therapymanager.web.patient;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.utils.Constants;
 
@@ -41,10 +45,19 @@ public class SearchController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView searchHandler(
 			@RequestParam(name = "q", required = false) String query) {
-
+		
+		logger.info("Search Query: {}", query);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(Constants.VIEW_PATIENT_SEARCH_RESULT);
 		mav.addObject("q", query);
+		List<Patient> patients = null;
+		if(StringUtils.isNotBlank(query)){
+			patients = this.patientService.searchPatients(query);
+			mav.addObject("patients", patients);
+		}else{
+			logger.info("search query was blank");
+		}
 		return mav;
 	}
 }

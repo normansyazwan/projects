@@ -104,9 +104,32 @@ public class PatientDaoImpl implements PatientDao{
 	}
 
 	@Override
-	public List<Patient> searchPatients() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Patient> searchPatients(String query) {
+		
+		List<Patient> patients = null;
+		
+		String sql = "SELECT PATIENT_ID, FIRST_NAME,LAST_NAME,GENDER,DATE_OF_BIRTH,BLOOD_GROUP,"
+				+ "EXISTING_AILMENTS,ALLERGIES,MOBILE,EMAIL,OCCUPATION,ADDRESS_ID"
+				+ " FROM PATIENTS WHERE FIRST_NAME like ? or LAST_NAME like ?"
+				+ " or MOBILE like ? or EMAIL like ?";
+		
+		patients = this.jdbcTemplate.query(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+			
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, "%"+query+ "%");
+				ps.setString(2, "%"+query+ "%");
+				ps.setString(3, "%"+query+ "%");
+				ps.setString(4, "%"+query+ "%");
+				
+				return ps;
+			}
+		}, new PatientRowMapper());
+		
+		return patients;
 	}
 	
 	

@@ -10,6 +10,7 @@ public interface PatientDao {
 	public int updatePatient(Patient patient);
 	public int deletePatient(int patientId);
 	public Patient getPatient(int patientId);
-	public List<Patient> searchPatients();
+	// search methods
+	public List<Patient> searchPatients(String query);
 	
 }

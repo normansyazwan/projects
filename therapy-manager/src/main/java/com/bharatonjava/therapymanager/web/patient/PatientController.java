@@ -48,8 +48,6 @@ public class PatientController {
 		this.patientService = patientService;
 	}
 	
-	
-	
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

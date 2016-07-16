@@ -6,4 +6,51 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
-search result
+<div class="page-header">
+	<h3>Patients</h3>
+</div>
+
+<div class="container-fluid">
+
+	<table
+		class="table table-condensed table-striped table-hover table-responsive">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Date Of Birth</th>
+				<th>Gender</th>
+				<th>Mobile/Phone</th>
+				<th>Email</th>
+				<th>Address</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${patients}" var="p">
+				<tr style="">
+					<td><small>${p.patientId}</small></td>
+					<td><small><a href='<c:url value="/patients/${p.patientId}/profile" />'>
+							${p.firstName}&nbsp;&nbsp;${p.lastName} </a></small></td>
+					<td><small><fmt:formatDate value="${p.dob}" var="dateString"
+							pattern="dd-MMM-yyyy" /> ${dateString}</small></td>
+					<td><small>${p.gender}</small></td>
+					<td>${p.mobile}</td>
+					<td><small>${p.email}</small></td>
+					<td><small>${p.address.apartment}<br />
+							${p.address.street}<br /> ${p.address.area}<br />
+					</small></td>
+					<td>
+												
+						<a href='<c:url value="/patients/${p.patientId}/prescription?action=new" />'
+						class="btn btn-default btn-sm">Prescription</a>
+						
+						<a href='<c:url value="/patients/${p.patientId}/prescriptions" />'
+						class="btn btn-default btn-sm">Prescription History</a>
+						
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
