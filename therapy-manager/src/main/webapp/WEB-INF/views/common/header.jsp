@@ -53,11 +53,12 @@
 						<li><a href="#">One more separated link</a></li>
 					</ul></li>
 			</ul>
-			<form class="navbar-form navbar-left" role="search">
+			<c:url value='search' var="searchAction" />
+			<form method="GET" action="${searchAction}" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input name="q" type="text" value="${q}" class="form-control" placeholder="Search" />
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="submit" class="btn btn-default">Search</button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<c:url value="/login" />" >Login</a></li>

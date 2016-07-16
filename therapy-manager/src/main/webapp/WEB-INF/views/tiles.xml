@@ -52,6 +52,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/common/login.jsp" />
 	</definition>
 
+	<definition name="patient.search.result" extends="layout.fullpage">
+		<put-attribute name="title" value="Search Results" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/searchResult.jsp" />
+	</definition>
+
+
 	
 
 </tiles-definitions>

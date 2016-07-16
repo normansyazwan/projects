@@ -320,6 +320,7 @@ public class PatientController {
 		
 	}
 	
+	
 	@RequestMapping(value="patients/search", method = RequestMethod.POST)
 	public String patientSearchHandler(@ModelAttribute("query")String query, Model model){
 		

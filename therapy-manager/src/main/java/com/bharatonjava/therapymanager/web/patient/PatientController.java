@@ -1,7 +1,6 @@
 package com.bharatonjava.therapymanager.web.patient;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -113,6 +113,7 @@ public class PatientController {
 		}
 
 		int patientId = patientService.registerNewPatient(patient);
+		model.addAttribute("insertStatus", "success");
 		mav.setViewName("redirect:/patients/"+patientId+"/profile");
 		return mav;
 	}
@@ -127,6 +128,18 @@ public class PatientController {
 		mav.addObject("patient", patient);
 		mav.setViewName(Constants.VIEW_PATIENT_PROFILE);
 		return mav;
+	}
+	
+	
+	@RequestMapping(value="/patients/{id}/edit", method = RequestMethod.GET)
+	public String preparePatientEditForm(@PathVariable("id") Integer patientId, Model model){
+		
+		Patient patient = patientService.getPatientById(patientId);
+		List<HospitalEnum> bloodGroups = this.patientService.getBloodGroups();
+		model.addAttribute("bloodGroups", bloodGroups);
+		model.addAttribute("patient", patient);
+		return Constants.VIEW_PATIENT_REGISTER_FORM;
+		
 	}
 	
 }
