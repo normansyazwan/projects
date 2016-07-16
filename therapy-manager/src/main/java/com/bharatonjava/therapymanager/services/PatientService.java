@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bharatonjava.therapymanager.dao.AddressDao;
 import com.bharatonjava.therapymanager.dao.EnumDao;
 import com.bharatonjava.therapymanager.dao.PatientDao;
+import com.bharatonjava.therapymanager.dao.PrescriptionDao;
 import com.bharatonjava.therapymanager.domain.Address;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
+import com.bharatonjava.therapymanager.domain.Prescription;
 import com.bharatonjava.therapymanager.utils.Constants;
 
 @Service
@@ -22,6 +24,7 @@ public class PatientService {
 	private PatientDao patientDao;
 	private AddressDao addressDao;
 	private EnumDao enumDao;
+	private PrescriptionDao prescriptionDao;
 	
 	@Autowired
 	public void setPatientDao(PatientDao patientDao) {
@@ -36,6 +39,11 @@ public class PatientService {
 	@Autowired
 	public void setEnumDao(EnumDao enumDao) {
 		this.enumDao = enumDao;
+	}
+	
+	@Autowired
+	public void setPrescriptionDao(PrescriptionDao prescriptionDao) {
+		this.prescriptionDao = prescriptionDao;
 	}
 	
 	@Transactional
@@ -54,7 +62,7 @@ public class PatientService {
 	}
 	
 	@Transactional
-	public Patient getPatientById(Integer patientId){
+	public Patient getPatientById(Long patientId){
 		
 		Patient patient = this.patientDao.getPatient(patientId);
 		if(patient != null){
@@ -68,7 +76,17 @@ public class PatientService {
 	public List<Patient> searchPatients(String query){
 		
 		List<Patient> patients = patientDao.searchPatients(query);
+		for(Patient p : patients){
+			if(p.getAddress() != null){
+				p.setAddress(addressDao.getAddressById(p.getAddress().getAddressId()));
+			}
+		}
 		logger.info("patients: {}", patients);
 		return patients;
+	}
+	
+	public Prescription getPrescription(Long prescriptionId){
+		Prescription prescription = prescriptionDao.getPrescriptionById(prescriptionId);
+		return prescription;
 	}
 }

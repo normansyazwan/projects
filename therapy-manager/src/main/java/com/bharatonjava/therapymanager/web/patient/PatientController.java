@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
+import com.bharatonjava.therapymanager.domain.Prescription;
 import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.utils.Constants;
 
@@ -118,7 +120,7 @@ public class PatientController {
 
 	
 	@RequestMapping(value = "/{patientId}/profile", method = RequestMethod.GET)
-	public ModelAndView patientProfile(@PathVariable("patientId") Integer patientId) {
+	public ModelAndView patientProfile(@PathVariable("patientId") Long patientId) {
 		
 		Patient patient = this.patientService.getPatientById(patientId);
 		
@@ -129,8 +131,8 @@ public class PatientController {
 	}
 	
 	
-	@RequestMapping(value="/patients/{id}/edit", method = RequestMethod.GET)
-	public String preparePatientEditForm(@PathVariable("id") Integer patientId, Model model){
+	@RequestMapping(value="/{id}/edit", method = RequestMethod.GET)
+	public String preparePatientEditForm(@PathVariable("id") Long patientId, Model model){
 		
 		Patient patient = patientService.getPatientById(patientId);
 		List<HospitalEnum> bloodGroups = this.patientService.getBloodGroups();
@@ -139,5 +141,38 @@ public class PatientController {
 		return Constants.VIEW_PATIENT_REGISTER_FORM;
 		
 	}
+	
+	
+	/**
+	 * Displays new prescription form
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/{id}/prescription", method = RequestMethod.GET)
+	public String showPrescriptionForm(@PathVariable("id") Long id, 
+			@RequestParam(value = "prescriptionId", defaultValue="0", required = false) Long prescriptionId,
+			@RequestParam(value = "action", defaultValue=Constants.ACTION_NEW, required = false) String action,
+			Model model){
+	
+		logger.info("showPrescriptionForm: action = {}", action);
+		
+		if(action == null || action.equals(Constants.ACTION_NEW)){
+			
+			Patient patient = patientService.getPatientById(id);
+			model.addAttribute("patient", patient);
+			model.addAttribute("prescription", new Prescription());
+		
+		}else if (action != null && action.equals(Constants.ACTION_EDIT)){
+			
+			Prescription prescription = patientService.getPrescription(prescriptionId);
+			model.addAttribute("prescription", prescription);
+			Patient patient = patientService.getPatientById(prescription.getPatientId());
+			model.addAttribute("patient", patient);
+		
+		}
+		
+		return Constants.VIEW_PATIENT_PRESCRIPTION_FORM;
+}
 	
 }

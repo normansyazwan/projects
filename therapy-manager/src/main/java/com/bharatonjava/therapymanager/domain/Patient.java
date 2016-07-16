@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Patient {
 
-	private int patientId;
+	private Long patientId;
 	private String firstName;
 	private String lastName;
 	private String gender;
@@ -29,10 +29,10 @@ public class Patient {
 	public Patient() {
 	}
 	
-	public int getPatientId() {
+	public Long getPatientId() {
 		return patientId;
 	}
-	public void setPatientId(int patientId) {
+	public void setPatientId(Long patientId) {
 		this.patientId = patientId;
 	}
 	public String getFirstName() {

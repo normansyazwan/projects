@@ -41,12 +41,11 @@
 							${p.address.street}<br /> ${p.address.area}<br />
 					</small></td>
 					<td>
-												
 						<a href='<c:url value="/patients/${p.patientId}/prescription?action=new" />'
-						class="btn btn-default btn-sm">Prescription</a>
+						class="btn btn-default btn-xs">Prescription</a>
 						
 						<a href='<c:url value="/patients/${p.patientId}/prescriptions" />'
-						class="btn btn-default btn-sm">Prescription History</a>
+						class="btn btn-default btn-xs">Prescription History</a>
 						
 					</td>
 				</tr>

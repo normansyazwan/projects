@@ -1,7 +1,6 @@
 package com.bharatonjava.therapymanager.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -87,13 +86,13 @@ public class PatientDaoImpl implements PatientDao{
 	}
 
 	@Override
-	public int deletePatient(int patientId) {
+	public int deletePatient(Long patientId) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Patient getPatient(int patientId) {
+	public Patient getPatient(Long patientId) {
 		
 		String sql = "SELECT PATIENT_ID, FIRST_NAME,LAST_NAME,GENDER,DATE_OF_BIRTH,BLOOD_GROUP,"
 				+ "EXISTING_AILMENTS,ALLERGIES,MOBILE,EMAIL,OCCUPATION,ADDRESS_ID"

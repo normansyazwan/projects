@@ -8,8 +8,8 @@ public interface PatientDao {
 
 	public int createPatient(Patient patient);
 	public int updatePatient(Patient patient);
-	public int deletePatient(int patientId);
-	public Patient getPatient(int patientId);
+	public int deletePatient(Long patientId);
+	public Patient getPatient(Long patientId);
 	// search methods
 	public List<Patient> searchPatients(String query);
 	
