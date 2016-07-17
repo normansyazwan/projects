@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.domain.Prescription;
@@ -202,4 +203,18 @@ public class PatientController {
 		return Constants.VIEW_PATIENT_PRESCRIPTION_FORM;
 	}
 
+	
+	@RequestMapping(value = "/{id}/assesment", method = RequestMethod.GET)
+	public String showAssesmentForm(
+			@PathVariable("id") Long patientId,
+			@RequestParam(value = "assesmentId", defaultValue = "0", required = false) Long assesmentId,
+			@RequestParam(value = "action", defaultValue = Constants.ACTION_NEW, required = false) String action,
+			Model model) {
+
+		logger.info("assesmentId: action = {}", action);
+		Assesment assesment = new Assesment();
+		model.addAttribute("assesment", assesment);
+
+		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
+	}
 }

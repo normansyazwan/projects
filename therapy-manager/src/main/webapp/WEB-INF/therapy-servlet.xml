@@ -52,7 +52,10 @@
 	<!-- settings -->
 
 	<context:component-scan base-package="com.bharatonjava" />
-	<context:property-placeholder location="classpath:placeholder.properties" />
+	
+	<util:properties id="propertyConfigurer" location="classpath:placeholder.properties "/>
+	<context:property-placeholder properties-ref="propertyConfigurer" />
+	
 	<!-- <context:annotation-config /> -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
