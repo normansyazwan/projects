@@ -217,4 +217,21 @@ public class PatientController {
 
 		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
 	}
+	
+	
+	@RequestMapping(value = "/{id}/assesment", method = RequestMethod.POST)
+	public String processAssesmentForm(
+			@ModelAttribute("assesment") Assesment assesment,
+			@PathVariable("id") Long patientId,
+			@RequestParam(value = "assesmentId", defaultValue = "0", required = false) Long assesmentId,
+			@RequestParam(value = "action", defaultValue = Constants.ACTION_NEW, required = false) String action,
+			Model model) {
+
+		logger.info("assesmentId: action = {}", action);
+		logger.info("assesment: {}", assesment);
+		
+		model.addAttribute("assesment", assesment);
+
+		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
+	}
 }
