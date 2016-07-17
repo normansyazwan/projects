@@ -23,7 +23,9 @@
 
 			<form:form method="POST" commandName="patient"
 				cssClass="form-horizontal">
-
+				
+				<form:hidden path="patientId" />
+				
 				<spring:bind path="firstName">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
 						<form:label path="firstName" cssClass="col-sm-2 control-label">Name:</form:label>
@@ -224,7 +226,7 @@
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
 						<button value="Reset" class="btn btn-default ">Reset</button>
-						<input type="submit" value="Register" class="btn btn-success" />
+						<input type="submit" value="Save" class="btn btn-success" />
 					</div>
 				</div>
 			</form:form>

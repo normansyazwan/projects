@@ -153,11 +153,11 @@
 			<div class="row">
 				<div class="col-md-12">
 					<a href='<c:url value="/patients/${patient.patientId}/edit" />'
-						class="btn btn-default btn-sm">Edit Profile</a> <a
-						href='<c:url value="/patients/${patient.patientId}/prescription" />'
-						class="btn btn-default btn-sm">Prescription</a> <a
-						href='<c:url value="/patients/${patient.patientId}/prescriptions" />'
-						class="btn btn-default btn-sm">Prescription History</a>
+						class="btn btn-default btn-sm" title="Edit this Patient"><span class="glyphicon glyphicon-wrench"></span></a>
+					<a href='<c:url value="/patients/${patient.patientId}/delete" />'
+						class="btn btn-default btn-sm" title="Delete this Patient"><span class="glyphicon glyphicon-trash"></span></a>
+					<a href='<c:url value="/patients/${patient.patientId}/prescriptions" />'
+						class="btn btn-default btn-sm" title="Prescription History"><span class="glyphicon glyphicon-list-alt"></span></a>
 				</div>
 			</div>
 		</div>

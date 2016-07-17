@@ -85,8 +85,15 @@ public class PatientService {
 		return patients;
 	}
 	
+	@Transactional
 	public Prescription getPrescription(Long prescriptionId){
 		Prescription prescription = prescriptionDao.getPrescriptionById(prescriptionId);
 		return prescription;
 	}
+	
+	@Transactional
+	public int updatePatient(Patient patient) {
+		return this.patientDao.updatePatient(patient);
+	}
+	
 }

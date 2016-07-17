@@ -79,10 +79,65 @@ public class PatientDaoImpl implements PatientDao{
 		
 	}
 
+	/**
+	 * Updates a patient's record
+	 */
 	@Override
 	public int updatePatient(Patient patient) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		String sql = "UPDATE PATIENTS SET FIRST_NAME=?, LAST_NAME=?,GENDER=?,DATE_OF_BIRTH=?,"
+				+ "BLOOD_GROUP=?,EXISTING_AILMENTS=?,ALLERGIES=?,MOBILE=?,EMAIL=?,OCCUPATION=?"
+				+ " WHERE PATIENT_ID=?";
+		
+		int recordCount = this.jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, patient.getFirstName());
+				ps.setString(2, patient.getLastName());
+				ps.setString(3, patient.getGender());
+				ps.setDate(4, new java.sql.Date(patient.getDob().getTime()));
+				ps.setString(5, patient.getBloodGroup());
+				ps.setString(6, patient.getExistingAilments());
+				ps.setString(7, patient.getAllergies());
+				ps.setString(8, patient.getMobile());
+				ps.setString(9, patient.getEmail());
+				ps.setString(10, patient.getOccupation());
+				ps.setLong(11, patient.getPatientId());
+				
+				return ps;
+			}
+		});
+		
+		// update patient's address
+		
+		String addressUpdateSql = "UPDATE ADDRESSES SET APARTMENT=?,STREET=?,AREA=?,CITY=?"
+				+ " WHERE ADDRESS_ID=?";
+		
+		int addressUpdateCount = this.jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				
+				PreparedStatement ps = con.prepareStatement(addressUpdateSql);
+				ps.setString(1, patient.getAddress().getApartment());
+				ps.setString(2, patient.getAddress().getStreet());
+				ps.setString(3, patient.getAddress().getArea());
+				ps.setString(4, patient.getAddress().getCity());
+				ps.setLong(5, patient.getAddress().getAddressId());
+				
+				return ps;
+			}
+			
+		});
+		
+		logger.info("patientUpdateCount={}, addressUpdateCount={}", recordCount,addressUpdateCount);
+		
+		return recordCount;
 	}
 
 	@Override
