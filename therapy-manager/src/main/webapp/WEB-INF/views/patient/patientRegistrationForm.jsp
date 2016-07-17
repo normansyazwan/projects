@@ -25,6 +25,7 @@
 				cssClass="form-horizontal">
 				
 				<form:hidden path="patientId" />
+				<form:hidden path="address.addressId" />
 				
 				<spring:bind path="firstName">
 					<div class="form-group ${status.error ? 'has-error' : ''}">

@@ -144,8 +144,12 @@ public class PatientController {
 			@PathVariable("id") Long patientId, BindingResult result,
 			ModelMap model) {
 
+		logger.info("patient update: {}", patient);
+		
 		if (patientId != null && patientId > 0L && patientId.equals(patient.getPatientId())) {
 			patientService.updatePatient(patient);
+			patient = null;
+			patient = this.patientService.getPatientById(patientId);
 		} else {
 			logger.error(
 					"Unexpected value of patientId in URL in patient edit form: {} and patient record was {}",
