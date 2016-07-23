@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.Patient;
 
 @Repository
@@ -33,10 +34,10 @@ public class PatientDaoImpl implements PatientDao{
 	}
 	
 	@Override
-	public int createPatient(Patient patient) {
+	public Long createPatient(Patient patient) {
 		logger.info("patient inside dao : {}", patient);
 
-		int returnValue = 0;
+		Long returnValue = 0L;
 		String sql = "INSERT INTO PATIENTS (FIRST_NAME,LAST_NAME,GENDER,DATE_OF_BIRTH,BLOOD_GROUP,"
 				+ "EXISTING_AILMENTS,ALLERGIES,MOBILE,EMAIL,OCCUPATION,ADDRESS_ID)"
 				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
@@ -61,7 +62,7 @@ public class PatientDaoImpl implements PatientDao{
 				ps.setString(8, patient.getMobile());
 				ps.setString(9, patient.getEmail());
 				ps.setString(10, patient.getOccupation());
-				ps.setInt(11, patient.getAddress().getAddressId());
+				ps.setLong(11, patient.getAddress().getAddressId());
 				
 				return ps;
 			}
@@ -70,7 +71,7 @@ public class PatientDaoImpl implements PatientDao{
 		
 		
 		if (keyHolder.getKey() != null) {
-			returnValue = keyHolder.getKey().intValue();
+			returnValue = keyHolder.getKey().longValue();
 			
 		} 
 		
@@ -186,5 +187,72 @@ public class PatientDaoImpl implements PatientDao{
 		return patients;
 	}
 	
-	
+	@Override
+	public Long createNewAssesment(Assesment assesment){
+		
+		Long returnValue = 0L;
+		
+		String sql = "INSERT INTO ASSESMENTS (PATIENT_ID,PRESENT_CONDITION,ONSET,DURATION,"
+				+ "SURGICAL_HISTORY,RED_FLAG,PHYSIOTHREAPY_TREATMENT_HISTORY,CURRENT_EXERCISES,"
+				+ "HOBBIES_AND_SPORTS,FAMILY_HISTORY,SWELLING,AREA_OF_PAIN,DEFORMITY,GAIT,"
+				+ "BUILT,WARMTH,MUSCLE_SPASM,TENDERNESS,VAS_SCALE,AGGRIVATING_FACTORS,ROM,"
+				+ "END_FEEL,MMT,SPECIAL_TESTS,NEUROLOGICAL,CARDIORESPIRATORY,FUNCTIONAL_ASSESMENT,"
+				+ "WELLNESS_ASSESMENT,RECOVERY_POTENTIAL,THERAPY_PLAN) VALUES "
+				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		this.jdbcTemplate.update(new PreparedStatementCreator() {
+
+			@Override
+			public PreparedStatement createPreparedStatement(Connection conn)
+					throws SQLException {
+				
+				final PreparedStatement ps =conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
+				ps.setLong(1, assesment.getPatientId());
+				ps.setString(2, assesment.getPresentCondition());
+				ps.setString(3, assesment.getOnset());
+				ps.setString(4, assesment.getDuration());
+				ps.setString(5, assesment.getSurgicalHistory());
+				ps.setString(6, assesment.getRedFlag());
+				ps.setString(7, assesment.getPhysiotherapyTreatmentHistory());
+				ps.setString(8, assesment.getCurrentExercises());
+				ps.setString(9, assesment.getHobbiesAndSports());
+				ps.setString(10, assesment.getFamilyHistory());
+				ps.setString(11, assesment.getSwelling());
+				ps.setString(12, assesment.getAreaOfPain());
+				ps.setString(13, assesment.getDeformity());
+				ps.setString(14, assesment.getGait());
+				ps.setString(15, assesment.getBuilt());
+				ps.setString(16, assesment.getWarmth());
+				ps.setString(17, assesment.getMuscleSpasm());
+				ps.setString(18, assesment.getTenderness());
+				ps.setString(19, assesment.getVasScale());
+				ps.setString(20, assesment.getAggrevatingFactors());
+				ps.setString(21, assesment.getRom());
+				ps.setString(22, assesment.getEndFeel());
+				ps.setString(23, assesment.getMmt());
+				ps.setString(24, assesment.getSpecialTests());
+				ps.setString(25, assesment.getNeurological());
+				ps.setString(26, assesment.getCardiorespiratory());
+				ps.setString(27, assesment.getFunctionalAssesment());
+				ps.setString(28, assesment.getWellnessAssesment());
+				ps.setString(29, assesment.getRecoveryPotential());
+				ps.setString(30, assesment.getTherapyPlan());
+				
+				return ps;
+			}
+			
+		}, keyHolder);
+		
+		
+		if (keyHolder.getKey() != null) {
+			returnValue = keyHolder.getKey().longValue();
+			
+		} 
+		
+		logger.info("Assesment persisted with assesmentId : {}", returnValue);
+		
+		return returnValue;
+	}
 }

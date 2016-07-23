@@ -66,6 +66,10 @@
 		<put-attribute name="title" value="Assesment Form" />
 		<put-attribute name="body" value="/WEB-INF/views/assesment/assesmentForm.jsp" />
 	</definition>
-	
+
+	<definition name="patient.treatment.page" extends="layout.fullpage">	
+		<put-attribute name="title" value="Treatment" />
+		<put-attribute name="body" value="/WEB-INF/views/assesment/treatment.jsp" />
+	</definition>	
 
 </tiles-definitions>

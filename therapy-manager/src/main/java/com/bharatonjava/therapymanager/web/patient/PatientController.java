@@ -116,12 +116,13 @@ public class PatientController {
 			return mav;
 		}
 
-		int patientId = patientService.registerNewPatient(patient);
+		Long patientId = patientService.registerNewPatient(patient);
 		model.addAttribute("insertStatus", "success");
 		mav.setViewName("redirect:/patients/" + patientId + "/profile");
 		return mav;
 	}
 
+	
 	@RequestMapping(value = "/{patientId}/profile", method = RequestMethod.GET)
 	public ModelAndView patientProfile(@PathVariable("patientId") Long patientId) {
 
@@ -133,6 +134,7 @@ public class PatientController {
 		return mav;
 	}
 
+	
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String preparePatientEditForm(@PathVariable("id") Long patientId,
 			Model model) {
@@ -234,7 +236,7 @@ public class PatientController {
 			Model model, BindingResult result) {
 
 		logger.info("assesmentId: action = {}", action);
-		logger.info("assesment: {}", assesment);
+		logger.info("patientId:{}, assesment: {}", patientId, assesment);
 		
 		assesmentValidator.validate(assesment, result);
 		
@@ -243,9 +245,27 @@ public class PatientController {
 			return Constants.VIEW_PATIENT_ASSESMENT_FORM;
 		}
 		// save assessment record to database and send user to add treatment page.
+		assesment.setPatientId(patientId);
+		Long persistedAssesmentId = patientService.createNewAssesment(assesment);
+		logger.info("Assesment saved with assesmentId:{}", persistedAssesmentId);
 		
-		
-
-		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
+		return "redirect:/patients/"+patientId+"/treatment";
 	}
+	
+	
+	@RequestMapping(value = "/{id}/treatment", method = RequestMethod.GET)
+	public ModelAndView patientTreatmentForm(
+			@PathVariable("id") Long patientId,
+			ModelAndView mav, BindingResult result) {
+				
+		Patient p = patientService.getPatientById(patientId);
+		mav.addObject("patient", p);
+		
+		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
+		
+		return mav;
+	
+	
+	}
+	
 }

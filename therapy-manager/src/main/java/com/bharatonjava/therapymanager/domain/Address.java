@@ -2,7 +2,7 @@ package com.bharatonjava.therapymanager.domain;
 
 public class Address {
 
-	private int addressId;
+	private Long addressId;
 	private String apartment;
 	private String street;
 	private String area;
@@ -11,11 +11,11 @@ public class Address {
 	public Address() {
 	}
 
-	public int getAddressId() {
+	public Long getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(int addressId) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 

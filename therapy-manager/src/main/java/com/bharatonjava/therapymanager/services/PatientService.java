@@ -13,6 +13,7 @@ import com.bharatonjava.therapymanager.dao.EnumDao;
 import com.bharatonjava.therapymanager.dao.PatientDao;
 import com.bharatonjava.therapymanager.dao.PrescriptionDao;
 import com.bharatonjava.therapymanager.domain.Address;
+import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.domain.Prescription;
@@ -47,10 +48,10 @@ public class PatientService {
 	}
 	
 	@Transactional
-	public int registerNewPatient(Patient patient){
-		int addressId = addressDao.createAddress(patient.getAddress());
+	public Long registerNewPatient(Patient patient){
+		Long addressId = addressDao.createAddress(patient.getAddress());
 		patient.getAddress().setAddressId(addressId);
-		int patientId = patientDao.createPatient(patient);
+		Long patientId = patientDao.createPatient(patient);
 		return patientId;
 	}
 	
@@ -96,4 +97,8 @@ public class PatientService {
 		return this.patientDao.updatePatient(patient);
 	}
 	
+	@Transactional
+	public Long createNewAssesment(Assesment assesment){
+		return this.patientDao.createNewAssesment(assesment);
+	}
 }

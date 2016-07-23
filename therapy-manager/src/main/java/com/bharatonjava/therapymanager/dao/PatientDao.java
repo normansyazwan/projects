@@ -2,15 +2,18 @@ package com.bharatonjava.therapymanager.dao;
 
 import java.util.List;
 
+import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.Patient;
 
 public interface PatientDao {
 
-	public int createPatient(Patient patient);
+	public Long createPatient(Patient patient);
 	public int updatePatient(Patient patient);
 	public int deletePatient(Long patientId);
 	public Patient getPatient(Long patientId);
 	// search methods
 	public List<Patient> searchPatients(String query);
 	
+	//assesment
+	public Long createNewAssesment(Assesment assesment);
 }

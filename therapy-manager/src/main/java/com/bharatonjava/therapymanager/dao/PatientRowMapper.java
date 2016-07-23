@@ -33,7 +33,7 @@ public class PatientRowMapper implements RowMapper<Patient>{
 		p.setOccupation(rs.getString("OCCUPATION"));
 		
 		Address a = new Address();
-		a.setAddressId(rs.getInt("ADDRESS_ID"));
+		a.setAddressId(rs.getLong("ADDRESS_ID"));
 		p.setAddress(a);
 		return p;
 	}

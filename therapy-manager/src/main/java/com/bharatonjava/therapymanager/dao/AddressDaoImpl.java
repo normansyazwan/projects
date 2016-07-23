@@ -28,8 +28,8 @@ public class AddressDaoImpl implements AddressDao {
 	}
 
 	@Override
-	public int createAddress(Address address) {
-		int returnValue = 0;
+	public Long createAddress(Address address) {
+		Long returnValue = 0L;
 		String sql = "INSERT INTO ADDRESSES (APARTMENT,STREET,AREA,CITY)"
 				+ " VALUES(?,?,?,?)";
 		
@@ -55,7 +55,7 @@ public class AddressDaoImpl implements AddressDao {
 		
 		
 		if (keyHolder.getKey() != null) {
-			returnValue = keyHolder.getKey().intValue();
+			returnValue = keyHolder.getKey().longValue();
 			
 		} 
 		
@@ -65,7 +65,7 @@ public class AddressDaoImpl implements AddressDao {
 	}
 
 	@Override
-	public Address getAddressById(Integer addressId) {
+	public Address getAddressById(Long addressId) {
 		
 		String sql = "SELECT ADDRESS_ID,APARTMENT,STREET,AREA,CITY"
 				+ " FROM ADDRESSES WHERE ADDRESS_ID=?";
