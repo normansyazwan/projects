@@ -38,6 +38,7 @@ public class PatientController {
 
 	private PatientValidator patientValidator;
 	private PatientService patientService;
+	private AssesmentValidator assesmentValidator;
 
 	@Autowired
 	public void setPatientValidator(PatientValidator patientValidator) {
@@ -47,6 +48,11 @@ public class PatientController {
 	@Autowired
 	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
+	}
+	
+	@Autowired
+	public void setAssesmentValidator(AssesmentValidator assesmentValidator) {
+		this.assesmentValidator = assesmentValidator;
 	}
 
 	@InitBinder
@@ -225,12 +231,20 @@ public class PatientController {
 			@PathVariable("id") Long patientId,
 			@RequestParam(value = "assesmentId", defaultValue = "0", required = false) Long assesmentId,
 			@RequestParam(value = "action", defaultValue = Constants.ACTION_NEW, required = false) String action,
-			Model model) {
+			Model model, BindingResult result) {
 
 		logger.info("assesmentId: action = {}", action);
 		logger.info("assesment: {}", assesment);
 		
-		model.addAttribute("assesment", assesment);
+		assesmentValidator.validate(assesment, result);
+		
+		if (result.hasErrors()) {
+			logger.info("Errors in assesment form:  {} ", result.getAllErrors());
+			return Constants.VIEW_PATIENT_ASSESMENT_FORM;
+		}
+		// save assessment record to database and send user to add treatment page.
+		
+		
 
 		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
 	}
