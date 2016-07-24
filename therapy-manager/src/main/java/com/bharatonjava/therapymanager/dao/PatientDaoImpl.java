@@ -255,4 +255,30 @@ public class PatientDaoImpl implements PatientDao{
 		
 		return returnValue;
 	}
+	
+	@Override
+	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly){
+		
+		List<Assesment> assesments = null;
+		
+		String sql = "SELECT ASSESMENT_ID,PATIENT_ID,PRESENT_CONDITION,ONSET,DURATION,"
+				+ "SURGICAL_HISTORY,RED_FLAG,PHYSIOTHREAPY_TREATMENT_HISTORY,CURRENT_EXERCISES,"
+				+ "HOBBIES_AND_SPORTS,FAMILY_HISTORY,SWELLING,AREA_OF_PAIN,DEFORMITY,GAIT,"
+				+ "BUILT,WARMTH,MUSCLE_SPASM,TENDERNESS,VAS_SCALE,AGGRIVATING_FACTORS,ROM,"
+				+ "END_FEEL,MMT,SPECIAL_TESTS,NEUROLOGICAL,CARDIORESPIRATORY,FUNCTIONAL_ASSESMENT,"
+				+ "WELLNESS_ASSESMENT,RECOVERY_POTENTIAL,THERAPY_PLAN,IS_ACTIVE,CREATED_DATE,UPDATED_DATE"
+				+ " FROM ASSESMENTS WHERE PATIENT_ID=? AND IS_ACTIVE=?";
+		
+		String type = "";
+		if(activeOnly){
+			type = "Y";
+		}else{
+			type = "N";
+		}
+		
+		Object[] args = new Object[]{patientId, type};
+		assesments = this.jdbcTemplate.query(sql, args, new AssesmentRowMapper());
+		
+		return assesments;
+	}
 }

@@ -257,9 +257,14 @@ public class PatientController {
 	public ModelAndView patientTreatmentForm(
 			@PathVariable("id") Long patientId,
 			ModelAndView mav, BindingResult result) {
-				
+		
+		// fetch patient
 		Patient p = patientService.getPatientById(patientId);
 		mav.addObject("patient", p);
+		
+		// fetch active assessments
+		List<Assesment> assesments = this.patientService.getAssessmentsForPatient(patientId, true);
+		mav.addObject("assesments", assesments);
 		
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
 		

@@ -7,7 +7,6 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 
-
 <div class="page-header">
 	<h3>Treatment</h3>
 	<h5>Add treatment for ailment</h5>
@@ -60,26 +59,41 @@
 					<br /> ${patient.address.street} <br /> ${patient.address.area}
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-sm-12">
 					<hr />
 				</div>
 			</div>
-			
+
+
 			<div class="row">
-				<div class="col-sm-3">
-					<label>Address</label>
-				</div>
-				<div class="col-sm-9">${patient.address.apartment}
-					<br /> ${patient.address.street} <br /> ${patient.address.area}
+				<div class="col-sm-12 pre-scrollable">
+
+					<c:forEach items="${assesments}" var="a">
+						<div class="well well-sm" title="${a.presentCondition},${a.onset},${a.duration}" data-toggle="tooltip">
+							<table class="table table-hover table-responsive table-striped table-condensed table-sm">
+								<tr>
+									<td><label>Present Condition</label></td>
+									<td>${a.presentCondition}</td>
+								</tr>
+								<tr>
+									<td><label>onset</label></td>
+									<td>${a.onset}</td>
+								</tr>
+								<tr>
+									<td><label>Duration</label></td>
+									<td>${a.duration}</td>
+								</tr>
+							</table>
+						</div>
+					</c:forEach>
+
 				</div>
 			</div>
 
-			
 		</div>
 	</div>
 </div>
-
 
 

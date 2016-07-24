@@ -101,4 +101,9 @@ public class PatientService {
 	public Long createNewAssesment(Assesment assesment){
 		return this.patientDao.createNewAssesment(assesment);
 	}
+	
+	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly){
+		List<Assesment> assesments = this.patientDao.getAssessmentsForPatient(patientId, activeOnly);
+		return assesments;
+	}
 }

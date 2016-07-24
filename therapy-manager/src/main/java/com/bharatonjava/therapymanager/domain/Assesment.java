@@ -44,6 +44,7 @@ public class Assesment {
 	private String recoveryPotential;
 	private String therapyPlan;
 
+	private String isActive;
 	// audit fields
 	private Date createdDate;
 	private Date updatedDate;
@@ -300,6 +301,14 @@ public class Assesment {
 		this.therapyPlan = therapyPlan;
 	}
 
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+	
+	public String getIsActive() {
+		return isActive;
+	}
+	
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -322,7 +331,7 @@ public class Assesment {
 				+ patientId + ", presentCondition=" + presentCondition
 				+ ", onset=" + onset + ", duration=" + duration
 				+ ", surgicalHistory=" + surgicalHistory + ", redFlag="
-				+ redFlag + ", physiothreapyTreatmentHistory="
+				+ redFlag + ", physiotherapyTreatmentHistory="
 				+ physiotherapyTreatmentHistory + ", currentExercises="
 				+ currentExercises + ", hobbiesAndSports=" + hobbiesAndSports
 				+ ", familyHistory=" + familyHistory + ", swelling=" + swelling
@@ -337,8 +346,8 @@ public class Assesment {
 				+ functionalAssesment + ", wellnessAssesment="
 				+ wellnessAssesment + ", recoveryPotential="
 				+ recoveryPotential + ", therapyPlan=" + therapyPlan
-				+ ", createdDate=" + createdDate + ", updatedDate="
-				+ updatedDate + "]";
+				+ ", isActive=" + isActive + ", createdDate=" + createdDate
+				+ ", updatedDate=" + updatedDate + "]";
 	}
-
+	
 }
