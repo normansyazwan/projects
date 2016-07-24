@@ -30,10 +30,11 @@
 			<c:forEach items="${patients}" var="p">
 				<tr style="">
 					<td><small>${p.patientId}</small></td>
-					<td><small><a href='<c:url value="/patients/${p.patientId}/profile" />'>
-							${p.firstName}&nbsp;&nbsp;${p.lastName} </a></small></td>
-					<td><small><fmt:formatDate value="${p.dob}" var="dateString"
-							pattern="dd-MMM-yyyy" /> ${dateString}</small></td>
+					<td><small><a
+							href='<c:url value="/patients/${p.patientId}/profile" />'>
+								${p.firstName}&nbsp;&nbsp;${p.lastName} </a></small></td>
+					<td><small><fmt:formatDate value="${p.dob}"
+								var="dateString" pattern="dd-MMM-yyyy" /> ${dateString}</small></td>
 					<td><small>${p.gender}</small></td>
 					<td>${p.mobile}</td>
 					<td><small>${p.email}</small></td>
@@ -41,12 +42,12 @@
 							${p.address.street}<br /> ${p.address.area}<br />
 					</small></td>
 					<td>
-						<a href='<c:url value="/patients/${p.patientId}/assesment" />'
-						class="btn btn-default btn-xs">New Assessment</a>
-						
-						<a href='<c:url value="/patients/${p.patientId}/treatment" />'
-						class="btn btn-default btn-xs">Treatment</a>
-						
+						<div class="btn-group">
+							<a href='<c:url value="/patients/${p.patientId}/assesment" />'
+								class="btn btn-default btn-sm">New Assessment</a>
+							<a href='<c:url value="/patients/${p.patientId}/treatment" />'
+								class="btn btn-default btn-sm">Treatment</a>
+						</div>
 					</td>
 				</tr>
 			</c:forEach>
