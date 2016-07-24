@@ -71,7 +71,8 @@
 				<div class="col-sm-12 pre-scrollable">
 
 					<c:forEach items="${assesments}" var="a">
-						<div class="well well-sm" title="${a.presentCondition},${a.onset},${a.duration}" data-toggle="tooltip">
+					
+						<div class="well well-sm " title="${a.presentCondition},${a.onset},${a.duration}" data-toggle="tooltip">
 							<table class="table table-hover table-responsive table-striped table-condensed table-sm">
 								<tr>
 									<td><label>Present Condition</label></td>
@@ -87,6 +88,7 @@
 								</tr>
 							</table>
 						</div>
+					
 					</c:forEach>
 
 				</div>

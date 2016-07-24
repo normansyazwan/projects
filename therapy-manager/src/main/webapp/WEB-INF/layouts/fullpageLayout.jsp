@@ -20,6 +20,12 @@
 <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap.css" />'>
 <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap-theme.css" />'>
 
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
 
 </head>
 <body>
