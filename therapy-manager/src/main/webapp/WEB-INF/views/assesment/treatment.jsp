@@ -43,10 +43,11 @@
 
 		<div class="row">
 			<div class="col-sm-12 pre-scrollable">
-
+				<div class="col-sm-6 pre-scrollable">
 				<c:forEach items="${assesments}" var="a">
 
-					<div class="well well-sm "
+					<a href='<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />'>
+					<div class="well well-sm"
 						title="${a.presentCondition},${a.onset},${a.duration}"
 						data-toggle="tooltip">
 						<table
@@ -65,9 +66,12 @@
 							</tr>
 						</table>
 					</div>
-
+					</a>
 				</c:forEach>
-
+				</div>
+				<div class="col-sm-6 pre-scrollable">
+					Treatment sittings to come here
+				</div>
 			</div>
 		</div>
 
