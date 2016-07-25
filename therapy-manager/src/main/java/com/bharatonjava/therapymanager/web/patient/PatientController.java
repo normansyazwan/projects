@@ -26,6 +26,8 @@ import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.domain.Prescription;
+import com.bharatonjava.therapymanager.domain.Sitting;
+import com.bharatonjava.therapymanager.domain.Treatment;
 import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.utils.Constants;
 
@@ -256,6 +258,8 @@ public class PatientController {
 	@RequestMapping(value = "/{id}/treatment", method = RequestMethod.GET)
 	public ModelAndView patientTreatmentForm(
 			@PathVariable("id") Long patientId,
+			@RequestParam(value = "assessmentId", defaultValue = "0", required = false) Long assessmentId,
+			@RequestParam(value = "sittings", defaultValue = "0", required = false) String sittings,
 			ModelAndView mav, BindingResult result) {
 		
 		// fetch patient
@@ -265,6 +269,12 @@ public class PatientController {
 		// fetch active assessments
 		List<Assesment> assesments = this.patientService.getAssessmentsForPatient(patientId, true);
 		mav.addObject("assesments", assesments);
+		
+		List<Treatment> treatments = this.patientService.getTreatments();
+		mav.addObject("treatments", treatments);
+		logger.info("{}", treatments);
+		
+		mav.addObject("sitting", new Sitting());
 		
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
 		

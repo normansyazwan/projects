@@ -18,7 +18,7 @@
 			<table class="gridtable" style="width: 100%;">
 				<tr>
 					<td width="100"><label>Patient Name:</label></td>
-					<td>${patient.firstName} &nbsp; ${patient.lastName}</td>
+					<td>${patient.firstName}&nbsp;${patient.lastName}</td>
 					<td width="60"><label>Gender:</label></td>
 					<td>${patient.gender}</td>
 					<td width="40"><label>Age:</label></td>
@@ -44,33 +44,63 @@
 		<div class="row">
 			<div class="col-sm-12 pre-scrollable">
 				<div class="col-sm-6 pre-scrollable">
-				<c:forEach items="${assesments}" var="a">
+					<c:forEach items="${assesments}" var="a">
 
-					<a href='<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />'>
-					<div class="well well-sm"
-						title="${a.presentCondition},${a.onset},${a.duration}"
-						data-toggle="tooltip">
-						<table
-							class="table table-hover table-responsive table-striped table-condensed table-sm">
-							<tr>
-								<td><label>Present Condition</label></td>
-								<td>${a.presentCondition}</td>
-							</tr>
-							<tr>
-								<td><label>onset</label></td>
-								<td>${a.onset}</td>
-							</tr>
-							<tr>
-								<td><label>Duration</label></td>
-								<td>${a.duration}</td>
-							</tr>
-						</table>
-					</div>
-					</a>
-				</c:forEach>
+						<a
+							href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
+							<div class="well well-sm"
+								title="${a.presentCondition},${a.onset},${a.duration}"
+								data-toggle="tooltip" data-placement="bottom">
+								<table
+									class="table table-hover table-responsive table-striped table-condensed table-sm">
+									<tr>
+										<td><label>Present Condition</label></td>
+										<td>${a.presentCondition}</td>
+									</tr>
+									<tr>
+										<td><label>onset</label></td>
+										<td>${a.onset}</td>
+									</tr>
+									<tr>
+										<td><label>Duration</label></td>
+										<td>${a.duration}</td>
+									</tr>
+								</table>
+							</div>
+						</a>
+
+					</c:forEach>
 				</div>
 				<div class="col-sm-6 pre-scrollable">
-					Treatment sittings to come here
+					<div class="row">
+						<div class="col-sm-12">
+							<form:form method="POST" commandName="sitting"
+								cssClass="form-horizontal">
+
+								<spring:bind path="treatment">
+									<div class="form-group ${status.error ? 'has-error' : ''}">
+										<form:label path="treatment" cssClass="col-sm-2 control-label">Sitting:</form:label>
+										<div class="col-sm-6">
+											<form:select path="treatment" cssClass="form-control"
+												id="treatment">
+												<option value=""></option>
+												<c:forEach var="t" items="${treatments}">
+													<form:option value="${t.name}">${t.name} - ${t.fees} </form:option>
+												</c:forEach>
+											</form:select>
+										</div>
+										<div class="col-sm-4">
+											<form:errors path="treatment" cssClass="text-danger"
+												class="control-label" />
+										</div>
+									</div>
+								</spring:bind>
+								<form:input path="fees" value="${fees}" cssClass="form-control" maxlength="20" />
+
+							</form:form>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

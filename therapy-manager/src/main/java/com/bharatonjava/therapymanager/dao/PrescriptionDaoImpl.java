@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Repository;
 
 import com.bharatonjava.therapymanager.domain.Prescription;
+import com.bharatonjava.therapymanager.domain.Treatment;
 
 @Repository(value = "prescriptionDao")
 public class PrescriptionDaoImpl implements PrescriptionDao {
@@ -70,6 +71,14 @@ public class PrescriptionDaoImpl implements PrescriptionDao {
 		}, new BeanPropertyRowMapper<Prescription>());
 		
 		return prescriptions;
+	}
+
+	@Override
+	public List<Treatment> getTreatments() {
+		List<Treatment> treatments = null;
+		String sql = "SELECT TREATMENT_ID, TREATMENT_NAME,FEE FROM TREATMENTS ORDER BY TREATMENT_NAME ASC";
+		treatments = this.jdbcTemplate.query(sql, new TreatmentRowMapper());
+		return treatments;
 	}
 
 }

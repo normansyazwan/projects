@@ -17,6 +17,7 @@ import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.domain.Prescription;
+import com.bharatonjava.therapymanager.domain.Treatment;
 import com.bharatonjava.therapymanager.utils.Constants;
 
 @Service
@@ -102,8 +103,15 @@ public class PatientService {
 		return this.patientDao.createNewAssesment(assesment);
 	}
 	
+	@Transactional
 	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly){
 		List<Assesment> assesments = this.patientDao.getAssessmentsForPatient(patientId, activeOnly);
 		return assesments;
+	}
+	
+	@Transactional
+	public List<Treatment> getTreatments() {
+		List<Treatment> treatments = this.prescriptionDao.getTreatments();
+		return treatments;
 	}
 }
