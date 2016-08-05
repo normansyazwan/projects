@@ -114,4 +114,9 @@ public class PatientService {
 		List<Treatment> treatments = this.prescriptionDao.getTreatments();
 		return treatments;
 	}
+	
+	@Transactional
+	public Treatment getTreatment(Long treatmentId){
+		return this.prescriptionDao.getTreatment(treatmentId);
+	}
 }

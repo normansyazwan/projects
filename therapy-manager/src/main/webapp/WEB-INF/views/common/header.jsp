@@ -32,8 +32,7 @@
 					aria-expanded="false">Patient<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/patients/register" />" >Registeration</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
+						<li><a href="#">All Patients</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 						<li role="separator" class="divider"></li>

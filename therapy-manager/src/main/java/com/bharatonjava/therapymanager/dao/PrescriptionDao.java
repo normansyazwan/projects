@@ -14,4 +14,5 @@ public interface PrescriptionDao {
 	
 	// treatment related methods
 	public List<Treatment> getTreatments();
+	public Treatment getTreatment(Long treatmentId);
 }
