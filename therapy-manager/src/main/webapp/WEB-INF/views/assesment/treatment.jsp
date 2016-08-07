@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="th" uri="http://tomcat.apache.org/therapy-taglib" %>
+<%@ taglib prefix="th" uri="http://tomcat.apache.org/therapy-taglib"%>
 
 <div class="page-header">
 	<h3>Treatment</h3>
@@ -44,9 +44,10 @@
 
 		<div class="row">
 			<div class="col-sm-12 pre-scrollable">
-				<div class="col-sm-6 pre-scrollable" style="height:500px;">
+				<div class="col-sm-6 pre-scrollable" style="height: 500px;">
 					<c:forEach items="${assesments}" var="a">
-						<a href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
+						<a
+							href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
 							<th:assessment assessment="${a}" />
 						</a>
 					</c:forEach>
@@ -54,31 +55,27 @@
 				<div class="col-sm-6 pre-scrollable">
 					<div class="row">
 						<div class="col-sm-12">
-							<form:form method="POST" commandName="sitting"
-								cssClass="form-horizontal">
+							<div class="alert-danger">${assessmentNotSelected}</div>
+						</div>
+						<div class="col-sm-12">
 
-								<spring:bind path="treatment">
-									<div class="form-group ${status.error ? 'has-error' : ''}">
-										<form:label path="treatment" cssClass="col-sm-2 control-label">Sitting:</form:label>
-										<div class="col-sm-6">
-											<form:select path="treatment" cssClass="form-control"
-												id="treatment">
-												<option value=""></option>
-												<c:forEach var="t" items="${treatments}">
-													<form:option value="${t.name}">${t.name} - ${t.fees} </form:option>
-												</c:forEach>
-											</form:select>
-										</div>
-										<div class="col-sm-4">
-											<form:errors path="treatment" cssClass="text-danger"
-												class="control-label" />
-										</div>
-										<input type="submit" value="Add" class="btn btn-success" />
+							<form method="POST" class="form-horizontal">
+
+								<div class="form-group ${status.error ? 'has-error' : ''}">
+									<label class="col-sm-2 control-label">Sitting:</label>
+									<div class="col-sm-7">
+										<select id="treatmentId" name="treatmentId" class="form-control">
+											<option value="">---- select ----</option>
+											<c:forEach var="t" items="${treatments}">
+												<option value="${t.treatmentId}">${t.name}-
+													${t.fees}</option>
+											</c:forEach>
+										</select>
 									</div>
-								</spring:bind>
-								<form:input path="fees" value="${fees}" cssClass="form-control" maxlength="20" />
-								
-							</form:form>
+									<input type="submit" value="Add" class="btn btn-success" />
+								</div>
+
+							</form>
 
 						</div>
 					</div>

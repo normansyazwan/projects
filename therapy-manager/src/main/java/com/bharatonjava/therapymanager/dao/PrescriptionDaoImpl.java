@@ -84,7 +84,7 @@ public class PrescriptionDaoImpl implements PrescriptionDao {
 	@Override
 	public Treatment getTreatment(Long treatmentId){
 		String sql = "SELECT TREATMENT_ID, TREATMENT_NAME,FEE FROM TREATMENTS WHERE TREATMENT_ID=?";
-		Treatment t = (Treatment) this.jdbcTemplate.query(sql, new TreatmentRowMapper());
+		Treatment t = (Treatment) this.jdbcTemplate.queryForObject(sql, new TreatmentRowMapper(), new Object[]{treatmentId});
 		return t;
 	}
 	

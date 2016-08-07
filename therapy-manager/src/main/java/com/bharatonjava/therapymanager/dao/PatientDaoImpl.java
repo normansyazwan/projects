@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.Patient;
+import com.bharatonjava.therapymanager.domain.Sitting;
 
 @Repository
 public class PatientDaoImpl implements PatientDao{
@@ -280,5 +281,30 @@ public class PatientDaoImpl implements PatientDao{
 		assesments = this.jdbcTemplate.query(sql, args, new AssesmentRowMapper());
 		
 		return assesments;
+	}
+	
+	
+	@Override
+	public int addNewSittingToAssessment(Sitting sitting){
+		String sql = "INSERT INTO SITTINGS(ASSESMENT_ID,TREATMENT,FEE,CREATED_DATE)"
+				+ " VALUES (?,?,?,?)";
+		int count = 0;
+		
+		GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+		count = this.jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)
+					throws SQLException {
+				PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				ps.setLong(1, sitting.getAssessmentId());
+				ps.setString(2, sitting.getTreatment());
+				ps.setDouble(3, sitting.getFees());
+				ps.setDate(4, new java.sql.Date(sitting.getCreatedDate().getTime()));
+				return ps;
+			}
+		}, generatedKeyHolder);
+		
+		return count;
 	}
 }

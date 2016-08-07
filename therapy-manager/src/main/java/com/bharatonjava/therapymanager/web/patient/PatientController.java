@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -52,7 +53,7 @@ public class PatientController {
 	public void setPatientService(PatientService patientService) {
 		this.patientService = patientService;
 	}
-	
+
 	@Autowired
 	public void setAssesmentValidator(AssesmentValidator assesmentValidator) {
 		this.assesmentValidator = assesmentValidator;
@@ -125,7 +126,6 @@ public class PatientController {
 		return mav;
 	}
 
-	
 	@RequestMapping(value = "/{patientId}/profile", method = RequestMethod.GET)
 	public ModelAndView patientProfile(@PathVariable("patientId") Long patientId) {
 
@@ -137,7 +137,6 @@ public class PatientController {
 		return mav;
 	}
 
-	
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String preparePatientEditForm(@PathVariable("id") Long patientId,
 			Model model) {
@@ -157,8 +156,9 @@ public class PatientController {
 			ModelMap model) {
 
 		logger.info("patient update: {}", patient);
-		
-		if (patientId != null && patientId > 0L && patientId.equals(patient.getPatientId())) {
+
+		if (patientId != null && patientId > 0L
+				&& patientId.equals(patient.getPatientId())) {
 			patientService.updatePatient(patient);
 			patient = null;
 			patient = this.patientService.getPatientById(patientId);
@@ -166,13 +166,13 @@ public class PatientController {
 			logger.error(
 					"Unexpected value of patientId in URL in patient edit form: {} and patient record was {}",
 					patientId, patient);
-			List<HospitalEnum> bloodGroups = this.patientService.getBloodGroups();
+			List<HospitalEnum> bloodGroups = this.patientService
+					.getBloodGroups();
 			model.addAttribute("bloodGroups", bloodGroups);
 			model.addAttribute("patient", patient);
 			return Constants.VIEW_PATIENT_REGISTER_FORM;
 		}
 
-		
 		model.addAttribute("patient", patient);
 		return Constants.VIEW_PATIENT_PROFILE;
 
@@ -214,7 +214,6 @@ public class PatientController {
 		return Constants.VIEW_PATIENT_PRESCRIPTION_FORM;
 	}
 
-	
 	@RequestMapping(value = "/{id}/assesment", method = RequestMethod.GET)
 	public String showAssesmentForm(
 			@PathVariable("id") Long patientId,
@@ -228,8 +227,7 @@ public class PatientController {
 
 		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
 	}
-	
-	
+
 	@RequestMapping(value = "/{id}/assesment", method = RequestMethod.POST)
 	public String processAssesmentForm(
 			@ModelAttribute("assesment") Assesment assesment,
@@ -240,59 +238,100 @@ public class PatientController {
 
 		logger.info("assesmentId: action = {}", action);
 		logger.info("patientId:{}, assesment: {}", patientId, assesment);
-		
+
 		assesmentValidator.validate(assesment, result);
-		
+
 		if (result.hasErrors()) {
 			logger.info("Errors in assesment form:  {} ", result.getAllErrors());
 			return Constants.VIEW_PATIENT_ASSESMENT_FORM;
 		}
-		// save assessment record to database and send user to add treatment page.
+		// save assessment record to database and send user to add treatment
+		// page.
 		assesment.setPatientId(patientId);
-		Long persistedAssesmentId = patientService.createNewAssesment(assesment);
+		Long persistedAssesmentId = patientService
+				.createNewAssesment(assesment);
 		logger.info("Assesment saved with assesmentId:{}", persistedAssesmentId);
-		
-		return "redirect:/patients/"+patientId+"/treatment";
+
+		return "redirect:/patients/" + patientId + "/treatment";
 	}
-	
-	
+
 	@RequestMapping(value = "/{id}/treatment", method = RequestMethod.GET)
 	public ModelAndView patientTreatmentForm(
 			@PathVariable("id") Long patientId,
 			@RequestParam(value = "assessmentId", defaultValue = "0", required = false) Long assessmentId,
 			@RequestParam(value = "sittings", defaultValue = "0", required = false) String sittings,
 			ModelAndView mav, BindingResult result) {
-		
+
 		// fetch patient
 		Patient p = patientService.getPatientById(patientId);
 		mav.addObject("patient", p);
-		
+
 		// fetch active assessments
-		List<Assesment> assesments = this.patientService.getAssessmentsForPatient(patientId, true);
+		List<Assesment> assesments = this.patientService
+				.getAssessmentsForPatient(patientId, true);
 		mav.addObject("assesments", assesments);
-		
+
+		// treatments for dropdown
 		List<Treatment> treatments = this.patientService.getTreatments();
 		mav.addObject("treatments", treatments);
 		logger.info("{}", treatments);
+
+		//mav.addObject("sitting", new Sitting());
+
+		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
+
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/{id}/treatment", method = RequestMethod.POST)
+	public ModelAndView processPatientTreatmentForm(
+			@PathVariable("id") Long patientId,
+			@RequestParam(value = "assessmentId", defaultValue = "0", required = false) Long assessmentId,
+			@RequestParam(value = "sittings", defaultValue = "0", required = false) String sittings,
+			@RequestParam("treatmentId" ) Long treatmentId, ModelAndView mav,
+			BindingResult result) {
+
+		// fetch patient
+		Patient p = patientService.getPatientById(patientId);
+		mav.addObject("patient", p);
+
+		// fetch active assessments
+		List<Assesment> assesments = this.patientService
+				.getAssessmentsForPatient(patientId, true);
+		mav.addObject("assesments", assesments);
+
+		// treatments for dropdown
+		List<Treatment> treatments = this.patientService.getTreatments();
+		mav.addObject("treatments", treatments);
+
+		// do some validation
+		if(assessmentId == 0L){
+			mav.addObject("assessmentNotSelected", "Please select Assessment from left panel.");
+			logger.info("Assessment was not selected.");
+		}else{
+			//Add treatment to assessment
+			//sitting.setAssessmentId(assessmentId);
+			//logger.info("Adding sitting to Assessment: {}", sitting);
+			this.patientService.addNewSittingToAssessment(assessmentId, treatmentId);
+		}
 		
-		mav.addObject("sitting", new Sitting());
 		
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
-		
 		return mav;
-	
-	
 	}
-	
+
 	/**
 	 * This method is for gettting a treatment json for dynamic population.
+	 * 
 	 * @return json string for Treatment
 	 */
-	 @RequestMapping(value = "/treatment/{id}", method = RequestMethod.POST)
-	public @ResponseBody Treatment getTreatmentById(@ModelAttribute("id") Long treatmentId){
-		
-		 Treatment t = this.patientService.getTreatment(treatmentId);
-		 return t;
+	@RequestMapping(value = "/treatment/{id}", method = RequestMethod.POST)
+	public @ResponseBody Treatment getTreatmentById(
+			@ModelAttribute("id") Long treatmentId) {
+
+		Treatment t = this.patientService.getTreatment(treatmentId);
+		return t;
 	}
-	
+
 }

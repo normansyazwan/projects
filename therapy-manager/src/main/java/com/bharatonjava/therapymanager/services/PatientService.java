@@ -1,5 +1,6 @@
 package com.bharatonjava.therapymanager.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.domain.Prescription;
+import com.bharatonjava.therapymanager.domain.Sitting;
 import com.bharatonjava.therapymanager.domain.Treatment;
 import com.bharatonjava.therapymanager.utils.Constants;
 
@@ -118,5 +120,16 @@ public class PatientService {
 	@Transactional
 	public Treatment getTreatment(Long treatmentId){
 		return this.prescriptionDao.getTreatment(treatmentId);
+	}
+	
+	public int addNewSittingToAssessment(Long assessmentId, Long treatmentId){
+		Treatment t = this.prescriptionDao.getTreatment(treatmentId);
+		Sitting s = new Sitting();
+		s.setAssessmentId(assessmentId);
+		s.setFees(t.getFees());
+		s.setTreatment(t.getName());
+		s.setCreatedDate(new Date());
+		int count = this.patientDao.addNewSittingToAssessment(s);
+		return count;
 	}
 }

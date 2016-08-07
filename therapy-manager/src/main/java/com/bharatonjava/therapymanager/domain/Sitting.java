@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Sitting {
 	
+	private Long assessmentId;
 	private Long sittingId;
 	private String treatment;
 	private Double fees;
@@ -14,6 +15,14 @@ public class Sitting {
 	public Sitting() {
 	}
 
+	public Long getAssessmentId() {
+		return assessmentId;
+	}
+	
+	public void setAssessmentId(Long assessmentId) {
+		this.assessmentId = assessmentId;
+	}
+	
 	public Long getSittingId() {
 		return sittingId;
 	}
@@ -56,9 +65,10 @@ public class Sitting {
 
 	@Override
 	public String toString() {
-		return "Sitting [sittingId=" + sittingId + ", treatment=" + treatment
-				+ ", fees=" + fees + ", createdDate=" + createdDate
-				+ ", updatedDate=" + updatedDate + "]";
+		return "Sitting [assessmentId=" + assessmentId + ", sittingId="
+				+ sittingId + ", treatment=" + treatment + ", fees=" + fees
+				+ ", createdDate=" + createdDate + ", updatedDate="
+				+ updatedDate + "]";
 	}
 	
 }

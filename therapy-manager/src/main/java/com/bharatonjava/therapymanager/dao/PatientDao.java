@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.Patient;
+import com.bharatonjava.therapymanager.domain.Sitting;
 
 public interface PatientDao {
 
@@ -17,4 +18,5 @@ public interface PatientDao {
 	//assesment
 	public Long createNewAssesment(Assesment assesment);
 	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly);
+	public int addNewSittingToAssessment(Sitting sitting);
 }
