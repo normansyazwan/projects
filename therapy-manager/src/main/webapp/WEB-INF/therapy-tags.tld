@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"  
+        				"http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>assessment</short-name>
+	<uri>http://tomcat.apache.org/therapy-taglib</uri>
+
+	<tag>
+		<name>assessment</name>
+		<tag-class>com.bharatonjava.therapymanager.web.tags.TherapyTagHandler</tag-class>
+		<body-content>empty</body-content>
+		<description>Renders an Assessment in a rectangular box.</description>
+		<attribute>
+			<name>assessment</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.bharatonjava.therapymanager.domain.Assesment</type>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<name>fontSize</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+			<description>font size within the tag</description>
+		</attribute>
+	</tag>
+</taglib>  

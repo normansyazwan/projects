@@ -6,6 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="th" uri="http://tomcat.apache.org/therapy-taglib" %>
 
 <div class="page-header">
 	<h3>Treatment</h3>
@@ -43,32 +44,11 @@
 
 		<div class="row">
 			<div class="col-sm-12 pre-scrollable">
-				<div class="col-sm-6 pre-scrollable">
+				<div class="col-sm-6 pre-scrollable" style="height:500px;">
 					<c:forEach items="${assesments}" var="a">
-
-						<a
-							href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
-							<div class="well well-sm"
-								title="${a.presentCondition},${a.onset},${a.duration}"
-								data-toggle="tooltip" data-placement="bottom">
-								<table
-									class="table table-hover table-responsive table-striped table-condensed table-sm">
-									<tr>
-										<td><label>Present Condition</label></td>
-										<td>${a.presentCondition}</td>
-									</tr>
-									<tr>
-										<td><label>onset</label></td>
-										<td>${a.onset}</td>
-									</tr>
-									<tr>
-										<td><label>Duration</label></td>
-										<td>${a.duration}</td>
-									</tr>
-								</table>
-							</div>
+						<a href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
+							<th:assessment assessment="${a}" />
 						</a>
-
 					</c:forEach>
 				</div>
 				<div class="col-sm-6 pre-scrollable">
@@ -93,10 +73,11 @@
 											<form:errors path="treatment" cssClass="text-danger"
 												class="control-label" />
 										</div>
+										<input type="submit" value="Add" class="btn btn-success" />
 									</div>
 								</spring:bind>
 								<form:input path="fees" value="${fees}" cssClass="form-control" maxlength="20" />
-
+								
 							</form:form>
 
 						</div>
