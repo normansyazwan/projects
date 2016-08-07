@@ -15,6 +15,8 @@ public interface PatientDao {
 	// search methods
 	public List<Patient> searchPatients(String query);
 	
+	public List<Patient> getPatients(Long from, Long count);
+	
 	//assesment
 	public Long createNewAssesment(Assesment assesment);
 	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly);

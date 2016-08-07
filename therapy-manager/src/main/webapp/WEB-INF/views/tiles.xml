@@ -76,5 +76,11 @@
 		<put-attribute name="title" value="History" />
 		<put-attribute name="body" value="/WEB-INF/views/patient/patientHistory.jsp" />
 	</definition>
+		
+	<definition name="patients.list" extends="layout.fullpage">	
+		<put-attribute name="title" value="Patients" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientsList.jsp" />
+	</definition>
+	
 
 </tiles-definitions>

@@ -31,8 +31,8 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Patient<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/patients/register" />" >Registeration</a></li>
-						<li><a href="#">All Patients</a></li>
+						<li><a href="<c:url value="/patients/register" />" >Registration</a></li>
+						<li><a href="<c:url value="/patients/?page=1" />">All Patients</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="#">Separated link</a></li>
 						<li role="separator" class="divider"></li>

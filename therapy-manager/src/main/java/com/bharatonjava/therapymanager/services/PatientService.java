@@ -77,6 +77,27 @@ public class PatientService {
 	}
 	
 	@Transactional
+	public List<Patient> getPatients(Long pageNumber){
+		
+		List<Patient> patients = null;
+		Long from = 0L;
+		if(pageNumber == 1L){
+			from = 0L;
+		}else{
+			//pageNumber = pageNumber - 1L;
+			from = (pageNumber * Constants.PAGE_SIZE) - Constants.PAGE_SIZE + 1;
+		}
+		
+		Long count = Constants.PAGE_SIZE;
+		
+		logger.info("Fetching {} patients from {}", count, from);
+		
+		patients = this.patientDao.getPatients(from, count);
+		logger.info("fetched {} records for page {}", patients.size(), pageNumber);
+		return patients;
+	}
+	
+	@Transactional
 	public List<Patient> searchPatients(String query){
 		
 		List<Patient> patients = patientDao.searchPatients(query);

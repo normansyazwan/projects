@@ -11,8 +11,11 @@ public interface Constants {
 	public static final String VIEW_PATIENT_ASSESMENT_FORM = "patient.assesment.form";
 	public static final String VIEW_PATIENT_TREATMENT_VIEW = "patient.treatment.page";
 	public static final String VIEW_PATIENT_HISTORY = "patient.history.page";
+	public static final String VIEW_ALL_PATIENTS = "patients.list";
 	
 
+	public static final Long PAGE_SIZE = 20L;
+	
 	String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 

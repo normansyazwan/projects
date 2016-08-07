@@ -80,6 +80,15 @@ public class PatientController {
 		return "error";
 	}
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView listPatients(@RequestParam("page") Long pageNumber, ModelAndView mav) {
+		
+		List<Patient> patients = this.patientService.getPatients(pageNumber);
+		mav.addObject("patients", patients);
+		mav.setViewName(Constants.VIEW_ALL_PATIENTS);
+		return mav;
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView registerPatient() {
 
