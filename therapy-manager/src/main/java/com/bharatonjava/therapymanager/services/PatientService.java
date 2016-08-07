@@ -122,6 +122,7 @@ public class PatientService {
 		return this.prescriptionDao.getTreatment(treatmentId);
 	}
 	
+	@Transactional
 	public int addNewSittingToAssessment(Long assessmentId, Long treatmentId){
 		Treatment t = this.prescriptionDao.getTreatment(treatmentId);
 		Sitting s = new Sitting();
@@ -131,5 +132,10 @@ public class PatientService {
 		s.setCreatedDate(new Date());
 		int count = this.patientDao.addNewSittingToAssessment(s);
 		return count;
+	}
+	
+	@Transactional
+	public List<Sitting> getSittingsForAssessment(Long assessmentId){
+		return this.patientDao.getSittingsForAssessment(assessmentId);
 	}
 }

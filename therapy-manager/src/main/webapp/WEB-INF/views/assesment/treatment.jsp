@@ -64,7 +64,8 @@
 								<div class="form-group ${status.error ? 'has-error' : ''}">
 									<label class="col-sm-2 control-label">Sitting:</label>
 									<div class="col-sm-7">
-										<select id="treatmentId" name="treatmentId" class="form-control">
+										<select id="treatmentId" name="treatmentId"
+											class="form-control">
 											<option value="">---- select ----</option>
 											<c:forEach var="t" items="${treatments}">
 												<option value="${t.treatmentId}">${t.name}-
@@ -76,6 +77,18 @@
 								</div>
 
 							</form>
+							<hr />
+
+							<%--  --%>
+							<c:forEach var="s" items="${sittings}">
+								<table class="table table-condensed">
+									<tr>
+										<td class="text-left small" style="width:60px;">${s.createdDate}</td>
+										<td class="text-left small">${s.treatment}</td>
+										<td class="text-right small" style="width:60px;">${s.fees}</td>
+									</tr>
+								</table>
+							</c:forEach>
 
 						</div>
 					</div>

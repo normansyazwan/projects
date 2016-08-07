@@ -307,4 +307,11 @@ public class PatientDaoImpl implements PatientDao{
 		
 		return count;
 	}
+	
+	public List<Sitting> getSittingsForAssessment(Long assessmentId){
+		String sql = "SELECT SITTING_ID,ASSESMENT_ID,TREATMENT,FEE,CREATED_DATE FROM SITTINGS WHERE ASSESMENT_ID=?"
+				+ " ORDER BY CREATED_DATE, SITTING_ID DESC";
+		List<Sitting> sittings = this.jdbcTemplate.query(sql, new SittingRowMapper(), new Object[]{assessmentId});
+		return sittings;
+	}
 }

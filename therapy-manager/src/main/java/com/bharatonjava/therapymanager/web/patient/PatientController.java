@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -28,7 +27,6 @@ import com.bharatonjava.therapymanager.domain.Assesment;
 import com.bharatonjava.therapymanager.domain.HospitalEnum;
 import com.bharatonjava.therapymanager.domain.Patient;
 import com.bharatonjava.therapymanager.domain.Prescription;
-import com.bharatonjava.therapymanager.domain.Sitting;
 import com.bharatonjava.therapymanager.domain.Treatment;
 import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.utils.Constants;
@@ -276,7 +274,8 @@ public class PatientController {
 		mav.addObject("treatments", treatments);
 		logger.info("{}", treatments);
 
-		//mav.addObject("sitting", new Sitting());
+		// sittings
+		mav.addObject("sittings", this.patientService.getSittingsForAssessment(assessmentId));
 
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
 
@@ -311,11 +310,12 @@ public class PatientController {
 			logger.info("Assessment was not selected.");
 		}else{
 			//Add treatment to assessment
-			//sitting.setAssessmentId(assessmentId);
-			//logger.info("Adding sitting to Assessment: {}", sitting);
 			this.patientService.addNewSittingToAssessment(assessmentId, treatmentId);
+			
 		}
 		
+		// sittings
+		mav.addObject("sittings", this.patientService.getSittingsForAssessment(assessmentId));
 		
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
 		return mav;

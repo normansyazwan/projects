@@ -19,4 +19,5 @@ public interface PatientDao {
 	public Long createNewAssesment(Assesment assesment);
 	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly);
 	public int addNewSittingToAssessment(Sitting sitting);
+	public List<Sitting> getSittingsForAssessment(Long assessmentId);
 }
