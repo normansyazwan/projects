@@ -3,9 +3,7 @@ package com.bharatonjava.therapymanager.web.tags;
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.JspFragment;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import com.bharatonjava.therapymanager.domain.Assesment;
@@ -62,7 +60,7 @@ public class TherapyTagHandler extends SimpleTagSupport {
 			}
 			
 			PageContext context = (PageContext) getJspContext();
-			JspWriter out = getJspContext().getOut();
+			//JspWriter out = getJspContext().getOut();
 			context.getRequest().setAttribute("a", assessment);
 			context.getRequest().setAttribute("width", width);
 			context.getRequest().setAttribute("height", height);

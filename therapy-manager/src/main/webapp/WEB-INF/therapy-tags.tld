@@ -5,7 +5,7 @@
 <taglib>
 	<tlib-version>1.0</tlib-version>
 	<jsp-version>1.2</jsp-version>
-	<short-name>assessment</short-name>
+	<short-name>therapy</short-name>
 	<uri>http://tomcat.apache.org/therapy-taglib</uri>
 
 	<tag>
@@ -34,6 +34,19 @@
 			<required>false</required>
 			<type>java.lang.Integer</type>
 			<description>font size within the tag</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>patientDetailsBar</name>
+		<tag-class>com.bharatonjava.therapymanager.web.tags.PatientDetailsBarTagHandler</tag-class>
+		<body-content>empty</body-content>
+		<description>Patient short profile bar.</description>
+		<attribute>
+			<name>patient</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.bharatonjava.therapymanager.domain.Patient</type>
 		</attribute>
 	</tag>
 </taglib>  

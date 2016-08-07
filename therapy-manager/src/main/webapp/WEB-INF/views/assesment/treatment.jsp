@@ -13,27 +13,11 @@
 	<h5>Add treatment for ailment</h5>
 </div>
 
+<%-- Renders a bar at top of page with patient details --%>
+<th:patientDetailsBar patient="${patient}" />
+
 <div class="container-fulid">
 	<div class="row">
-		<div class="col-sm-12">
-			<table class="gridtable" style="width: 100%;">
-				<tr>
-					<td width="100"><label>Patient Name:</label></td>
-					<td>${patient.firstName}&nbsp;${patient.lastName}</td>
-					<td width="60"><label>Gender:</label></td>
-					<td>${patient.gender}</td>
-					<td width="40"><label>Age:</label></td>
-					<td>${patient.age}</td>
-					<td width="90"><label>Blood Group:</label></td>
-					<td>${patient.bloodGroup}</td>
-					<td width="120"><label>Existing Ailments:</label></td>
-					<td>${patient.existingAilments}</td>
-					<td width="60"><label>Allergies:</label></td>
-					<td>${patient.allergies}</td>
-				</tr>
-			</table>
-
-		</div>
 
 		<div class="row">
 			<div class="col-sm-12">
@@ -80,12 +64,14 @@
 							<hr />
 
 							<%--  --%>
-							<c:forEach var="s" items="${sittings}">
+							<c:forEach var="s" items="${sittings}" varStatus="status">
 								<table class="table table-condensed">
 									<tr>
-										<td class="text-left small" style="width:60px;">${s.createdDate}</td>
+										<td class="text-left small" style="width: 60px;"><fmt:formatDate
+												value="${s.createdDate}" var="dateString"
+												pattern="dd-MMM-yyyy" /> ${dateString}</td>
 										<td class="text-left small">${s.treatment}</td>
-										<td class="text-right small" style="width:60px;">${s.fees}</td>
+										<td class="text-right small" style="width: 60px;">${s.fees}</td>
 									</tr>
 								</table>
 							</c:forEach>

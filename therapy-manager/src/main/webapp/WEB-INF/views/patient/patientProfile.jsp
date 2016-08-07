@@ -158,6 +158,14 @@
 						class="btn btn-default btn-sm" title="Delete this Patient"><span class="glyphicon glyphicon-trash"></span></a>
 					<a href='<c:url value="/patients/${patient.patientId}/prescriptions" />'
 						class="btn btn-default btn-sm" title="Prescription History"><span class="glyphicon glyphicon-list-alt"></span></a>
+						
+					<%-- action buttons  --%>
+					<div class="btn-group">
+						<a href='<c:url value="/patients/${patient.patientId}/edit" />'
+						class="btn btn-default btn-sm" title="Edit this Patient">Edit Profile</a>
+						<a href='<c:url value="/patients/${patient.patientId}/treatment" />'
+						class="btn btn-default btn-sm" title="Add Sitting">Add Sitting</a>
+					</div>	
 				</div>
 			</div>
 		</div>
