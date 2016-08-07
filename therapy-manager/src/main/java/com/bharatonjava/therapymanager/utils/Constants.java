@@ -10,6 +10,7 @@ public interface Constants {
 	public static final String VIEW_PATIENT_PRESCRIPTION_FORM = "patient.prescription.form";
 	public static final String VIEW_PATIENT_ASSESMENT_FORM = "patient.assesment.form";
 	public static final String VIEW_PATIENT_TREATMENT_VIEW = "patient.treatment.page";
+	public static final String VIEW_PATIENT_HISTORY = "patient.history.page";
 	
 
 	String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

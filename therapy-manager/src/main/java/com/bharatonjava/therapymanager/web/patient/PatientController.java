@@ -275,7 +275,8 @@ public class PatientController {
 		logger.info("{}", treatments);
 
 		// sittings
-		mav.addObject("sittings", this.patientService.getSittingsForAssessment(assessmentId));
+		mav.addObject("sittings",
+				this.patientService.getSittingsForAssessment(assessmentId));
 
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
 
@@ -288,7 +289,7 @@ public class PatientController {
 			@PathVariable("id") Long patientId,
 			@RequestParam(value = "assessmentId", defaultValue = "0", required = false) Long assessmentId,
 			@RequestParam(value = "sittings", defaultValue = "0", required = false) String sittings,
-			@RequestParam("treatmentId" ) Long treatmentId, ModelAndView mav,
+			@RequestParam("treatmentId") Long treatmentId, ModelAndView mav,
 			BindingResult result) {
 
 		// fetch patient
@@ -305,19 +306,31 @@ public class PatientController {
 		mav.addObject("treatments", treatments);
 
 		// do some validation
-		if(assessmentId == 0L){
-			mav.addObject("assessmentNotSelected", "Please select Assessment from left panel.");
+		if (assessmentId == 0L) {
+			mav.addObject("assessmentNotSelected",
+					"Please select Assessment from left panel.");
 			logger.info("Assessment was not selected.");
-		}else{
-			//Add treatment to assessment
-			this.patientService.addNewSittingToAssessment(assessmentId, treatmentId);
-			
+		} else {
+			// Add treatment to assessment
+			this.patientService.addNewSittingToAssessment(assessmentId,
+					treatmentId);
+
 		}
-		
+
 		// sittings
-		mav.addObject("sittings", this.patientService.getSittingsForAssessment(assessmentId));
-		
+		mav.addObject("sittings",
+				this.patientService.getSittingsForAssessment(assessmentId));
+
 		mav.setViewName(Constants.VIEW_PATIENT_TREATMENT_VIEW);
+		return mav;
+	}
+
+	@RequestMapping(value = "/{id}/history", method = RequestMethod.GET)
+	public ModelAndView viewPatientHistory(@PathVariable("id") Long patientId,
+			ModelAndView mav) {
+		Patient p = this.patientService.getPatientById(patientId);
+		mav.addObject("patient", p);
+		mav.setViewName(Constants.VIEW_PATIENT_HISTORY);
 		return mav;
 	}
 

@@ -72,4 +72,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/assesment/treatment.jsp" />
 	</definition>	
 
+	<definition name="patient.history.page" extends="layout.fullpage">	
+		<put-attribute name="title" value="History" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientHistory.jsp" />
+	</definition>
+
 </tiles-definitions>
