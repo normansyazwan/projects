@@ -93,6 +93,12 @@ public class PatientService {
 		logger.info("Fetching {} patients from {}", count, from);
 		
 		patients = this.patientDao.getPatients(from, count);
+		
+		// fetch addresses for these patients
+		for(Patient p : patients){
+			p.setAddress(this.addressDao.getAddressById(p.getAddress().getAddressId()));
+		}
+		
 		logger.info("fetched {} records for page {}", patients.size(), pageNumber);
 		return patients;
 	}

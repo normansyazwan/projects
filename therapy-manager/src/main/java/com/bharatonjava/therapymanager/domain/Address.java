@@ -57,5 +57,9 @@ public class Address {
 				+ ", street=" + street + ", area=" + area + ", city=" + city
 				+ "]";
 	}
+	
+	public String getString(){
+		return ""+apartment+"\n"+street+"\n"+area+"\n"+city;
+	}
 
 }
