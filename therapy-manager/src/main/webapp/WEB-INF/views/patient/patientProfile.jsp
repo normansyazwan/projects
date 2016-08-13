@@ -163,10 +163,13 @@
 					<div class="btn-group">
 						<a href='<c:url value="/patients/${patient.patientId}/edit" />'
 						class="btn btn-default btn-sm" title="Edit this Patient">Edit Profile</a>
+						<a href='<c:url value="/patients/${patient.patientId}/assesment" />'
+						class="btn btn-default btn-sm" title="New Assessment">New Assessment</a>
+						
 						<a href='<c:url value="/patients/${patient.patientId}/treatment" />'
 						class="btn btn-default btn-sm" title="Add Sitting">Add Sitting</a>
 						<a href='<c:url value="/patients/${patient.patientId}/history" />'
-						class="btn btn-default btn-sm" title="Add Sitting">History</a>
+						class="btn btn-default btn-sm" title="Patient History">History</a>
 					</div>	
 				</div>
 			</div>

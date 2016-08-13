@@ -33,6 +33,8 @@
 				
 				<div class="col-sm-6" >
 					<span class="badge">Total ${fn:length(assesments)} Assessments</span>
+					<br/>
+					<br/>
 					<c:forEach items="${assesments}" var="a">
 						<a
 							href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
@@ -69,6 +71,8 @@
 
 							<%--  --%>
 							<span class="badge">Total ${fn:length(sittings)} Sittings</span>
+							<br/>
+							<br/>
 							<ul class="list-group">
 							<c:forEach var="s" items="${sittings}" varStatus="status">
 									<li class="list-group-item">
