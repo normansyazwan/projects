@@ -7,6 +7,7 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="th" uri="http://tomcat.apache.org/therapy-taglib"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="page-header">
 	<h3>Treatment</h3>
@@ -16,7 +17,8 @@
 <%-- Renders a bar at top of page with patient details --%>
 <th:patientDetailsBar patient="${patient}" />
 
-<div class="container-fulid">
+<%-- height of a typical laptop screen is 700px; --%>
+<div class="container-fulid" style="height:540px">
 	<div class="row">
 
 		<div class="row">
@@ -27,8 +29,10 @@
 
 
 		<div class="row">
-			<div class="col-sm-12 pre-scrollable">
-				<div class="col-sm-6 pre-scrollable" style="height: 500px;">
+			<div class="col-sm-12" >
+				
+				<div class="col-sm-6" >
+					<span class="badge">Total ${fn:length(assesments)} Assessments</span>
 					<c:forEach items="${assesments}" var="a">
 						<a
 							href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
@@ -36,7 +40,7 @@
 						</a>
 					</c:forEach>
 				</div>
-				<div class="col-sm-6 pre-scrollable">
+				<div class="col-sm-6">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="alert-danger">${assessmentNotSelected}</div>
@@ -64,17 +68,18 @@
 							<hr />
 
 							<%--  --%>
+							<span class="badge">Total ${fn:length(sittings)} Sittings</span>
+							<ul class="list-group">
 							<c:forEach var="s" items="${sittings}" varStatus="status">
-								<table class="table table-condensed">
-									<tr>
-										<td class="text-left small" style="width: 60px;"><fmt:formatDate
-												value="${s.createdDate}" var="dateString"
-												pattern="dd-MMM-yyyy" /> ${dateString}</td>
-										<td class="text-left small">${s.treatment}</td>
-										<td class="text-right small" style="width: 60px;">${s.fees}</td>
-									</tr>
-								</table>
+									<li class="list-group-item">
+									<fmt:formatDate value="${s.createdDate}" var="dateString"
+												pattern="dd-MMM-yyyy" /> ${dateString}
+												
+									${s.treatment}
+									${s.fees}
+									</li>
 							</c:forEach>
+								</ul>
 
 						</div>
 					</div>
