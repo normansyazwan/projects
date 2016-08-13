@@ -1,6 +1,9 @@
 package com.bharatonjava.therapymanager.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 public class Assesment {
 
@@ -48,8 +51,11 @@ public class Assesment {
 	// audit fields
 	private Date createdDate;
 	private Date updatedDate;
+	
+	private List<Sitting> sittings;
 
 	public Assesment() {
+		this.sittings = new ArrayList<Sitting>();
 	}
 
 	public Long getAssesmentId() {
@@ -323,6 +329,14 @@ public class Assesment {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+	
+	public List<Sitting> getSittings() {
+		return sittings;
+	}
+	
+	public void setSittings(List<Sitting> sittings) {
+		this.sittings = sittings;
 	}
 
 	@Override
