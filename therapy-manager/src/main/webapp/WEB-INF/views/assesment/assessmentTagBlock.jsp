@@ -9,9 +9,11 @@
 <c:if test="${param.assessmentId eq a.assesmentId}">
 	<div class="well well-sm">
 </c:if>
-<table style="font-size: 0.9em; border-bottom: 1px;">
+<table style="font-size: 0.9em; border-bottom: 1px; width: 100%" border="1">
 	<tr>
 		<td style="margin: 2px;"><strong>Present Condition</strong></td>
+		<td style="padding-left: 10px;">${a.presentCondition}</td>
+		<td style="padding-left: 10px;">${a.presentCondition}</td>
 		<td style="padding-left: 10px;">${a.presentCondition}</td>
 	</tr>
 	<tr>

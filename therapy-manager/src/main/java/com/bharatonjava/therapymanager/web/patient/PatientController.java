@@ -275,7 +275,7 @@ public class PatientController {
 
 		// fetch active assessments
 		List<Assesment> assesments = this.patientService
-				.getAssessmentsForPatient(patientId, true);
+				.getAssessmentsForPatient(patientId, true, false);
 		mav.addObject("assesments", assesments);
 
 		// treatments for dropdown
@@ -307,7 +307,7 @@ public class PatientController {
 
 		// fetch active assessments
 		List<Assesment> assesments = this.patientService
-				.getAssessmentsForPatient(patientId, true);
+				.getAssessmentsForPatient(patientId, true, false);
 		mav.addObject("assesments", assesments);
 
 		// treatments for dropdown
@@ -339,21 +339,14 @@ public class PatientController {
 			ModelAndView mav) {
 		Patient p = this.patientService.getPatientById(patientId);
 		mav.addObject("patient", p);
+		// fetch assessments with sittings
+		List<Assesment> assessments = this.patientService.getAssessmentsForPatient(patientId, true, true);
+		
+		mav.addObject("assessments", assessments);
 		mav.setViewName(Constants.VIEW_PATIENT_HISTORY);
 		return mav;
 	}
 
-	/**
-	 * This method is for gettting a treatment json for dynamic population.
-	 * 
-	 * @return json string for Treatment
-	 */
-	@RequestMapping(value = "/treatment/{id}", method = RequestMethod.POST)
-	public @ResponseBody Treatment getTreatmentById(
-			@ModelAttribute("id") Long treatmentId) {
 
-		Treatment t = this.patientService.getTreatment(treatmentId);
-		return t;
-	}
 
 }

@@ -18,7 +18,7 @@
 <th:patientDetailsBar patient="${patient}" />
 
 <%-- height of a typical laptop screen is 700px; --%>
-<div class="container-fulid" style="height:540px">
+<div class="container-fulid" style="height: 540px">
 	<div class="row">
 
 		<div class="row">
@@ -29,12 +29,11 @@
 
 
 		<div class="row">
-			<div class="col-sm-12" >
-				
-				<div class="col-sm-6" >
-					<span class="badge">Total ${fn:length(assesments)} Assessments</span>
-					<br/>
-					<br/>
+			<div class="col-sm-12">
+
+				<div class="col-sm-6">
+					<span class="badge">Total ${fn:length(assesments)}
+						Assessments</span> <br /> <br />
 					<c:forEach items="${assesments}" var="a">
 						<a
 							href="<c:url value="/patients/${a.patientId}/treatment?assessmentId=${a.assesmentId}&sittings=list" />">
@@ -45,7 +44,16 @@
 				<div class="col-sm-6">
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="alert-danger">${assessmentNotSelected}</div>
+							<%-- Display error message if assessment is not selected on left panel --%>
+							<c:if
+								test='${fn:contains(assessmentNotSelected, "Please select")}'>
+								<div class="alert alert-warning alert-sm" role="alert">
+									<span class="glyphicon glyphicon-exclamation-sign"
+										aria-hidden="true"></span> <span class="sr-only">Error:</span>
+									${assessmentNotSelected}
+								</div>
+							</c:if>
+
 						</div>
 						<div class="col-sm-12">
 
@@ -71,19 +79,15 @@
 
 							<%--  --%>
 							<span class="badge">Total ${fn:length(sittings)} Sittings</span>
-							<br/>
-							<br/>
+							<br /> <br />
 							<ul class="list-group">
-							<c:forEach var="s" items="${sittings}" varStatus="status">
-									<li class="list-group-item">
-									<fmt:formatDate value="${s.createdDate}" var="dateString"
-												pattern="dd-MMM-yyyy" /> ${dateString}
-												
-									${s.treatment}
-									${s.fees}
-									</li>
-							</c:forEach>
-								</ul>
+								<c:forEach var="s" items="${sittings}" varStatus="status">
+									<li class="list-group-item"><fmt:formatDate
+											value="${s.createdDate}" var="dateString"
+											pattern="dd-MMM-yyyy" /> ${dateString} ${s.treatment}
+										${s.fees}</li>
+								</c:forEach>
+							</ul>
 
 						</div>
 					</div>

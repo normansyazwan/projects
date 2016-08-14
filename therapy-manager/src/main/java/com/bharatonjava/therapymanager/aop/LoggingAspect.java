@@ -11,7 +11,7 @@ public class LoggingAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	@After("execution(* com.bharatonjava.gang.web..*(..))")
+	@After("execution(* com.bharatonjava.therapymanager.web..*(..))")
 	public void logAfter(JoinPoint joinPoint) {
 
 		Object[] args = joinPoint.getArgs();
