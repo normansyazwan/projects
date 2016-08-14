@@ -18,13 +18,15 @@
 
 <c:forEach items="${assessments}" var="a" varStatus="status">
 
-	<div class="panel panel-default">
+	<c:if test="${status.count % 2 == 0}" var="odd"></c:if>
+
+	<div class="panel panel-default <c:if test="${odd}">panel-primary</c:if><c:if test="${!odd}">panel-info</c:if>">
 		<!-- Default panel contents -->
 		<fmt:formatDate value="${a.createdDate}" pattern="dd-MMM-yyyy"
 			var="createDateString" />
 		<fmt:formatDate value="${a.updatedDate}" pattern="dd-MMM-yyyy"
 			var="updatedDateString" />	
-		<div class="panel-heading">${a.assesmentId} &nbsp; ${createDateString} &nbsp;<span class="badge">Total ${fn:length(a.sittings)} Sittings for this Assessment</span></div>
+		<div class="panel-heading">${status.index +1 } &nbsp; ${createDateString} &nbsp;<span class="badge">Total ${fn:length(a.sittings)} Sittings for this Assessment</span></div>
 		<div class="panel-body">
 		</div>	
 			<ul class="list-group">
