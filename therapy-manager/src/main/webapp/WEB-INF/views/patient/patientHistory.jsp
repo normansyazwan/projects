@@ -27,9 +27,8 @@
 		<fmt:formatDate value="${a.updatedDate}" pattern="dd-MMM-yyyy"
 			var="updatedDateString" />	
 		<div class="panel-heading">${status.index +1 } &nbsp; ${createDateString} &nbsp;<span class="badge">Total ${fn:length(a.sittings)} Sittings for this Assessment</span></div>
-		<div class="panel-body">
-		</div>	
-			<ul class="list-group">
+
+			<ul class="list-group ">
 				<li class="list-group-item"><label>Present Condition: &nbsp;</label>${a.presentCondition}</li>
 				<li class="list-group-item"><label>Onset: &nbsp;</label>${a.onset}</li>
 				<li class="list-group-item"><label>Duration: &nbsp;</label>${a.duration}</li>
@@ -60,8 +59,8 @@
 				<li class="list-group-item"><label>Is Treatment Active: &nbsp;</label>${a.isActive}</li>
 				<li class="list-group-item"><label>Created On: &nbsp;</label>${createDateString}</li>
 				<li class="list-group-item"><label>Updated On: &nbsp;</label>${updatedDateString}</li>
-				<li class="list-group-item"><span class="badge">Total ${fn:length(a.sittings)} Sittings for this Assessment</span><br/></li>
 			</ul>
+			<div class="panel-footer"><span class="badge">Total ${fn:length(a.sittings)} Sittings for this Assessment</span></div>
 	</div>
 </c:forEach>
 
