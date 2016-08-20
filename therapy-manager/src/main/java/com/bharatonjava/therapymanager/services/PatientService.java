@@ -3,6 +3,7 @@ package com.bharatonjava.therapymanager.services;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import com.bharatonjava.therapymanager.utils.Constants;
 public class PatientService {
 	private static final Logger logger = LoggerFactory
 			.getLogger(PatientService.class);
+	
 	private PatientDao patientDao;
 	private AddressDao addressDao;
 	private EnumDao enumDao;
@@ -53,6 +55,11 @@ public class PatientService {
 
 	@Transactional
 	public Long registerNewPatient(Patient patient) {
+		
+		if(patient.getFirstName() != null){
+			patient.setFirstName(StringUtils.capitalize(patient.getFirstName()));
+		}
+		
 		Long addressId = addressDao.createAddress(patient.getAddress());
 		patient.getAddress().setAddressId(addressId);
 		Long patientId = patientDao.createPatient(patient);
@@ -83,19 +90,8 @@ public class PatientService {
 	public List<Patient> getPatients(Long pageNumber) {
 
 		List<Patient> patients = null;
-		Long from = 0L;
-		if (pageNumber == 1L) {
-			from = 0L;
-		} else {
-			// pageNumber = pageNumber - 1L;
-			from = (pageNumber * Constants.PAGE_SIZE) - Constants.PAGE_SIZE + 1;
-		}
 
-		Long count = Constants.PAGE_SIZE;
-
-		logger.info("Fetching {} patients from {}", count, from);
-
-		patients = this.patientDao.getPatients(from, count);
+		patients = this.patientDao.getPatients();
 
 		// fetch addresses for these patients
 		for (Patient p : patients) {

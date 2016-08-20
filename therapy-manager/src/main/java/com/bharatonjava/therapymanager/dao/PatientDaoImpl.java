@@ -161,12 +161,12 @@ public class PatientDaoImpl implements PatientDao{
 	}
 
 	@Override
-	public List<Patient> getPatients(Long from, Long count){
+	public List<Patient> getPatients(){
 		List<Patient> patients = null;
 		String sql = "SELECT PATIENT_ID, FIRST_NAME,LAST_NAME,GENDER,DATE_OF_BIRTH,BLOOD_GROUP,"
 				+ "EXISTING_AILMENTS,ALLERGIES,MOBILE,EMAIL,OCCUPATION,ADDRESS_ID"
-				+ " FROM PATIENTS LIMIT ?,?";
-		patients = this.jdbcTemplate.query(sql, new PatientRowMapper(), new Object[]{from,count});
+				+ " FROM PATIENTS";
+		patients = this.jdbcTemplate.query(sql, new PatientRowMapper());
 		return patients;
 	}
 	

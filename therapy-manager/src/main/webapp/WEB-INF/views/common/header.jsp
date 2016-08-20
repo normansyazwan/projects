@@ -41,7 +41,7 @@
 			<c:url value='/search' var="searchAction" />
 			<form method="GET" action="${searchAction}" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input name="q" type="text" value="${q}" class="form-control" placeholder="Search"  size="70" />
+					<input name="q" type="text" value="${q}" class="form-control" placeholder="Name, mobile, email etc.."  size="70" />
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
 			</form>

@@ -4,16 +4,50 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="page-header">
 	<h3>Patients</h3>
 </div>
+
 <div class="container-fluid">
+
+	<div class="row">
+		
+		<div class="col col-sm-12">
+			
+			<ul class="pagination">
+				<c:set var="totalCount" scope="session" value="${fn:length(patients)}"/>
+				<c:set var="perPage" scope="session" value="10"/>
+				
+				<c:forEach var="boundaryStart" begin="1" end="${totalCount}" step="${perPage}">
+					<li>
+						<a href="?page=<c:out value="${boundaryStart}"/>">
+						
+						<c:out value="${boundaryStart}"/>
+						-
+						<c:choose>
+							<c:when test="${(boundaryStart + perPage - 1 ) lt fn:length(patients)}">
+								<c:out value="${boundaryStart + perPage - 1}"/>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${fn:length(patients) - 1}"/>
+							</c:otherwise>
+						</c:choose>
+						</a>
+					</li>
+				</c:forEach>	
+				
+			</ul>
+		
+		</div>
+	</div>
+	
 	<table
 		class="table table-condensed table-striped table-hover table-responsive">
 		<thead>
 			<tr>
+				<th>Sr.No.</th>
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Age</th>
@@ -26,8 +60,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="p" items="${patients}">
+			
+			<c:forEach var="p" items="${patients}" varStatus="status" begin="${param.page}" end="${param.page + perPage - 1}">
+				
+				
 				<tr>
+					<td>${status.index}</td>
 					<td><a href='<c:url value="/patients/${p.patientId}/profile" />'>
 							${p.firstName}&nbsp;${p.lastName}
 						</a></td>
@@ -40,6 +78,7 @@
 					<td>${p.email}</td>
 					<td>${p.address.string}</td>
 				</tr>
+				
 			</c:forEach>
 		</tbody>
 	</table>
