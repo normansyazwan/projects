@@ -173,10 +173,13 @@ public class PatientService {
 		Treatment t = this.prescriptionDao.getTreatment(treatmentId);
 		Sitting s = new Sitting();
 		s.setAssessmentId(assessmentId);
-		s.setFees(t.getFees());
-		s.setTreatment(t.getName());
-		s.setCreatedDate(new Date());
-		int count = this.patientDao.addNewSittingToAssessment(s);
+		int count = 0;
+		if(t != null){
+			s.setFees(t.getFees());
+			s.setTreatment(t.getName());
+			s.setCreatedDate(new Date());
+			count = this.patientDao.addNewSittingToAssessment(s);
+		}
 		return count;
 	}
 

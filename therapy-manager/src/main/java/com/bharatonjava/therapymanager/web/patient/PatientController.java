@@ -319,7 +319,10 @@ public class PatientController {
 			mav.addObject("assessmentNotSelected",
 					"Please select Assessment from left panel.");
 			logger.info("Assessment was not selected.");
-		} else {
+		} else if (treatmentId == null || treatmentId == 0L){
+			mav.addObject("assessmentNotSelected",
+					"Please select sitting from dropdown.");
+		}else {
 			// Add treatment to assessment
 			this.patientService.addNewSittingToAssessment(assessmentId,
 					treatmentId);
