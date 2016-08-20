@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -169,6 +170,13 @@ public class PatientDaoImpl implements PatientDao{
 		return patients;
 	}
 	
+	@Override
+	public Long getPatientCount(){
+		Long count = 0L;
+		String sql = "SELECT COUNT(1) FROM PATIENTS";
+		count = (Long) this.jdbcTemplate.queryForObject(sql, Long.class);
+		return count;
+	}
 	
 	@Override
 	public List<Patient> searchPatients(String query) {

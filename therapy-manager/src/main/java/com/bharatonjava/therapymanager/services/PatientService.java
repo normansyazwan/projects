@@ -187,4 +187,9 @@ public class PatientService {
 	public List<Sitting> getSittingsForAssessment(Long assessmentId) {
 		return this.patientDao.getSittingsForAssessment(assessmentId);
 	}
+	
+	@Transactional
+	public Long getPatientCount(){
+		return this.patientDao.getPatientCount();
+	}
 }

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bharatonjava.therapymanager.dao.PatientDao;
 import com.bharatonjava.therapymanager.utils.Constants;
 
 @Controller
@@ -22,6 +24,13 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+	private PatientDao patientDao;
+	
+	@Autowired
+	public void setPatientDao(PatientDao patientDao) {
+		this.patientDao = patientDao;
+	}
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 
@@ -47,6 +56,9 @@ public class HomeController {
 	public ModelAndView registerPatient() {
 
 		ModelAndView mav = new ModelAndView();
+		
+		Long patientCount = this.patientDao.getPatientCount();
+		mav.addObject("patientCount",patientCount);
 		mav.setViewName(Constants.VIEW_HOMEPAGE);	
 
 		return mav;

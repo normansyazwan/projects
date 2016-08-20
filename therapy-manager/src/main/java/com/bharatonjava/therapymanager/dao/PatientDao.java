@@ -16,10 +16,13 @@ public interface PatientDao {
 	public List<Patient> searchPatients(String query);
 	
 	public List<Patient> getPatients(Long from, Long count);
+	public Long getPatientCount();
 	
 	//assesment
 	public Long createNewAssesment(Assesment assesment);
 	public List<Assesment> getAssessmentsForPatient(Long patientId, boolean activeOnly);
 	public int addNewSittingToAssessment(Sitting sitting);
 	public List<Sitting> getSittingsForAssessment(Long assessmentId);
+	
+	
 }
