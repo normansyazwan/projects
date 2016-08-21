@@ -42,7 +42,7 @@
 		
 		</div>
 	</div>
-	
+
 	<table
 		class="table table-condensed table-striped table-hover table-responsive">
 		<thead>
@@ -61,11 +61,10 @@
 		</thead>
 		<tbody>
 			
-			<c:forEach var="p" items="${patients}" varStatus="status" begin="${param.page}" end="${param.page + perPage - 1}">
-				
+			<c:forEach var="p" items="${patients}" varStatus="status" begin="${param.page -1}" end="${param.page + perPage - 1}">
 				
 				<tr>
-					<td>${status.index}</td>
+					<td>${status.index + 1}</td>
 					<td><a href='<c:url value="/patients/${p.patientId}/profile" />'>
 							${p.firstName}&nbsp;${p.lastName}
 						</a></td>
