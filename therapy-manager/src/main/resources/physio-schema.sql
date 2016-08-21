@@ -169,10 +169,17 @@ WHERE S.CREATED_DATE IS NOT NULL and EXTRACT(YEAR FROM S.CREATED_DATE) = 2015
 GROUP BY S.CREATED_DATE
 ORDER BY S.CREATED_DATE DESC;
 
-select S.CREATED_DATE, P.PATIENT_ID, P.FIRST_NAME, P.LAST_NAME
+select S.CREATED_DATE, P.PATIENT_ID, P.FIRST_NAME, P.LAST_NAME, S.FEE
 FROM PATIENTS P LEFT JOIN ASSESMENTS A ON P.PATIENT_ID=A.PATIENT_ID
 LEFT JOIN SITTINGS S ON A.ASSESMENT_ID=S.ASSESMENT_ID
-WHERE S.CREATED_DATE IS NOT NULL AND S.CREATED_DATE = '20-08-2016'
+WHERE S.CREATED_DATE IS NOT NULL AND S.CREATED_DATE = '2016-08-20'
 ORDER BY S.CREATED_DATE DESC;
 
+
+-- script to cleanup tables
+delete from sittings where sitting_id > 0;
+delete from assesments where assesment_id > 0;
+DELETE FROM physio.prescriptions where prescription_id > 0;
+delete from patients where patient_id > 0;
+delete from addresses where address_id > 0;
 

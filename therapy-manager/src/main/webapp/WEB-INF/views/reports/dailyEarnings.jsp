@@ -28,7 +28,7 @@
 							<c:forEach var="y" items="${years}">
 
 								<c:choose>
-									<c:when test="${param.year eq y}">
+									<c:when test="${param.year eq y or selectedYear eq y}">
 										<option value="${y}" selected="selected">${y}</option>
 									</c:when>
 									<c:otherwise>
@@ -45,7 +45,7 @@
 							<option value="0">-- select month --</option>
 							<c:forEach var="entry" items="${months}">
 								<c:choose>
-									<c:when test="${param.month eq entry.key}">
+									<c:when test="${param.month eq entry.key or selectedMonth eq entry.key}">
 										<option value="${entry.key}" selected="selected">${entry.value}</option>
 									</c:when>
 									<c:otherwise>
@@ -74,7 +74,7 @@
 					<thead>
 						<tr>
 							<th>Date</th>
-							<th class="text-right">Amount</th>
+							<th class="text-right">Total Amount</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -121,7 +121,7 @@
 												var="dateString" pattern="dd-MMM-yyyy" /> <a
 											href='<c:url value="?date=${dateString}&year=${param.year}&month=${param.month}" />'>${dateString}</a>
 										</td>
-										<td class="text-right">${e.patientId}</td>
+										<td>${e.patientId}</td>
 										<td>${e.firstName}&nbsp;${e.lastName}</td>
 										<td class="text-right">${e.fees}</td>
 									</tr>

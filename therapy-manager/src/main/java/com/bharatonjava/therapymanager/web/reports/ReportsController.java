@@ -1,19 +1,17 @@
 package com.bharatonjava.therapymanager.web.reports;
 
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bharatonjava.therapymanager.services.PatientService;
 import com.bharatonjava.therapymanager.services.ReportService;
 import com.bharatonjava.therapymanager.utils.Constants;
 import com.bharatonjava.therapymanager.utils.Utils;
@@ -39,8 +37,11 @@ public class ReportsController {
 		logger.info("date: {}, selectedYear={}, selectedMonth={}", date, selectedYear, selectedMonth);
 
 		if(selectedYear == null && selectedMonth == null){
-			selectedYear = 0;
-			selectedMonth = 0;
+			//selectedYear = 0;
+			//selectedMonth = 0;
+			Calendar cal = Calendar.getInstance();
+			selectedYear = cal.get(Calendar.YEAR);
+			selectedMonth = cal.get(Calendar.MONTH) + 1;
 		}
 		
 		
