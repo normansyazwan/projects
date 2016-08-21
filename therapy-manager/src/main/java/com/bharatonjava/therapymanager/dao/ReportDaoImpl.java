@@ -2,7 +2,8 @@ package com.bharatonjava.therapymanager.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -62,6 +63,38 @@ public class ReportDaoImpl implements ReportDao{
 		List<Long> years = this.jdbcTemplate.queryForList(sql, Long.class);
 		logger.info("Returning list of {} years", years.size());
 		return years;
+	}
+	
+	@Override
+	public List<DailyEarningsDto> getEarningsPerDay(Date date){
+		
+		logger.info("parameter: date: {}", date);
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String sql = "select S.CREATED_DATE, P.PATIENT_ID, P.FIRST_NAME, P.LAST_NAME, S.FEE "
+				+ " FROM PATIENTS P LEFT JOIN ASSESMENTS A ON P.PATIENT_ID=A.PATIENT_ID"
+				+ " LEFT JOIN SITTINGS S ON A.ASSESMENT_ID=S.ASSESMENT_ID"
+				+ " WHERE S.CREATED_DATE IS NOT NULL AND S.CREATED_DATE = ?"
+				+ " ORDER BY S.CREATED_DATE DESC";
+		
+		List<DailyEarningsDto> list = this.jdbcTemplate.query(sql, new Object[]{f.format(date)},new RowMapper<DailyEarningsDto>(){
+
+			@Override
+			public DailyEarningsDto mapRow(ResultSet rs, int rowNum)
+					throws SQLException {
+				DailyEarningsDto d = new DailyEarningsDto();
+				d.setCreatedDate(new java.util.Date(rs.getDate("CREATED_DATE").getTime()));
+				d.setFees(rs.getDouble("FEE"));
+				//
+				d.setPatientId(rs.getLong("PATIENT_ID"));
+				d.setFirstName(rs.getString("FIRST_NAME"));
+				d.setLastName(rs.getString("LAST_NAME"));
+				return d;
+			}
+			
+		});
+		logger.info("Returning a list of {} DailyEarningsDto WITH patient deails", list.size());		
+		return list;
 	}
 	
 }

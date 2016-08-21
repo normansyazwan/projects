@@ -37,6 +37,13 @@ public class ReportsController {
 			@RequestParam(name="month", required=false) Integer selectedMonth) {
 		
 		logger.info("date: {}, selectedYear={}, selectedMonth={}", date, selectedYear, selectedMonth);
+
+		if(selectedYear == null && selectedMonth == null){
+			selectedYear = 0;
+			selectedMonth = 0;
+		}
+		
+		
 		
 		ModelAndView mav = new ModelAndView();
 
@@ -46,6 +53,9 @@ public class ReportsController {
 		mav.addObject("selectedMonth", selectedMonth);
 		mav.addObject("months", Utils.monthsMap);
 		
+		if(date != null){
+			mav.addObject("perDayStats", this.reportService.getEarningsPerDay(date));
+		}
 		
 		mav.setViewName(Constants.VIEW_DAILY_EARNINGS);
 		return mav;

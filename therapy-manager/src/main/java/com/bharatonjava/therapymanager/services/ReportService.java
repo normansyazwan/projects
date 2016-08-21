@@ -1,6 +1,7 @@
 package com.bharatonjava.therapymanager.services;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class ReportService {
 	@Transactional
 	public List<Long> getYearsForSittings(){
 		return reportDao.getYearsForSittings();
+	}
+	
+	@Transactional
+	public List<DailyEarningsDto> getEarningsPerDay(Date date){
+		return reportDao.getEarningsPerDay(date);
 	}
 }
