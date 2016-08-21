@@ -82,5 +82,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/patient/patientsList.jsp" />
 	</definition>
 	
+	
+	<!-- Views for Reports -->
+	<definition name="report.dailyEarnings" extends="layout.fullpage">	
+		<put-attribute name="title" value="Earnings Report" />
+		<put-attribute name="body" value="/WEB-INF/views/reports/dailyEarnings.jsp" />
+	</definition>
 
 </tiles-definitions>

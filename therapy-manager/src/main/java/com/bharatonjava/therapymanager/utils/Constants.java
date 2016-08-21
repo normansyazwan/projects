@@ -12,6 +12,8 @@ public interface Constants {
 	public static final String VIEW_PATIENT_TREATMENT_VIEW = "patient.treatment.page";
 	public static final String VIEW_PATIENT_HISTORY = "patient.history.page";
 	public static final String VIEW_ALL_PATIENTS = "patients.list";
+	public static final String VIEW_DAILY_EARNINGS = "report.dailyEarnings";
+	
 	
 
 	public static final Long PAGE_SIZE = 20L;
