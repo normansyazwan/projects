@@ -22,15 +22,16 @@ import com.bharatonjava.therapymanager.utils.Constants;
 @RequestMapping(value = "/")
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
 
 	private PatientDao patientDao;
-	
+
 	@Autowired
 	public void setPatientDao(PatientDao patientDao) {
 		this.patientDao = patientDao;
 	}
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 
@@ -51,26 +52,39 @@ public class HomeController {
 		return "error";
 	}
 
-	
-	@RequestMapping(value = {"/home","/"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/home", "/" }, method = RequestMethod.GET)
 	public ModelAndView registerPatient() {
 
 		ModelAndView mav = new ModelAndView();
-		
+
 		Long patientCount = this.patientDao.getPatientCount();
-		mav.addObject("patientCount",patientCount);
-		mav.setViewName(Constants.VIEW_HOMEPAGE);	
+		mav.addObject("patientCount", patientCount);
+		mav.setViewName(Constants.VIEW_HOMEPAGE);
 
 		return mav;
 	}
-	
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(Constants.VIEW_LOGINPAGE);	
+		mav.setViewName(Constants.VIEW_LOGINPAGE);
 
 		return mav;
+	}
+
+	@RequestMapping(value = "/aboutUs", method = RequestMethod.GET)
+	public String aboutUs() {
+		return "aboutUs";
+	}
+
+	@RequestMapping(value = "/contactUs", method = RequestMethod.GET)
+	public String contactUs() {
+		return "contactUs";
+	}
+	
+	@RequestMapping(value = "/disclaimer", method = RequestMethod.GET)
+	public String showDisclaimer() {
+		return "disclaimer";
 	}
 }

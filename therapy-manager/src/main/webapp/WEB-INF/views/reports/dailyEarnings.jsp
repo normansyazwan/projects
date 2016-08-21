@@ -118,8 +118,7 @@
 								<c:forEach items="${perDayStats}" var="e" varStatus="status">
 									<tr>
 										<td><fmt:formatDate value="${e.createdDate}"
-												var="dateString" pattern="dd-MMM-yyyy" /> <a
-											href='<c:url value="?date=${dateString}&year=${param.year}&month=${param.month}" />'>${dateString}</a>
+												var="dateStr" pattern="dd-MMM-yyyy" />${dateStr}
 										</td>
 										<td>${e.patientId}</td>
 										<td>${e.firstName}&nbsp;${e.lastName}</td>

@@ -89,4 +89,20 @@
 		<put-attribute name="body" value="/WEB-INF/views/reports/dailyEarnings.jsp" />
 	</definition>
 
+
+	<!-- Common Pages -->
+	<definition name="contactUs" extends="layout.fullpage">	
+		<put-attribute name="title" value="Contact Us" />
+		<put-attribute name="body" value="/WEB-INF/views/common/contactUs.jsp" />
+	</definition>
+
+	<definition name="aboutUs" extends="layout.fullpage">	
+		<put-attribute name="title" value="About Us" />
+		<put-attribute name="body" value="/WEB-INF/views/common/about.jsp" />
+	</definition>
+	
+	<definition name="disclaimer" extends="layout.fullpage">	
+		<put-attribute name="title" value="Disclaimer" />
+		<put-attribute name="body" value="/WEB-INF/views/common/disclaimer.jsp" />
+	</definition>
 </tiles-definitions>
