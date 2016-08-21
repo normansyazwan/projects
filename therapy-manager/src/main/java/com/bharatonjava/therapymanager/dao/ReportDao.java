@@ -6,6 +6,7 @@ import com.bharatonjava.therapymanager.domain.DailyEarningsDto;
 
 public interface ReportDao {
 
-	public List<DailyEarningsDto> getDailyEarnings();
+	public List<DailyEarningsDto> getEarnings(Integer year, Integer month);
 	
+	public List<Long> getYearsForSittings();
 }

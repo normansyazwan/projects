@@ -26,16 +26,18 @@ public class ReportDaoImpl implements ReportDao{
 	}
 	
 	@Override
-	public List<DailyEarningsDto> getDailyEarnings() {
+	public List<DailyEarningsDto> getEarnings(Integer year, Integer month) {
 		
+		logger.info("year: {}, month: {}", year, month);
 		String sql = "select S.CREATED_DATE, SUM(S.FEE) AS FEE "
 				+ "FROM PATIENTS P LEFT JOIN ASSESMENTS A ON P.PATIENT_ID=A.PATIENT_ID "
 				+ "LEFT JOIN SITTINGS S ON A.ASSESMENT_ID=S.ASSESMENT_ID "
-				+ "WHERE S.CREATED_DATE IS NOT NULL "
-				+ "GROUP BY S.CREATED_DATE"
+				+ "WHERE S.CREATED_DATE IS NOT NULL and EXTRACT(YEAR FROM S.CREATED_DATE) = ?"
+				+ " and EXTRACT(MONTH FROM S.CREATED_DATE) = ?"
+				+ " GROUP BY S.CREATED_DATE"
 				+ " ORDER BY S.CREATED_DATE DESC";
 		
-		List<DailyEarningsDto> list = this.jdbcTemplate.query(sql, new RowMapper<DailyEarningsDto>(){
+		List<DailyEarningsDto> list = this.jdbcTemplate.query(sql, new Object[]{year, month},new RowMapper<DailyEarningsDto>(){
 
 			@Override
 			public DailyEarningsDto mapRow(ResultSet rs, int rowNum)
@@ -54,6 +56,12 @@ public class ReportDaoImpl implements ReportDao{
 		return list;
 	}
 
-	
+	@Override
+	public List<Long> getYearsForSittings(){
+		String sql = "SELECT DISTINCT EXTRACT(YEAR FROM CREATED_DATE) FROM SITTINGS";
+		List<Long> years = this.jdbcTemplate.queryForList(sql, Long.class);
+		logger.info("Returning list of {} years", years.size());
+		return years;
+	}
 	
 }

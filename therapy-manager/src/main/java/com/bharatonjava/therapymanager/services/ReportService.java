@@ -1,5 +1,6 @@
 package com.bharatonjava.therapymanager.services;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,20 @@ public class ReportService {
 	}
 	
 	@Transactional
-	public List<DailyEarningsDto> getDailyEarnings(){
-		return reportDao.getDailyEarnings();
+	public List<DailyEarningsDto> getEarnings(Integer year, Integer month){
+		
+		// if nothing is selected in UI dropdowns then select current year and month
+		if((month == null && year == null)||(month == 0 && year == 0)){
+			Calendar cal = Calendar.getInstance();
+			year = cal.get(Calendar.YEAR);
+			month = cal.get(Calendar.MONTH) + 1;
+		}
+		
+		return reportDao.getEarnings(year, month);
+	}
+	
+	@Transactional
+	public List<Long> getYearsForSittings(){
+		return reportDao.getYearsForSittings();
 	}
 }
