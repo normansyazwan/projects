@@ -3,14 +3,17 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 	<appender name="CA" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.EnhancedPatternLayout">
-			<param name="ConversionPattern" value="%d{yyyyMMdd-} %-5p %c{1.} [%t]: %m%n" />
+			<param name="ConversionPattern" value="%d{yyyyMMdd-HH:mm:ss} [%t] %-5level %c{1.} - %m%n" />
 		</layout>
 	</appender>
-	<appender name="FA" class="org.apache.log4j.FileAppender">
+	<appender name="FA" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="/logs/therapy-manager.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="maxFileSize" value="10MB" />
 		<param name="Threshold" value="WARN" />
+		<param name="maxBackupIndex" value="30" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />
+			<param name="ConversionPattern" value="%d{yyyyMMdd-HH:mm:ss} [%t] %-5level %c{1.} - %m%n" />
 		</layout>
 	</appender>
 	<root>
