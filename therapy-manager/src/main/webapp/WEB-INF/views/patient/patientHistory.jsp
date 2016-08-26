@@ -18,22 +18,26 @@
 <div class="container-fluidic">
 
 	<div class="row">
+	
+	<c:choose>
+		<c:when test="${fn:length(assesmentsInBrief) gt 0}">
+	
 		<div class="col col-sm-5">
 			<div class="table-responsive">
-				<table class="table table-bordered table-condensed">
+				<table class="table table-bordered table-striped table-condensed small">
 					<thead>
 						<tr>
-							<th>Assessment Id</th>
+							<th width="50">Id</th>
 							<th>Present Condition</th>
-							<th>Created Date</th>
-							<th>Updated Date</th>
+							<th width="80">Created Date</th>
+							<th width="80">Updated Date</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%-- Loop to generate table --%>
 						<c:forEach items="${assesmentsInBrief}" var="a" varStatus="status">
 							<tr>
-								<td><a
+								<td width="50"><a
 									href='<c:url value="?assessmentId=${a.assesmentId}" />'>${a.assesmentId }</a>
 								</td>
 								<td><a
@@ -57,7 +61,7 @@
 			<c:choose>
 				<c:when test="${assesment ne null}">
 				<div class="table-responsive">
-					<table class="table table-bordered table-condensed">
+					<table class="table table-bordered table-condensed table-striped small">
 						<tbody>
 							<tr>
 								<td><label>Present Condition: &nbsp;</label>${assesment.presentCondition}</td>
@@ -79,12 +83,6 @@
 							</tr>
 							<tr>
 								<td><label>Physiotherapy Treatment History: &nbsp;</label>${assesment.physiotherapyTreatmentHistory}</td>
-							</tr>
-							<tr>
-								<td><label>Current Exercises: &nbsp;</label>${assesment.currentExercises}</td>
-							</tr>
-							<tr>
-								<td><label>Family History: &nbsp;</label>${assesment.familyHistory}</td>
 							</tr>
 							<tr>
 								<td><label>Current Exercises: &nbsp;</label>${assesment.currentExercises}</td>
@@ -177,5 +175,28 @@
 				</c:otherwise>
 				</c:choose>
 		</div>
+		
+		</c:when>
+		<c:otherwise>
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="alert alert-warning alert-sm" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span> <span class="sr-only">Error:</span>
+						There are no <span class="text-success">Assessments</span> for this patient. Please add a new Assessment by clicking button below:
+						</div>
+					</div>
+					<div class="col-sm-12"><a href='<c:url value="/patients/${patient.patientId}/assesment" />'
+							class="btn btn-default btn-sm" title="Add New Assessment">New Assessment</a></div>
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
+		
+			
+		</c:otherwise>
+		</c:choose>
+		
 	</div>
 </div>

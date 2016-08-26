@@ -16,7 +16,7 @@
 		
 		<div class="col col-sm-12">
 			
-			<ul class="pagination">
+			<ul class="pagination small">
 				<c:set var="totalCount" scope="session" value="${fn:length(patients)}"/>
 				<c:set var="perPage" scope="session" value="10"/>
 				
@@ -44,7 +44,7 @@
 	</div>
 
 	<table
-		class="table table-condensed table-striped table-hover table-responsive">
+		class="table table-condensed table-striped table-hover table-responsive small">
 		<thead>
 			<tr>
 				<th>Sr.No.</th>

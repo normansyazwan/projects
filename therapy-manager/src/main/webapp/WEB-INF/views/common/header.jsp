@@ -34,16 +34,14 @@
 						<li><a href="<c:url value="/patients/register" />" >Registration</a></li>
 						<li><a href="<c:url value="/patients/?page=1" />">All Patients</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
+					</ul>
+				</li>
 			</ul>
 			<%-- Menu for accounting --%>
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Finances<span class="caret"></span></a>
+					aria-expanded="false">Reports<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/reports/dailyEarnings" />" >Daily Financial Report</a></li>
 					</ul>
