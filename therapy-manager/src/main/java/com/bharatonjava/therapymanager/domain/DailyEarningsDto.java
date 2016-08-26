@@ -5,6 +5,7 @@ import java.util.Date;
 public class DailyEarningsDto {
 
 	private Date createdDate;
+	private String treatment;
 	private Double fees;
 	//
 	private Long patientId;
@@ -22,6 +23,14 @@ public class DailyEarningsDto {
 		this.createdDate = createdDate;
 	}
 
+	public String getTreatment() {
+		return treatment;
+	}
+	
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
+	
 	public Double getFees() {
 		return fees;
 	}
@@ -56,9 +65,9 @@ public class DailyEarningsDto {
 
 	@Override
 	public String toString() {
-		return "DailyEarningsDto [createdDate=" + createdDate + ", fees="
-				+ fees + ", patientId=" + patientId + ", firstName="
-				+ firstName + ", lastName=" + lastName + "]";
+		return "DailyEarningsDto [createdDate=" + createdDate + ", treatment="
+				+ treatment + ", fees=" + fees + ", patientId=" + patientId
+				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 }

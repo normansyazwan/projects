@@ -107,9 +107,10 @@
 						<table class="table table-bordered table-condensed">
 							<thead>
 								<tr>
-									<th>Date</th>
-									<th>Patient Id</th>
+									<th width="100">Date</th>
+									<th width="100">Patient Id</th>
 									<th>Name</th>
+									<th>Treatment</th>
 									<th class="text-right">Amount</th>
 								</tr>
 							</thead>
@@ -121,7 +122,10 @@
 												var="dateStr" pattern="dd-MMM-yyyy" />${dateStr}
 										</td>
 										<td>${e.patientId}</td>
-										<td>${e.firstName}&nbsp;${e.lastName}</td>
+										<td>
+											<a href='<c:url value="/patients/${e.patientId}/profile" />'>${e.firstName}&nbsp;${e.lastName}</a>
+										</td>
+										<td>${e.treatment}</td>
 										<td class="text-right">${e.fees}</td>
 									</tr>
 								</c:forEach>

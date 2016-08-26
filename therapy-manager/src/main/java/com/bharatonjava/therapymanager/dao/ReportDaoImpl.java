@@ -71,7 +71,7 @@ public class ReportDaoImpl implements ReportDao{
 		logger.info("parameter: date: {}", date);
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 		
-		String sql = "select S.CREATED_DATE, P.PATIENT_ID, P.FIRST_NAME, P.LAST_NAME, S.FEE "
+		String sql = "select S.CREATED_DATE, P.PATIENT_ID, P.FIRST_NAME, P.LAST_NAME,S.TREATMENT, S.FEE "
 				+ " FROM PATIENTS P LEFT JOIN ASSESMENTS A ON P.PATIENT_ID=A.PATIENT_ID"
 				+ " LEFT JOIN SITTINGS S ON A.ASSESMENT_ID=S.ASSESMENT_ID"
 				+ " WHERE S.CREATED_DATE IS NOT NULL AND S.CREATED_DATE = ?"
@@ -85,6 +85,7 @@ public class ReportDaoImpl implements ReportDao{
 				DailyEarningsDto d = new DailyEarningsDto();
 				d.setCreatedDate(new java.util.Date(rs.getDate("CREATED_DATE").getTime()));
 				d.setFees(rs.getDouble("FEE"));
+				d.setTreatment(rs.getString("TREATMENT"));
 				//
 				d.setPatientId(rs.getLong("PATIENT_ID"));
 				d.setFirstName(rs.getString("FIRST_NAME"));
