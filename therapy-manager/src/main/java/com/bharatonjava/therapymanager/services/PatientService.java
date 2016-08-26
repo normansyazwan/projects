@@ -154,6 +154,17 @@ public class PatientService {
 	}
 
 	@Transactional
+	public Assesment getAssesment(Long patientId, Long assessmentId){
+		return this.patientDao.getAssesment(patientId, assessmentId);
+	}
+	
+	@Transactional
+	public List<Assesment> getAssessmentsInBreifForPatient(Long patientId){
+		return this.patientDao.getAssessmentsInBreifForPatient(patientId);
+	}
+	
+	
+	@Transactional
 	public List<Treatment> getTreatments() {
 		List<Treatment> treatments = this.prescriptionDao.getTreatments();
 		return treatments;

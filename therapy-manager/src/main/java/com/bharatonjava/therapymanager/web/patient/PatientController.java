@@ -338,13 +338,22 @@ public class PatientController {
 
 	@RequestMapping(value = "/{id}/history", method = RequestMethod.GET)
 	public ModelAndView viewPatientHistory(@PathVariable("id") Long patientId,
+			@RequestParam(value = "assessmentId", defaultValue = "0", required = false) Long assessmentId,
 			ModelAndView mav) {
+		
 		Patient p = this.patientService.getPatientById(patientId);
 		mav.addObject("patient", p);
-		// fetch assessments with sittings
-		List<Assesment> assessments = this.patientService.getAssessmentsForPatient(patientId, true, true);
 		
-		mav.addObject("assessments", assessments);
+		// fetch assessments in brief to show in left panel
+		List<Assesment> assesmentsInBrief = this.patientService.getAssessmentsInBreifForPatient(patientId);
+		mav.addObject("assesmentsInBrief",assesmentsInBrief);
+		
+		if(assessmentId > 0L){
+			// fetch details
+			Assesment assesment = this.patientService.getAssesment(patientId, assessmentId);
+			mav.addObject("assesment",assesment);
+		}
+		
 		mav.setViewName(Constants.VIEW_PATIENT_HISTORY);
 		return mav;
 	}

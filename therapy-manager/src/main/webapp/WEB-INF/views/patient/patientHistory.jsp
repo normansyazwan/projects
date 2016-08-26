@@ -8,134 +8,174 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="page-header">
-	<h3>Treatment History for ${patient.firstName}</h3>
+	<h3>Assessment History for ${patient.firstName}</h3>
 </div>
 
 <th:patientDetailsBar patient="${patient}" />
 
 <hr />
-<div class="panel-group" id="accordion">
 
-	<c:choose>
-		<%-- Show forms only when there are assessments available --%>
-		<c:when test="${fn:length(assessments) gt 0}">
+<div class="container-fluidic">
 
-			<c:forEach items="${assessments}" var="a" varStatus="status">
+	<div class="row">
+		<div class="col col-sm-5">
+			<div class="table-responsive">
+				<table class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>Assessment Id</th>
+							<th>Present Condition</th>
+							<th>Created Date</th>
+							<th>Updated Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%-- Loop to generate table --%>
+						<c:forEach items="${assesmentsInBrief}" var="a" varStatus="status">
+							<tr>
+								<td><a
+									href='<c:url value="?assessmentId=${a.assesmentId}" />'>${a.assesmentId }</a>
+								</td>
+								<td><a
+									href='<c:url value="?assessmentId=${a.assesmentId}" />'>${a.presentCondition }</a></td>
+								<td><fmt:formatDate value="${a.createdDate}"
+										var="createdDateStr" pattern="dd-MMM-yyyy" /> <a
+									href='<c:url value="?assessmentId=${a.assesmentId}" />'>
+										${createdDateStr}</a></td>
+								<td><fmt:formatDate value="${a.updatedDate}"
+										var="updatedDateStr" pattern="dd-MMM-yyyy" /> <a
+									href='<c:url value="?assessmentId=${a.assesmentId}" />'>
+										${updatedDateStr} </a></td>
+							</tr>
 
-				<fmt:formatDate value="${a.createdDate}" pattern="dd-MMM-yyyy"
-					var="createDateString" />
-				<fmt:formatDate value="${a.updatedDate}" pattern="dd-MMM-yyyy"
-					var="updatedDateString" />
-
-				<div class="panel panel-default">
-
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion"
-								href="#collapse${status.count+1}"> ${status.index +1 }
-								&nbsp;<span class="glyphicon glyphicon-minus"></span>&nbsp;
-								${createDateString}&nbsp;<span class="glyphicon glyphicon-minus"></span>&nbsp;
-								${a.presentCondition} &nbsp;<span class="badge">Total
-									${fn:length(a.sittings)} Sittings for this Assessment</span>
-							</a>
-						</h4>
-					</div>
-
-					<div id="collapse${status.count+1}"
-						class="panel-collapse collapse ">
-						<div class="panel-body">
-							<ul class="list-group ">
-								<li class="list-group-item"><label>Present
-										Condition: &nbsp;</label>${a.presentCondition}</li>
-								<li class="list-group-item"><label>Onset: &nbsp;</label>${a.onset}</li>
-								<li class="list-group-item"><label>Duration: &nbsp;</label>${a.duration}</li>
-								<li class="list-group-item"><label>Surgical
-										History: &nbsp;</label>${a.surgicalHistory}</li>
-								<li class="list-group-item"><label>Red Flag: &nbsp;</label>${a.redFlag}</li>
-								<li class="list-group-item"><label>Physiotherapy
-										Treatment History: &nbsp;</label>${a.physiotherapyTreatmentHistory}</li>
-								<li class="list-group-item"><label>Current
-										Exercises: &nbsp;</label>${a.currentExercises}</li>
-								<li class="list-group-item"><label>Family History:
-										&nbsp;</label>${a.familyHistory}</li>
-								<li class="list-group-item"><label>Swelling: &nbsp;</label>${a.swelling}</li>
-								<li class="list-group-item"><label>Area Of Pain:
-										&nbsp;</label>${a.areaOfPain}</li>
-								<li class="list-group-item"><label>Deformity:
-										&nbsp;</label>${a.deformity}</li>
-								<li class="list-group-item"><label>Gait: &nbsp;</label>${a.gait}</li>
-								<li class="list-group-item"><label>Built: &nbsp;</label>${a.built}</li>
-								<li class="list-group-item"><label>Warmth: &nbsp;</label>${a.warmth}</li>
-								<li class="list-group-item"><label>Muscle Spasm:
-										&nbsp;</label>${a.muscleSpasm}</li>
-								<li class="list-group-item"><label>Tenderness:
-										&nbsp;</label>${a.tenderness}</li>
-								<li class="list-group-item"><label>Vas Scale:
-										&nbsp;</label>${a.vasScale}</li>
-								<li class="list-group-item"><label>Aggrevating
-										Factors: &nbsp;</label>${a.aggrevatingFactors}</li>
-								<li class="list-group-item"><label>ROM: &nbsp;</label>${a.rom}</li>
-								<li class="list-group-item"><label>End Feel: &nbsp;</label>${a.endFeel}</li>
-								<li class="list-group-item"><label>MMT: &nbsp;</label>${a.mmt}</li>
-								<li class="list-group-item"><label>SpecialTests:
-										&nbsp;</label>${a.specialTests}</li>
-								<li class="list-group-item"><label>Cardiorespiratory:
-										&nbsp;</label>${a.cardiorespiratory}</li>
-								<li class="list-group-item"><label>RunctionalAssesment:
-										&nbsp;</label>${a.functionalAssesment}</li>
-								<li class="list-group-item"><label>WellnessAssesment:
-										&nbsp;</label>${a.wellnessAssesment}</li>
-								<li class="list-group-item"><label>RecoveryPotential:
-										&nbsp;</label>${a.recoveryPotential}</li>
-								<li class="list-group-item"><label>TherapyPlan:
-										&nbsp;</label>${a.therapyPlan}</li>
-								<li class="list-group-item"><label>Is Treatment
-										Active: &nbsp;</label>${a.isActive}</li>
-								<li class="list-group-item"><label>Created On:
-										&nbsp;</label>${createDateString}</li>
-								<li class="list-group-item"><label>Updated On:
-										&nbsp;</label>${updatedDateString}</li>
-							</ul>
-						</div>
-					</div>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col col-sm-7">
+			<c:choose>
+				<c:when test="${assesment ne null}">
+				<div class="table-responsive">
+					<table class="table table-bordered table-condensed">
+						<tbody>
+							<tr>
+								<td><label>Present Condition: &nbsp;</label>${assesment.presentCondition}</td>
+							</tr>
+							<tr>
+								<td><label>Present Condition: &nbsp;</label>${assesment.presentCondition}</td>
+							</tr>
+							<tr>
+								<td><label>Onset: &nbsp;</label>${assesment.onset}</td>
+							</tr>
+							<tr>
+								<td><label>Duration: &nbsp;</label>${assesment.duration}</td>
+							</tr>
+							<tr>
+								<td><label>Surgical History: &nbsp;</label>${assesment.surgicalHistory}</td>
+							</tr>
+							<tr>
+								<td><label>Red Flag: &nbsp;</label>${assesment.redFlag}</td>
+							</tr>
+							<tr>
+								<td><label>Physiotherapy Treatment History: &nbsp;</label>${assesment.physiotherapyTreatmentHistory}</td>
+							</tr>
+							<tr>
+								<td><label>Current Exercises: &nbsp;</label>${assesment.currentExercises}</td>
+							</tr>
+							<tr>
+								<td><label>Family History: &nbsp;</label>${assesment.familyHistory}</td>
+							</tr>
+							<tr>
+								<td><label>Current Exercises: &nbsp;</label>${assesment.currentExercises}</td>
+							</tr>
+							<tr>
+								<td><label>Family History: &nbsp;</label>${assesment.familyHistory}</td>
+							</tr>
+							<tr>
+								<td><label>Swelling: &nbsp;</label>${assesment.swelling}</td>
+							</tr>
+							<tr>
+								<td><label>Area Of Pain: &nbsp;</label>${assesment.areaOfPain}</td>
+							</tr>
+							<tr>
+								<td><label>Deformity: &nbsp;</label>${assesment.deformity}</td>
+							</tr>
+							<tr>
+								<td><label>Gait: &nbsp;</label>${assesment.gait}</td>
+							</tr>
+							<tr>
+								<td><label>Built: &nbsp;</label>${assesment.built}</td>
+							</tr>
+							<tr>
+								<td><label>Warmth: &nbsp;</label>${assesment.warmth}</td>
+							</tr>
+							<tr>
+								<td><label>Muscle Spasm: &nbsp;</label>${assesment.muscleSpasm}</td>
+							</tr>
+							<tr>
+								<td><label>Tenderness: &nbsp;</label>${assesment.tenderness}</td>
+							</tr>
+							<tr>
+								<td><label>Vas Scale: &nbsp;</label>${assesment.vasScale}</td>
+							</tr>
+							<tr>
+								<td><label>Aggrevating Factors: &nbsp;</label>${assesment.aggrevatingFactors}</td>
+							</tr>
+							<tr>
+								<td><label>ROM: &nbsp;</label>${assesment.rom}</td>
+							</tr>
+							<tr>
+								<td><label>End Feel: &nbsp;</label>${assesment.endFeel}</td>
+							</tr>
+							<tr>
+								<td><label>MMT: &nbsp;</label>${assesment.mmt}</td>
+							</tr>
+							<tr>
+								<td><label>SpecialTests: &nbsp;</label>${assesment.specialTests}</td>
+							</tr>
+							<tr>
+								<td><label>Cardiorespiratory: &nbsp;</label>${assesment.cardiorespiratory}</td>
+							</tr>
+							<tr>
+								<td><label>Functional Assessment: &nbsp;</label>${assesment.functionalAssesment}</td>
+							</tr>
+							<tr>
+								<td><label>WellnessAssesment: &nbsp;</label>${assesment.wellnessAssesment}</td>
+							</tr>
+							<tr>
+								<td><label>RecoveryPotential: &nbsp;</label>${assesment.recoveryPotential}</td>
+							</tr>
+							<tr>
+								<td><label>TherapyPlan: &nbsp;</label>${assesment.therapyPlan}</td>
+							</tr>
+							<tr>
+								<td><label>Is Treatment Active: &nbsp;</label>${assesment.isActive}</td>
+							</tr>
+							<tr>
+								<td><label>Created On: &nbsp;</label>
+									<fmt:formatDate value="${assesment.createdDate}" var="createdDtStr" pattern="dd-MMM-yyyy" /> 		
+									${createdDtStr}
+								</td>
+							</tr>
+							<tr>
+								<td><label>Updated On:&nbsp;</label>
+								<fmt:formatDate value="${a.updatedDate}" var="updatedDtStr" pattern="dd-MMM-yyyy" />
+								${updatedDtStr}</td>
+							</tr>
+							
+						</tbody>
+					</table>
 				</div>
-			</c:forEach>
-
-		</c:when>
-		<c:otherwise>
-
-
-			<div class="row">
-				<div class="col col-sm-3"></div>
-				<div class="col col-sm-6">
-
+				</c:when>
+				<c:otherwise>
 					<div class="alert alert-warning alert-sm" role="alert">
 						<span class="glyphicon glyphicon-exclamation-sign"
 							aria-hidden="true"></span> <span class="sr-only">Error:</span>
-						There are no Assessments for this patient!
+						Please click on any <span class="text-success">Assessment</span> on the left panel to view details.
 					</div>
-
-				</div>
-				<div class="col col-sm-3"></div>
-			</div>
-
-			<div class="row">
-				<div class="col col-sm-3"></div>
-				<div class="col col-sm-6">
-
-					<div class="btn-group">
-						<a
-							href='<c:url value="/patients/${patient.patientId}/assesment" />'
-							class="btn btn-default btn-sm" title="New Assessment">New
-							Assessment</a>
-					</div>
-				</div>
-				<div class="col col-sm-3"></div>
-			</div>
-
-
-		</c:otherwise>
-
-
-	</c:choose>
+				</c:otherwise>
+				</c:choose>
+		</div>
+	</div>
 </div>
