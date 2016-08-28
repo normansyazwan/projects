@@ -18,7 +18,11 @@
 				<a href="<c:url value="/patients/?page=1" />" class="btn btn-success">View All Patients <span class="badge">Total count ${patientCount}</span></a>
 			</div>
 		</div>
-		<div class="col-sm-4">.col-sm-4</div>
+		<div class="col-sm-4">
+			<div class="jumbotron">
+				<p>Active assessments will appear here with patient's phone number..</p>
+			</div>
+		</div>
 		<div class="col-sm-4">.col-sm-4</div>
 	</div>
 </div>

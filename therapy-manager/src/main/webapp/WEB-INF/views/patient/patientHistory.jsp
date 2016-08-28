@@ -8,7 +8,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="page-header">
-	<h3>Assessment History for ${patient.firstName}</h3>
+	<h3>Assessments History for ${patient.firstName}</h3>
 </div>
 
 <th:patientDetailsBar patient="${patient}" />
@@ -23,6 +23,7 @@
 		<c:when test="${fn:length(assesmentsInBrief) gt 0}">
 	
 		<div class="col col-sm-5">
+			<h3>Assessments</h3>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped table-condensed small">
 					<thead>
@@ -60,104 +61,102 @@
 		<div class="col col-sm-7">
 			<c:choose>
 				<c:when test="${assesment ne null}">
+				<h3>Assessment Details</h3>
 				<div class="table-responsive">
 					<table class="table table-bordered table-condensed table-striped small">
 						<tbody>
 							<tr>
-								<td><label>Present Condition: &nbsp;</label>${assesment.presentCondition}</td>
+								<td width="120"><label>Present Condition: &nbsp;</label></td><td>${assesment.presentCondition}</td>
 							</tr>
 							<tr>
-								<td><label>Present Condition: &nbsp;</label>${assesment.presentCondition}</td>
+								<td width="120"><label>Onset: &nbsp;</label></td><td>${assesment.onset}</td>
 							</tr>
 							<tr>
-								<td><label>Onset: &nbsp;</label>${assesment.onset}</td>
+								<td width="120"><label>Duration: &nbsp;</label></td><td>${assesment.duration}</td>
 							</tr>
 							<tr>
-								<td><label>Duration: &nbsp;</label>${assesment.duration}</td>
+								<td width="120"><label>Surgical History: &nbsp;</label></td><td>${assesment.surgicalHistory}</td>
 							</tr>
 							<tr>
-								<td><label>Surgical History: &nbsp;</label>${assesment.surgicalHistory}</td>
+								<td width="120"><label>Red Flag: &nbsp;</label></td><td>${assesment.redFlag}</td>
 							</tr>
 							<tr>
-								<td><label>Red Flag: &nbsp;</label>${assesment.redFlag}</td>
+								<td width="120"><label>Physiotherapy Treatment History: &nbsp;</label></td><td>${assesment.physiotherapyTreatmentHistory}</td>
 							</tr>
 							<tr>
-								<td><label>Physiotherapy Treatment History: &nbsp;</label>${assesment.physiotherapyTreatmentHistory}</td>
+								<td width="120"><label>Current Exercises: &nbsp;</td><td></label>${assesment.currentExercises}</td>
 							</tr>
 							<tr>
-								<td><label>Current Exercises: &nbsp;</label>${assesment.currentExercises}</td>
+								<td width="120"><label>Family History: &nbsp;</label></td><td>${assesment.familyHistory}</td>
 							</tr>
 							<tr>
-								<td><label>Family History: &nbsp;</label>${assesment.familyHistory}</td>
+								<td width="120"><label>Swelling: &nbsp;</label></td><td>${assesment.swelling}</td>
 							</tr>
 							<tr>
-								<td><label>Swelling: &nbsp;</label>${assesment.swelling}</td>
+								<td width="120"><label>Area Of Pain: &nbsp;</label></td><td>${assesment.areaOfPain}</td>
 							</tr>
 							<tr>
-								<td><label>Area Of Pain: &nbsp;</label>${assesment.areaOfPain}</td>
+								<td width="120"><label>Deformity: &nbsp;</label></td><td>${assesment.deformity}</td>
 							</tr>
 							<tr>
-								<td><label>Deformity: &nbsp;</label>${assesment.deformity}</td>
+								<td width="120"><label>Gait: &nbsp;</label></td><td>${assesment.gait}</td>
 							</tr>
 							<tr>
-								<td><label>Gait: &nbsp;</label>${assesment.gait}</td>
+								<td width="120"><label>Built: &nbsp;</label></td><td>${assesment.built}</td>
 							</tr>
 							<tr>
-								<td><label>Built: &nbsp;</label>${assesment.built}</td>
+								<td width="120"><label>Warmth: &nbsp;</label></td><td>${assesment.warmth}</td>
 							</tr>
 							<tr>
-								<td><label>Warmth: &nbsp;</label>${assesment.warmth}</td>
+								<td width="120"><label>Muscle Spasm: &nbsp;</label></td><td>${assesment.muscleSpasm}</td>
 							</tr>
 							<tr>
-								<td><label>Muscle Spasm: &nbsp;</label>${assesment.muscleSpasm}</td>
+								<td width="120"><label>Tenderness: &nbsp;</label></td><td>${assesment.tenderness}</td>
 							</tr>
 							<tr>
-								<td><label>Tenderness: &nbsp;</label>${assesment.tenderness}</td>
+								<td width="120"><label>Vas Scale: &nbsp;</label></td><td>${assesment.vasScale}</td>
 							</tr>
 							<tr>
-								<td><label>Vas Scale: &nbsp;</label>${assesment.vasScale}</td>
+								<td width="120"><label>Aggrevating Factors: &nbsp;</label></td><td>${assesment.aggrevatingFactors}</td>
 							</tr>
 							<tr>
-								<td><label>Aggrevating Factors: &nbsp;</label>${assesment.aggrevatingFactors}</td>
+								<td width="120"><label>ROM: &nbsp;</label></td><td>${assesment.rom}</td>
 							</tr>
 							<tr>
-								<td><label>ROM: &nbsp;</label>${assesment.rom}</td>
+								<td width="120"><label>End Feel: &nbsp;</label></td><td>${assesment.endFeel}</td>
 							</tr>
 							<tr>
-								<td><label>End Feel: &nbsp;</label>${assesment.endFeel}</td>
+								<td width="120"><label>MMT: &nbsp;</label></td><td>${assesment.mmt}</td>
 							</tr>
 							<tr>
-								<td><label>MMT: &nbsp;</label>${assesment.mmt}</td>
+								<td width="120"><label>Special Tests: &nbsp;</label></td><td>${assesment.specialTests}</td>
 							</tr>
 							<tr>
-								<td><label>SpecialTests: &nbsp;</label>${assesment.specialTests}</td>
+								<td width="120"><label>Cardiorespiratory: &nbsp;</label></td><td>${assesment.cardiorespiratory}</td>
 							</tr>
 							<tr>
-								<td><label>Cardiorespiratory: &nbsp;</label>${assesment.cardiorespiratory}</td>
+								<td width="120"><label>Functional Assessment: &nbsp;</label></td><td>${assesment.functionalAssesment}</td>
 							</tr>
 							<tr>
-								<td><label>Functional Assessment: &nbsp;</label>${assesment.functionalAssesment}</td>
+								<td width="120"><label>Wellness Assesment: &nbsp;</label></td><td>${assesment.wellnessAssesment}</td>
 							</tr>
 							<tr>
-								<td><label>WellnessAssesment: &nbsp;</label>${assesment.wellnessAssesment}</td>
+								<td width="120"><label>Recovery Potential: &nbsp;</label></td><td>${assesment.recoveryPotential}</td>
 							</tr>
 							<tr>
-								<td><label>RecoveryPotential: &nbsp;</label>${assesment.recoveryPotential}</td>
+								<td width="120"><label>Therapy Plan: &nbsp;</label></td><td>${assesment.therapyPlan}</td>
 							</tr>
 							<tr>
-								<td><label>TherapyPlan: &nbsp;</label>${assesment.therapyPlan}</td>
+								<td width="120"><label>Is Treatment Active: &nbsp;</label></td><td>${assesment.isActive}</td>
 							</tr>
 							<tr>
-								<td><label>Is Treatment Active: &nbsp;</label>${assesment.isActive}</td>
-							</tr>
-							<tr>
-								<td><label>Created On: &nbsp;</label>
+								<td width="120"><label>Created On: &nbsp;</label></td><td>
 									<fmt:formatDate value="${assesment.createdDate}" var="createdDtStr" pattern="dd-MMM-yyyy" /> 		
 									${createdDtStr}
 								</td>
 							</tr>
 							<tr>
-								<td><label>Updated On:&nbsp;</label>
+								<td width="120"><label>Updated On:&nbsp;</label></td><td>
 								<fmt:formatDate value="${a.updatedDate}" var="updatedDtStr" pattern="dd-MMM-yyyy" />
 								${updatedDtStr}</td>
 							</tr>
