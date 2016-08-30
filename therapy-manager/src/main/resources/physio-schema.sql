@@ -183,3 +183,5 @@ DELETE FROM physio.prescriptions where prescription_id > 0;
 delete from patients where patient_id > 0;
 delete from addresses where address_id > 0;
 
+
+SELECT TREATMENT_ID, TREATMENT_NAME,FEE FROM TREATMENTS ORDER BY TREATMENT_ID;

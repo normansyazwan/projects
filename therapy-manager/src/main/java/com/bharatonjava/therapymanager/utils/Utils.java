@@ -1,6 +1,7 @@
 package com.bharatonjava.therapymanager.utils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Utils {
@@ -23,4 +24,19 @@ public class Utils {
 	}
 	
 	private Utils() {}
+	
+	
+	/**
+	 * Finds size of collection taking care of null check.
+	 * @param list
+	 * @return
+	 */
+	public static int size(List<?> list){
+		if(list != null){
+			return list.size();
+		}else{
+			return 0;
+		}
+	}
+	
 }

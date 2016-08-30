@@ -89,6 +89,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/reports/dailyEarnings.jsp" />
 	</definition>
 
+	<!-- views for metadata settings -->
+	<definition name="settings.treatments" extends="layout.fullpage">	
+		<put-attribute name="title" value="Manage Treatments Metadata" />
+		<put-attribute name="body" value="/WEB-INF/views/settings/treatments.jsp" />
+	</definition>
+
 
 	<!-- Common Pages -->
 	<definition name="contactUs" extends="layout.fullpage">	

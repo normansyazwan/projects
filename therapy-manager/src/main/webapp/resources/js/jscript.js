@@ -13,4 +13,19 @@ $(document).ready( function ()
 		/* setting input box value to selected option value */
 		$('#fees').val(option);
 	});
+	
+	
+
+	
+	
+
+		
 });
+
+/*
+	This is to handle delete funcationality on Assessment history. Copies assessmentId to the hidden textbox in modal's form.
+*/
+function copyAssessmentIdToModal(el) {
+    var assId = $(el).attr('assId');
+    document.getElementById("assessmentIdToDelete").value = assId;
+}

@@ -13,7 +13,8 @@ public interface Constants {
 	public static final String VIEW_PATIENT_HISTORY = "patient.history.page";
 	public static final String VIEW_ALL_PATIENTS = "patients.list";
 	public static final String VIEW_DAILY_EARNINGS = "report.dailyEarnings";
-	
+	// views for settings pages
+	public static final String VIEW_SETTINGS_TREATMENTS = "settings.treatments";
 	
 
 	public static final Long PAGE_SIZE = 20L;

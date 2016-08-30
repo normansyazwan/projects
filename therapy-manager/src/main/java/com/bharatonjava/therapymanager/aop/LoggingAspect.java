@@ -21,9 +21,9 @@ public class LoggingAspect {
 			argsString = argsString + o + ", ";
 		}
 		if(StringUtils.isBlank(argsString)){
-			logger.info("Executing METHOD {}", joinPoint.getSignature().getName());
+			logger.debug("Executing METHOD {}", joinPoint.getSignature().getName());
 		}else{
-			logger.info("Executing METHOD {} WITH ARGS: {}", joinPoint.getSignature().getName(), argsString );
+			logger.debug("Executing METHOD {} WITH ARGS: {}", joinPoint.getSignature().getName(), argsString );
 		}
 		
 	}

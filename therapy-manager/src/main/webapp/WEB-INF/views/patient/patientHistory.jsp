@@ -32,6 +32,7 @@
 							<th>Present Condition</th>
 							<th width="80">Created Date</th>
 							<th width="80">Updated Date</th>
+							<th width="80">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -39,20 +40,30 @@
 						<c:forEach items="${assesmentsInBrief}" var="a" varStatus="status">
 							<tr>
 								<td width="50"><a
-									href='<c:url value="?assessmentId=${a.assesmentId}" />'>${a.assesmentId }</a>
+									href='<c:url value="?assessmentId=${a.assesmentId}&action=details" />'>${a.assesmentId }</a>
 								</td>
 								<td><a
-									href='<c:url value="?assessmentId=${a.assesmentId}" />'>${a.presentCondition }</a></td>
+									href='<c:url value="?assessmentId=${a.assesmentId}&action=details" />'>${a.presentCondition }</a></td>
 								<td><fmt:formatDate value="${a.createdDate}"
 										var="createdDateStr" pattern="dd-MMM-yyyy" /> <a
-									href='<c:url value="?assessmentId=${a.assesmentId}" />'>
+									href='<c:url value="?assessmentId=${a.assesmentId}&action=details" />'>
 										${createdDateStr}</a></td>
 								<td><fmt:formatDate value="${a.updatedDate}"
 										var="updatedDateStr" pattern="dd-MMM-yyyy" /> <a
-									href='<c:url value="?assessmentId=${a.assesmentId}" />'>
+									href='<c:url value="?assessmentId=${a.assesmentId}&action=details" />'>
 										${updatedDateStr} </a></td>
-							</tr>
 
+								<td>
+									<div class="btn-group">
+										<a href='<c:url value="?assessmentId=${a.assesmentId}&action=edit" />' title="Edit" class="btn btn-warning btn-xs">Edit</a>
+										<%-- this delete button will invoke confirmation modal --%>
+										<a href="#" title="Delete" class="btn btn-danger btn-xs" 
+											data-toggle="modal" data-target="#deleteConfirmationModal"
+											OnClick="copyAssessmentIdToModal(this);" assId="${a.assesmentId}">Delete</a>
+									</div>
+								
+								</td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -199,3 +210,33 @@
 		
 	</div>
 </div>
+
+
+  <%-- Modal Dialog box to confirm assessment deletion --%>
+  
+  <div class="modal fade" id="deleteConfirmationModal" role="dialog">
+    <div class="modal-dialog">
+    
+	    <form action="assessments/delete" method="post">
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Delete Confirmation!</h4>
+	        </div>
+	        <div class="modal-body">
+	          <p class="text-danger"><strong>Do you really want to delete this Assessment</strong></p>
+	          <p class="text-warning">This will also delete all the sittings and billing records associated with this assessment.</p>
+	          
+	        </div>
+	        <div class="modal-footer">
+	        	<input type="text" id="assessmentIdToDelete" hidden="" name="assessmentIdToDelete">
+	        	<a href="#" title="Cancel" class="btn btn-success" data-dismiss="modal">Cancel</a>
+	          	<button type="submit" class="btn btn-danger">Yes</button>
+	        </div>
+	      </div>
+	    </form> 
+	    
+    </div>
+  </div>
+  

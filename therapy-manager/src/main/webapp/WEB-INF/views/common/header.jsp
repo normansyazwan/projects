@@ -37,7 +37,7 @@
 					</ul>
 				</li>
 			</ul>
-			<%-- Menu for accounting --%>
+			<%-- Menu for reporting --%>
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -48,10 +48,21 @@
 				</li>
 			</ul>
 			
+			<%-- Menu for settings --%>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Settings<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<c:url value="/settings/treatments" />" >Add/Edit Treatments</a></li>
+					</ul>
+				</li>
+			</ul>
+			
 			<c:url value='/search' var="searchAction" />
 			<form method="GET" action="${searchAction}" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input name="q" type="text" value="${q}" class="form-control" placeholder="Name, mobile, email etc.."  size="50" />
+					<input name="q" type="text" value="${q}" class="form-control" placeholder="Search with.. Name, mobile, email etc.."  size="50" />
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
 			</form>

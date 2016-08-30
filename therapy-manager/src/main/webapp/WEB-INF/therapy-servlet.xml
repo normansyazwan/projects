@@ -22,12 +22,12 @@
 
 	<!-- Bean definitions -->
 
-
-
 	<bean id="patientValidator"
 		class="com.bharatonjava.therapymanager.web.patient.PatientValidator" />
 
 	<bean class="com.bharatonjava.therapymanager.services.PatientService" />
+	
+	<bean id="settingsService" class="com.bharatonjava.therapymanager.services.SettingsService" />
 
 	<bean id="patientDao" class="com.bharatonjava.therapymanager.dao.PatientDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
@@ -38,6 +38,10 @@
 	</bean>
 	
 	<bean id="reportDao" class="com.bharatonjava.therapymanager.dao.ReportDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="settingsDao" class="com.bharatonjava.therapymanager.dao.SettingsDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 
