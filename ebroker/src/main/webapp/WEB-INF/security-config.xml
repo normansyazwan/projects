@@ -15,28 +15,36 @@
 
 	<!-- <security:debug /> -->
 
-	<security:http auto-config="true">
-		
-		<security:intercept-url pattern="/private/*"/>
+	<security:http pattern="/css/**" security="none" />
+	<security:http pattern="/fonts/**" security="none" />
+	<security:http pattern="/images/**" security="none" />
+	<security:http pattern="/js/**" security="none" />
 
- 		<security:form-login login-page="/login"
+	<security:http auto-config="true">
+
+		<security:intercept-url pattern="/**" />
+
+		<security:form-login login-page="/login"
 			default-target-url="/" authentication-failure-url="/login?error"
 			login-processing-url="/j_spring_security_check" username-parameter="username"
 			password-parameter="password" />
 
-		<security:logout logout-success-url="/login?logout"
+		<security:logout delete-cookies="JSESSIONID" logout-success-url="/login?logout"
 			logout-url="/j_spring_security_logout" />
-		<security:csrf disabled="true" /> 
+
+		<security:csrf disabled="true" />
+		<security:session-management invalid-session-url="/invalidSession" />
 	</security:http>
 
 
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<!-- <security:user-service> <security:user name="admin" password="pass" 
-				authorities="ROLE_USER" /> </security:user-service> -->
 			<security:jdbc-user-service
 				data-source-ref="dataSource" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+
+
+
 
 </beans>
