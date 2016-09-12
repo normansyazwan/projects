@@ -162,7 +162,7 @@
 						
 						<a href='<c:url value="/patients/${patient.patientId}/treatment" />'
 						class="btn btn-default btn-sm" title="Add Sitting">Add Sitting</a>
-						<a href='<c:url value="/patients/${patient.patientId}/history" />'
+						<a href='<c:url value="/patients/${patient.patientId}/assessments" />'
 						class="btn btn-default btn-sm" title="Patient History">Assessment History</a>
 					</div>	
 				</div>

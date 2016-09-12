@@ -9,8 +9,8 @@
 
 
 <div class="page-header">
-	<h3>Patient Assesment Form</h3>
-	<h5>Assesment of ailment</h5>
+	<h3>Patient Assessment Form</h3>
+	<h5>Assessment of ailment</h5>
 </div>
 
 <form:form method="POST" commandName="assesment"
@@ -20,6 +20,9 @@
 		
 			<div class="col-sm-1"></div>
 			<div class="col-sm-11" >
+				
+				<%-- patientId will be 0 in case of new patient --%>
+				<form:hidden path="patientId" />
 		
 				<spring:bind path="presentCondition">
 					<div class="form-group ${status.error ? 'has-error' : ''}">

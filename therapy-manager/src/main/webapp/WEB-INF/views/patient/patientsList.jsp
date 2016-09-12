@@ -44,7 +44,7 @@
 	</div>
 
 	<table
-		class="table table-condensed table-striped table-hover table-responsive small">
+		class="table table-responsive table-condensed table-striped table-hover small">
 		<thead>
 			<tr>
 				<th>Sr.No.</th>

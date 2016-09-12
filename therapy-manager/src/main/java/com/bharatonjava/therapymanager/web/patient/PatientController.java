@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,17 +81,22 @@ public class PatientController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView listPatients(@RequestParam("page") Long pageNumber, ModelAndView mav) {
+	public ModelAndView listPatients(@RequestParam("page") Long pageNumber,
+			ModelAndView mav) {
+		
+		logger.info("Inside listPatients method.");
 		
 		List<Patient> patients = this.patientService.getPatients(pageNumber);
 		mav.addObject("patients", patients);
 		mav.setViewName(Constants.VIEW_ALL_PATIENTS);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView registerPatient() {
 
+		logger.info("Inside registerPatient method.");
+		
 		ModelAndView mav = new ModelAndView();
 		Patient patient = new Patient();
 
@@ -110,7 +116,7 @@ public class PatientController {
 			@ModelAttribute("patient") Patient patient, BindingResult result,
 			ModelMap model) {
 
-		logger.info("Inside registerPatientHandler() : {}", patient);
+		logger.info("Inside registerPatientHandler method. patient={}", patient);
 		ModelAndView mav = new ModelAndView();
 
 		patientValidator.validate(patient, result);
@@ -135,6 +141,8 @@ public class PatientController {
 	@RequestMapping(value = "/{patientId}/profile", method = RequestMethod.GET)
 	public ModelAndView patientProfile(@PathVariable("patientId") Long patientId) {
 
+		logger.info("Inside patientProfile method. patientId={}", patientId);
+		
 		Patient patient = this.patientService.getPatientById(patientId);
 
 		ModelAndView mav = new ModelAndView();
@@ -147,6 +155,8 @@ public class PatientController {
 	public String preparePatientEditForm(@PathVariable("id") Long patientId,
 			Model model) {
 
+		logger.info("Inside preparePatientEditForm method. patientId={}", patientId);
+		
 		Patient patient = patientService.getPatientById(patientId);
 		List<HospitalEnum> bloodGroups = this.patientService.getBloodGroups();
 		model.addAttribute("bloodGroups", bloodGroups);
@@ -161,7 +171,7 @@ public class PatientController {
 			@PathVariable("id") Long patientId, BindingResult result,
 			ModelMap model) {
 
-		logger.info("patient update: {}", patient);
+		logger.info("Inside processPatientEditForm method. patientId={}, patient=", patientId,patient );
 
 		if (patientId != null && patientId > 0L
 				&& patientId.equals(patient.getPatientId())) {
@@ -198,7 +208,9 @@ public class PatientController {
 			@RequestParam(value = "action", defaultValue = Constants.ACTION_NEW, required = false) String action,
 			Model model) {
 
-		logger.info("showPrescriptionForm: action = {}", action);
+		logger.info("Inside showPrescriptionForm method. "
+				+ "patientId={}, prescriptionId={}, action = {}", id,
+				prescriptionId, action);
 
 		if (action == null || action.equals(Constants.ACTION_NEW)) {
 
@@ -227,13 +239,27 @@ public class PatientController {
 			@RequestParam(value = "action", defaultValue = Constants.ACTION_NEW, required = false) String action,
 			Model model) {
 
-		logger.info("assesmentId: action = {}", action);
+		logger.info(
+				"Inside showAssesmentForm method. patientId={}, assesmentId={}, action = {}",
+				patientId, assesmentId, action);
+
 		Assesment assesment = new Assesment();
 		model.addAttribute("assesment", assesment);
 
 		return Constants.VIEW_PATIENT_ASSESMENT_FORM;
 	}
 
+	/**
+	 * Handles add/edit processing of patientAssessment form
+	 * 
+	 * @param assesment
+	 * @param patientId
+	 * @param assesmentId
+	 * @param action
+	 * @param model
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}/assesment", method = RequestMethod.POST)
 	public String processAssesmentForm(
 			@ModelAttribute("assesment") Assesment assesment,
@@ -242,8 +268,9 @@ public class PatientController {
 			@RequestParam(value = "action", defaultValue = Constants.ACTION_NEW, required = false) String action,
 			Model model, BindingResult result) {
 
-		logger.info("assesmentId: action = {}", action);
-		logger.info("patientId:{}, assesment: {}", patientId, assesment);
+		logger.info(
+				"Inside processAssesmentForm method patientId={}, assesment={}, action={}",
+				patientId, assesment, action);
 
 		assesmentValidator.validate(assesment, result);
 
@@ -318,10 +345,10 @@ public class PatientController {
 			mav.addObject("assessmentNotSelected",
 					"Please select Assessment from left panel.");
 			logger.info("Assessment was not selected.");
-		} else if (treatmentId == null || treatmentId == 0L){
+		} else if (treatmentId == null || treatmentId == 0L) {
 			mav.addObject("assessmentNotSelected",
 					"Please select sitting from dropdown.");
-		}else {
+		} else {
 			// Add treatment to assessment
 			this.patientService.addNewSittingToAssessment(assessmentId,
 					treatmentId);
@@ -336,28 +363,58 @@ public class PatientController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/{id}/history", method = RequestMethod.GET)
-	public ModelAndView viewPatientHistory(@PathVariable("id") Long patientId,
-			@RequestParam(value = "assessmentId", defaultValue = "0", required = false) Long assessmentId,
+	/**
+	 * Handles assessment history and edit assessment request.
+	 * @param patientId
+	 * @param assessmentId
+	 * @param action
+	 * @param mav
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}/assessments", method = RequestMethod.GET)
+	//@RequestMapping(value = "/{id}/assesment", method = RequestMethod.GET)
+	public ModelAndView viewPatientAssessment(
+			@PathVariable("id") Long patientId,
+			@RequestParam(value = "assessmentId", required = false) Long assessmentId,
+			@RequestParam(value = "action", defaultValue = "", required = false) String action,
 			ModelAndView mav) {
-		
-		Patient p = this.patientService.getPatientById(patientId);
-		mav.addObject("patient", p);
-		
-		// fetch assessments in brief to show in left panel
-		List<Assesment> assesmentsInBrief = this.patientService.getAssessmentsInBreifForPatient(patientId);
-		mav.addObject("assesmentsInBrief",assesmentsInBrief);
-		
-		if(assessmentId > 0L){
-			// fetch details
-			Assesment assesment = this.patientService.getAssesment(patientId, assessmentId);
-			mav.addObject("assesment",assesment);
+
+		logger.info(
+				"Inside viewPatientHistory method : patientId={}, assessmentId={}, action={}",
+				patientId, assessmentId, action);
+
+		// request to view details
+		if (StringUtils.isBlank(action) || (action.equalsIgnoreCase("details"))) {
+
+			Patient p = this.patientService.getPatientById(patientId);
+			mav.addObject("patient", p);
+
+			// fetch assessments in brief to show in left panel
+			List<Assesment> assesmentsInBrief = this.patientService
+					.getAssessmentsInBreifForPatient(patientId);
+			mav.addObject("assesmentsInBrief", assesmentsInBrief);
+
+			if (assessmentId != null && assessmentId > 0L) {
+				// fetch details
+				Assesment assesment = this.patientService.getAssesment(
+						patientId, assessmentId);
+				mav.addObject("assesment", assesment);
+			}
+
+			mav.setViewName(Constants.VIEW_PATIENT_HISTORY);
+
+		} else if (StringUtils.isNotBlank(action)
+				&& action.equalsIgnoreCase("edit")) {
+
+			// edit request, Fetch requested assessmentId and send user to edit
+			// form
+			Assesment assesment = this.patientService.getAssesment(patientId,
+					assessmentId);
+			mav.addObject("assesment", assesment);
+			mav.setViewName(Constants.VIEW_PATIENT_ASSESMENT_FORM);
 		}
-		
-		mav.setViewName(Constants.VIEW_PATIENT_HISTORY);
+
 		return mav;
 	}
-
-
 
 }

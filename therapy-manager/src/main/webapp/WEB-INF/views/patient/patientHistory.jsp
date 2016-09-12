@@ -25,7 +25,7 @@
 		<div class="col col-sm-5">
 			<h3>Assessments</h3>
 			<div class="table-responsive">
-				<table class="table table-bordered table-striped table-condensed small">
+				<table class="table table-responsive table-bordered table-striped table-condensed small">
 					<thead>
 						<tr>
 							<th width="50">Id</th>

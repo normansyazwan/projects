@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.jfree.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -288,6 +289,8 @@ public class PatientDaoImpl implements PatientDao {
 	public List<Assesment> getAssessmentsForPatient(Long patientId,
 			boolean activeOnly) {
 
+		logger.info("Inside getAssessmentsForPatient method. patientId={}, activeOnly={}", patientId, activeOnly);
+		
 		List<Assesment> assesments = null;
 
 		String sql = "SELECT ASSESMENT_ID,PATIENT_ID,PRESENT_CONDITION,ONSET,DURATION,"
@@ -312,9 +315,14 @@ public class PatientDaoImpl implements PatientDao {
 		return assesments;
 	}
 
+	/**
+	 * Fetches specified assessment for a given patient.
+	 */
 	@Override
 	public Assesment getAssesment(Long patientId, Long assessmentId) {
 
+		logger.info("Inside getAssesment method. patientId={}, assessmentId={}", patientId, assessmentId);
+		
 		String sql = "SELECT ASSESMENT_ID,PATIENT_ID,PRESENT_CONDITION,ONSET,DURATION,"
 				+ "SURGICAL_HISTORY,RED_FLAG,PHYSIOTHREAPY_TREATMENT_HISTORY,CURRENT_EXERCISES,"
 				+ "HOBBIES_AND_SPORTS,FAMILY_HISTORY,SWELLING,AREA_OF_PAIN,DEFORMITY,GAIT,"
@@ -324,11 +332,20 @@ public class PatientDaoImpl implements PatientDao {
 				+ " FROM ASSESMENTS WHERE PATIENT_ID=? and ASSESMENT_ID=? "
 				+ " ORDER BY CREATED_DATE,UPDATED_DATE DESC";
 
-		Assesment assesment = this.jdbcTemplate.queryForObject(sql,
+		List<Assesment> assesments = this.jdbcTemplate.query(sql,
 				new Object[] { patientId, assessmentId },
 				new AssesmentRowMapper());
 
-		return assesment;
+		if(assesments == null || assesments.isEmpty()){
+			return null;
+		}else if(assesments != null && assesments.size() == 1){
+			return assesments.get(0);
+		}else if(assesments != null && assesments.size() > 1){
+			logger.error("Unexpected resultset size. Expected 0 or 1 but was {}", assesments.size());
+			return null;
+		}
+		
+		return null;
 	}
 
 	@Override
