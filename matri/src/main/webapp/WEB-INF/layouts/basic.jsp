@@ -12,10 +12,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.12.4.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-2.1.4.js" />"></script>
 
 <link rel="stylesheet" href='<c:url value="/resources/css/styles.css" />' />
-<script type="text/javascript" src="<c:url value="/resources/js/jscript.js" />"></script>
+
 
 <script type="text/javascript" src="<c:url value="/resources/js/bootstrap.js" />"></script>
 <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap.css" />'>
@@ -27,7 +27,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12"><tiles:insertAttribute name="header" /></div>
-			<div class="col-md-12" style="margin-top:30px;"><tiles:insertAttribute name="body" /></div>
+			<div class="col-md-12" style="margin-top:70px;"><tiles:insertAttribute name="body" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>
 	</div>

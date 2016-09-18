@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>	
+
+	<!-- Pages -->
+
+	<definition name="homepage" extends="layout.fullpage">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
+	</definition>
+	
+	<definition name="patient.register.form" extends="layout.fullpage">
+		<put-attribute name="title" value="Patient Registration" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientRegistrationForm.jsp" />
+	</definition>
+
+	<definition name="patient.profile" extends="layout.fullpage">
+		<put-attribute name="title" value="Patient Profile" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientProfile.jsp" />
+	</definition>
+
+
+	<definition name="user.login.form" extends="layout.fullpage">
+		<put-attribute name="title" value="Login Please" />
+		<put-attribute name="body" value="/WEB-INF/views/common/login.jsp" />
+	</definition>
+
+	<definition name="patient.search.result" extends="layout.fullpage">
+		<put-attribute name="title" value="Search Results" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/searchResult.jsp" />
+	</definition>
+
+	<definition name="patient.prescription.form" extends="layout.fullpage">	
+		<put-attribute name="title" value="Prescription Form" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientPrescriptionForm.jsp" />
+	</definition>
+
+	<definition name="patient.assesment.form" extends="layout.fullpage">	
+		<put-attribute name="title" value="Assessment Form" />
+		<put-attribute name="body" value="/WEB-INF/views/assesment/assesmentForm.jsp" />
+	</definition>
+
+	<definition name="patient.treatment.page" extends="layout.fullpage">	
+		<put-attribute name="title" value="Treatment" />
+		<put-attribute name="body" value="/WEB-INF/views/assesment/treatment.jsp" />
+	</definition>	
+
+	<definition name="patient.history.page" extends="layout.fullpage">	
+		<put-attribute name="title" value="History" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientHistory.jsp" />
+	</definition>
+		
+	<definition name="patients.list" extends="layout.fullpage">	
+		<put-attribute name="title" value="Patients" />
+		<put-attribute name="body" value="/WEB-INF/views/patient/patientsList.jsp" />
+	</definition>
+	
+	
+	<!-- Views for Reports -->
+	<definition name="report.dailyEarnings" extends="layout.fullpage">	
+		<put-attribute name="title" value="Earnings Report" />
+		<put-attribute name="body" value="/WEB-INF/views/reports/dailyEarnings.jsp" />
+	</definition>
+
+	<!-- views for metadata settings -->
+	<definition name="settings.treatments" extends="layout.fullpage">	
+		<put-attribute name="title" value="Manage Treatments Metadata" />
+		<put-attribute name="body" value="/WEB-INF/views/settings/treatments.jsp" />
+	</definition>
+
+
+	<!-- Common Pages -->
+	<definition name="contactUs" extends="layout.fullpage">	
+		<put-attribute name="title" value="Contact Us" />
+		<put-attribute name="body" value="/WEB-INF/views/common/contactUs.jsp" />
+	</definition>
+
+	<definition name="aboutUs" extends="layout.fullpage">	
+		<put-attribute name="title" value="About Us" />
+		<put-attribute name="body" value="/WEB-INF/views/common/about.jsp" />
+	</definition>
+	
+	<definition name="disclaimer" extends="layout.fullpage">	
+		<put-attribute name="title" value="Disclaimer" />
+		<put-attribute name="body" value="/WEB-INF/views/common/disclaimer.jsp" />
+	</definition>
+</tiles-definitions>
