@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+\<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -15,14 +15,19 @@
 	<div class="row">
 		<div class="col-sm-4">
 			<div class="jumbotron">
-				<a href="<c:url value="/patients/?page=1" />" class="btn btn-success">View All Patients <span class="badge">Total count ${patientCount}</span></a>
+				aaaaaaaaaaa
 			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="jumbotron">
-				<p>Active assessments will appear here with patient's phone number..</p>
+			
+				<form name="ajaxform" id="ajaxform" action="<c:url value="/ajax" />" method="post">
+					<label for="query">Search:</label> 
+					<button id="ajaxFormSubmit">Search</button>
+				</form>
+			
 			</div>
 		</div>
-		<div class="col-sm-4">.col-sm-4</div>
+		<div class="col-sm-4"><div id="outp">outp</div></div>
 	</div>
 </div>
