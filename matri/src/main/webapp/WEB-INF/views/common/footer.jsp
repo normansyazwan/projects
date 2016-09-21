@@ -8,10 +8,14 @@
 
 <div class="container-fluid well well-sm" style="margin-top:50px;">
 	<div class="row">
-		<div class="col-sm-8">Create your own Groups, join someone else's group and have fun!</div>
-		<div class="col-sm-4">
-			Gangs - <a href='<c:url value="/contactUs" />'>Contact
-				Us</a>
+		<div class="col-sm-8">We help you find your perfect partner in life!</div>
+		<div class="col-sm-2 text-right">
+		</div>
+		<div class="col-sm-1 text-right">
+			<a href='<c:url value="/aboutUs" />'>About Us</a>
+		</div>
+		<div class="col-sm-1 text-right">
+			<a href='<c:url value="/contactUs" />'>Contact Us</a>
 		</div>
 	</div>
 </div>

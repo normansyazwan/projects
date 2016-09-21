@@ -17,30 +17,29 @@ import com.bharatonjava.domain.Profile;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ModelAndView showHomePage(ModelAndView mav){
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView showHomePage(ModelAndView mav) {
 		logger.info("Inside showHomePage method");
-		
+
 		mav.setViewName("homepage");
 		return mav;
 	}
-	
-	
-	@RequestMapping(value="/ajax", method = RequestMethod.POST)
-	public @ResponseBody List<Profile> ajaxRequest(ModelAndView mav){
+
+	@RequestMapping(value = "/ajax", method = RequestMethod.POST)
+	public @ResponseBody List<Profile> ajaxRequest(ModelAndView mav) {
 		logger.info("Inside showHomePage method");
-		
+
 		List<Profile> lst = new ArrayList<>();
-		
+
 		Profile p = new Profile();
 		p.setFirstName("Bharat");
 		p.setLastName("Sharma");
 		p.setAge(22);
 		lst.add(p);
-		
-		
+
 		return lst;
 	}
+
 
 }

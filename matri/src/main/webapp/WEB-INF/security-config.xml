@@ -16,17 +16,20 @@
 	<!-- <security:debug /> -->
 
 	<security:http auto-config="true">
-		
-		<security:intercept-url pattern="/private/*"/>
 
- 		<security:form-login login-page="/"
+		<security:intercept-url pattern="/private/*" />
+
+		<security:form-login login-page="/"
 			default-target-url="/" authentication-failure-url="/login?loginError=true"
 			login-processing-url="/j_spring_security_check" username-parameter="username"
 			password-parameter="password" />
 
 		<security:logout logout-success-url="/"
-			logout-url="/j_spring_security_logout" />
-		<security:csrf disabled="true" /> 
+			logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID"
+			invalidate-session="true" />
+			
+		<security:csrf disabled="true" />
+		
 	</security:http>
 
 

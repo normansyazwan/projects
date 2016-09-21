@@ -22,4 +22,12 @@ table.gridtable td {
 	background-color: #bfbfbf;
 }
 
+/* Registration button */
+.registrationButton{
+	background-color: #00bcd5;
+	color: #ffffff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 

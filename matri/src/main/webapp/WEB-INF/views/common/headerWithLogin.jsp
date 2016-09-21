@@ -7,35 +7,39 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<div class="container-fluid">
-	<div class="row" style="height: 90px; background-color: #eee;">
-		<div class="col-xs-8 col-sm-8"
-			style="height: 100%">
-			
-			<c:forEach items="${authorities}" var="authority">
-				<li>${authority.authority}</li>
-			</c:forEach>
-			
-			</div>
-		<div class="col-xs-4 col-sm-4"
-			style="height: 100%;">
-			
-			<sec:authorize access="! isAuthenticated()">
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href='<c:url value="/" />'> <img alt="Brand" src="...">
+			</a>
+		</div>
+		
+		<sec:authorize access="! isAuthenticated()">
+			<c:url value='/profile/registration' var="profileRegistration" />
+			<ul class="nav navbar-nav navbar-right">
+				<li class="bg-success"><a href="${profileRegistration}">Free Registration!</a></li>
+			</ul>
+		
+			<div class="nav navbar-nav navbar-right">
+				
+				<c:url value='/j_spring_security_check' var="loginUrl" />
+				
 				<form name='loginForm'
-					action="<c:url value='j_spring_security_check' />" method='POST'
-					class="form-horizontal" style="padding-top: 20px;">
+					action="${loginUrl}" method='POST'
+					class="form-horizontal navbar-form">
 	
 					<div class="form-group">
-						<div class="col-xs-5">
+						<div class="col-xs-5" style="padding-left:0px; padding-right:5px">
 							<input type="text" id="userName"
 								class="form-control input-sm col-xs-5" name="username"
 								placeholder="username" width="100" />
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-4" style="padding-left:0px; padding-right:5px">
 							<input type="password" name="password"
 								class="form-control input-sm" placeholder="password" />
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-3 text-right" style="padding-left:10px; padding-right:10px;">
 							<input name="loginSubmit" type="submit" value="Log In"
 								class="btn btn-primary btn-sm" />
 	
@@ -44,13 +48,18 @@
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
-			</sec:authorize>
-			
-			<sec:authorize access="isAuthenticated()">
-			
-				<div style="padding-top: 20px;">Welcome <sec:authentication property="principal.username" /></div>
-				<a href="<c:url value="/j_spring_security_logout" />">Logout</a>
-			</sec:authorize>
-		</div>
+				<%-- 
+				<a href="#" class="small">Forgot Password?</a>
+				<a href="#" class="small">Forgot User Id?</a>
+				--%>
+			</div>
+		</sec:authorize>
+
+		<sec:authorize access="isAuthenticated()">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Welcome <sec:authentication property="principal.username" /></a></li>
+				<li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
+			</ul>
+		</sec:authorize>
 	</div>
-</div>
+</nav>
