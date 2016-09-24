@@ -15,3 +15,6 @@ FOREIGN KEY (USERNAME) REFERENCES USERS(USERNAME)
 
 insert into users(username, password,enabled) values('bharat','pass',1);
 insert into authorities(username,authority) values('bharat','ROLE_ADMIN');
+insert into authorities(username,authority) values('bharat','ROLE_USER');
+
+delete from authorities where username != 'a';

@@ -2,6 +2,7 @@ package com.bharatonjava.domain;
 
 public class Profile {
 
+	private Long profileId;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -10,6 +11,14 @@ public class Profile {
 	public Profile() {
 	}
 
+	public Long getProfileId() {
+		return profileId;
+	}
+	
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}

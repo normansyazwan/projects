@@ -50,15 +50,14 @@
 	</bean>
 
 
-	<bean id="ajaxViewResolver" class="org.springframework.js.ajax.AjaxUrlBasedViewResolver">
+	<bean id="viewResolver" class="org.springframework.js.ajax.AjaxUrlBasedViewResolver">
    		<property name="viewClass" value="org.springframework.js.ajax.tiles3.AjaxTilesView" />
-   		<property name="order" value="0" />
 	</bean>
 	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+<!-- 	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="1" />
-	</bean>
+	</bean> -->
 	 	
 
 	<bean id="messageSource"

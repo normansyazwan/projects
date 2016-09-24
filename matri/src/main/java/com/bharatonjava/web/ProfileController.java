@@ -1,6 +1,5 @@
 package com.bharatonjava.web;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -9,24 +8,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bharatonjava.domain.Profile;
+
 @Controller
-@RequestMapping(value="/profile")
 public class ProfileController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
-	
-	@RequestMapping(value = "/{profileId}")
-	public ModelAndView showProfile(@PathVariable("profileId") String profileId, ModelAndView mav){
-		
+
+	@RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
+	public ModelAndView showProfile(@PathVariable("id") Long profileId) {
+		logger.info("Inside showProfile method : profileId={}", profileId);
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("profileRegistration");
 		return mav;
 	}
-	
-	@RequestMapping(value = {"/registration","/new"}, method = RequestMethod.GET)
-	public ModelAndView showProfileForm(ModelAndView mav){
+
+	@RequestMapping(value = "/profile/{id}/edit", method = RequestMethod.GET)
+	public ModelAndView showEditProfileForm(@PathVariable("id") Long profileId) {
+		logger.info("Inside showEditProfileForm method. profileId={}", profileId);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("profileRegistration");
+		return mav;
+	}
+
+	@RequestMapping(value = "/profile/new", method = RequestMethod.GET)
+	public ModelAndView showProfileForm() {
 		logger.info("Inside showProfileForm method");
-		
-		mav.setViewName("profile.registration");
+		ModelAndView mav = new ModelAndView();
+
+		Profile profile = new Profile();
+
+		mav.addObject("profile", profile);
+		mav.setViewName("profileRegistration");
 		return mav;
 	}
 	
+
+	@RequestMapping(value = "/profile/new", method = RequestMethod.POST)
+	public ModelAndView processProfileForm(Profile profile) {
+
+		logger.info("Inside processProfileForm method. profile={}", profile);
+
+		ModelAndView mav = new ModelAndView();
+
+		// decide based on profileId in the submitted form.
+
+		mav.setViewName("profileRegistration");
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/profile/{id}/deactivate", method = RequestMethod.POST)
+	public ModelAndView deactivateProfile(@PathVariable("id") Long profileId) {
+
+		logger.info("Inside deactivateProfile method. profileId={}", profileId);
+
+		ModelAndView mav = new ModelAndView();
+
+		// decide based on profileId in the submitted form.
+
+		mav.setViewName("profileRegistration");
+		return mav;
+
+	}
 }

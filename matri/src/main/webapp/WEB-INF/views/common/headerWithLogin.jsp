@@ -16,9 +16,9 @@
 		</div>
 		
 		<sec:authorize access="! isAuthenticated()">
-			<c:url value='/profile/registration' var="profileRegistration" />
+			<c:url value='/profile/new' var="profileRegistration" />
 			<ul class="nav navbar-nav navbar-right">
-				<li class="bg-success"><a href="${profileRegistration}">Free Registration!</a></li>
+				<li class="bg-success"><a href="${profileRegistration}"><strong>Free Registration!</strong></a></li>
 			</ul>
 		
 			<div class="nav navbar-nav navbar-right">

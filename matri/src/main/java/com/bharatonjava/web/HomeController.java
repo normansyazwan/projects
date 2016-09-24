@@ -26,7 +26,7 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/ajax", method = RequestMethod.POST)
+	@RequestMapping(value = "/ajax", method = RequestMethod.GET)
 	public @ResponseBody List<Profile> ajaxRequest(ModelAndView mav) {
 		logger.info("Inside showHomePage method");
 

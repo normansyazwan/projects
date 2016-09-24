@@ -12,8 +12,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/home/home.jsp" />
 	</definition>
 	
-	<definition name="profile.registration" extends="layout.homepage">
-		<put-attribute name="title" value="Create New Profile" />
+	<definition name="profileRegistration" extends="layout.homepage">
+		<put-attribute name="title" value="New Profile" />
 		<put-attribute name="body" value="/WEB-INF/views/profile/profileRegistration.jsp" />
 	</definition>
 
