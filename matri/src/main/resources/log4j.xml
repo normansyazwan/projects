@@ -16,6 +16,12 @@
 			<param name="ConversionPattern" value="%d{yyyyMMdd-HH:mm:ss} [%t] %-5level %c{1.} - %m%n" />
 		</layout>
 	</appender>
+
+	<logger name="org.springframework">
+		<level value="DEBUG" />
+		<appender-ref ref="CA" />
+	</logger>
+
 	<root>
 		<level value="INFO" />
 		<appender-ref ref="CA" />
