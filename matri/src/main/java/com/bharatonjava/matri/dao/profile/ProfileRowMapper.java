@@ -12,7 +12,12 @@ public class ProfileRowMapper implements RowMapper<Profile>{
 	@Override
 	public Profile mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
-		return null;
+		Profile p = new Profile();
+		p.setFirstName(rs.getString("FIRST_NAME"));
+		p.setMiddleName(rs.getString("MIDDLE_NAME"));
+		p.setLastName(rs.getString("LAST_NAME"));
+		
+		return p;
 	}
 
 }

@@ -32,8 +32,32 @@
 								cssClass="form-control" placeholder="First Name" maxlength="100" />
 						</div>
 						<div class="col-sm-3">
+							<form:input path="lastName" value="${middleName}"
+								cssClass="form-control" placeholder="Last Name" maxlength="100" />
+						</div>
+						<div class="col-sm-3">
 							<form:input path="lastName" value="${lastName}"
 								cssClass="form-control" placeholder="Last Name" maxlength="100" />
+						</div>
+						<div class="col-sm-4">
+							<form:errors path="firstName" cssClass="text-danger"
+								class="control-label" />
+						</div>
+					</div>
+				</spring:bind>
+				
+				<spring:bind path="gender">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="gender" cssClass="col-sm-2 control-label">Gender:</form:label>
+						<div class="col-sm-3">
+							<form:input path="firstName" value="${gender}"
+								cssClass="form-control" placeholder="First Name" maxlength="100" />
+						</div>
+						<div class="col-sm-3">
+						
+						</div>
+						<div class="col-sm-3">
+						
 						</div>
 						<div class="col-sm-4">
 							<form:errors path="firstName" cssClass="text-danger"
