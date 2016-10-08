@@ -1,8 +1,11 @@
 package com.bharatonjava.matri.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -18,8 +21,11 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.bharatonjava.matri.web")
+@PropertySource("classpath:placeholder.properties")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+	private static final Logger logger = LoggerFactory.getLogger(WebConfig.class);
+	
 	// view resolver
 	@Bean
 	public ViewResolver viewResolver() {

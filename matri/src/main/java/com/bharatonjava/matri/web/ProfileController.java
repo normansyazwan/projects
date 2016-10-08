@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bharatonjava.domain.Profile;
+import com.bharatonjava.matri.domain.Profile;
 import com.bharatonjava.matri.utils.Constants;
 
 @Controller

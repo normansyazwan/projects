@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bharatonjava.domain.Profile;
+import com.bharatonjava.matri.domain.Profile;
 
 @Controller
 public class HomeController {
