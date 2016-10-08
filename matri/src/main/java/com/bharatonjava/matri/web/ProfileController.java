@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bharatonjava.matri.domain.Profile;
 import com.bharatonjava.matri.utils.Constants;
+import com.bharatonjava.matri.utils.Utils;
 
 @Controller
 public class ProfileController {
@@ -57,6 +58,7 @@ public class ProfileController {
 	public ModelAndView showEditProfileForm(@PathVariable("id") Long profileId) {
 		logger.info("Inside showEditProfileForm method. profileId={}", profileId);
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("profileRegistration");
 		return mav;
 	}
@@ -67,8 +69,10 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 
 		Profile profile = new Profile();
-
 		mav.addObject("profile", profile);
+
+		mav.addObject("maritalStatusList", Utils.getMaritalStatus());
+		
 		mav.setViewName("profileRegistration");
 		return mav;
 	}

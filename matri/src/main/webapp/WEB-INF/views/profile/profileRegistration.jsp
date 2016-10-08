@@ -33,7 +33,8 @@
 						</div>
 						<div class="col-sm-3">
 							<form:input path="lastName" value="${middleName}"
-								cssClass="form-control" placeholder="Last Name" maxlength="100" />
+								cssClass="form-control" placeholder="Middle Name"
+								maxlength="100" />
 						</div>
 						<div class="col-sm-3">
 							<form:input path="lastName" value="${lastName}"
@@ -65,7 +66,7 @@
 						</div>
 					</div>
 				</spring:bind>
-				
+
 				<spring:bind path="dateOfBirth">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
 						<form:label path="dateOfBirth" cssClass="col-sm-2 control-label">Date Of Birth</form:label>
@@ -81,7 +82,55 @@
 					</div>
 				</spring:bind>
 
+				<spring:bind path="maritalStatus">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="maritalStatus" cssClass="col-sm-2 control-label">Marital Status:</form:label>
+						<div class="col-sm-3">
+							<form:select path="maritalStatus" cssClass="form-control"
+								id="maritalStatus">
+								<option value="">-- Please Select --</option>
+								<c:forEach var="ms" items="${maritalStatusList}">
+									<c:choose>
+										<c:when test="${ms eq maritalStatus}">
+											<form:option value="${ms}">${ms}</form:option>
+										</c:when>
+										<c:otherwise>
+											<form:option value="${ms}">${ms}</form:option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</form:select>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="maritalStatus" cssClass="text-danger"
+								class="control-label" />
+						</div>
+					</div>
+				</spring:bind>
 
+				<spring:bind path="haveChildren">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="haveChildren" cssClass="col-sm-2 control-label">Have Children:</form:label>
+						<div class="col-sm-6">
+							<div class="col-sm-12">
+								<label class="radio-inline"> <form:radiobutton
+										path="haveChildren" value="No" /> No
+								</label> <label class="radio-inline"> <form:radiobutton
+										path="haveChildren" value="Yes & Living together" /> Yes &amp; Living together
+								</label>
+								<label class="radio-inline"> <form:radiobutton
+										path="haveChildren" value="Yes & Not Living together" /> Yes &amp; Not Living together
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<form:errors path="haveChildren" cssClass="text-danger"
+								class="control-label" />
+						</div>
+					</div>
+				</spring:bind>
+
+				
 
 				<div class="row">
 					<div class="col-sm-2"></div>
