@@ -18,8 +18,7 @@
 	</appender>
 
 	<logger name="org.springframework">
-		<level value="DEBUG" />
-		<appender-ref ref="CA" />
+		<level value="INFO" />
 	</logger>
 
 	<root>

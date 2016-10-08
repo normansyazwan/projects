@@ -1,10 +1,9 @@
-package com.bharatonjava.config;
+package com.bharatonjava.matri.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class MatriWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	// private int maxUploadSizeInMb = 5 * 1024 * 1024; // 5 MB
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {

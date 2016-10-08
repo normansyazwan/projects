@@ -1,4 +1,4 @@
-package com.bharatonjava.web;
+package com.bharatonjava.matri.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bharatonjava.domain.Profile;
-import com.bharatonjava.utils.Constants;
+import com.bharatonjava.matri.utils.Constants;
 
 @Controller
 public class ProfileController {

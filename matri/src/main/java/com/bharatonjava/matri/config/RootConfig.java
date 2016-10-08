@@ -1,4 +1,4 @@
-package com.bharatonjava.config;
+package com.bharatonjava.matri.config;
 
 import javax.sql.DataSource;
 
@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@ComponentScan(basePackages = { "com.bharatonjava" }, excludeFilters = {
+@ComponentScan(basePackages = { "com.bharatonjava.matri" }, excludeFilters = {
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 public class RootConfig {
 

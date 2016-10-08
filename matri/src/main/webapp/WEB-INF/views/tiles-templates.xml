@@ -9,8 +9,8 @@
 
 	<definition name="layout.homepage" template="/WEB-INF/layouts/basic.jsp">
 		<put-attribute name="title" value="Home" />
+		<!-- 	<put-attribute name="header" value="/WEB-INF/views/common/headerWithLogin.jsp" /> -->
 		<put-attribute name="header" value="/WEB-INF/views/common/headerWithLogin.jsp" />
-		<put-attribute name="navigation" value="/WEB-INF/views/common/navigation.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
