@@ -16,9 +16,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.webflow.execution.ScopeType;
-
-import com.bharatonjava.matri.dao.profile.ProfileDaoImpl;
 
 @Configuration
 @ComponentScan(basePackages = { "com.bharatonjava.matri" }, excludeFilters = {

@@ -27,7 +27,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12"><tiles:insertAttribute name="header" /></div>
-			<div class="col-md-12" style="margin-top:70px;"><tiles:insertAttribute name="body" /></div>
+			<div class="col-md-12"><tiles:insertAttribute name="body" /></div>
 			<div class="col-md-12"><tiles:insertAttribute name="footer" /></div>
 		</div>
 	</div>

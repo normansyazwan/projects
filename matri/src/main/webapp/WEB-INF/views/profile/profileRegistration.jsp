@@ -9,8 +9,8 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-10">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-11">
 			<div class="page-header">
 				<h3>Create New Profile</h3>
 			</div>
@@ -45,26 +45,43 @@
 						</div>
 					</div>
 				</spring:bind>
-				
+
 				<spring:bind path="gender">
 					<div class="form-group ${status.error ? 'has-error' : ''}">
 						<form:label path="gender" cssClass="col-sm-2 control-label">Gender:</form:label>
-						<div class="col-sm-3">
-							<form:input path="firstName" value="${gender}"
-								cssClass="form-control" placeholder="First Name" maxlength="100" />
+						<div class="col-sm-6">
+							<div class="col-sm-6">
+								<label class="radio-inline"> <form:radiobutton
+										path="gender" value="Male" /> Male
+								</label> <label class="radio-inline"> <form:radiobutton
+										path="gender" value="Female" /> Female
+								</label>
+							</div>
 						</div>
-						<div class="col-sm-3">
-						
-						</div>
-						<div class="col-sm-3">
-						
-						</div>
+						<div class="col-sm-3"></div>
 						<div class="col-sm-4">
-							<form:errors path="firstName" cssClass="text-danger"
+							<form:errors path="gender" cssClass="text-danger"
 								class="control-label" />
 						</div>
 					</div>
 				</spring:bind>
+				
+				<spring:bind path="dateOfBirth">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="dateOfBirth" cssClass="col-sm-2 control-label">Date Of Birth</form:label>
+						<div class="col-sm-3">
+							<fmt:formatDate value="${dob}" var="dateString"
+								pattern="dd/MM/yyyy" />
+							<form:input path="dateOfBirth" value="${dateString}"
+								cssClass="form-control" placeholder="dd/MM/yyyy" maxlength="10" />
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="dateOfBirth" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+
+
 
 				<div class="row">
 					<div class="col-sm-2"></div>

@@ -51,7 +51,7 @@ public class HomeController {
 		Profile p = new Profile();
 		p.setFirstName("Bharat");
 		p.setLastName("Sharma");
-		p.setAge(22);
+		
 		lst.add(p);
 
 		return lst;
