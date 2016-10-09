@@ -32,7 +32,7 @@
 								cssClass="form-control" placeholder="First Name" maxlength="100" />
 						</div>
 						<div class="col-sm-3">
-							<form:input path="lastName" value="${middleName}"
+							<form:input path="middleName" value="${middleName}"
 								cssClass="form-control" placeholder="Middle Name"
 								maxlength="100" />
 						</div>

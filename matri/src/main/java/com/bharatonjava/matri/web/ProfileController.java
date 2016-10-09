@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bharatonjava.matri.domain.Profile;
+import com.bharatonjava.matri.services.ProfileService;
 import com.bharatonjava.matri.utils.Constants;
 import com.bharatonjava.matri.utils.Utils;
 
@@ -24,6 +26,13 @@ public class ProfileController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
+	@Autowired
+	private ProfileService profileService;
+	
+	public void setProfileService(ProfileService profileService) {
+		this.profileService = profileService;
+	}
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 
@@ -82,6 +91,10 @@ public class ProfileController {
 
 		logger.info("Inside processProfileForm method. profile={}", profile);
 
+		logger.info("{}", profile);
+		
+		this.profileService.saveProfile(profile);
+		
 		ModelAndView mav = new ModelAndView();
 
 		// decide based on profileId in the submitted form.
