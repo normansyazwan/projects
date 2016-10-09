@@ -34,3 +34,5 @@ create table PROFILES(
     RELIGION VARCHAR(100),
     CASTE VARCHAR(100)
 );
+
+select * from PROFILES;

@@ -33,7 +33,7 @@ public class ProfileDaoImpl implements ProfileDao{
 				+ ",HAVE_CHILDREN,MOTHER_TONGUE,RELIGION,CASTE) VALUES"
 				+ "( ?,?,?,?,?,?,?,?,?,?)";
 		
-		this.jdbcTemplate.update(new PreparedStatementCreator() {
+		int count = this.jdbcTemplate.update(new PreparedStatementCreator() {
 			
 			@Override
 			public PreparedStatement createPreparedStatement(Connection c) throws SQLException {
@@ -57,7 +57,8 @@ public class ProfileDaoImpl implements ProfileDao{
 				return p;
 			}
 		});
-		return 0;
+		
+		return count;
 	}
 
 	@Override

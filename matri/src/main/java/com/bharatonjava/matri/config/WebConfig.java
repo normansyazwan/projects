@@ -63,6 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(3600)
 				.resourceChain(true).addResolver(new PathResourceResolver());
+		logger.info("ResourceHandler configured");
 	}
 
 	@Bean
