@@ -12,7 +12,7 @@
 		<div class="col-sm-1"></div>
 		<div class="col-sm-11">
 			<div class="page-header">
-				<h3>Create New Profile</h3>
+				<h3>New Profile Registration</h3>
 			</div>
 
 			<c:if test="${param.status ne null}">
@@ -130,7 +130,121 @@
 					</div>
 				</spring:bind>
 
+				<spring:bind path="unlistedCaste">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="unlistedCaste" cssClass="col-sm-2 control-label">Provide Caste if not listed above:</form:label>
+						<div class="col-sm-3">
+							<form:input path="unlistedCaste" value="${unlistedCaste}"
+								cssClass="form-control"  maxlength="100" />
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="unlistedCaste" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
 				
+				<spring:bind path="profileCreatedBy">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="profileCreatedBy" cssClass="col-sm-2 control-label">Profile created by:</form:label>
+						<div class="col-sm-3">
+							<form:input path="profileCreatedBy" value="${profileCreatedBy}"
+								cssClass="form-control"  maxlength="100" />
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="profileCreatedBy" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+				
+				<div class="col-sm-12">
+					<hr />
+				</div>
+				<spring:bind path="mobile">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="mobile" cssClass="col-sm-2 control-label">Mobile Number:</form:label>
+						<div class="col-sm-3">
+							<form:input path="mobile" value="${mobile}"
+								cssClass="form-control"  maxlength="10" placeholder="10 digit mobile number"/>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="mobile" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+				
+				<spring:bind path="mobile2">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="mobile2" cssClass="col-sm-2 control-label">Alternate Mobile Number:</form:label>
+						<div class="col-sm-3">
+							<form:input path="mobile2" value="${mobile2}"
+								cssClass="form-control"  maxlength="10" placeholder="10 digit mobile number"/>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="mobile2" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+				
+				<spring:bind path="landline">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="landline" cssClass="col-sm-2 control-label">Landline Number:</form:label>
+						<div class="col-sm-3">
+							<form:input path="landline" value="${landline}"
+								cssClass="form-control"  maxlength="20" placeholder="Landline phone number with STD code"/>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="landline" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+
+				<div class="col-sm-12">
+					<hr />
+				</div>
+
+				<spring:bind path="email">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="email" cssClass="col-sm-2 control-label">Email id:</form:label>
+						<div class="col-sm-3">
+							<form:input path="email" value="${email}"
+								cssClass="form-control"  maxlength="180" placeholder="Email id"/>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="email" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+
+				<spring:bind path="email">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="email" cssClass="col-sm-2 control-label">Password:</form:label>
+						<div class="col-sm-3">
+							<form:password path="email" value="${email}"
+								cssClass="form-control"  maxlength="180" placeholder="Email id"/>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="email" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+				
+				<spring:bind path="email">
+					<div class="form-group ${status.error ? 'has-error' : ''}">
+						<form:label path="email" cssClass="col-sm-2 control-label">Confirm Password:</form:label>
+						<div class="col-sm-3">
+							<form:password path="email" value="${email}"
+								cssClass="form-control"  maxlength="180" placeholder="Email id"/>
+						</div>
+						<div class="col-sm-9">
+							<form:errors path="email" cssClass="text-danger" />
+						</div>
+					</div>
+				</spring:bind>
+				
+								
+				<div class="col-sm-12">
+					<hr />
+				</div>
 
 				<div class="row">
 					<div class="col-sm-2"></div>

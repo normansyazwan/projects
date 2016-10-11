@@ -9,7 +9,8 @@
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4 text-center">
-		<img src=" <c:url value='/resources/images/gang-logo.png' />" alt="" class="img">
+			<img src=" <c:url value='/resources/images/gang-logo.png' />" alt=""
+				class="img">
 		</div>
 		<div class="col-md-4"></div>
 	</div>
@@ -26,16 +27,25 @@
 			</div>
 			<div style="height: 20px;"></div>
 			<div class="row well">
-				<form name='loginForm'
-					action="<c:url value='j_spring_security_check' />" method='POST'>
+				<form name='loginForm' class="form-horizontal"
+					action="<c:url value='/login' />" method='POST'>
 
 					<div>
+						<c:if test="${param.error != null}">
+							<p>Invalid Username and password.</p>
+						</c:if>
+
+
 						<h4>Login Please...</h4>
-						<input type="text" id="userName"
-							class="form-control input-sm chat-input" name="username"
-							placeholder="username" /> <br /> <input type="password"
-							name="password" class="form-control input-sm chat-input"
-							placeholder="password" /> <br>
+						<div class="form-group">
+							<label class="control-label">Password:</label> <input type="text"
+								id="userName" class="form-control input-sm" name="username"
+								placeholder="username" /> <br />
+
+						</div>
+
+						<label>Password:</label> <input type="password" name="password"
+							class="form-control input-sm" placeholder="password" /> <br>
 						<div class="wrapper">
 							<span class="group-btn"> <input name="submit"
 								type="submit" value="submit" class="btn btn-primary btn-md" />
@@ -52,7 +62,8 @@
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-			<a href='<c:url value="/" />'>No Thanks! Just take me to home page.</a>
+			<a href='<c:url value="/" />'>Take me to home page, I will
+				register later...</a>
 		</div>
 		<div class="col-md-4"></div>
 	</div>
