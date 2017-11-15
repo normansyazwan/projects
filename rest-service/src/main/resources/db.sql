@@ -29,6 +29,10 @@ INSERT INTO MD_MAPPING VALUES('EMP',1, 'NAME','NAME','employee_name');
 INSERT INTO MD_MAPPING VALUES('EMP',1, 'AGE','AGE','employee_age');
 INSERT INTO MD_MAPPING VALUES('EMP',1, 'SALARY','SALARY','employee_salary');
 
+create table employee ( name varchar(100), age int, salary double);
+
+insert into employee values('Bharat',29,1000.0);
+
 select demo_id,demo_version,demo_isin from V_DEMO;
 
 select o.objecttype,o.version,o.view_name,m.column_name,m.column_alias,m.field

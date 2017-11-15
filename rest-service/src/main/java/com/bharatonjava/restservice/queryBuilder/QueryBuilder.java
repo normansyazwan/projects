@@ -4,5 +4,5 @@ import com.bharatonjava.restservice.gateway.RestRequest;
 
 public interface QueryBuilder {
 
-	public String getQueryForRequest(RestRequest request);
+	public String getQueryForRequest(RestRequest request) throws Exception;
 }

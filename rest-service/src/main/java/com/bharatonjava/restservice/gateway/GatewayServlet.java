@@ -127,7 +127,7 @@ public class GatewayServlet extends HttpServlet {
 					objectType.toUpperCase()
 							+ Constants.COLON
 							+ restRequest.getRequestMap().get(
-									Constants.DATA_SCHEMA_VERSION));
+									Constants.SCHEMA_VERSION));
 			
 		} else {
 			log.error("pathString is null");

@@ -9,8 +9,6 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bharatonjava.restservice.gateway.ProcessingException;
 import com.bharatonjava.restservice.gateway.RestRequest;
@@ -26,8 +24,6 @@ public class DefaultDataService {
 	private static final Logger log = LoggerFactory
 			.getLogger(DefaultDataService.class);
 
-	
-
 	public DefaultDataService() {
 
 	}
@@ -35,8 +31,7 @@ public class DefaultDataService {
 	public void getData(RestRequest request, ServiceStatus status) throws ProcessingException {
 
 		log.info("Inside getData.. to get data");
-		
-		
+				
 		// validate request
 		if(!validateRequest(request, status)){
 			throw new ProcessingException("Invalid Request!!");
@@ -44,12 +39,14 @@ public class DefaultDataService {
 		
 		// build query
 		QueryBuilder queryBuilder = new MysqlQueryBuilder();
-		String sql = queryBuilder.getQueryForRequest(request);
+		String sql = null;
 
 		// execute query
 		DataSource dataSource = (DataSource) ContextUtils.getBean("dataSource");
 		Connection conn = null;
 		try {
+			sql = queryBuilder.getQueryForRequest(request);
+			
 			conn = dataSource.getConnection();
 			executeQuery(request, sql, conn);
 
@@ -59,9 +56,13 @@ public class DefaultDataService {
 		} catch (SQLException e) {
 			throw new ProcessingException(
 					"Error while getting executing query", e);
+		} catch (Exception e) {
+			log.error("Error occured.", e);
 		} finally {
 			try {
-				conn.close();
+				if(conn != null){
+					conn.close();
+				}
 			} catch (Exception e) {
 				log.error("Error while closing connection in Service.", e);
 			}
